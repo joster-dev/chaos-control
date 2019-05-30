@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "form-control": [
+        "dist/form-control"
+      ],
+      "form-control/*": [
+        "dist/form-control/*"
+      ]
+    }
   }
 }
