@@ -1,9 +1,4 @@
-label {
+:host {
   display: flex;
   align-items: center;
-  user-select: none;
-
-  button {
-    margin-left: 0.5em;
-  }
 }

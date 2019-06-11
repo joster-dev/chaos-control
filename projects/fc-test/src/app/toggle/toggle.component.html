@@ -1,0 +1,45 @@
+<form novalidate #form="ngForm">
+  <header>
+    <h1>Toggle</h1>
+    <p>Control value will be <b>boolean</b> or <b>null</b></p>
+    <h3>Inputs</h3>
+    <ul>
+      <li>showNull = false</li>
+    </ul>
+  </header>
+  <fieldset>
+    <label>
+      Label for toggle
+      <fc-toggle [(ngModel)]="base" name="base"></fc-toggle>
+    </label>
+    <br>
+    Binding: {{base === null ? 'null' : base}}
+  </fieldset>
+  <h4>showNull = true</h4>
+  <fieldset>
+    <fc-toggle [showNull]="true" [(ngModel)]="showNull" name="showNull"></fc-toggle>
+    <br>
+    Binding: {{showNull === null ? 'null' : showNull}}
+  </fieldset>
+  <h4>disabled = true</h4>
+  <fieldset disabled>
+    <fc-toggle [(ngModel)]="disabled" name="disabled"></fc-toggle>
+    <br>
+    <fc-toggle [showNull]="true" [(ngModel)]="disabledShowNull" name="disabledShowNull"></fc-toggle>
+  </fieldset>
+  <h4>required = true</h4>
+  <fieldset>
+    <fc-toggle required [(ngModel)]="required" name="required"></fc-toggle>
+    <br>
+    <fc-toggle required [showNull]="true" [(ngModel)]="requiredShowNull" name="requiredShowNull"></fc-toggle>
+  </fieldset>
+  <p *ngIf="form.valid === false">
+    ❗ Form invalid
+  </p>
+  <p *ngIf="form.valid === true">
+    🆗 Form valid
+  </p>
+  <footer>
+    <button type="button" (click)="form.reset()">Reset</button>
+  </footer>
+</form>

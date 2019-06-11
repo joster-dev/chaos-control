@@ -1,7 +1,12 @@
-<label>
-  <ng-content></ng-content>
-  <button type="button" [disabled]="disabled" (click)="click()" (keypress)="keypress()" (blur)="onTouched()"
-    [tabindex]="disabled ? -1 : 0">
-    {{model ? '✔️' : '🔲'}}
-  </button>
-</label>
+<button type="button" [class.active]="model === false" [disabled]="disabled" (blur)="onTouched()"
+  (click)="action(false)" (keypress)="action(false)">
+  {{'👎'}}
+</button>
+<button *ngIf="showNull" type="button" [class.active]="model === null" [disabled]="disabled" (blur)="onTouched()"
+  (click)="action(null)" (keypress)="action(null)">
+  {{ '🤔' }}
+</button>
+<button type="button" [class.active]="model === true" [disabled]="disabled" (blur)="onTouched()" (click)="action(true)"
+  (keypress)="action(true)">
+  {{ '👍' }}
+</button>

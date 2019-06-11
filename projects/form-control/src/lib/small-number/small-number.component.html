@@ -1,12 +1,14 @@
 <label>
   <ng-content></ng-content>
 </label>
-<button type="button" [disabled]="value <= min" (click)="decrement()">
-  ➖
-</button>
-<span>
-  {{ value | number: decimalString }}
+<span class="group">
+  <button type="button" [disabled]="model - step < min" (click)="decrement()" (keypress)="decrement()">
+    ➖
+  </button>
+  <span>
+    {{ model }}
+  </span>
+  <button type="button" [disabled]="model + step > max" (click)="increment()" (keypress)="increment()">
+    ➕
+  </button>
 </span>
-<button type="button" [disabled]="value >= max" (click)="increment()" (keypress)="increment()">
-  ➕
-</button>
