@@ -1,14 +1,11 @@
-<label>
-  <ng-content></ng-content>
-</label>
-<span class="group">
-  <button type="button" [disabled]="model - step < min" (click)="decrement()" (keypress)="decrement()">
-    ➖
-  </button>
-  <span>
-    {{ model }}
-  </span>
-  <button type="button" [disabled]="model + step > max" (click)="increment()" (keypress)="increment()">
-    ➕
-  </button>
+<button type="button" [disabled]="disabled || model - step < min" (blur)="onTouched()" (click)="action(model - step)"
+  (keypress)="action(model - step)">
+  ➖
+</button>
+<span>
+  {{ model }}
 </span>
+<button type="button" [disabled]="disabled || model + step > max" (blur)="onTouched()" (click)="action(model + step)"
+  (keypress)="action(model + step)">
+  ➕
+</button>

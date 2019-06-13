@@ -10,7 +10,7 @@ import {
 @Component({
   selector: 'fc-small-number',
   templateUrl: './small-number.component.html',
-  styleUrls: ['./small-number.component.scss', '../button.scss'],
+  styleUrls: ['./small-number.component.scss', '../styles.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -25,26 +25,20 @@ import {
   ]
 })
 export class SmallNumberComponent implements ControlValueAccessor, Validator {
+  @Input() disabled = false;
   @Input() min = 0;
   @Input() max = 9;
   @Input() step = 1;
   @Input() showNull = false;
 
-  isDisabled = false;
   model = 0;
 
   constructor() {}
 
-  decrement() {
-    this.model -= this.step;
+  action(value: number): void {
+    if (this.disabled) return;
+    this.model = value;
     this.onChange(this.model);
-    this.onTouched();
-  }
-
-  increment() {
-    this.model += this.step;
-    this.onChange(this.model);
-    this.onTouched();
   }
 
   onChange(value: number) {}
@@ -60,7 +54,7 @@ export class SmallNumberComponent implements ControlValueAccessor, Validator {
   }
 
   setDisabledState(isDisabled: boolean) {
-    this.isDisabled = isDisabled;
+    this.disabled = isDisabled;
   }
 
   validate(): ValidationErrors | null {

@@ -3,17 +3,17 @@ import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-toggle',
-  templateUrl: './toggle.component.html',
-  styleUrls: ['./toggle.component.css']
+  templateUrl: './toggle.component.html'
 })
 export class ToggleComponent {
   @ViewChild('form') form!: NgForm;
 
   base = true;
   showNull = null;
-  disabled = false;
+  disabled = null;
   disabledShowNull = null;
   required = null;
+  requiredDisabled = null;
   requiredShowNull = null;
 
   constructor() {}

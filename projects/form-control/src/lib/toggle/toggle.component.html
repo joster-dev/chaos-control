@@ -4,7 +4,7 @@
 </button>
 <button *ngIf="showNull" type="button" [class.active]="model === null" [disabled]="disabled" (blur)="onTouched()"
   (click)="action(null)" (keypress)="action(null)">
-  {{ '🤔' }}
+  {{ '❓' }}
 </button>
 <button type="button" [class.active]="model === true" [disabled]="disabled" (blur)="onTouched()" (click)="action(true)"
   (keypress)="action(true)">

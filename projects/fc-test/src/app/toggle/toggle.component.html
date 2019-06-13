@@ -1,45 +1,48 @@
+<header>
+  <h1>Toggle</h1>
+  <p>Control value will be <b>boolean</b> or <b>null</b></p>
+</header>
 <form novalidate #form="ngForm">
-  <header>
-    <h1>Toggle</h1>
-    <p>Control value will be <b>boolean</b> or <b>null</b></p>
-    <h3>Inputs</h3>
-    <ul>
-      <li>showNull = false</li>
-    </ul>
-  </header>
   <fieldset>
-    <label>
-      Label for toggle
-      <fc-toggle [(ngModel)]="base" name="base"></fc-toggle>
-    </label>
-    <br>
-    Binding: {{base === null ? 'null' : base}}
+    <legend>Default</legend>
+    <label for="base">showNull = false</label>
+    <fc-toggle [(ngModel)]="base" name="base" id="base"></fc-toggle>
   </fieldset>
-  <h4>showNull = true</h4>
+  Binding: {{base === null ? 'null' : base}}
+  <br><br>
   <fieldset>
-    <fc-toggle [showNull]="true" [(ngModel)]="showNull" name="showNull"></fc-toggle>
-    <br>
-    Binding: {{showNull === null ? 'null' : showNull}}
+    <legend>Examples</legend>
+    <label for="showNull">showNull = true</label>
+    <fc-toggle [showNull]="true" [(ngModel)]="showNull" name="showNull" id="showNull"></fc-toggle>
   </fieldset>
-  <h4>disabled = true</h4>
+  Binding: {{showNull === null ? 'null' : showNull}}
+  <br><br>
   <fieldset disabled>
+    <legend>disabled fieldset</legend>
     <fc-toggle [(ngModel)]="disabled" name="disabled"></fc-toggle>
-    <br>
+    <br><br>
     <fc-toggle [showNull]="true" [(ngModel)]="disabledShowNull" name="disabledShowNull"></fc-toggle>
   </fieldset>
-  <h4>required = true</h4>
   <fieldset>
-    <fc-toggle required [(ngModel)]="required" name="required"></fc-toggle>
-    <br>
-    <fc-toggle required [showNull]="true" [(ngModel)]="requiredShowNull" name="requiredShowNull"></fc-toggle>
+    <legend>Validation</legend>
+    <label for="requiredDisabled">required & disabled</label>
+    <fc-toggle required disabled [(ngModel)]="requiredDisabled" name="requiredDisabled" id="requiredDisabled">
+    </fc-toggle>
+    <br><br>
+    <label for="required">required</label>
+    <fc-toggle required [(ngModel)]="required" name="required" id="required"></fc-toggle>
+    <br><br>
+    <label for="requiredShowNull">required & showNull = true</label>
+    <fc-toggle required [showNull]="true" [(ngModel)]="requiredShowNull" name="requiredShowNull" id="requiredShowNull">
+    </fc-toggle>
   </fieldset>
-  <p *ngIf="form.valid === false">
-    ❗ Form invalid
-  </p>
-  <p *ngIf="form.valid === true">
-    🆗 Form valid
-  </p>
-  <footer>
-    <button type="button" (click)="form.reset()">Reset</button>
-  </footer>
 </form>
+<p *ngIf="form.valid === false">
+  ❗ Form not valid
+</p>
+<p *ngIf="form.valid === true">
+  🆗 Form valid
+</p>
+<footer>
+  <button type="button" (click)="form.reset()">Reset</button>
+</footer>

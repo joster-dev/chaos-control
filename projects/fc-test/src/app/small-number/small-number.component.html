@@ -1,42 +1,51 @@
-<form novalidate #form="ngForm">
-  <header>
-    <h1>Small Number</h1>
-    <p>Control value will be <b>number</b> or <b>null</b></p>
-    <h3>Inputs</h3>
-    <ul>
-      <li>min = 0</li>
-      <li>max = 9</li>
-      <li>step = 1</li>
-    </ul>
-  </header>
+<header>
+  <h1>Small Number</h1>
+  <p>
+    Control value will be <b>number</b> or <b>null</b>
+    <br><br>
+    <legend><a href="https://floating-point-gui.de/">⚠️</a> do not use with floats</legend>
+  </p>
+</header>
+<form #form="ngForm">
   <fieldset>
-    <fc-small-number [(ngModel)]="base" name="base">Label for small number</fc-small-number>
+    <legend>Default</legend>
+    <label for="base">min = 0 & max = 9 & step = 1</label>
+    <fc-small-number [(ngModel)]="base" name="base" id="base"></fc-small-number>
   </fieldset>
-  <h4>min = -10 | max = 10 | step = 2</h4>
   <fieldset>
-    <fc-small-number [min]="-10" [max]="10" [step]="2" [(ngModel)]="negative" name="negative"></fc-small-number>
+    <legend>Examples</legend>
+    <label for="negative">min = -10 & max = 10 & step = 2</label>
+    <fc-small-number [min]="-10" [max]="10" [step]="2" [(ngModel)]="negative" name="negative" id="negative">
+    </fc-small-number>
+    <br>
+    <br>
+    <label for="large">max = 1000 & step = 25</label>
+    <fc-small-number [max]="1000" [step]="25" [(ngModel)]="large" name="large" id="large"></fc-small-number>
   </fieldset>
-  <h4>max = 3 | step = 0.1</h4>
-  <p>⚠️ do not use with float</p>
-  <fieldset>
-    <fc-small-number [max]="3" [step]="0.1" [(ngModel)]="float" name="float"></fc-small-number>
-  </fieldset>
-  <h4>disabled = true</h4>
   <fieldset disabled>
-    <fc-small-number [(ngModel)]="disabled" name="disabled"></fc-small-number>
+    <legend>disabled fieldset</legend>
+    <fc-small-number [(ngModel)]="disabledFieldset" name="disabledFieldset"></fc-small-number>
   </fieldset>
-  <h3>Validation</h3>
-  <h4>min = 5</h4>
   <fieldset>
-    <fc-small-number [min]="5" [(ngModel)]="invalid" name="invalid"></fc-small-number>
+    <legend>Validation</legend>
+    <label for="disabled">disabled & min = 5</label>
+    <fc-small-number disabled [min]="5" [(ngModel)]="disabled" name="disabled" id="disabled"></fc-small-number>
+    <br>
+    <br>
+    <label for="minError">min = 5</label>
+    <fc-small-number [min]="5" [(ngModel)]="minError" name="minError" id="minError"></fc-small-number>
+    <br>
+    <br>
+    <label for="maxError">min = -9 & max = -5</label>
+    <fc-small-number [min]="-9" [max]="-5" [(ngModel)]="maxError" name="maxError" id="maxError"></fc-small-number>
   </fieldset>
-  <p *ngIf="form.valid === false">
-    ❗ Form invalid
-  </p>
-  <p *ngIf="form.valid === true">
-    🆗 Form valid
-  </p>
-  <footer>
-    <button type="button" (click)="form.reset()">Reset</button>
-  </footer>
 </form>
+<p *ngIf="form.valid === false">
+  ❗ Form not valid
+</p>
+<p *ngIf="form.valid === true">
+  🆗 Form valid
+</p>
+<footer>
+  <button type="button" (click)="form.reset()">Reset</button>
+</footer>
