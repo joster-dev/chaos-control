@@ -1,11 +1,11 @@
-<button type="button" [disabled]="disabled || model - step < min" (blur)="onTouched()" (click)="action(model - step)"
-  (keypress)="action(model - step)">
-  ➖
-</button>
-<span>
-  {{ model }}
-</span>
-<button type="button" [disabled]="disabled || model + step > max" (blur)="onTouched()" (click)="action(model + step)"
-  (keypress)="action(model + step)">
-  ➕
-</button>
+<div>
+  <fc-button type="button" [disabled]="disabled || canSubtract === false" (blur)="onTouched()" (action)="subtract()">
+    ➖
+  </fc-button>
+  <span>
+    {{ model }}
+  </span>
+  <fc-button type="button" [disabled]="disabled || canAdd === false" (blur)="onTouched()" (action)="add()">
+    ➕
+  </fc-button>
+</div>

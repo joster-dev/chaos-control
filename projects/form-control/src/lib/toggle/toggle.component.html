@@ -1,12 +1,12 @@
-<button type="button" [class.active]="model === false" [disabled]="disabled" (blur)="onTouched()"
-  (click)="action(false)" (keypress)="action(false)">
-  {{'👎'}}
-</button>
-<button *ngIf="showNull" type="button" [class.active]="model === null" [disabled]="disabled" (blur)="onTouched()"
-  (click)="action(null)" (keypress)="action(null)">
-  {{ '❓' }}
-</button>
-<button type="button" [class.active]="model === true" [disabled]="disabled" (blur)="onTouched()" (click)="action(true)"
-  (keypress)="action(true)">
-  {{ '👍' }}
-</button>
+<div>
+  <fc-button [active]="model === false" [disabled]="disabled" (blur)="onTouched()" (action)="action(false)">
+    👎
+  </fc-button>
+  <fc-button *ngIf="showNull" [active]="model === null" [disabled]="disabled" (blur)="onTouched()"
+    (action)="action(null)">
+    ❓
+  </fc-button>
+  <fc-button [active]="model === true" [disabled]="disabled" (blur)="onTouched()" (action)="action(true)">
+    👍
+  </fc-button>
+</div>

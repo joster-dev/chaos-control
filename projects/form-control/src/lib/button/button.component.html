@@ -1,0 +1,4 @@
+<button [type]="type" [class.active]="active" [class.disabled]="disabled" [attr.tabindex]="disabled ? -1 : 0"
+  (blur)="blur.emit($event)" (click)="action.emit($event)" (keypress)="action.emit($event)">
+  <ng-content></ng-content>
+</button>

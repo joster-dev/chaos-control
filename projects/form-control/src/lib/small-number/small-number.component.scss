@@ -1,3 +1,16 @@
+:host {
+  display: inline-block;
+}
+
+div {
+  display: flex;
+  align-items: stretch;
+}
+
 span {
-  user-select: none;
+  border-top: medium solid lightgrey;
+  border-bottom: medium solid lightgrey;
+  display: flex;
+  align-items: center;
+  padding: 0 0.5em;
 }

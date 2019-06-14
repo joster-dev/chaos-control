@@ -4,7 +4,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
   selector: 'fc-toggle',
   templateUrl: './toggle.component.html',
-  styleUrls: ['./toggle.component.scss', '../styles.scss'],
+  styleUrls: ['./toggle.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

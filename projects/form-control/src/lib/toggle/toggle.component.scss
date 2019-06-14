@@ -1,4 +1,7 @@
-// :host {
-//   display: flex;
-//   align-items: center;
-// }
+:host {
+  display: inline-block;
+}
+
+div {
+  display: flex;
+}
