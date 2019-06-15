@@ -1,11 +1,16 @@
 <div>
-  <fc-button type="button" [disabled]="disabled || canSubtract === false" (blur)="onTouched()" (action)="subtract()">
+  <label>
+    <ng-content></ng-content>
+  </label>
+  <fc-button type="button" [active]="this.model > this.max" [disabled]="canSubtract === false" (blur)="onTouched()"
+    (action)="subtract()">
     ➖
   </fc-button>
   <span>
     {{ model }}
   </span>
-  <fc-button type="button" [disabled]="disabled || canAdd === false" (blur)="onTouched()" (action)="add()">
+  <fc-button type="button" [active]="this.model < this.min" [disabled]="canAdd === false" (blur)="onTouched()"
+    (action)="add()">
     ➕
   </fc-button>
 </div>

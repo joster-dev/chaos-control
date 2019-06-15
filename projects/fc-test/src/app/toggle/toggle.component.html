@@ -5,18 +5,16 @@
 <form novalidate #form="ngForm">
   <fieldset>
     <legend>Default</legend>
-    <label for="base">showNull = false</label>
-    <fc-toggle [(ngModel)]="base" name="base" id="base"></fc-toggle>
+    <fc-toggle [(ngModel)]="base" name="base">
+      showNull = false | model = {{base === null ? 'null' : base}}
+    </fc-toggle>
   </fieldset>
-  Binding: {{base === null ? 'null' : base}}
-  <br><br>
   <fieldset>
     <legend>Examples</legend>
-    <label for="showNull">showNull = true</label>
-    <fc-toggle [showNull]="true" [(ngModel)]="showNull" name="showNull" id="showNull"></fc-toggle>
+    <fc-toggle [showNull]="true" [(ngModel)]="showNull" name="showNull">
+      showNull = true | model = {{showNull === null ? 'null' : showNull}}
+    </fc-toggle>
   </fieldset>
-  Binding: {{showNull === null ? 'null' : showNull}}
-  <br><br>
   <fieldset disabled>
     <legend>disabled fieldset</legend>
     <fc-toggle [(ngModel)]="disabled" name="disabled"></fc-toggle>
@@ -25,15 +23,16 @@
   </fieldset>
   <fieldset>
     <legend>Validation</legend>
-    <label for="requiredDisabled">required & disabled</label>
-    <fc-toggle required disabled [(ngModel)]="requiredDisabled" name="requiredDisabled" id="requiredDisabled">
+    <fc-toggle required disabled [(ngModel)]="requiredDisabled" name="requiredDisabled">
+      required & disabled
     </fc-toggle>
     <br><br>
-    <label for="required">required</label>
-    <fc-toggle required [(ngModel)]="required" name="required" id="required"></fc-toggle>
+    <fc-toggle required [(ngModel)]="required" name="required">
+      required
+    </fc-toggle>
     <br><br>
-    <label for="requiredShowNull">required & showNull = true</label>
-    <fc-toggle required [showNull]="true" [(ngModel)]="requiredShowNull" name="requiredShowNull" id="requiredShowNull">
+    <fc-toggle required [showNull]="true" [(ngModel)]="requiredShowNull" name="requiredShowNull">
+      required & showNull = true
     </fc-toggle>
   </fieldset>
 </form>

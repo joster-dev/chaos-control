@@ -40,7 +40,11 @@ export class SmallNumberComponent implements ControlValueAccessor, Validator {
 
   add() {
     if (this.canAdd === false) return;
-    this.model += this.step;
+    if (this.model < this.min) {
+      this.model = this.min;
+    } else {
+      this.model += this.step;
+    }
     this.onChange(this.model);
   }
 
@@ -50,7 +54,11 @@ export class SmallNumberComponent implements ControlValueAccessor, Validator {
 
   subtract() {
     if (this.canSubtract === false) return;
-    this.model -= this.step;
+    if (this.model > this.max) {
+      this.model = this.max;
+    } else {
+      this.model -= this.step;
+    }
     this.onChange(this.model);
   }
 

@@ -1,4 +1,7 @@
 <div>
+  <label>
+    <ng-content></ng-content>
+  </label>
   <fc-button [active]="model === false" [disabled]="disabled" (blur)="onTouched()" (action)="action(false)">
     👎
   </fc-button>

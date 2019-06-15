@@ -4,4 +4,13 @@
 
 div {
   display: flex;
+
+  label {
+    display: flex;
+    align-items: center;
+    padding-right: 0.5em;
+    &:empty {
+      display: none;
+    }
+  }
 }

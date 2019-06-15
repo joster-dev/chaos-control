@@ -4,13 +4,23 @@
 
 div {
   display: flex;
-  align-items: stretch;
-}
 
-span {
-  border-top: medium solid lightgrey;
-  border-bottom: medium solid lightgrey;
-  display: flex;
-  align-items: center;
-  padding: 0 0.5em;
+  label,
+  span {
+    display: flex;
+    align-items: center;
+  }
+
+  label {
+    padding-right: 0.5em;
+    &:empty {
+      display: none;
+    }
+  }
+
+  span {
+    border-top: medium solid lightgrey;
+    border-bottom: medium solid lightgrey;
+    padding: 0 0.5em;
+  }
 }

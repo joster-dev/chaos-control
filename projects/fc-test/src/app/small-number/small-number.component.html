@@ -9,18 +9,20 @@
 <form #form="ngForm">
   <fieldset>
     <legend>Default</legend>
-    <label for="base">min = 0 & max = 9 & step = 1</label>
-    <fc-small-number [(ngModel)]="base" name="base" id="base"></fc-small-number>
+    <fc-small-number [(ngModel)]="base" name="base" id="base">
+      min = 0 & max = 9 & step = 1
+    </fc-small-number>
   </fieldset>
   <fieldset>
     <legend>Examples</legend>
-    <label for="negative">min = -10 & max = 10 & step = 2</label>
-    <fc-small-number [min]="-10" [max]="10" [step]="2" [(ngModel)]="negative" name="negative" id="negative">
+    <fc-small-number [min]="-10" [max]="10" [step]="2" [(ngModel)]="negative" name="negative">
+      min = -10 & max = 10 & step = 2
     </fc-small-number>
     <br>
     <br>
-    <label for="large">max = 1000 & step = 25</label>
-    <fc-small-number [max]="1000" [step]="25" [(ngModel)]="large" name="large" id="large"></fc-small-number>
+    <fc-small-number [max]="1000" [step]="25" [(ngModel)]="large" name="large">
+      max = 1000 & step = 25
+    </fc-small-number>
   </fieldset>
   <fieldset disabled>
     <legend>disabled fieldset</legend>
@@ -28,16 +30,19 @@
   </fieldset>
   <fieldset>
     <legend>Validation</legend>
-    <label for="disabled">disabled & min = 5</label>
-    <fc-small-number disabled [min]="5" [(ngModel)]="disabled" name="disabled" id="disabled"></fc-small-number>
+    <fc-small-number disabled [min]="5" [(ngModel)]="disabled" name="disabled">
+      disabled & min = 5
+    </fc-small-number>
     <br>
     <br>
-    <label for="minError">min = 5</label>
-    <fc-small-number [min]="5" [(ngModel)]="minError" name="minError" id="minError"></fc-small-number>
+    <fc-small-number [min]="5" [(ngModel)]="minError" name="minError">
+      min = 5
+    </fc-small-number>
     <br>
     <br>
-    <label for="maxError">min = -9 & max = -5</label>
-    <fc-small-number [min]="-9" [max]="-5" [(ngModel)]="maxError" name="maxError" id="maxError"></fc-small-number>
+    <fc-small-number [min]="-9" [max]="-5" [(ngModel)]="maxError" name="maxError">
+      min = -9 & max = -5
+    </fc-small-number>
   </fieldset>
 </form>
 <p *ngIf="form.valid === false">
