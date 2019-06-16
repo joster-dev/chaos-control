@@ -1,6 +1,17 @@
 {
-  "name": "form-control",
+  "name": "@joster/form-control",
   "version": "0.0.1",
+  "description": "controls for your form",
+  "keywords": [
+    "angular",
+    "library"
+  ],
+  "homepage": "https://github.com/joster422/form-control",
+  "author": {
+    "name": "Jacob Osterhout",
+    "url": "http://joster.us/"
+  },
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0"
