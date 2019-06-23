@@ -25,46 +25,51 @@ import {
   ]
 })
 export class SmallNumberComponent implements ControlValueAccessor, Validator {
-  @Input() disabled = false;
   @Input() min = 0;
   @Input() max = 9;
   @Input() step = 1;
+  @Input() showNull = false;
 
-  model = 0;
+  disabled = false;
+  _model: number | null = null;
+  get model() {
+    return this._model;
+  }
+  set model(value: number | null) {
+    this._model = value;
+    this.onChange(this._model);
+  }
+  onChange = (model: number | null) => {};
+  onTouched = () => {};
 
   constructor() {}
 
-  get canAdd(): boolean {
-    return this.disabled === false && this.model + this.step <= this.max;
+  get disableAdd() {
+    if (this.model === null) return false;
+    return this.model + this.step > this.max;
   }
 
   add() {
-    if (this.canAdd === false) return;
-    if (this.model < this.min) {
-      this.model = this.min;
-    } else {
-      this.model += this.step;
+    if (this.model === null) {
+      this.model = this.max;
+      return;
     }
-    this.onChange(this.model);
+
+    this.model += this.step;
   }
 
-  get canSubtract(): boolean {
-    return this.disabled === false && this.model - this.step >= this.min;
+  get disableSubtract() {
+    if (this.model === null) return false;
+    return this.model - this.step < this.min;
   }
 
   subtract() {
-    if (this.canSubtract === false) return;
-    if (this.model > this.max) {
-      this.model = this.max;
-    } else {
-      this.model -= this.step;
+    if (this.model === null) {
+      this.model = this.min;
+      return;
     }
-    this.onChange(this.model);
+    this.model -= this.step;
   }
-
-  onChange(value: number) {}
-
-  onTouched() {}
 
   registerOnChange(fn: any) {
     this.onChange = fn;
@@ -79,8 +84,8 @@ export class SmallNumberComponent implements ControlValueAccessor, Validator {
   }
 
   validate(): ValidationErrors | null {
-    const max = this.max < this.model;
-    const min = this.min > this.model;
+    const max = this.max < Number(this.model);
+    const min = this.min > Number(this.model);
     if (!max && !min) {
       return null;
     } else if (max) {
@@ -92,10 +97,9 @@ export class SmallNumberComponent implements ControlValueAccessor, Validator {
   }
 
   writeValue(value: any) {
-    const number = Number(value);
-    if (value === '' || isNaN(number)) {
+    if (value !== null && typeof value !== 'number') {
       throw new Error('control value must be number or null');
     }
-    this.model = number;
+    this._model = value;
   }
 }

@@ -2,14 +2,14 @@
   <label>
     <ng-content></ng-content>
   </label>
-  <fc-button [active]="model === false" [disabled]="disabled" (blur)="onTouched()" (action)="action(false)">
+  <fc-button [disabled]="disabled" [active]="model === false" (action)="model = false" (blur)="onTouched()">
     👎
   </fc-button>
-  <fc-button *ngIf="showNull" [active]="model === null" [disabled]="disabled" (blur)="onTouched()"
-    (action)="action(null)">
+  <fc-button *ngIf="showNull" [disabled]="disabled" [active]="model === null" (action)="model = null"
+    (blur)="onTouched()">
     ❓
   </fc-button>
-  <fc-button [active]="model === true" [disabled]="disabled" (blur)="onTouched()" (action)="action(true)">
+  <fc-button [disabled]="disabled" [active]="model === true" (action)="model = true" (blur)="onTouched()">
     👍
   </fc-button>
 </div>

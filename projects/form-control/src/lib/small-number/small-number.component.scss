@@ -1,5 +1,9 @@
 :host {
   display: inline-block;
+
+  &.ng-invalid ::ng-deep fc-button > button {
+    border-color: red;
+  }
 }
 
 div {

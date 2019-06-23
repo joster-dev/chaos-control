@@ -1,0 +1,33 @@
+<header>
+    <h1>Button</h1>
+</header>
+<form #form="ngForm">
+    <fieldset>
+        <legend>default</legend>
+        <fc-button (action)="actions = actions + 1">
+            type = button | {{actions}} actions
+        </fc-button>
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>examples</legend>
+        <fc-button [active]="true" (action)="activeActions = activeActions + 1">
+            active = true | {{activeActions}} actions
+        </fc-button>
+        <br><br>
+        <fc-button [disabled]="true" (action)="disabledActions = disabledActions + 1">
+            disabled = true | {{disabledActions}} actions
+        </fc-button>
+    </fieldset>
+    <br>
+    <fieldset disabled>
+        <legend>disabled fieldset</legend>
+        <fc-button (action)="disabledFieldsetActions = disabledFieldsetActions + 1">
+            {{disabledFieldsetActions}} actions | {{disabledFieldsetActions}} actions
+        </fc-button>
+    </fieldset>
+</form>
+<br>
+<footer>
+    <fc-button (action)="reset()">Reset button actions</fc-button>
+</footer>

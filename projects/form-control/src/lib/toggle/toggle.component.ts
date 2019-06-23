@@ -14,22 +14,21 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class ToggleComponent implements ControlValueAccessor {
-  @Input() disabled = false;
   @Input() showNull = false;
 
-  model: boolean | null = null;
+  disabled = false;
+  _model: boolean | null = null;
+  get model() {
+    return this._model;
+  }
+  set model(value: boolean | null) {
+    this._model = value;
+    this.onChange(value);
+  }
+  onChange = (value: boolean | null) => {};
+  onTouched = () => {};
 
   constructor() {}
-
-  action(value: boolean | null): void {
-    if (this.disabled) return;
-    this.model = value;
-    this.onChange(this.model);
-  }
-
-  onChange(value: boolean | null) {}
-
-  onTouched() {}
 
   registerOnChange(fn: any) {
     this.onChange = fn;
@@ -48,6 +47,6 @@ export class ToggleComponent implements ControlValueAccessor {
       throw new Error('control value must be boolean or null');
     }
 
-    this.model = value;
+    this._model = value;
   }
 }

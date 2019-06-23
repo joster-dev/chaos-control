@@ -8,13 +8,14 @@ import { NgForm } from '@angular/forms';
 export class ToggleComponent {
   @ViewChild('form') form!: NgForm;
 
-  base = true;
+  default = null;
   showNull = null;
   disabled = null;
-  disabledShowNull = null;
+  disabledTrue = null;
   required = null;
   requiredDisabled = null;
   requiredShowNull = null;
+  disabledFieldset = null;
 
   constructor() {}
 }

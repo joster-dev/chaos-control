@@ -8,14 +8,17 @@ import { NgForm } from '@angular/forms';
 export class SmallNumberComponent {
   @ViewChild('form') form!: NgForm;
 
-  base = 0;
+  default = null;
   negative = 0;
   large = 0;
-  float = 0;
+  showNull = null;
   disabled = 0;
+  required = null;
+
+  minError = null;
+  maxError = null;
+
   disabledFieldset = 0;
-  minError = 0;
-  maxError = 0;
 
   constructor() {}
 }

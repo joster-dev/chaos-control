@@ -55,7 +55,7 @@
               "projects/fc-test/src/favicon.ico",
               "projects/fc-test/src/assets"
             ],
-            "styles": ["projects/fc-test/src/styles.css"],
+            "styles": ["projects/fc-test/src/styles.scss"],
             "scripts": [],
             "es5BrowserSupport": true
           },

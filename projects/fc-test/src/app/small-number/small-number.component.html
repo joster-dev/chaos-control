@@ -1,56 +1,56 @@
 <header>
   <h1>Small Number</h1>
   <p>
-    Control value will be <b>number</b> or <b>null</b>
-    <br><br>
-    <legend><a href="https://floating-point-gui.de/">⚠️</a> do not use with floats</legend>
+    Control value will be <b>number</b> or <b>null</b>.
+    <a href="https://floating-point-gui.de/">Only use with integers.</a>
   </p>
 </header>
 <form #form="ngForm">
   <fieldset>
-    <legend>Default</legend>
-    <fc-small-number [(ngModel)]="base" name="base" id="base">
+    <legend>default</legend>
+    <fc-small-number [(ngModel)]="default" name="default">
       min = 0 & max = 9 & step = 1
     </fc-small-number>
   </fieldset>
+  <br>
   <fieldset>
-    <legend>Examples</legend>
+    <legend>examples</legend>
     <fc-small-number [min]="-10" [max]="10" [step]="2" [(ngModel)]="negative" name="negative">
       min = -10 & max = 10 & step = 2
     </fc-small-number>
-    <br>
-    <br>
+    <br><br>
     <fc-small-number [max]="1000" [step]="25" [(ngModel)]="large" name="large">
       max = 1000 & step = 25
     </fc-small-number>
-  </fieldset>
-  <fieldset disabled>
-    <legend>disabled fieldset</legend>
-    <fc-small-number [(ngModel)]="disabledFieldset" name="disabledFieldset"></fc-small-number>
-  </fieldset>
-  <fieldset>
-    <legend>Validation</legend>
+    <br><br>
+    <fc-small-number [(ngModel)]="showNull" name="showNull" [showNull]="true">
+      showNull = true
+    </fc-small-number>
+    <br><br>
     <fc-small-number disabled [min]="5" [(ngModel)]="disabled" name="disabled">
       disabled & min = 5
     </fc-small-number>
-    <br>
-    <br>
+    <br><br>
+    <fc-small-number required [(ngModel)]="required" name="required">
+      required
+    </fc-small-number>
+    <br><br>
     <fc-small-number [min]="5" [(ngModel)]="minError" name="minError">
       min = 5
     </fc-small-number>
-    <br>
-    <br>
+    <br><br>
     <fc-small-number [min]="-9" [max]="-5" [(ngModel)]="maxError" name="maxError">
       min = -9 & max = -5
     </fc-small-number>
   </fieldset>
+  <br>
+  <fieldset disabled>
+    <legend>disabled fieldset</legend>
+    <fc-small-number [(ngModel)]="disabledFieldset" name="disabledFieldset"></fc-small-number>
+  </fieldset>
 </form>
-<p *ngIf="form.valid === false">
-  ❗ Form not valid
-</p>
-<p *ngIf="form.valid === true">
-  🆗 Form valid
-</p>
+<br>
 <footer>
-  <button type="button" (click)="form.reset()">Reset</button>
+  {{form.valid ? '🆗 Form valid' : '❗ Form not valid'}}
+  <fc-button (click)="form.reset()">Form Reset</fc-button>
 </footer>
