@@ -9,14 +9,17 @@ export class SmallNumberComponent {
   @ViewChild('form') form!: NgForm;
 
   default = null;
-  negative = 0;
-  large = 0;
+  negative = null;
+  large = null;
   showNull = null;
-  disabled = 0;
+  disabled = null;
+  disabledTrue = null;
   required = null;
+  requiredDisabled = -1;
+  requiredShowNull = null;
 
-  minError = null;
-  maxError = null;
+  minError = 0;
+  maxError = 0;
 
   disabledFieldset = 0;
 

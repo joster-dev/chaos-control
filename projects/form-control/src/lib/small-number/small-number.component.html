@@ -1,17 +1,19 @@
-<div>
+<div class="dis-flex flex-center">
+  <div class="dis-flex flex-stretch">
+    <fc-button *ngIf="showNull" [active]="model === null" (action)="model = null" (blur)="onTouched()">
+      ❓
+    </fc-button>
+    <fc-button [disabled]="disabled || disableSubtract" (action)="subtract()" (blur)="onTouched()">
+      ➖
+    </fc-button>
+    <span *ngIf="model !== null">
+      {{model}}
+    </span>
+    <fc-button [disabled]="disabled || disableAdd" (action)="add()" (blur)="onTouched()">
+      ➕
+    </fc-button>
+  </div>
   <label>
     <ng-content></ng-content>
   </label>
-  <fc-button *ngIf="showNull" [active]="model === null" (action)="model = null" (blur)="onTouched()">
-    ❓
-  </fc-button>
-  <fc-button [disabled]="disabled || disableSubtract" (action)="subtract()" (blur)="onTouched()">
-    ➖
-  </fc-button>
-  <span *ngIf="model !== null">
-    {{model}}
-  </span>
-  <fc-button [disabled]="disabled || disableAdd" (action)="add()" (blur)="onTouched()">
-    ➕
-  </fc-button>
 </div>

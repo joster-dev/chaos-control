@@ -15,7 +15,7 @@ export class ToggleComponent {
   required = null;
   requiredDisabled = null;
   requiredShowNull = null;
-  disabledFieldset = null;
+  disabledFieldset = true;
 
   constructor() {}
 }

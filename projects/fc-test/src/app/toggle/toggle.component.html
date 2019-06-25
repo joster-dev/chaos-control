@@ -6,22 +6,22 @@
   <fieldset>
     <legend>default</legend>
     <fc-toggle [(ngModel)]="default" name="default">
-      showNull = false
+      show null is false
     </fc-toggle>
   </fieldset>
   <br>
   <fieldset>
     <legend>examples</legend>
     <fc-toggle [(ngModel)]="showNull" name="showNull" [showNull]="true">
-      showNull = true
+      show null is true
     </fc-toggle>
     <br><br>
     <fc-toggle disabled [(ngModel)]="disabled" name="disabled">
       disabled
     </fc-toggle>
     <br><br>
-    <fc-toggle [disabled]="true" [(ngModel)]="disabledTrue" name="disabledTrue">
-      disabled = true
+    <fc-toggle [(ngModel)]="disabledTrue" name="disabledTrue" [disabled]="true">
+      disabled is true
     </fc-toggle>
     <br><br>
     <fc-toggle required [(ngModel)]="required" name="required">
@@ -33,7 +33,7 @@
     </fc-toggle>
     <br><br>
     <fc-toggle required [(ngModel)]="requiredShowNull" name="requiredShowNull" [showNull]="true">
-      required & showNull = true
+      required & show null is true
     </fc-toggle>
   </fieldset>
   <br>

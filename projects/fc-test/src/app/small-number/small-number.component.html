@@ -9,44 +9,57 @@
   <fieldset>
     <legend>default</legend>
     <fc-small-number [(ngModel)]="default" name="default">
-      min = 0 & max = 9 & step = 1
+      min is 0 & max is 9 & step is 1
     </fc-small-number>
   </fieldset>
   <br>
   <fieldset>
     <legend>examples</legend>
-    <fc-small-number [min]="-10" [max]="10" [step]="2" [(ngModel)]="negative" name="negative">
-      min = -10 & max = 10 & step = 2
+    <fc-small-number [(ngModel)]="negative" name="negative" [min]="-10" [max]="10" [step]="2">
+      min is -10 & max is 10 & step is 2
     </fc-small-number>
     <br><br>
-    <fc-small-number [max]="1000" [step]="25" [(ngModel)]="large" name="large">
-      max = 1000 & step = 25
+    <fc-small-number [(ngModel)]="large" name="large" [max]="1000" [step]="25">
+      max is 1000 & step is 25
     </fc-small-number>
     <br><br>
     <fc-small-number [(ngModel)]="showNull" name="showNull" [showNull]="true">
-      showNull = true
+      show null is true
     </fc-small-number>
     <br><br>
-    <fc-small-number disabled [min]="5" [(ngModel)]="disabled" name="disabled">
-      disabled & min = 5
+    <fc-small-number disabled [(ngModel)]="disabled" name="disabled">
+      disabled
+    </fc-small-number>
+    <br><br>
+    <fc-small-number [(ngModel)]="disabledTrue" name="disabledTrue" [disabled]="true">
+      disabled is true
     </fc-small-number>
     <br><br>
     <fc-small-number required [(ngModel)]="required" name="required">
       required
     </fc-small-number>
     <br><br>
-    <fc-small-number [min]="5" [(ngModel)]="minError" name="minError">
-      min = 5
+    <fc-small-number disabled required [(ngModel)]="requiredDisabled" name="requiredDisabled">
+      disabled & required
     </fc-small-number>
     <br><br>
-    <fc-small-number [min]="-9" [max]="-5" [(ngModel)]="maxError" name="maxError">
-      min = -9 & max = -5
+    <fc-small-number required [(ngModel)]="requiredShowNull" name="requiredShowNull" [showNull]="true">
+      required & show null is true
+    </fc-small-number>
+    <br><br>
+    <fc-small-number [(ngModel)]="minError" name="minError" [min]="5">
+      min is 5
+    </fc-small-number>
+    <br><br>
+    <fc-small-number [(ngModel)]="maxError" name="maxError" [min]="-9" [max]="-5">
+      min is -9 & max is -5
     </fc-small-number>
   </fieldset>
   <br>
   <fieldset disabled>
     <legend>disabled fieldset</legend>
-    <fc-small-number [(ngModel)]="disabledFieldset" name="disabledFieldset"></fc-small-number>
+    <fc-small-number [(ngModel)]="disabledFieldset" name="disabledFieldset" [showNull]="true">show null is true
+    </fc-small-number>
   </fieldset>
 </form>
 <br>

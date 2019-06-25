@@ -10,7 +10,7 @@ import {
 @Component({
   selector: 'fc-small-number',
   templateUrl: './small-number.component.html',
-  styleUrls: ['./small-number.component.scss'],
+  styleUrls: ['./small-number.component.scss', '../styles.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -54,7 +54,10 @@ export class SmallNumberComponent implements ControlValueAccessor, Validator {
       this.model = this.max;
       return;
     }
-
+    if (this.model + this.step < this.min) {
+      this.model = this.min;
+      return;
+    }
     this.model += this.step;
   }
 
@@ -66,6 +69,10 @@ export class SmallNumberComponent implements ControlValueAccessor, Validator {
   subtract() {
     if (this.model === null) {
       this.model = this.min;
+      return;
+    }
+    if (this.model - this.step > this.max) {
+      this.model = this.max;
       return;
     }
     this.model -= this.step;
