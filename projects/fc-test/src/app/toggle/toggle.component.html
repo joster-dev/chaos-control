@@ -39,7 +39,9 @@
   <br>
   <fieldset disabled>
     <legend>disabled fieldset</legend>
-    <fc-toggle [(ngModel)]="disabledFieldset" name="disabledFieldset"></fc-toggle>
+    <fc-toggle [(ngModel)]="disabledFieldset" name="disabledFieldset" [showNull]="true">
+      show null is true
+    </fc-toggle>
   </fieldset>
 </form>
 <br>
