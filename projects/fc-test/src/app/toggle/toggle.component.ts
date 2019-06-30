@@ -7,15 +7,37 @@ import { NgForm } from '@angular/forms';
 })
 export class ToggleComponent {
   @ViewChild('form') form!: NgForm;
+  @ViewChild('disabledFieldsetForm') disabledFieldsetForm!: NgForm;
 
-  default = null;
-  showNull = null;
-  disabled = null;
-  disabledTrue = null;
-  required = null;
-  requiredDisabled = null;
-  requiredShowNull = null;
-  disabledFieldset = true;
+  default: boolean | null = null;
+  disabled: boolean | null = null;
+  required: boolean | null = null;
+  disabledRequired: boolean | null = null;
+  isShowNullForm = false;
+
+  disabledFieldset: boolean | null = null;
+  isRequiredDisabledFieldset = false;
+  isShowNullDisabledFieldset = false;
 
   constructor() {}
+
+  resetForm() {
+    this.form.reset({
+      isShowNullForm: false
+    });
+  }
+
+  resetDisabledFieldsetForm() {
+    this.disabledFieldsetForm.reset({
+      isRequiredDisabledFieldset: false,
+      isShowNullDisabledFieldset: false
+    });
+  }
+
+  setFormValues(value: boolean) {
+    this.default = value;
+    this.disabled = value;
+    this.required = value;
+    this.disabledRequired = value;
+  }
 }

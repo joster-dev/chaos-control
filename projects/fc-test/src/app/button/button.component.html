@@ -3,21 +3,23 @@
 </header>
 <form #form="ngForm">
     <fieldset>
-        <legend>default</legend>
-        <fc-button (action)="actions = actions + 1">
+        <fc-button (action)="actions = actions + 1" [active]="isActive" [disabled]="isDisabled">
             {{actions}} actions
         </fc-button>
-    </fieldset>
-    <br>
-    <fieldset>
-        <legend>examples</legend>
-        <fc-button [active]="true" (action)="activeActions = activeActions + 1">
-            active is true & {{activeActions}} actions
-        </fc-button>
         <br><br>
-        <fc-button [disabled]="true" (action)="disabledActions = disabledActions + 1">
-            disabled is true & {{disabledActions}} actions
-        </fc-button>
+        <fieldset>
+            <label>
+                <input type="checkbox" [(ngModel)]="isActive" name="isActive" />
+                active
+            </label>
+            <br><br>
+            <label>
+                <input type="checkbox" [(ngModel)]="isDisabled" name="isDisabled" />
+                disabled
+            </label>
+            <br><br>
+            <fc-button (action)="reset()">reset button actions</fc-button>
+        </fieldset>
     </fieldset>
     <br>
     <fieldset disabled>
@@ -27,7 +29,3 @@
         </fc-button>
     </fieldset>
 </form>
-<br>
-<footer>
-    <fc-button (action)="reset()">Reset button actions</fc-button>
-</footer>

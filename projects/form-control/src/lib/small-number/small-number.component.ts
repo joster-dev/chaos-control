@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, Input, forwardRef, HostBinding } from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
@@ -25,12 +25,15 @@ import {
   ]
 })
 export class SmallNumberComponent implements ControlValueAccessor, Validator {
+  @HostBinding('attr.value') initialValue: number | null = null;
+
   @Input() min = 0;
   @Input() max = 9;
   @Input() step = 1;
   @Input() showNull = false;
 
   disabled = false;
+  initialWrite = true;
   _model: number | null = null;
   get model() {
     return this._model;
@@ -91,8 +94,11 @@ export class SmallNumberComponent implements ControlValueAccessor, Validator {
   }
 
   validate(): ValidationErrors | null {
-    const max = this.max < Number(this.model);
-    const min = this.min > Number(this.model);
+    if (this.model === null) {
+      return null;
+    }
+    const max = this.max < this.model;
+    const min = this.min > this.model;
     if (!max && !min) {
       return null;
     } else if (max) {
@@ -107,6 +113,11 @@ export class SmallNumberComponent implements ControlValueAccessor, Validator {
     if (value !== null && typeof value !== 'number') {
       throw new Error('control value must be number or null');
     }
+    if (this.initialWrite && value !== null) {
+      this.initialValue = value;
+      this.initialWrite = false;
+    }
+
     this._model = value;
   }
 }
