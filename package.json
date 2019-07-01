@@ -3,16 +3,16 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "build-pages": "ng build --project=fc-test --prod --base-href=https://joster422.github.io/form-control",
+    "build-pages": "ng build --project=fc-test --prod --base-href=https://joster422.github.io/form-control/",
     "build-lib": "ng build form-control && npm run copy-license",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "push-pages": "git push origin --delete gh-pages && git subtree push --prefix dist/fc-test origin gh-pages",
     "copy-license": "powershell Copy-Item \".\\LICENSE\" -Destination \".\\dist\\form-control\"",
     "npm-pack": "cd dist/form-control && npm pack",
-    "package": "npm run build-lib && npm run npm-pack"
+    "package": "npm run build-lib && npm run npm-pack",
+    "pages": "npm run build-pages && npm run push-pages"
   },
   "private": true,
   "dependencies": {
