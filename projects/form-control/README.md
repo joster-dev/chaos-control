@@ -1,29 +1,19 @@
-# FormControl
+# Form Control
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
 
-## Code scaffolding
+## About
 
-Run `ng generate component component-name --project form-control` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project form-control`.
+These styled components enable type-safe value binding
 
-> Note: Don't forget to add `--project form-control` or else it will be added to the default project in your `angular.json` file.
+## Examples
 
-## Build
-
-Run `ng build form-control` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Publishing
-
-After building your library with `ng build form-control`, go to the dist folder `cd dist/form-control` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test form-control` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Github pages hosted [testing playground](https://github.com/joster422/form-control)
 
 ## Contents
 
-prefix `fc`
-
-- button
-- toggle
-- small-number
+- utility
+  - `fc-button`
+- control
+  - `fc-toggle`
+  - `fc-small-number`
