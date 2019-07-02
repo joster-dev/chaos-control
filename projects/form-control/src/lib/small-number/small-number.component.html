@@ -1,6 +1,6 @@
 <div class="dis-flex flex-center">
   <div class="dis-flex flex-stretch">
-    <fc-button *ngIf="showNull === true" title="Retract" [active]="model === null" [disabled]="disabled"
+    <fc-button *ngIf="showNull === true" title="Undecided" [active]="model === null" [disabled]="disabled"
       (action)="model = null" (blur)="onTouched()">
       ❓
     </fc-button>
