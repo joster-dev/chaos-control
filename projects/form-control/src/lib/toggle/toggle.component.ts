@@ -18,17 +18,19 @@ export class ToggleComponent implements ControlValueAccessor {
 
   disabled = false;
   _model: boolean | null = null;
+  onChange = (_value: boolean | null) => {};
+  onTouched = () => {};
+
+  constructor() {}
+
   get model() {
     return this._model;
   }
+  
   set model(value: boolean | null) {
     this._model = value;
     this.onChange(value);
   }
-  onChange = (value: boolean | null) => {};
-  onTouched = () => {};
-
-  constructor() {}
 
   registerOnChange(fn: any) {
     this.onChange = fn;

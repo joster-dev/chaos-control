@@ -1,0 +1,39 @@
+<header>
+  <h1>Button</h1>
+</header>
+<form #form="ngForm">
+  <fieldset>
+    <legend>form</legend>
+    <fc-button [active]="isActive" [disabled]="isDisabled" (action)="actions = actions + 1">
+      {{actions}} actions
+    </fc-button>
+    <br />
+    <br />
+    <fieldset>
+      <legend>options</legend>
+      <label>
+        <input type="checkbox" [(ngModel)]="isActive" name="isActive" />
+        active
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" [(ngModel)]="isDisabled" name="isDisabled" />
+        disabled
+      </label>
+    </fieldset>
+    <br />
+    <fieldset>
+      <legend>actions</legend>
+      <button type="button" (click)="reset()">
+        reset
+      </button>
+    </fieldset>
+    <br />
+    <fieldset disabled>
+      <legend>disabled fieldset</legend>
+      <fc-button (action)="disabledFieldsetActions = disabledFieldsetActions + 1">
+        {{disabledFieldsetActions}} actions
+      </fc-button>
+    </fieldset>
+  </fieldset>
+</form>

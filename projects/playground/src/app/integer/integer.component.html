@@ -1,0 +1,191 @@
+<header>
+  <h1>Integer</h1>
+  <ol>
+    <li>
+      <i>model</i> will be <b>number</b> or <b>null</b>
+    </li>
+    <li>
+      <a href="https://floating-point-gui.de/">only use with integers</a>
+    </li>
+    <li>
+      when <i>model</i> is <b>null</b>
+      <ol>
+        <li>Subtract button will set <i>model</i> to <u>min</u></li>
+        <li>Add button will set <i>model</i> to <u>max</u></li>
+      </ol>
+    </li>
+    <li>
+      when <i>model</i> is less than <u>min</u>
+      <ol>
+        <li>Subtract button will be disabled</li>
+        <li>Add button will set <i>model</i> to <u>min</u></li>
+      </ol>
+    </li>
+    <li>
+      when <i>model</i> is greater than <u>max</u>
+      <ol>
+        <li>Add button will be disabled</li>
+        <li>Subtract button will set <i>model</i> to <u>max</u></li>
+      </ol>
+    </li>
+  </ol>
+  <h4>Inputs</h4>
+  <ul>
+    <li>
+      <u>disabled</u> can be an attribute, when specified it will be <b>boolean</b>. default is <b>false</b>
+    </li>
+    <li>
+      <u>required</u> will be <b>boolean</b>. default is <b>false</b>
+    </li>
+    <li>
+      <u>showNull</u> will be <b>boolean</b>. default is <b>false</b>
+    </li>
+    <li>
+      <u>min</u> will be <b>number</b>. default is <b>0</b>
+    </li>
+    <li>
+      <u>max</u> will be <b>number</b>. default is <b>9</b>
+    </li>
+    <li>
+      <u>step</u> will be <b>number</b>. default is <b>1</b>
+    </li>
+  </ul>
+</header>
+<form #form="ngForm">
+  <fieldset>
+    <legend>form</legend>
+    <fc-integer [(ngModel)]="default" name="default" [required]="isFormRequired" [showNull]="isFormShowNull">
+      default
+    </fc-integer>
+    <br />
+    <br />
+    <fc-integer disabled [(ngModel)]="disabled" name="disabled" [required]="isFormRequired" [showNull]="isFormShowNull">
+      <u>disabled</u>
+    </fc-integer>
+    <br />
+    <br />
+    <fieldset>
+      <legend>options</legend>
+      <label>
+        <input type="checkbox" [(ngModel)]="isFormRequired" name="isFormRequired" />
+        required
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" [(ngModel)]="isFormShowNull" name="isFormShowNull" />
+        show null
+      </label>
+    </fieldset>
+    <br />
+    <fieldset>
+      <legend>actions</legend>
+      <fc-button (action)="setFormModels(0)">
+        set <i>models</i> to <b>0</b>
+      </fc-button>
+      <fc-button (action)="setFormModels(-1)">
+        set <i>models</i> to <b>-1</b>
+      </fc-button>
+      <fc-button (action)="setFormModels(10)">
+        set <i>models</i> to <b>10</b>
+      </fc-button>
+      <fc-button (action)="form.reset()">
+        form reset
+      </fc-button>
+    </fieldset>
+    <br />
+    <span>
+      {{form.valid ? '🆗 form valid' : '❗ form not valid'}}
+    </span>
+  </fieldset>
+</form>
+<br />
+<form #exampleForm="ngForm">
+  <fieldset>
+    <legend>form</legend>
+    <fc-integer [(ngModel)]="negative" name="negative" [min]="-10" [max]="10" [step]="2" [disabled]="isExampleFormDisabled" [required]="isExampleFormRequired" [showNull]="isExampleFormShowNull">
+      <u>min</u> is <b>-10</b> & <u>max</u> is <b>10</b> & <u>step</u> is <b>2</b>
+    </fc-integer>
+    <br />
+    <br />
+    <fc-integer [(ngModel)]="minError" name="minError" [min]="5" [disabled]="isExampleFormDisabled" [required]="isExampleFormRequired" [showNull]="isExampleFormShowNull">
+      <u>min</u> is <b>5</b>
+    </fc-integer>
+    <br />
+    <br />
+    <fc-integer [(ngModel)]="maxError" name="maxError" [min]="-9" [max]="-5" [disabled]="isExampleFormDisabled" [required]="isExampleFormRequired" [showNull]="isExampleFormShowNull">
+      <u>min</u> is <b>-9</b> & <u>max</u> is <b>-5</b>
+    </fc-integer>
+    <br />
+    <br />
+    <fieldset>
+      <legend>options</legend>
+      <label>
+        <input type="checkbox" [(ngModel)]="isExampleFormDisabled" name="isExampleFormDisabled" />
+        disabled
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" [(ngModel)]="isExampleFormRequired" name="isExampleFormRequired" />
+        required
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" [(ngModel)]="isExampleFormShowNull" name="isExampleFormShowNull" />
+        show null
+      </label>
+    </fieldset>
+    <br />
+    <fieldset>
+      <legend>actions</legend>
+      <fc-button (action)="setExampleFormModels(0)">
+        set all <i>model</i> to <b>0</b>
+      </fc-button>
+      <fc-button (action)="exampleForm.reset()">
+        form reset
+      </fc-button>
+    </fieldset>
+    <br />
+    <span>
+      {{exampleForm.valid ? '🆗 form valid' : '❗ form not valid'}}
+    </span>
+  </fieldset>
+</form>
+<br />
+<form #disabledFieldsetForm="ngForm">
+  <fieldset>
+    <legend>form</legend>
+    <fieldset disabled>
+      <legend>disabled fieldset</legend>
+      <fc-integer [(ngModel)]="disabledFieldset" name="disabledFieldset" [required]="isDisabledFieldsetFormRequired" [showNull]="isDisabledFieldsetFormShowNull">
+        label
+      </fc-integer>
+    </fieldset>
+    <br />
+    <fieldset>
+      <legend>options</legend>
+      <label>
+        <input type="checkbox" [(ngModel)]="isDisabledFieldsetFormRequired" name="isDisabledFieldsetFormRequired" />
+        required
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" [(ngModel)]="isDisabledFieldsetFormShowNull" name="isDisabledFieldsetFormShowNull" />
+        show null
+      </label>
+    </fieldset>
+    <br />
+    <fieldset>
+      <legend>actions</legend>
+      <fc-button (action)="setDisabledFieldsetFormModels(0)">
+        set <i>model</i> to <b>0</b>
+      </fc-button>
+      <fc-button (action)="disabledFieldsetForm.reset()">
+        form reset
+      </fc-button>
+    </fieldset>
+    <br />
+    <span>
+      {{disabledFieldsetForm.valid ? '🆗 form valid' : '❗ form not valid'}}
+    </span>
+  </fieldset>
+</form>

@@ -4,9 +4,14 @@
   "newProjectRoot": "projects",
   "projects": {
     "form-control": {
+      "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "projects/form-control",
       "sourceRoot": "projects/form-control/src",
-      "projectType": "library",
       "prefix": "fc",
       "architect": {
         "build": {
@@ -31,40 +36,48 @@
               "projects/form-control/tsconfig.lib.json",
               "projects/form-control/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
     },
-    "fc-test": {
-      "root": "projects/fc-test/",
-      "sourceRoot": "projects/fc-test/src",
+    "playground": {
       "projectType": "application",
-      "prefix": "app",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/playground",
+      "sourceRoot": "projects/playground/src",
+      "prefix": "pg",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/fc-test",
-            "index": "projects/fc-test/src/index.html",
-            "main": "projects/fc-test/src/main.ts",
-            "polyfills": "projects/fc-test/src/polyfills.ts",
-            "tsConfig": "projects/fc-test/tsconfig.app.json",
+            "outputPath": "dist/playground",
+            "index": "projects/playground/src/index.html",
+            "main": "projects/playground/src/main.ts",
+            "polyfills": "projects/playground/src/polyfills.ts",
+            "tsConfig": "projects/playground/tsconfig.app.json",
+            "aot": false,
             "assets": [
-              "projects/fc-test/src/favicon.ico",
-              "projects/fc-test/src/assets"
+              "projects/playground/src/favicon.ico",
+              "projects/playground/src/assets"
             ],
-            "styles": ["projects/fc-test/src/styles.scss"],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "styles": [
+              "projects/playground/src/styles.scss"
+            ],
+            "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/fc-test/src/environments/environment.ts",
-                  "with": "projects/fc-test/src/environments/environment.prod.ts"
+                  "replace": "projects/playground/src/environments/environment.ts",
+                  "with": "projects/playground/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -81,6 +94,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -89,73 +107,63 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "fc-test:build"
+            "browserTarget": "playground:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "fc-test:build:production"
+              "browserTarget": "playground:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fc-test:build"
+            "browserTarget": "playground:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/fc-test/src/test.ts",
-            "polyfills": "projects/fc-test/src/polyfills.ts",
-            "tsConfig": "projects/fc-test/tsconfig.spec.json",
-            "karmaConfig": "projects/fc-test/karma.conf.js",
-            "styles": ["projects/fc-test/src/styles.css"],
-            "scripts": [],
+            "main": "projects/playground/src/test.ts",
+            "polyfills": "projects/playground/src/polyfills.ts",
+            "tsConfig": "projects/playground/tsconfig.spec.json",
+            "karmaConfig": "projects/playground/karma.conf.js",
             "assets": [
-              "projects/fc-test/src/favicon.ico",
-              "projects/fc-test/src/assets"
-            ]
+              "projects/playground/src/favicon.ico",
+              "projects/playground/src/assets"
+            ],
+            "styles": [
+              "projects/playground/src/styles.scss"
+            ],
+            "scripts": []
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/fc-test/tsconfig.app.json",
-              "projects/fc-test/tsconfig.spec.json"
+              "projects/playground/tsconfig.app.json",
+              "projects/playground/tsconfig.spec.json",
+              "projects/playground/e2e/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
-        }
-      }
-    },
-    "fc-test-e2e": {
-      "root": "projects/fc-test-e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
+        },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/fc-test-e2e/protractor.conf.js",
-            "devServerTarget": "fc-test:serve"
+            "protractorConfig": "projects/playground/e2e/protractor.conf.js",
+            "devServerTarget": "playground:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "fc-test:serve:production"
+              "devServerTarget": "playground:serve:production"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "projects/fc-test-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
           }
         }
       }
-    }
-  },
+    } },
   "defaultProject": "form-control"
 }

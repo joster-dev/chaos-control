@@ -1,0 +1,104 @@
+<h1>Toggle</h1>
+<ol>
+  <li>
+    <i>model</i> will be <b>boolean</b> or <b>null</b>
+  </li>
+</ol>
+<h4>Inputs</h4>
+<ul>
+  <li>
+    <u>disabled</u> can be an attribute, when specified it will be <b>boolean</b>. default is <b>false</b>
+  </li>
+  <li>
+    <u>required</u> will be <b>boolean</b>. default is <b>false</b>
+  </li>
+  <li>
+    <u>showNull</u> will be <b>boolean</b>. default is <b>false</b>
+  </li>
+</ul>
+<form #form="ngForm">
+  <fieldset>
+    <legend>form</legend>
+    <fc-toggle [(ngModel)]="default" name="default" [required]="isFormRequired" [showNull]="isFormShowNull">
+      default
+    </fc-toggle>
+    <br />
+    <br />
+    <fc-toggle disabled [(ngModel)]="disabled" name="disabled" [required]="isFormRequired" [showNull]="isFormShowNull">
+      <u>disabled</u>
+    </fc-toggle>
+    <br />
+    <br />
+    <fieldset>
+      <legend>options</legend>
+      <label>
+        <input type="checkbox" [(ngModel)]="isFormRequired" name="isFormRequired" />
+        required
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" [(ngModel)]="isFormShowNull" name="isFormShowNull" />
+        show null
+      </label>
+    </fieldset>
+    <br />
+    <fieldset>
+      <legend>actions</legend>
+      <fc-button (action)="setFormModels(true)">
+        set <i>models</i> to <b>true</b>
+      </fc-button>
+      <fc-button (action)="setFormModels(false)">
+        set <i>models</i> to <b>false</b>
+      </fc-button>
+      <fc-button (action)="form.reset()">
+        form reset
+      </fc-button>
+    </fieldset>
+    <br />
+    <span>
+      {{form.valid ? '🆗 form valid' : '❗ form not valid'}}
+    </span>
+  </fieldset>
+</form>
+<br />
+<form #disabledFieldsetForm="ngForm">
+  <fieldset>
+    <legend>form</legend>
+    <fieldset disabled>
+      <legend>disabled fieldset</legend>
+      <fc-toggle [(ngModel)]="disabledFieldset" name="disabledFieldset" [required]="isDisabledFieldsetFormRequired" [showNull]="isDisabledFieldsetFormShowNull">
+        default
+      </fc-toggle>
+    </fieldset>
+    <br />
+    <fieldset>
+      <legend>options</legend>
+      <label>
+        <input type="checkbox" [(ngModel)]="isDisabledFieldsetFormRequired" name="isDisabledFieldsetFormRequired" />
+        required
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" [(ngModel)]="isDisabledFieldsetFormShowNull" name="isDisabledFieldsetFormShowNull" />
+        show null
+      </label>
+    </fieldset>
+    <br />
+    <fieldset>
+      <legend>actions</legend>
+      <fc-button (action)="setDisabledFieldsetModels(true)">
+        set <i>models</i> to <b>true</b>
+      </fc-button>
+      <fc-button (action)="setDisabledFieldsetModels(false)">
+        set <i>models</i> to <b>false</b>
+      </fc-button>
+      <fc-button (action)="disabledFieldsetForm.reset()">
+        form reset
+      </fc-button>
+    </fieldset>
+    <br />
+    <span>
+      {{disabledFieldsetForm.valid ? '🆗 form valid' : '❗ form not valid'}}
+    </span>
+  </fieldset>
+</form>
