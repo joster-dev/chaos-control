@@ -1,0 +1,11 @@
+<label for="select">
+  <input type="checkbox" id="select" />
+</label>
+<input type="search" placeholder="Search..." />
+<div>
+  <div *ngFor="let item of items">
+    <fc-toggle>
+      {{item.value}}
+    </fc-toggle>
+  </div>
+</div>
