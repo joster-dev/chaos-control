@@ -1,0 +1,15 @@
+input[type=date] {
+  background: white;
+  border-color: lightgrey;
+  border-width: medium;
+  padding: 0.5em;
+  cursor: pointer;
+  font-family: Arial;
+}
+
+label {
+  padding-left: 0.5em;
+  &:empty {
+    display: none;
+  }
+}

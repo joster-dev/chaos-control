@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IntegerComponent } from './integer.component';
+import { DateComponent } from './date.component';
 
-describe('IntegerComponent', () => {
-  let component: IntegerComponent;
-  let fixture: ComponentFixture<IntegerComponent>;
+describe('DateComponent', () => {
+  let component: DateComponent;
+  let fixture: ComponentFixture<DateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [IntegerComponent]
+      declarations: [DateComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IntegerComponent);
+    fixture = TestBed.createComponent(DateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

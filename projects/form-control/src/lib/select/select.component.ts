@@ -1,5 +1,5 @@
 import { Component, forwardRef, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator, ValidationErrors, AbstractControl } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator, ValidationErrors } from '@angular/forms';
 import { KeyValue } from '@angular/common';
 
 @Component({
@@ -23,8 +23,8 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   @Input() items: KeyValue<string, number>[] = [];
 
   isDisabled = false;
-  _model: number | null = null;
-  onChange = (_model: number | null) => { };
+  _model: number | string | null = null;
+  onChange = (_model: number | string | null) => { };
   onTouched = () => { };
 
   constructor() { }
@@ -37,11 +37,11 @@ export class SelectComponent implements ControlValueAccessor, Validator {
     this.onTouched = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {
+  setDisabledState(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
   }
 
-  validate(control: AbstractControl): ValidationErrors {
+  validate(): ValidationErrors | null {
     return null;
   }
 

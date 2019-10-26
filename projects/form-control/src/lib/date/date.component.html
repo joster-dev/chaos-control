@@ -1,0 +1,6 @@
+<div class="dis-flex flex-center">
+  <input type="date" [(ngModel)]="model" [disabled]="isDisabled" [id]="name" [max]="max" [min]="min" (blur)="onTouched()" />
+  <label [for]="name">
+    <ng-content></ng-content>
+  </label>
+</div>

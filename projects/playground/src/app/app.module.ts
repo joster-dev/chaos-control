@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { IntegerComponent } from './integer/integer.component';
 import { ToggleComponent } from './toggle/toggle.component';
 import { ButtonComponent } from './button/button.component';
+import { DateComponent } from './date/date.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IntegerComponent,
     ToggleComponent,
-    ButtonComponent
+    ButtonComponent,
+    DateComponent
   ],
   imports: [
     BrowserModule,
