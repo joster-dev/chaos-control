@@ -1,8 +1,17 @@
-<label for="select">
-  <input type="checkbox" id="select" />
-</label>
-<input type="search" placeholder="Search..." />
-<div class="dropdown">
+<div class="dis-flex flex-center">
+  <label for="select">
+    <input [(ngModel)]="isActive" type="checkbox" id="select" />
+  </label>
+  <input [(ngModel)]="searchTerm" type="search" placeholder="Search..." />
+  <label>
+    <ng-content></ng-content>
+  </label>
+</div>
+
+<div *ngIf="showDropdown === true" class="dropdown">
+  <div *ngIf="items.length === 0">
+    No items to display
+  </div>
   <div *ngFor="let item of items">
     <fc-toggle>
       {{item.value}}

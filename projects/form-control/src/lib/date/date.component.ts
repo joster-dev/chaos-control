@@ -54,7 +54,6 @@ export class DateComponent implements ControlValueAccessor, Validator {
   }
 
   validate(): ValidationErrors | null {
-    debugger;
     this.error = undefined;
 
     if (this.model === null) {

@@ -1,18 +1,17 @@
+<label *ngIf="label">
+  {{label}}
+  <span *ngIf="required === true" class="required-icon">
+    *
+  </span>
+</label>
 <div class="dis-flex flex-center">
-  <div class="dis-flex">
-    <fc-button title="Undecided" *ngIf="showNull" [disabled]="disabled" [active]="model === null"
-      (action)="model = null" (blur)="onTouched()">
-      ❓
-    </fc-button>
-    <fc-button title="No" [disabled]="disabled" [active]="model === false" (action)="model = false"
-      (blur)="onTouched()">
-      👎
-    </fc-button>
-    <fc-button title="Yes" [disabled]="disabled" [active]="model === true" (action)="model = true" (blur)="onTouched()">
-      👍
-    </fc-button>
-  </div>
-  <label>
-    <ng-content></ng-content>
-  </label>
+  <fc-button title="Undecided" *ngIf="showNull" [disabled]="disabled" [active]="model === null" (action)="model = null" (blur)="onTouched()">
+    ❓
+  </fc-button>
+  <fc-button title="No" [disabled]="disabled" [active]="model === false" (action)="model = false" (blur)="onTouched()">
+    👎
+  </fc-button>
+  <fc-button title="Yes" [disabled]="disabled" [active]="model === true" (action)="model = true" (blur)="onTouched()">
+    👍
+  </fc-button>
 </div>

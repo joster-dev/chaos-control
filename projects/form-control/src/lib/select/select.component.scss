@@ -4,3 +4,10 @@
   left: 0px;
   border: 1px solid black;
 }
+
+label {
+  padding-left: 0.5em;
+  &:empty {
+    display: none;
+  }
+}

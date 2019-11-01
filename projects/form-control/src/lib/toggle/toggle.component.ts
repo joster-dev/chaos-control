@@ -18,15 +18,15 @@ export class ToggleComponent implements ControlValueAccessor {
 
   disabled = false;
   _model: boolean | null = null;
-  onChange = (_value: boolean | null) => {};
-  onTouched = () => {};
+  onChange = (_value: boolean | null) => { };
+  onTouched = () => { };
 
-  constructor() {}
+  constructor() { }
 
   get model() {
     return this._model;
   }
-  
+
   set model(value: boolean | null) {
     this._model = value;
     this.onChange(value);
@@ -46,7 +46,7 @@ export class ToggleComponent implements ControlValueAccessor {
 
   writeValue(value: any) {
     if (value !== null && typeof value !== 'boolean') {
-      throw new Error('control value must be boolean or null');
+      throw new Error('form control value must be boolean or null');
     }
 
     this._model = value;

@@ -20,12 +20,17 @@ import { KeyValue } from '@angular/common';
   ]
 })
 export class SelectComponent implements ControlValueAccessor, Validator {
-  @Input() items: KeyValue<string, number>[] = [];
+  @Input() items: KeyValue<string | number, number>[] = [];
 
+  // controls
   isDisabled = false;
   _model: number | string | null = null;
   onChange = (_model: number | string | null) => { };
   onTouched = () => { };
+  // display
+  isActive = false;
+  showDropdown = false;
+  searchTerm: string | null = null;
 
   constructor() { }
 
@@ -46,6 +51,9 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   }
 
   writeValue(value: any): void {
+    if (value !== null && typeof value !== 'string' && typeof value !== 'number') {
+      throw new Error('control value must be string or number or null')
+    }
 
     this._model = value;
   }

@@ -1,0 +1,40 @@
+<h1>Text</h1>
+<form #form="ngForm">
+  <fieldset>
+    <legend>form</legend>
+    <fc-text [(ngModel)]="default" name="default" [required]="isFormRequired" [showNull]="isFormShowNull">
+      <span>default</span>
+    </fc-text>
+    <br />
+    <fc-text disabled [(ngModel)]="disabled" name="disabled" [required]="isFormRequired" [showNull]="isFormShowNull">
+      <u>disabled</u>
+    </fc-text>
+    <br />
+    <fieldset>
+      <legend>options</legend>
+      <label>
+        <input type="checkbox" [(ngModel)]="isFormRequired" name="isFormRequired" />
+        required
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" [(ngModel)]="isFormShowNull" name="isFormShowNull" />
+        show null
+      </label>
+    </fieldset>
+    <br />
+    <fieldset>
+      <legend>actions</legend>
+      <fc-button (action)="setFormModels('test string xyz')">
+        set <i>models</i> to <b>test string xyz</b>
+      </fc-button>
+      <fc-button (action)="form.reset()">
+        form reset
+      </fc-button>
+    </fieldset>
+    <br />
+    <span>
+      {{form.valid ? '🆗 form valid' : '❗ form not valid'}}
+    </span>
+  </fieldset>
+</form>

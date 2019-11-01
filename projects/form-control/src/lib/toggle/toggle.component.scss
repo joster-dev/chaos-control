@@ -17,4 +17,7 @@ label {
   &:empty {
     display: none;
   }
+  .required-icon {
+    color: red;
+  }
 }

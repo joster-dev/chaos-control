@@ -1,0 +1,28 @@
+input[type=text] {
+  background: white;
+  border-color: lightgrey;
+  border-width: medium;
+  border-style: outset;
+  padding: 0.5em;
+  cursor: text;
+  font-family: Arial;
+  font-size: 1em;
+  line-height: 21px;
+  flex: 1;
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+label {
+  padding-left: 0.5em;
+  &:empty {
+    display: none;
+  }
+  .required-icon {
+    color: red;
+  }
+}

@@ -1,6 +1,12 @@
+<label *ngIf="label !== undefined">
+  {{label}}
+  <span *ngIf="required === true" class="required-icon">
+    *
+  </span>
+</label>
 <div class="dis-flex">
-  <label>
-    <ng-content></ng-content>
-  </label>
-  <input type="text" [(ngModel)]="model" />
+  <fc-button title="Unknown" *ngIf="showNull" [disabled]="isDisabled" [active]="model === null" (action)="model = null" (blur)="onTouched()">
+    ❓
+  </fc-button>
+  <input type="text" [(ngModel)]="model" [disabled]="isDisabled" [placeholder]="placeholder" (blur)="onTouched()" />
 </div>

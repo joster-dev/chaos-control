@@ -18,7 +18,17 @@ import { DateComponent } from './date/date.component';
     SelectComponent,
     TextComponent
   ],
-  imports: [CommonModule, FormsModule],
-  exports: [ButtonComponent, DateComponent, IntegerComponent, ToggleComponent]
+  imports: [
+    CommonModule,
+    FormsModule
+  ],
+  exports: [
+    ButtonComponent,
+    DateComponent,
+    IntegerComponent,
+    ToggleComponent,
+    SelectComponent,
+    TextComponent
+  ]
 })
 export class FormControlModule { }
