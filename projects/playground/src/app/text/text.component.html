@@ -2,13 +2,9 @@
 <form #form="ngForm">
   <fieldset>
     <legend>form</legend>
-    <fc-text [(ngModel)]="default" name="default" [required]="isFormRequired" [showNull]="isFormShowNull">
-      <span>default</span>
-    </fc-text>
+    <fc-text [(ngModel)]="default" label="default" name="default" [required]="isFormRequired" [showNull]="isFormShowNull"></fc-text>
     <br />
-    <fc-text disabled [(ngModel)]="disabled" name="disabled" [required]="isFormRequired" [showNull]="isFormShowNull">
-      <u>disabled</u>
-    </fc-text>
+    <fc-text disabled [(ngModel)]="disabled" label="disabled" name="disabled" [required]="isFormRequired" [showNull]="isFormShowNull"></fc-text>
     <br />
     <fieldset>
       <legend>options</legend>

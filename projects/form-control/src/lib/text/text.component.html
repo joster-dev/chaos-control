@@ -5,8 +5,8 @@
   </span>
 </label>
 <div class="dis-flex">
-  <fc-button title="Unknown" *ngIf="showNull" [disabled]="isDisabled" [active]="model === null" (action)="model = null" (blur)="onTouched()">
-    ❓
+  <fc-button *ngIf="showNull === true" [active]="model === null" [disabled]="isDisabled === true" [title]="nullTitle" (action)="model = null" (blur)="onTouched()">
+    {{nullDisplay}}
   </fc-button>
-  <input type="text" [(ngModel)]="model" [disabled]="isDisabled" [placeholder]="placeholder" (blur)="onTouched()" />
+  <input type="text" [(ngModel)]="model" [disabled]="isDisabled === true" [placeholder]="placeholder" (blur)="onTouched()" />
 </div>

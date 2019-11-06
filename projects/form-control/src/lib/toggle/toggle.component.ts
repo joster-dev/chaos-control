@@ -1,5 +1,6 @@
 import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormControlService } from '../form-control.service';
 
 @Component({
   selector: 'fc-toggle',
@@ -14,14 +15,22 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class ToggleComponent implements ControlValueAccessor {
-  @Input() showNull = false;
+  @Input() nullDisplay = this.formControlService.nullDisplay;
+  @Input() nullTitle = this.formControlService.nullTitle;
+  @Input() showNull = this.formControlService.showNull;
+  @Input() required = false;
+  @Input() label?: string;
+  @Input() trueDisplay = '👍';
+  @Input() trueTitle = 'Yes';
+  @Input() falseDisplay = '👎';
+  @Input() falseTitle = 'No';
 
-  disabled = false;
+  isDisabled = false;
   _model: boolean | null = null;
   onChange = (_value: boolean | null) => { };
   onTouched = () => { };
 
-  constructor() { }
+  constructor(private formControlService: FormControlService) { }
 
   get model() {
     return this._model;
@@ -41,7 +50,7 @@ export class ToggleComponent implements ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean) {
-    this.disabled = isDisabled;
+    this.isDisabled = isDisabled;
   }
 
   writeValue(value: any) {

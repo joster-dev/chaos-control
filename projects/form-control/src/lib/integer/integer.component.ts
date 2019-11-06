@@ -1,5 +1,6 @@
 import { Component, forwardRef, Input } from '@angular/core';
 import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ControlValueAccessor, Validator, ValidationErrors } from '@angular/forms';
+import { FormControlService } from '../form-control.service';
 
 @Component({
   selector: 'fc-integer',
@@ -19,22 +20,33 @@ import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ControlValueAccessor, Validator, Vali
   ]
 })
 export class IntegerComponent implements ControlValueAccessor, Validator {
+  @Input() nullDisplay = this.formControlService.nullDisplay;
+  @Input() nullTitle = this.formControlService.nullTitle;
+  @Input() showNull = this.formControlService.showNull;
+  @Input() addDisplay = '➕';
+  @Input() addTitle = 'Add';
+  @Input() subtractDisplay = '➖';
+  @Input() subtractTitle = 'Subtract';
   @Input() min = 0;
   @Input() max = 9;
   @Input() step = 1;
-  @Input() showNull = false;
   @Input() required = false;
 
-  disabled = false;
+  isDisabled = false;
   error?: 'required' | 'min' | 'max';
   _model: number | null = null;
   onChange = (_model: number | null) => { };
   onTouched = () => { };
 
-  constructor() { }
+  constructor(private formControlService: FormControlService) { }
 
   get model() {
     return this._model;
+  }
+
+  set model(value: number | null) {
+    this._model = value;
+    this.onChange(this._model);
   }
 
   get disableAdd() {
@@ -47,11 +59,6 @@ export class IntegerComponent implements ControlValueAccessor, Validator {
     if (this.model === null) return false;
 
     return this.model - this.step < this.min;
-  }
-
-  set model(value: number | null) {
-    this._model = value;
-    this.onChange(this._model);
   }
 
   add() {
@@ -91,7 +98,7 @@ export class IntegerComponent implements ControlValueAccessor, Validator {
   }
 
   setDisabledState(isDisabled: boolean) {
-    this.disabled = isDisabled;
+    this.isDisabled = isDisabled;
   }
 
   validate(): ValidationErrors | null {

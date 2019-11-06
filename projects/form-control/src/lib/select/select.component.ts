@@ -3,14 +3,14 @@ import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator, Vali
 import { KeyValue } from '@angular/common';
 
 @Component({
-  selector: 'fc-select',
+  selector: 'fc-select[name]',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      multi: true,
-      useExisting: forwardRef(() => SelectComponent)
+      useExisting: forwardRef(() => SelectComponent),
+      multi: true
     },
     {
       provide: NG_VALIDATORS,
@@ -20,7 +20,9 @@ import { KeyValue } from '@angular/common';
   ]
 })
 export class SelectComponent implements ControlValueAccessor, Validator {
-  @Input() items: KeyValue<string | number, number>[] = [];
+  @Input() items: KeyValue<number | string, string>[] = [];
+  @Input() name!: string;
+  @Input() label?: string;
 
   // controls
   isDisabled = false;
@@ -33,6 +35,11 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   searchTerm: string | null = null;
 
   constructor() { }
+
+  // get selectText() {
+  //   const item = this.items.find(item => this._model === item.key);
+  //   return item ? item.value : '';
+  // }
 
   registerOnChange(fn: any): void {
     this.onChange = fn;

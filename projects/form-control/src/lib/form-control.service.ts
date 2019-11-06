@@ -4,6 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class FormControlService {
+  showNull = false;
+  nullDisplay = '❓';
+  nullTitle = 'Unknown';
 
   constructor() { }
 }

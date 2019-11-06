@@ -1,4 +1,8 @@
-input[type=text] {
+:host.ng-invalid.ng-touched input[type="text"] {
+  border-color: red;
+}
+
+input[type="text"] {
   background: white;
   border-color: lightgrey;
   border-width: medium;
@@ -19,9 +23,6 @@ input[type=text] {
 
 label {
   padding-left: 0.5em;
-  &:empty {
-    display: none;
-  }
   .required-icon {
     color: red;
   }

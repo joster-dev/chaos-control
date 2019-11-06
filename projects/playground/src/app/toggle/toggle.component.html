@@ -19,14 +19,9 @@
 <form #form="ngForm">
   <fieldset>
     <legend>form</legend>
-    <fc-toggle [(ngModel)]="default" name="default" [required]="isFormRequired" [showNull]="isFormShowNull">
-      default
-    </fc-toggle>
+    <fc-toggle [(ngModel)]="default" label="default" name="default" [required]="isFormRequired" [showNull]="isFormShowNull"></fc-toggle>
     <br />
-    <br />
-    <fc-toggle disabled [(ngModel)]="disabled" name="disabled" [required]="isFormRequired" [showNull]="isFormShowNull">
-      <u>disabled</u>
-    </fc-toggle>
+    <fc-toggle disabled [(ngModel)]="disabled" label="disabled" name="disabled" [required]="isFormRequired" [showNull]="isFormShowNull"></fc-toggle>
     <br />
     <br />
     <fieldset>

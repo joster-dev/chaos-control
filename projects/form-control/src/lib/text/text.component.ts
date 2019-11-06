@@ -1,5 +1,6 @@
 import { Component, forwardRef, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, ControlValueAccessor, ValidationErrors } from '@angular/forms';
+import { FormControlService } from '../form-control.service';
 
 @Component({
   selector: 'fc-text[name]',
@@ -8,8 +9,8 @@ import { NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, ControlValueAccessor, Vali
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      multi: true,
-      useExisting: forwardRef(() => TextComponent)
+      useExisting: forwardRef(() => TextComponent),
+      multi: true
     },
     {
       provide: NG_VALIDATORS,
@@ -19,11 +20,13 @@ import { NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, ControlValueAccessor, Vali
   ]
 })
 export class TextComponent implements ControlValueAccessor, Validator {
+  @Input() nullDisplay = this.formControlService.nullDisplay;
+  @Input() nullTitle = this.formControlService.nullTitle;
+  @Input() showNull = this.formControlService.showNull;
   @Input() name!: string;
   @Input() label?: string;
   @Input() placeholder = '';
   @Input() maxlength?: number;
-  @Input() showNull = false;
   @Input() required = false;
 
   isDisabled = false;
@@ -32,7 +35,7 @@ export class TextComponent implements ControlValueAccessor, Validator {
   onChange = (_model: string | null) => { };
   onTouched = () => { };
 
-  constructor() { }
+  constructor(private formControlService: FormControlService) { }
 
   get model() {
     return this._model;
