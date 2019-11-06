@@ -1,14 +1,18 @@
+<label *ngIf="label !== undefined">
+  {{label}}
+</label>
 <div class="dis-flex flex-center">
   <!-- <label for="select">
     <input [(ngModel)]="isActive" type="checkbox" id="select" />
   </label>
   <input [(ngModel)]="searchTerm" type="search" placeholder="Search..." /> -->
-  <label>
-    <ng-content></ng-content>
-  </label>
-  <fc-button>
+
+  <button type="button" class="flex-1" (click)="showDropdown">
     <!-- {{selectText}} -->
-  </fc-button>
+    <span>
+      ▲
+    </span>
+  </button>
 </div>
 
 

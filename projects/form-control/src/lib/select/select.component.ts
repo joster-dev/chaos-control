@@ -5,7 +5,7 @@ import { KeyValue } from '@angular/common';
 @Component({
   selector: 'fc-select[name]',
   templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss'],
+  styleUrls: ['./select.component.scss', '../styles.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

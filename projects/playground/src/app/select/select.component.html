@@ -1,2 +1,13 @@
 <h1>Select</h1>
-<fc-select [(ngModel)]="default" [items]="defaultData"></fc-select>
+<form #form="ngForm">
+  <fieldset>
+    <legend>form</legend>
+    <fc-select [(ngModel)]="default" label="default" name="default" [items]="defaultData"></fc-select>
+  </fieldset>
+  <label>
+    Bobo
+    <select>
+      <option></option>
+    </select>
+  </label>
+</form>
