@@ -1,5 +1,5 @@
 :host {
-  display: inline-block;
+  display: inline;
 
   &.ng-invalid ::ng-deep fc-button > button:not(.active) {
     border-color: red;

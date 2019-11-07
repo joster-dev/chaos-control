@@ -23,6 +23,7 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   @Input() items: KeyValue<number | string, string>[] = [];
   @Input() name!: string;
   @Input() label?: string;
+  @Input() placeholder = '';
 
   // controls
   isDisabled = false;
@@ -36,10 +37,10 @@ export class SelectComponent implements ControlValueAccessor, Validator {
 
   constructor() { }
 
-  // get selectText() {
-  //   const item = this.items.find(item => this._model === item.key);
-  //   return item ? item.value : '';
-  // }
+  get selectText() {
+    const item = this.items.find(item => this._model === item.key);
+    return item ? item.value : this.placeholder;
+  }
 
   registerOnChange(fn: any): void {
     this.onChange = fn;

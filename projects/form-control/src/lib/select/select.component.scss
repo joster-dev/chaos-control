@@ -11,3 +11,11 @@ label {
     display: none;
   }
 }
+
+.caret {
+  transform: rotate(90deg);
+
+  .rotate-180 {
+    transform: rotate(180deg);
+  }
+}

@@ -1,7 +1,3 @@
-:host {
-  display: inline-block;
-}
-
 button {
   background: white;
   border-color: lightgrey;
@@ -9,6 +5,11 @@ button {
   padding: 0.5em;
   cursor: pointer;
   font-size: 1em;
+  flex: 1;
+
+  .invalid {
+    border-color: red;
+  }
 
   &:focus,
   &:hover {

@@ -54,14 +54,10 @@
 <form #form="ngForm">
   <fieldset>
     <legend>form</legend>
-    <fc-integer [(ngModel)]="default" name="default" [required]="isFormRequired" [showNull]="isFormShowNull">
-      default
-    </fc-integer>
+    <fc-integer [(ngModel)]="default" label="default" name="default" [required]="isFormRequired" [showNull]="isFormShowNull"></fc-integer>
     <br />
     <br />
-    <fc-integer disabled [(ngModel)]="disabled" name="disabled" [required]="isFormRequired" [showNull]="isFormShowNull">
-      <u>disabled</u>
-    </fc-integer>
+    <fc-integer disabled [(ngModel)]="disabled" label="disabled" name="disabled" [required]="isFormRequired" [showNull]="isFormShowNull"></fc-integer>
     <br />
     <br />
     <fieldset>

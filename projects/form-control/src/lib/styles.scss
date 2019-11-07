@@ -10,6 +10,20 @@
   align-items: stretch;
 }
 
+.flex-space-between {
+  justify-content: space-between;
+}
+
 .flex-1 {
   flex: 1;
+}
+
+label {
+  padding-left: 0.5em;
+  &:empty {
+    display: none;
+  }
+  .required-icon {
+    color: red;
+  }
 }

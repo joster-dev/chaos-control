@@ -9,6 +9,10 @@
     </fc-button>
     <br />
     <br />
+    <fc-button [active]="isActive" [block]="true" [disabled]="isDisabled" (action)="blockActions = blockActions + 1">
+      {{blockActions}} actions
+    </fc-button>
+    <br />
     <fieldset>
       <legend>options</legend>
       <label>

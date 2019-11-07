@@ -3,7 +3,7 @@ import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ControlValueAccessor, Validator, Vali
 import { FormControlService } from '../form-control.service';
 
 @Component({
-  selector: 'fc-integer',
+  selector: 'fc-integer[name]',
   templateUrl: './integer.component.html',
   styleUrls: ['./integer.component.scss', '../styles.scss'],
   providers: [
@@ -23,6 +23,8 @@ export class IntegerComponent implements ControlValueAccessor, Validator {
   @Input() nullDisplay = this.formControlService.nullDisplay;
   @Input() nullTitle = this.formControlService.nullTitle;
   @Input() showNull = this.formControlService.showNull;
+  @Input() name!: string;
+  @Input() label?: string;
   @Input() addDisplay = '➕';
   @Input() addTitle = 'Add';
   @Input() subtractDisplay = '➖';

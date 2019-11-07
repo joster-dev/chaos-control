@@ -1,19 +1,20 @@
-<div class="dis-flex flex-center">
-  <div class="dis-flex flex-stretch">
-    <fc-button *ngIf="showNull === true" [active]="model === null" [disabled]="isDisabled === true" [title]="nullTitle" (action)="model = null" (blur)="onTouched()">
-      {{nullDisplay}}
-    </fc-button>
-    <fc-button [disabled]="isDisabled === true || disableSubtract === true" [title]="subtractTitle" (action)="subtract()" (blur)="onTouched()">
-      {{subtractDisplay}}
-    </fc-button>
-    <fc-button [disabled]="isDisabled === true || disableAdd === true" [title]="addTitle" (action)="add()" (blur)="onTouched()">
-      {{addDisplay}}
-    </fc-button>
-    <span *ngIf="model !== null">
-      {{model}}
-    </span>
-  </div>
-  <label>
-    <ng-content></ng-content>
-  </label>
+<label *ngIf="label !== undefined">
+  {{label}}
+  <span *ngIf="required === true" class="required-icon">
+    *
+  </span>
+</label>
+<div class="dis-flex flex-stretch">
+  <fc-button *ngIf="showNull === true" [active]="model === null" [disabled]="isDisabled === true" [title]="nullTitle" (action)="model = null" (blur)="onTouched()">
+    {{nullDisplay}}
+  </fc-button>
+  <fc-button [disabled]="isDisabled === true || disableSubtract === true" [title]="subtractTitle" (action)="subtract()" (blur)="onTouched()">
+    {{subtractDisplay}}
+  </fc-button>
+  <fc-button [disabled]="isDisabled === true || disableAdd === true" [title]="addTitle" (action)="add()" (blur)="onTouched()">
+    {{addDisplay}}
+  </fc-button>
+  <span class="flex-1">
+    {{model === null ? '&nbsp;' : model}}
+  </span>
 </div>

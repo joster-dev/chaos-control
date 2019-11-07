@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class ButtonComponent {
   actions = 0;
+  blockActions = 0;
   disabledActions = 0;
   disabledFieldsetActions = 0;
   isActive = false;
