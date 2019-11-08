@@ -42,6 +42,15 @@ export class SelectComponent implements ControlValueAccessor, Validator {
     return item ? item.value : this.placeholder;
   }
 
+  get model() {
+    return this._model;
+  }
+
+  set model(value: number | string | null) {
+    this._model = value;
+    this.onChange(this._model);
+  }
+
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }

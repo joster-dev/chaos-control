@@ -47,7 +47,6 @@ export class TextComponent implements ControlValueAccessor, Validator {
     this.onChange(this._model);
   }
 
-
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }

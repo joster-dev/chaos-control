@@ -1,8 +1,7 @@
-.dropdown {
-  display: absolute;
-  top: 0px;
-  left: 0px;
-  border: 1px solid black;
+:host {
+  position: relative;
+  display: inline-block;
+  width: 100%;
 }
 
 label {
@@ -18,5 +17,19 @@ label {
 
   &.rotate-180 {
     transform: rotate(180deg);
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+
+  .dis-flex span {
+    padding: 0.5em;
+    border-top: medium solid lightgrey;
+    border-right: medium solid lightgrey;
+    border-bottom: medium solid lightgrey;
   }
 }

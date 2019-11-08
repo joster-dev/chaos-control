@@ -1,6 +1,7 @@
 <label *ngIf="label !== undefined">
   {{label}}
 </label>
+
 <fc-button [block]="true" (action)="showDropdown = !showDropdown">
   <div class="dis-flex flex-space-between">
     <span>
@@ -12,14 +13,16 @@
   </div>
 </fc-button>
 
-
-<!-- <div *ngIf="showDropdown === true" class="dropdown">
+<div *ngIf="showDropdown === true" class="dropdown">
   <div *ngIf="items.length === 0">
     No items to display
   </div>
-  <div *ngFor="let item of items">
-    <fc-toggle>
+  <div *ngFor="let item of items" class="dis-flex">
+    <fc-button [active]="model === item.key" (action)="model = item.key">
+      ✔️
+    </fc-button>
+    <fc-button class="flex-1" textAlign="left" [block]="true" (action)="model = item.key">
       {{item.value}}
-    </fc-toggle>
+    </fc-button>
   </div>
-</div> -->
+</div>

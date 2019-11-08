@@ -10,6 +10,7 @@ export class ButtonComponent implements OnChanges {
   @Input() block = false;
   @Input() disabled = false;
   @Input() type: 'button' | 'submit' = 'button';
+  @Input() textAlign: 'left' | 'right' | 'center' = 'center';
 
   @Output() blur = new EventEmitter();
   @Output() action = new EventEmitter();
