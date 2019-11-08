@@ -1,7 +1,7 @@
 <label *ngIf="label !== undefined">
   {{label}}
 </label>
-<fc-button [block]="true" (click)="showDropdown = !showDropdown">
+<fc-button [block]="true" (action)="showDropdown = !showDropdown">
   <div class="dis-flex flex-space-between">
     <span>
       {{selectText}}
