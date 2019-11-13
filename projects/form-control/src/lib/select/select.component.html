@@ -1,17 +1,25 @@
 <label *ngIf="label !== undefined">
   {{label}}
+  <span *ngIf="required === true" class="required-icon">
+    *
+  </span>
 </label>
 
-<fc-button [block]="true" (action)="showDropdown = !showDropdown">
-  <div class="dis-flex flex-space-between">
-    <span>
-      {{selectText}}
-    </span>
-    <span class="caret" [class.rotate-180]="showDropdown === true">
-      🛆
-    </span>
-  </div>
-</fc-button>
+<div class="dis-flex">
+  <fc-button *ngIf="showNull === true" [active]="model === null" [disabled]="isDisabled === true" [title]="nullTitle" (action)="model = null" (blur)="onTouched()">
+    {{nullDisplay}}
+  </fc-button>
+  <fc-button class="flex-1" [block]="true" (action)="showDropdown = !showDropdown">
+    <div class="dis-flex flex-space-between">
+      <span>
+        {{selectText}}
+      </span>
+      <span class="caret" [class.rotate-180]="showDropdown === true">
+        🛆
+      </span>
+    </div>
+  </fc-button>
+</div>
 
 <div *ngIf="showDropdown === true" class="dropdown">
   <div *ngIf="items.length === 0">

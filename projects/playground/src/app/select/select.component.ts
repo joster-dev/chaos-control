@@ -10,7 +10,9 @@ export class SelectComponent implements OnInit {
   defaultData = [
     { key: 'jim', value: 'jimbo slice the third' },
     { key: 'a', value: 'equally long string' }
-  ]
+  ];
+  isFormRequired = false;
+  isFormShowNull = false;
 
   constructor() { }
 

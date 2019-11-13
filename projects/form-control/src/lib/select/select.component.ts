@@ -1,6 +1,7 @@
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, forwardRef, Input, HostListener, ElementRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator, ValidationErrors } from '@angular/forms';
 import { KeyValue } from '@angular/common';
+import { FormControlService } from '../form-control.service';
 
 @Component({
   selector: 'fc-select[name]',
@@ -20,10 +21,20 @@ import { KeyValue } from '@angular/common';
   ]
 })
 export class SelectComponent implements ControlValueAccessor, Validator {
+  @Input() nullDisplay = this.formControlService.nullDisplay;
+  @Input() nullTitle = this.formControlService.nullTitle;
+  @Input() showNull = this.formControlService.showNull;
   @Input() items: KeyValue<number | string, string>[] = [];
   @Input() name!: string;
   @Input() label?: string;
   @Input() placeholder = '';
+  @Input() required = false;
+
+  @HostListener('document:mousedown', ['$event']) onGlobalClick(event: MouseEvent) {
+    if (this.elementRef.nativeElement.contains(event.target) === false) {
+      this.showDropdown = false;
+    }
+  }
 
   // controls
   isDisabled = false;
@@ -35,7 +46,7 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   showDropdown = false;
   searchTerm: string | null = null;
 
-  constructor() { }
+  constructor(private elementRef: ElementRef, private formControlService: FormControlService) { }
 
   get selectText() {
     const item = this.items.find(item => this._model === item.key);
