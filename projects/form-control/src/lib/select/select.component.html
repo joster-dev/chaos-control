@@ -14,7 +14,7 @@
       <span>
         {{selectText}}
       </span>
-      <span class="caret" [class.rotate-180]="showDropdown === true">
+      <span *ngIf="showArrow === true" class="caret" [class.rotate-180]="showDropdown === true">
         🛆
       </span>
     </div>
