@@ -4,6 +4,15 @@
     "codelyzer"
   ],
   "rules": {
+    "variable-name": {
+      "options": [
+        "allow-leading-underscore"
+      ]
+    },
+    "curly": [
+      true,
+      "ignore-same-line"
+    ],
     "array-type": false,
     "arrow-parens": false,
     "deprecation": {
