@@ -2,7 +2,10 @@
 <form #form="ngForm">
   <fieldset>
     <legend>form</legend>
-    <fc-select [(ngModel)]="default" label="default" name="default" [items]="defaultData" [required]="isFormRequired" [showNull]="isFormShowNull" [showArrow]="false"></fc-select>
+    <fc-select [(ngModel)]="default" label="default" name="default" [items]="defaultData" [required]="isFormRequired" [showNull]="isFormShowNull" [showArrow]="isFormShowArrow"></fc-select>
+    <br />
+    <br />
+    <fc-select [(ngModel)]="empty" label="empty" name="empty" [items]="emptyData" [required]="isFormRequired" [showNull]="isFormShowNull" [showArrow]="isFormShowArrow"></fc-select>
     <br />
     <br />
     <fieldset>
@@ -15,6 +18,11 @@
       <label>
         <input type="checkbox" [(ngModel)]="isFormShowNull" name="isFormShowNull" />
         show null
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" [(ngModel)]="isFormShowArrow" name="isFormShowArrow" />
+        show arrow
       </label>
     </fieldset>
   </fieldset>

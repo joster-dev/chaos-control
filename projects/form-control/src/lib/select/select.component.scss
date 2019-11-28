@@ -25,11 +25,12 @@ label {
   top: 100%;
   right: 0;
   left: 0;
+  z-index: 2;
+  max-height: 200px;
+  overflow-y: auto;
+  border: medium solid #247;
+}
 
-  .dis-flex span {
-    padding: 0.5em;
-    border-top: medium solid lightgrey;
-    border-right: medium solid lightgrey;
-    border-bottom: medium solid lightgrey;
-  }
+.placeholder {
+  color: lightgray;
 }

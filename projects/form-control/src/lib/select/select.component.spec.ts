@@ -8,9 +8,8 @@ describe('SelectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectComponent ]
-    })
-    .compileComponents();
+      declarations: [SelectComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,5 +20,14 @@ describe('SelectComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have an arrow', () => {
+    expect(component.showArrow).toBeTruthy();
+  });
+
+  it('should have an option to hide the arrow', () => {
+    component.showArrow = false;
+    expect(component.showArrow).toBeFalsy();
   });
 });

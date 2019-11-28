@@ -26,47 +26,57 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   @Input() showNull = this.formControlService.showNull;
   @Input() showArrow = true;
   @Input() items: KeyValue<number | string, string>[] = [];
+  // name is requied in @Component:selector
   @Input() name!: string;
   @Input() label?: string;
-  @Input() placeholder = '';
+  @Input() placeholder = 'Nothing Selected';
   @Input() required = false;
 
-  @HostListener('document:mousedown', ['$event']) onGlobalClick(event: MouseEvent) {
-    if (this.elementRef.nativeElement.contains(event.target) === false) {
-      this.showDropdown = false;
-    }
-  }
-
-  // controls
   isDisabled = false;
-  _model: number | string | null = null;
-  onChange = (_model: number | string | null) => { };
-  onTouched = () => { };
-  // display
-  isActive = false;
   showDropdown = false;
   searchTerm: string | null = null;
 
   constructor(private elementRef: ElementRef, private formControlService: FormControlService) { }
 
-  get selectText() {
-    const item = this.items.find(item => this._model === item.key);
-    return item ? item.value : this.placeholder;
+  get hasSelected() {
+    return this.items.some(item => this.model === item.key);
   }
 
+  get selectedValue() {
+    const selected = this.items.find(item => this.model === item.key);
+    if (selected === undefined) throw new Error('hasSelected: must be true');
+    return selected.value;
+  }
+
+  get placeholderText() {
+    const selectItem = this.items.find(item => this.model === item.key);
+    return selectItem ? selectItem.value : this.placeholder;
+  }
+
+  _model: number | string | null = null;
   get model() {
     return this._model;
   }
-
   set model(value: number | string | null) {
     this._model = value;
     this.onChange(this._model);
+
+    this.showDropdown = false;
   }
 
+  @HostListener('document:mousedown', ['$event'])
+  onGlobalClick(event: MouseEvent) {
+    if (this.elementRef.nativeElement.contains(event.target) === false) {
+      this.showDropdown = false;
+    }
+  }
+
+  onChange(_model: number | string | null) { }
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
+  onTouched() { }
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
@@ -81,9 +91,10 @@ export class SelectComponent implements ControlValueAccessor, Validator {
 
   writeValue(value: any): void {
     if (value !== null && typeof value !== 'string' && typeof value !== 'number') {
-      throw new Error('control value must be string or number or null')
+      throw new Error('control value must be string or number or null');
     }
 
+    // set _model instead of model to not trigger a change event
     this._model = value;
   }
 }
