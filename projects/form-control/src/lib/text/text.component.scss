@@ -2,7 +2,8 @@
   border-color: red;
 }
 
-input[type="text"] {
+input[type="text"],
+.multi-line-input {
   background: white;
   border-color: lightgrey;
   border-width: medium;
@@ -26,9 +27,9 @@ input[type="text"] {
   }
 }
 
-label {
-  padding-left: 0.5em;
-  .required-icon {
-    color: red;
+.label {
+  padding: 0 0.5em;
+  > .icon {
+    color: lightgray;
   }
 }

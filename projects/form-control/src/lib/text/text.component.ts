@@ -23,34 +23,36 @@ export class TextComponent implements ControlValueAccessor, Validator {
   @Input() nullDisplay = this.formControlService.nullDisplay;
   @Input() nullTitle = this.formControlService.nullTitle;
   @Input() showNull = this.formControlService.showNull;
+  @Input() showIcon = true;
+  // name is requied in @Component:selector
   @Input() name!: string;
   @Input() label?: string;
   @Input() placeholder = '';
-  @Input() maxlength?: number;
+  @Input() maxlength = 100;
   @Input() required = false;
+  // todo: @Input() pattern
 
   isDisabled = false;
-  error?: 'required' | 'min' | 'max';
-  _model: string | null = null;
-  onChange = (_model: string | null) => { };
-  onTouched = () => { };
+  error?: 'required' | 'maxlength';
 
   constructor(private formControlService: FormControlService) { }
 
+  _model: string | null = null;
   get model() {
     return this._model;
   }
-
   set model(value: string | null) {
     if (value === '') value = null;
     this._model = value;
     this.onChange(this._model);
   }
 
+  onChange(_model: string | null) { }
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
+  onTouched() { }
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
@@ -74,7 +76,7 @@ export class TextComponent implements ControlValueAccessor, Validator {
 
   writeValue(value: any): void {
     if (value !== null && typeof value !== 'string') {
-      throw new Error('control value must be string or null')
+      throw new Error('control value must be string or null');
     }
 
     this._model = value;

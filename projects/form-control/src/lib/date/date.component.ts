@@ -23,28 +23,30 @@ export class DateComponent implements ControlValueAccessor, Validator {
   @Input() min = '1753-01-01';
   @Input() max = '3001-01-01';
   @Input() required = false;
+  @Input() label?: string;
+  @Input() showIcon = true;
 
   isDisabled = false;
   error?: 'required' | 'invalid' | 'min' | 'max';
-  _model: string | null = null;
-  onChange = (_model: string | null) => { };
-  onTouched = () => { };
 
   constructor() { }
 
+  _model: string | null = null;
   get model() {
     return this._model;
   }
-
   set model(value: string | null) {
     if (value === '') value = null;
     this._model = value;
     this.onChange(this._model);
   }
 
+  onChange(_model: string | null) { }
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
+
+  onTouched() { }
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }

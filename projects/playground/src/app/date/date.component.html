@@ -1,5 +1,12 @@
 <h1>Date</h1>
-
-<fc-date [(ngModel)]="default" name="default">
-  default
-</fc-date>
+<ol>
+  <li>
+    <i>model</i> will be <b>string</b> or <b>null</b>
+  </li>
+</ol>
+<form #form="ngForm">
+  <fieldset>
+    <legend>form</legend>
+    <fc-date [(ngModel)]="default" name="default" label="default"></fc-date>
+  </fieldset>
+</form>

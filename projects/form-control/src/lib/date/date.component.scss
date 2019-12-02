@@ -1,15 +1,14 @@
-input[type=date] {
-  background: white;
-  border-color: lightgrey;
-  border-width: medium;
-  padding: 0.5em;
-  cursor: pointer;
-  font-family: Arial;
+label {
+  padding: 0 0.5em;
 }
 
-label {
-  padding-left: 0.5em;
-  &:empty {
-    display: none;
+.dis-flex {
+  max-width: 20em;
+  span {
+    display: flex;
+    align-items: center;
+    border-top: medium solid lightgrey;
+    border-bottom: medium solid lightgrey;
+    padding: 0 0.5em;
   }
 }

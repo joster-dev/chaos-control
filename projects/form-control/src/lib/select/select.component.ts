@@ -4,7 +4,7 @@ import { KeyValue } from '@angular/common';
 import { FormControlService } from '../form-control.service';
 
 @Component({
-  selector: 'fc-select[name]',
+  selector: 'fc-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss', '../styles.scss'],
   providers: [
@@ -26,15 +26,14 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   @Input() showNull = this.formControlService.showNull;
   @Input() showArrow = true;
   @Input() items: KeyValue<number | string, string>[] = [];
-  // name is requied in @Component:selector
-  @Input() name!: string;
   @Input() label?: string;
-  @Input() placeholder = 'Nothing Selected';
+  @Input() placeholder?: string;
   @Input() required = false;
 
   isDisabled = false;
   showDropdown = false;
   searchTerm: string | null = null;
+  error?: 'required';
 
   constructor(private elementRef: ElementRef, private formControlService: FormControlService) { }
 

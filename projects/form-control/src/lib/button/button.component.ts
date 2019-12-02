@@ -6,6 +6,7 @@ import { Component, Input, Output, EventEmitter, ElementRef, OnChanges, Renderer
   styleUrls: ['./button.component.scss', '../styles.scss']
 })
 export class ButtonComponent implements OnChanges {
+  @Input() state?: 'active' | 'disabled';
   @Input() active = false;
   @Input() block = false;
   @Input() disabled = false;

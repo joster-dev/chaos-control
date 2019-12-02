@@ -18,12 +18,14 @@
   flex: 1;
 }
 
-label {
-  padding-left: 0.5em;
-  &:empty {
-    display: none;
-  }
-  .required-icon {
-    color: red;
-  }
+.flex-2 {
+  flex: 2;
+}
+
+.flex-3 {
+  flex: 3;
+}
+
+label .required-icon {
+  color: red;
 }

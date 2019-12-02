@@ -144,9 +144,12 @@
 <form #disabledFieldsetForm="ngForm">
   <fieldset>
     <legend>form</legend>
+    <ul>
+      <li>note: when <b>control</b> inside disabled fieldset is <u>required</u> and null, form will be not valid</li>
+    </ul>
     <fieldset disabled>
       <legend>disabled fieldset</legend>
-      <fc-integer [(ngModel)]="disabledFieldset" name="disabledFieldset" label="label" [required]="isDisabledFieldsetFormRequired" [showNull]="isDisabledFieldsetFormShowNull"></fc-integer>
+      <fc-integer [(ngModel)]="disabledFieldset" name="disabledFieldset" label="control" [required]="isDisabledFieldsetFormRequired" [showNull]="isDisabledFieldsetFormShowNull"></fc-integer>
     </fieldset>
     <br />
     <fieldset>

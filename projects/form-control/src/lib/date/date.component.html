@@ -1,6 +1,18 @@
-<div class="dis-flex flex-center">
-  <input type="date" [(ngModel)]="model" [disabled]="isDisabled" [id]="name" [max]="max" [min]="min" (blur)="onTouched()" />
-  <label [for]="name">
-    <ng-content></ng-content>
-  </label>
+<label *ngIf="label !== undefined">
+  {{label}}
+  <span *ngIf="required === true" class="required-icon">
+    *
+  </span>
+</label>
+<div class="dis-flex flex-stretch">
+  <fc-select class="flex-2" placeholder="mm"></fc-select>
+  <span>
+    /
+  </span>
+  <fc-select class="flex-2" placeholder="dd"></fc-select>
+  <span>
+    /
+  </span>
+  <fc-select class="flex-3" placeholder="yyyy"></fc-select>
 </div>
+<!-- <input type="date" [(ngModel)]="model" [disabled]="isDisabled" [id]="name" [max]="max" [min]="min" (blur)="onTouched()" /> -->

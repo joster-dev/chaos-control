@@ -1,12 +1,20 @@
-<label *ngIf="label !== undefined">
-  {{label}}
-  <span *ngIf="required === true" class="required-icon">
-    *
+<div class="label dis-flex flex-space-between">
+  <label *ngIf="label !== undefined">
+    {{label}}
+    <span *ngIf="required === true" class="required-icon">
+      *
+    </span>
+  </label>
+  <span *ngIf="showIcon === true" class="icon">
+    <!-- todo: implement but must disappear when not focused -->
+    <!-- <span *ngIf="model !== null && maxlength - model.length <= 5">
+      {{maxlength - model.length}} characters remaining
+    </span> -->
   </span>
-</label>
+</div>
 <div class="dis-flex">
   <fc-button *ngIf="showNull === true" [active]="model === null" [disabled]="isDisabled === true" [title]="nullTitle" (action)="model = null" (blur)="onTouched()">
     {{nullDisplay}}
   </fc-button>
-  <input type="text" [(ngModel)]="model" [class.active]="model !== null" [disabled]="isDisabled === true" [placeholder]="placeholder" (blur)="onTouched()" />
+  <input type="text" [(ngModel)]="model" contenteditable="true" [class.active]="model !== null" [disabled]="isDisabled === true" [maxlength]="maxlength" [placeholder]="placeholder" (blur)="onTouched()" />
 </div>

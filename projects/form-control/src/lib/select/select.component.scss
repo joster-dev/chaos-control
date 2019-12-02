@@ -4,19 +4,16 @@
   width: 100%;
 }
 
-label {
-  padding-left: 0.5em;
-  &:empty {
-    display: none;
-  }
-}
+.label {
+  padding: 0 0.5em;
+  .caret {
+    color: lightgray;
+    transition: transform 700ms;
+    transform: rotate(90deg);
 
-.caret {
-  transition: transform 700ms;
-  transform: rotate(90deg);
-
-  &.rotate-180 {
-    transform: rotate(180deg);
+    &.rotate-180 {
+      transform: rotate(180deg);
+    }
   }
 }
 
