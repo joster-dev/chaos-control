@@ -10,6 +10,9 @@
     color: lightgray;
     transition: transform 700ms;
     transform: rotate(90deg);
+    align-self: flex-end;
+    user-select: none;
+    font-size: small;
 
     &.rotate-180 {
       transform: rotate(180deg);
