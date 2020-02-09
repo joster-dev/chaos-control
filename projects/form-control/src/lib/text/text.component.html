@@ -16,5 +16,5 @@
   <fc-button *ngIf="showNull === true" [active]="model === null" [disabled]="isDisabled === true" [title]="nullTitle" (action)="model = null" (blur)="onTouched()">
     {{nullDisplay}}
   </fc-button>
-  <input type="text" [(ngModel)]="model" contenteditable="true" [class.active]="model !== null" [disabled]="isDisabled === true" [maxlength]="maxlength" [placeholder]="placeholder" (blur)="onTouched()" />
+  <textarea [(ngModel)]="model" [autocapitalize]="autocapitalize" [class.active]="model !== null" [placeholder]="placeholder === undefined ? '' : placeholder" [style.height]="textareaHeight" (blur)="onTouched()"></textarea>
 </div>
