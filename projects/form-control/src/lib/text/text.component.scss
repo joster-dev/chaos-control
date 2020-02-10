@@ -1,9 +1,4 @@
-:host.ng-invalid.ng-touched input[type="text"] {
-  border-color: red;
-}
-
-input[type="text"],
-.multi-line-input {
+textarea {
   background: white;
   border-color: lightgrey;
   border-width: medium;
@@ -12,12 +7,18 @@ input[type="text"],
   cursor: text;
   font-family: Arial;
   font-size: 1em;
-  line-height: 21px;
   flex: 1;
+  overflow: hidden;
+  resize: none;
+  transition: all 1s ease;
+  outline: none;
 
   &.active {
-    box-shadow: inset 0 0 0.5em black;
     border-color: #247;
+  }
+
+  &.invalid {
+    border-color: red;
   }
 
   &:disabled {
@@ -25,6 +26,16 @@ input[type="text"],
     cursor: not-allowed;
     box-shadow: none;
   }
+
+  &.hidden {
+    padding: 0;
+    position: absolute;
+    visibility: hidden;
+  }
+}
+
+.pos-rel {
+  position: relative;
 }
 
 .label {
