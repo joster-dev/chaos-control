@@ -23,11 +23,11 @@ describe('SelectComponent', () => {
   });
 
   it('should have an arrow', () => {
-    expect(component.showArrow).toBeTruthy();
+    expect(component.showIcon).toBeTruthy();
   });
 
   it('should have an option to hide the arrow', () => {
-    component.showArrow = false;
-    expect(component.showArrow).toBeFalsy();
+    component.showIcon = false;
+    expect(component.showIcon).toBeFalsy();
   });
 });

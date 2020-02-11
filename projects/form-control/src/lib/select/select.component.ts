@@ -24,7 +24,7 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   @Input() nullDisplay = this.formControlService.nullDisplay;
   @Input() nullTitle = this.formControlService.nullTitle;
   @Input() showNull = this.formControlService.showNull;
-  @Input() showArrow = true;
+  @Input() showIcon = this.formControlService.showIcon;
   @Input() items: KeyValue<number | string, string>[] = [];
   @Input() label?: string;
   @Input() placeholder?: string;

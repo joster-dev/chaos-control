@@ -23,8 +23,7 @@ export class TextComponent implements ControlValueAccessor, Validator {
   @Input() nullDisplay = this.formControlService.nullDisplay;
   @Input() nullTitle = this.formControlService.nullTitle;
   @Input() showNull = this.formControlService.showNull;
-  @Input() showIcon = true;
-  @Input() showMaxlengthHint = true;
+  @Input() showIcon = this.formControlService.showIcon;
   @Input() label?: string;
   @Input() placeholder?: string;
   @Input() minlength = 0;
@@ -32,7 +31,7 @@ export class TextComponent implements ControlValueAccessor, Validator {
   @Input() required = false;
   @Input() replacePattern = /(\r\n|\n|\r)/gm;
   @Input() autocapitalize: 'none' | 'sentences' | 'words' | 'characters' = 'none';
-  @Input() spellcheck: 'true' | 'false' | 'default' = 'default';
+  @Input() spellcheck: 'true' | 'false' | 'default' = 'false';
 
   @ViewChild('textarea', { static: true }) textareaElement!: ElementRef;
   @ViewChild('textareaHidden', { static: true }) textareaHiddenElement!: ElementRef;
@@ -58,7 +57,6 @@ export class TextComponent implements ControlValueAccessor, Validator {
   setTextareaHeight() {
     const textarea = this.textareaElement.nativeElement as HTMLElement;
     const textareaHidden = this.textareaHiddenElement.nativeElement as HTMLElement;
-    debugger;
     this.renderer.setStyle(textareaHidden, 'width', `calc(${textarea.scrollWidth}px - 1em)`);
     this.renderer.setStyle(textareaHidden, 'height', 'auto');
     this.renderer.setStyle(textarea, 'height', `${textareaHidden.scrollHeight}px`);

@@ -13,8 +13,14 @@ textarea {
   transition: all 1s ease;
   outline: none;
 
+  &:focus,
+  &:hover {
+    box-shadow: 0 0 0.5em black;
+  }
+
   &.active {
     border-color: #247;
+    box-shadow: inset 0 0 0.5em black;
   }
 
   &.invalid {
@@ -42,5 +48,8 @@ textarea {
   padding: 0 0.5em;
   > .icon {
     color: lightgray;
+    align-self: flex-end;
+    user-select: none;
+    font-size: small;
   }
 }

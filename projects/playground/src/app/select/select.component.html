@@ -1,19 +1,22 @@
 <header>
   <h1>Select</h1>
+  <p>
+    A list input where the options do not interupt the page
+  </p>
   <h4>Todo</h4>
   <ul>
     <li>
-      Dropup instead of dropdown when close to bottom of page
+      Dropup instead of dropdown when close to bottom of window
     </li>
   </ul>
 </header>
 <form #form="ngForm">
   <fieldset>
     <legend>form</legend>
-    <fc-select [(ngModel)]="default" label="default" name="default" [items]="defaultData" [required]="isFormRequired" [showNull]="isFormShowNull" [showArrow]="isFormShowArrow"></fc-select>
+    <fc-select [(ngModel)]="default" label="default" name="default" [items]="defaultData" [required]="isFormRequired" [showNull]="isFormShowNull" [showIcon]="isFormShowArrow"></fc-select>
     <br />
     <br />
-    <fc-select [(ngModel)]="empty" label="empty" name="empty" [items]="emptyData" [required]="isFormRequired" [showNull]="isFormShowNull" [showArrow]="isFormShowArrow"></fc-select>
+    <fc-select [(ngModel)]="empty" label="empty" name="empty" [items]="emptyData" [required]="isFormRequired" [showNull]="isFormShowNull" [showIcon]="isFormShowArrow"></fc-select>
     <br />
     <br />
     <fieldset>
