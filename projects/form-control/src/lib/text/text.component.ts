@@ -20,16 +20,12 @@ import { FormControlService } from '../form-control.service';
   ]
 })
 export class TextComponent implements ControlValueAccessor, Validator {
-  @Input() nullDisplay = this.formControlService.nullDisplay;
-  @Input() nullTitle = this.formControlService.nullTitle;
-  @Input() showNull = this.formControlService.showNull;
   @Input() showIcon = this.formControlService.showIcon;
   @Input() label?: string;
   @Input() placeholder?: string;
   @Input() minlength = 0;
   @Input() maxlength = 100;
   @Input() required = false;
-  @Input() replacePattern = /(\r\n|\n|\r)/gm;
   @Input() autocapitalize: 'none' | 'sentences' | 'words' | 'characters' = 'none';
   @Input() spellcheck: 'true' | 'false' | 'default' = 'false';
 
@@ -48,7 +44,6 @@ export class TextComponent implements ControlValueAccessor, Validator {
   }
   set model(value: string | null) {
     value = value === null ? '' : value;
-    value = value.replace(this.replacePattern, '');
     this._model = value === '' ? null : value;
     this.onChange(this._model);
     setTimeout(() => this.setTextareaHeight());
@@ -102,5 +97,6 @@ export class TextComponent implements ControlValueAccessor, Validator {
     }
 
     this._model = value;
+    setTimeout(() => this.setTextareaHeight());
   }
 }

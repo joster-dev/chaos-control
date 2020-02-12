@@ -10,13 +10,10 @@
   </span>
 </div>
 <div class="dis-flex">
-  <fc-button *ngIf="showNull === true" [active]="_model === null" [disabled]="isDisabled === true" [title]="nullTitle" (action)="model = null" (blur)="onTouched()">
-    {{nullDisplay}}
-  </fc-button>
-  <textarea #textarea [(ngModel)]="model" [autocapitalize]="autocapitalize" [class.active]="_model !== null" [class.invalid]="error !== undefined" [disabled]="isDisabled === true" [placeholder]="placeholder === undefined ? '' : placeholder" [spellcheck]="spellcheck" (blur)="onTouched()"></textarea>
+  <textarea #textarea [(ngModel)]="model" rows="1" [autocapitalize]="autocapitalize" [class.active]="_model !== null" [class.invalid]="error !== undefined" [disabled]="isDisabled === true" [placeholder]="placeholder === undefined ? '' : placeholder" [spellcheck]="spellcheck" (blur)="onTouched()"></textarea>
 </div>
 <div class="dis-flex pos-rel">
-  <textarea #textareaHidden [ngModel]="model" class="hidden"></textarea>
+  <textarea #textareaHidden [ngModel]="model" rows="1" class="hidden"></textarea>
 </div>
 <ul class="errors">
   <li *ngIf="error === 'minlength'">

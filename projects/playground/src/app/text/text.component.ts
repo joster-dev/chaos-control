@@ -8,14 +8,13 @@ import { Component } from '@angular/core';
 export class TextComponent {
   default: string | null = null;
   disabled: string | null = null;
-
-  isFormRequired = false;
-  isFormShowNull = false;
+  required: string | null = null;
 
   constructor() { }
 
   setFormModels(value: string) {
     this.default = value;
     this.disabled = value;
+    this.required = value;
   }
 }
