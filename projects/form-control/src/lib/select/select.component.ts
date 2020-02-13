@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, HostListener, ElementRef } from '@angular/core';
+import { Component, forwardRef, Input, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator, ValidationErrors } from '@angular/forms';
 import { KeyValue } from '@angular/common';
 import { FormControlService } from '../form-control.service';
@@ -30,10 +30,19 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   @Input() placeholder?: string;
   @Input() required = false;
 
+  @ViewChild('dropdown', { static: true })
+  set dropdownElement(elementRef: ElementRef | undefined) {
+    const hostBoundingRect: DOMRect = this.elementRef.nativeElement.getBoundingClientRect();
+    const dropdownMaxHeight = elementRef?.nativeElement.styles.maxHeight;
+    debugger;
+  }
+
+  maxHeight = 200;
   isDisabled = false;
   showDropdown = false;
   searchTerm: string | null = null;
   error?: 'required';
+  isDropdownCloseToBottom = false;
 
   constructor(private elementRef: ElementRef, private formControlService: FormControlService) { }
 

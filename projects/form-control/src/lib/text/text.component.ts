@@ -33,7 +33,6 @@ export class TextComponent implements ControlValueAccessor, Validator {
   @ViewChild('textareaHidden', { static: true }) textareaHiddenElement!: ElementRef;
 
   isDisabled = false;
-  textareaHeight = 'auto';
   error?: 'required' | 'maxlength' | 'minlength';
 
   constructor(private formControlService: FormControlService, private renderer: Renderer2) { }

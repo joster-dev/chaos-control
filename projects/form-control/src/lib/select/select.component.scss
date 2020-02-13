@@ -29,6 +29,10 @@
   max-height: 200px;
   overflow-y: auto;
   border: medium solid #247;
+  &.dropup {
+    top: 0;
+    bottom: 100%;
+  }
 }
 
 .placeholder {

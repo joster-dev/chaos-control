@@ -24,7 +24,7 @@
   </fc-button>
 </div>
 
-<div *ngIf="showDropdown === true" class="dropdown">
+<div *ngIf="showDropdown === true" #dropdown class="dropdown" [class.dropup]="isDropdownCloseToBottom" [style.max-height]="maxHeight + 'px'">
   <fc-button *ngIf="items.length === 0" class="flex-1" textAlign="left" [block]="true" (action)="showDropdown = false">
     🤷 No items to display
   </fc-button>
