@@ -30,21 +30,15 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   @Input() placeholder?: string;
   @Input() required = false;
 
-  @ViewChild('dropdown', { static: true })
-  set dropdownElement(elementRef: ElementRef | undefined) {
-    const hostBoundingRect: DOMRect = this.elementRef.nativeElement.getBoundingClientRect();
-    const dropdownMaxHeight = elementRef?.nativeElement.styles.maxHeight;
-    debugger;
-  }
+  @ViewChild('dropdown', { static: true }) dropdownElement!: ElementRef;
 
-  maxHeight = 200;
+  dropdownMaxHeight = 200;
   isDisabled = false;
-  showDropdown = false;
   searchTerm: string | null = null;
   error?: 'required';
   isDropdownCloseToBottom = false;
 
-  constructor(private elementRef: ElementRef, private formControlService: FormControlService) { }
+  constructor(private hostElement: ElementRef, private formControlService: FormControlService) { }
 
   get hasSelected() {
     return this.items.some(item => this.model === item.key);
@@ -61,6 +55,17 @@ export class SelectComponent implements ControlValueAccessor, Validator {
     return selectItem ? selectItem.value : this.placeholder;
   }
 
+  _showDropdown = false;
+  get showDropdown() {
+    return this._showDropdown;
+  }
+  set showDropdown(value: boolean) {
+    this._showDropdown = value;
+    if (this._showDropdown === false) return;
+    const hostBoundingRect: DOMRect = this.hostElement.nativeElement.getBoundingClientRect();
+    this.isDropdownCloseToBottom = window.innerHeight < hostBoundingRect.bottom + this.dropdownMaxHeight;
+  }
+
   _model: number | string | null = null;
   get model() {
     return this._model;
@@ -69,13 +74,13 @@ export class SelectComponent implements ControlValueAccessor, Validator {
     this._model = value;
     this.onChange(this._model);
 
-    this.showDropdown = false;
+    this._showDropdown = false;
   }
 
   @HostListener('document:mousedown', ['$event'])
   onGlobalClick(event: MouseEvent) {
-    if (this.elementRef.nativeElement.contains(event.target) === false) {
-      this.showDropdown = false;
+    if (this.hostElement.nativeElement.contains(event.target) === false) {
+      this._showDropdown = false;
     }
   }
 
@@ -94,6 +99,11 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   }
 
   validate(): ValidationErrors | null {
+    if (this._model === null && this.required === true) {
+      this.error = 'required';
+      return { required: true };
+    }
+
     return null;
   }
 

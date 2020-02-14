@@ -14,23 +14,28 @@
     user-select: none;
     font-size: small;
 
+    &.rotate-0 {
+      transform: rotate(0deg);
+    }
+
     &.rotate-180 {
       transform: rotate(180deg);
     }
   }
 }
 
-.dropdown {
+.drop {
   position: absolute;
-  top: 100%;
   right: 0;
   left: 0;
   z-index: 2;
   max-height: 200px;
   overflow-y: auto;
   border: medium solid #247;
-  &.dropup {
-    top: 0;
+  &.down {
+    top: 100%;
+  }
+  &.up {
     bottom: 100%;
   }
 }
