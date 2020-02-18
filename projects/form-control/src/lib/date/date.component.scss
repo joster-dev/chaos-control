@@ -2,13 +2,10 @@ label {
   padding: 0 0.5em;
 }
 
-.dis-flex {
-  max-width: 20em;
-  span {
-    display: flex;
-    align-items: center;
-    border-top: medium solid lightgrey;
-    border-bottom: medium solid lightgrey;
-    padding: 0 0.5em;
-  }
+.dis-flex span {
+  display: flex;
+  align-items: center;
+  border-top: medium solid lightgrey;
+  border-bottom: medium solid lightgrey;
+  padding: 0 0.5em;
 }

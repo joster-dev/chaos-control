@@ -33,6 +33,7 @@ export class IntegerComponent implements ControlValueAccessor, Validator {
   @Input() max = 9;
   @Input() step = 1;
   @Input() required = false;
+  @Input() showValidationErrors = this.formControlService.showValidationErrors;
 
   isDisabled = false;
   error?: 'required' | 'min' | 'max';
@@ -104,25 +105,22 @@ export class IntegerComponent implements ControlValueAccessor, Validator {
   }
 
   validate(): ValidationErrors | null {
-    if (this.model === null) {
-      if (this.required === true) {
-        this.error = 'required';
-        return { required: true };
-      }
-
-      return null;
+    if (this._model === null && this.required === true) {
+      this.error = 'required';
+      return { required: true };
     }
 
-    if (this.model > this.max) {
+    if (this._model !== null && this._model > this.max) {
       this.error = 'max';
       return { max: true };
     }
 
-    if (this.model < this.min) {
+    if (this._model !== null && this._model < this.min) {
       this.error = 'min';
       return { min: true };
     }
 
+    this.error = undefined;
     return null;
   }
 

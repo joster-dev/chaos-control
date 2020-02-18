@@ -18,3 +18,11 @@
     {{model === null ? '&nbsp;' : model}}
   </span>
 </div>
+<ul *ngIf="showValidationErrors" class="errors">
+  <li *ngIf="error === 'max'">
+    maximum is {{max}}
+  </li>
+  <li *ngIf="error === 'min'">
+    minimum is {{min}}
+  </li>
+</ul>

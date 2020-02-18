@@ -1,11 +1,22 @@
 <header>
   <h1>Text</h1>
-  <h4>Features</h4>
-  <ul>
+  <ol>
     <li>
-      Height increases if the text would overflow
+      model will be string or null
     </li>
-  </ul>
+  </ol>
+  <h4>Features</h4>
+  <ol>
+    <li>
+      if text content is not null, control will be active
+    </li>
+    <li>
+      if text content would overflow, height increases
+    </li>
+    <li>
+      if form is reset, height will be a single row
+    </li>
+  </ol>
   <h4>Todo</h4>
   <ul>
     <li>
@@ -14,31 +25,69 @@
     <li>
       pattern support
     </li>
-    <li>
-      form reset for height
-    </li>
   </ul>
 </header>
 <form #form="ngForm">
   <fieldset>
     <legend>form</legend>
-    <fc-text [(ngModel)]="default" label="default" name="default"></fc-text>
-    <br />
-    <fc-text disabled [(ngModel)]="disabled" label="disabled" name="disabled"></fc-text>
-    <br />
-    <fc-text [(ngModel)]="required" label="required" name="required" [required]="true"></fc-text>
+    <fieldset>
+      <legend>fieldset</legend>
+      <fc-text [(ngModel)]="default" label="default" name="default" [disabled]="isFormDisabled" [required]="isFormRequired"></fc-text>
+    </fieldset>
+    <fieldset>
+      <legend>options</legend>
+      <label>
+        <input type="checkbox" [(ngModel)]="isFormDisabled" name="isFormDisabled" />
+        disabled
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" [(ngModel)]="isFormRequired" name="isFormRequired" />
+        required
+      </label>
+    </fieldset>
     <fieldset>
       <legend>actions</legend>
-      <fc-button (action)="setFormModels('test string xyz')">
-        set <i>models</i> to <b>test string xyz</b>
+      <fc-button (action)="setFormModels(testText)">
+        set <i>model</i> to <b>{{testText}}</b>
       </fc-button>
       <fc-button (action)="form.reset()">
         form reset
       </fc-button>
     </fieldset>
-    <br />
-    <span>
+    <fieldset>
+      <legend>status</legend>
       {{form.valid ? '🆗 form valid' : '❗ form not valid'}}
-    </span>
+    </fieldset>
+  </fieldset>
+</form>
+<br />
+<form #disabledFieldsetForm="ngForm">
+  <fieldset>
+    <legend>form</legend>
+    <fieldset disabled>
+      <legend><u>disabled</u> fieldset</legend>
+      <fc-text [(ngModel)]="disabledFieldset" name="disabledFieldset" label="default" [required]="isDisabledFieldsetFormRequired"></fc-text>
+    </fieldset>
+    <fieldset>
+      <legend>options</legend>
+      <label>
+        <input type="checkbox" [(ngModel)]="isDisabledFieldsetFormRequired" name="isDisabledFieldsetFormRequired" />
+        required
+      </label>
+    </fieldset>
+    <fieldset>
+      <legend>actions</legend>
+      <fc-button (action)="setDisabledFieldsetFormModels(testText)">
+        set <i>model</i> to <b>{{testText}}</b>
+      </fc-button>
+      <fc-button (action)="disabledFieldsetForm.reset()">
+        form reset
+      </fc-button>
+    </fieldset>
+    <fieldset>
+      <legend>status</legend>
+      {{disabledFieldsetForm.valid ? '🆗 form valid' : '❗ form not valid'}}
+    </fieldset>
   </fieldset>
 </form>

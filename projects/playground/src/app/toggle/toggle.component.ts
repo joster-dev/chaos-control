@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class ToggleComponent {
   default: boolean | null = null;
-  disabled: boolean | null = null;
+  isFormDisabled = false;
   isFormShowNull = false;
   isFormRequired = false;
 
@@ -19,8 +19,6 @@ export class ToggleComponent {
 
   setFormModels(value: boolean) {
     this.default = value;
-    this.disabled = value;
-    this.disabledFieldset = value;
   }
 
   setDisabledFieldsetModels(value: boolean) {

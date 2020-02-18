@@ -15,11 +15,11 @@
 <div class="dis-flex pos-rel">
   <textarea #textareaHidden [ngModel]="model" rows="1" class="hidden"></textarea>
 </div>
-<ul class="errors">
+<ul *ngIf="showValidationErrors" class="errors">
   <li *ngIf="error === 'minlength'">
-    Minimum length is {{minlength}}
+    minimum length is {{minlength}}
   </li>
   <li *ngIf="error === 'maxlength'">
-    Maximum length is {{maxlength}}
+    maximum length is {{maxlength}}
   </li>
 </ul>

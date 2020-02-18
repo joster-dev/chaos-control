@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class FormControlService {
+  showValidationErrors = true;
   showNull = false;
   showIcon = true;
   nullDisplay = '❓';

@@ -4,7 +4,7 @@
     *
   </span>
 </label>
-<div class="dis-flex flex-center">
+<div class="dis-flex flex-center flex-stretch">
   <fc-button *ngIf="showNull" [active]="model === null" [disabled]="isDisabled" [title]="nullTitle" (action)="model = null" (blur)="onTouched()">
     {{nullDisplay}}
   </fc-button>
@@ -14,4 +14,7 @@
   <fc-button [active]="model === true" [disabled]="isDisabled" [title]="trueTitle" (action)="model = true" (blur)="onTouched()">
     {{trueDisplay}}
   </fc-button>
+  <span class="flex-1">
+    {{model === null ? '&nbsp;' : model === true ? trueTitle : falseTitle}}
+  </span>
 </div>

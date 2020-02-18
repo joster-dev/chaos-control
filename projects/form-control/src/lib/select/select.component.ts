@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { Component, forwardRef, Input, HostListener, ElementRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator, ValidationErrors } from '@angular/forms';
 import { KeyValue } from '@angular/common';
 import { FormControlService } from '../form-control.service';
@@ -26,11 +26,9 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   @Input() showNull = this.formControlService.showNull;
   @Input() showIcon = this.formControlService.showIcon;
   @Input() items: KeyValue<number | string, string>[] = [];
+  @Input() required = false;
   @Input() label?: string;
   @Input() placeholder?: string;
-  @Input() required = false;
-
-  @ViewChild('dropdown', { static: true }) dropdownElement!: ElementRef;
 
   dropdownMaxHeight = 200;
   isDisabled = false;

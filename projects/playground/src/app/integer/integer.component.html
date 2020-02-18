@@ -54,14 +54,17 @@
 <form #form="ngForm">
   <fieldset>
     <legend>form</legend>
-    <fc-integer [(ngModel)]="default" label="default" name="default" [required]="isFormRequired" [showNull]="isFormShowNull"></fc-integer>
-    <br />
-    <br />
-    <fc-integer disabled [(ngModel)]="disabled" label="disabled" name="disabled" [required]="isFormRequired" [showNull]="isFormShowNull"></fc-integer>
-    <br />
-    <br />
+    <fieldset>
+      <legend>fieldset</legend>
+      <fc-integer [(ngModel)]="default" label="default" name="default" [disabled]="isFormDisabled" [required]="isFormRequired" [showNull]="isFormShowNull"></fc-integer>
+    </fieldset>
     <fieldset>
       <legend>options</legend>
+      <label>
+        <input type="checkbox" [(ngModel)]="isFormDisabled" name="isFormDisabled" />
+        disabled
+      </label>
+      <br />
       <label>
         <input type="checkbox" [(ngModel)]="isFormRequired" name="isFormRequired" />
         required
@@ -72,7 +75,6 @@
         show null
       </label>
     </fieldset>
-    <br />
     <fieldset>
       <legend>actions</legend>
       <fc-button (action)="setFormModels(0)">
@@ -88,25 +90,24 @@
         form reset
       </fc-button>
     </fieldset>
-    <br />
-    <span>
+    <fieldset>
+      <legend>status</legend>
       {{form.valid ? '🆗 form valid' : '❗ form not valid'}}
-    </span>
+    </fieldset>
   </fieldset>
 </form>
 <br />
 <form #exampleForm="ngForm">
   <fieldset>
     <legend>form</legend>
-    <fc-integer [(ngModel)]="negative" name="negative" label="min is -10 & max is 10 & step is 2" [min]="-10" [max]="10" [step]="2" [disabled]="isExampleFormDisabled" [required]="isExampleFormRequired" [showNull]="isExampleFormShowNull"></fc-integer>
-    <br />
-    <br />
-    <fc-integer [(ngModel)]="minError" name="minError" label="min is 5" [min]="5" [disabled]="isExampleFormDisabled" [required]="isExampleFormRequired" [showNull]="isExampleFormShowNull"></fc-integer>
-    <br />
-    <br />
-    <fc-integer [(ngModel)]="maxError" name="maxError" label="min is -9 & max is -5" [min]="-9" [max]="-5" [disabled]="isExampleFormDisabled" [required]="isExampleFormRequired" [showNull]="isExampleFormShowNull"></fc-integer>
-    <br />
-    <br />
+    <fieldset>
+      <legend>fieldset</legend>
+      <fc-integer [(ngModel)]="negative" name="negative" label="min is -10 & max is 10 & step is 2" [min]="-10" [max]="10" [step]="2" [disabled]="isExampleFormDisabled" [required]="isExampleFormRequired" [showNull]="isExampleFormShowNull"></fc-integer>
+      <br />
+      <fc-integer [(ngModel)]="minError" name="minError" label="min is 5" [min]="5" [disabled]="isExampleFormDisabled" [required]="isExampleFormRequired" [showNull]="isExampleFormShowNull"></fc-integer>
+      <br />
+      <fc-integer [(ngModel)]="maxError" name="maxError" label="min is -9 & max is -5" [min]="-9" [max]="-5" [disabled]="isExampleFormDisabled" [required]="isExampleFormRequired" [showNull]="isExampleFormShowNull"></fc-integer>
+    </fieldset>
     <fieldset>
       <legend>options</legend>
       <label>
@@ -124,7 +125,6 @@
         show null
       </label>
     </fieldset>
-    <br />
     <fieldset>
       <legend>actions</legend>
       <fc-button (action)="setExampleFormModels(0)">
@@ -134,24 +134,22 @@
         form reset
       </fc-button>
     </fieldset>
-    <br />
-    <span>
+    <fieldset>
+      <legend>status</legend>
       {{exampleForm.valid ? '🆗 form valid' : '❗ form not valid'}}
-    </span>
+    </fieldset>
   </fieldset>
 </form>
 <br />
 <form #disabledFieldsetForm="ngForm">
   <fieldset>
     <legend>form</legend>
-    <ul>
-      <li>note: when <b>control</b> inside disabled fieldset is <u>required</u> and null, form will be not valid</li>
-    </ul>
     <fieldset disabled>
-      <legend>disabled fieldset</legend>
-      <fc-integer [(ngModel)]="disabledFieldset" name="disabledFieldset" label="control" [required]="isDisabledFieldsetFormRequired" [showNull]="isDisabledFieldsetFormShowNull"></fc-integer>
+      <legend>
+        <u>disabled</u> fieldset
+      </legend>
+      <fc-integer [(ngModel)]="disabledFieldset" name="disabledFieldset" label="default" [required]="isDisabledFieldsetFormRequired" [showNull]="isDisabledFieldsetFormShowNull"></fc-integer>
     </fieldset>
-    <br />
     <fieldset>
       <legend>options</legend>
       <label>
@@ -164,7 +162,6 @@
         show null
       </label>
     </fieldset>
-    <br />
     <fieldset>
       <legend>actions</legend>
       <fc-button (action)="setDisabledFieldsetFormModels(0)">
@@ -174,9 +171,9 @@
         form reset
       </fc-button>
     </fieldset>
-    <br />
-    <span>
+    <fieldset>
+      <legend>status</legend>
       {{disabledFieldsetForm.valid ? '🆗 form valid' : '❗ form not valid'}}
-    </span>
+    </fieldset>
   </fieldset>
 </form>

@@ -28,6 +28,7 @@ export class TextComponent implements ControlValueAccessor, Validator {
   @Input() required = false;
   @Input() autocapitalize: 'none' | 'sentences' | 'words' | 'characters' = 'none';
   @Input() spellcheck: 'true' | 'false' | 'default' = 'false';
+  @Input() showValidationErrors = this.formControlService.showValidationErrors;
 
   @ViewChild('textarea', { static: true }) textareaElement!: ElementRef;
   @ViewChild('textareaHidden', { static: true }) textareaHiddenElement!: ElementRef;
