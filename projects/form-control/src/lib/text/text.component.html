@@ -10,9 +10,9 @@
   </span>
 </div>
 <div class="dis-flex">
-  <textarea #textarea [(ngModel)]="model" rows="1" [autocapitalize]="autocapitalize" [class.active]="_model !== null" [class.invalid]="error !== undefined" [disabled]="isDisabled === true" [placeholder]="placeholder === undefined ? '' : placeholder" [spellcheck]="spellcheck" (blur)="onTouched()"></textarea>
+  <textarea #textarea [(ngModel)]="model" rows="1" [autocapitalize]="autocapitalize" [class.active]="_model !== null" [class.invalid]="error !== undefined" [disabled]="isDisabled === true" [placeholder]="placeholder === undefined ? '' : placeholder" [spellcheck]="spellcheck" (blur)="onTouched()" (keydown)="onKeydown($event)"></textarea>
 </div>
-<div class="dis-flex pos-rel">
+<div class="dis-flex">
   <textarea #textareaHidden [ngModel]="model" rows="1" class="hidden"></textarea>
 </div>
 <ul *ngIf="showValidationErrors" class="errors">
