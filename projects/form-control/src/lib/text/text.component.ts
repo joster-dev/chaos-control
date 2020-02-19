@@ -29,6 +29,7 @@ export class TextComponent implements ControlValueAccessor, Validator {
   @Input() autocapitalize: 'none' | 'sentences' | 'words' | 'characters' = 'none';
   @Input() spellcheck: 'true' | 'false' | 'default' = 'false';
   @Input() showValidationErrors = this.formControlService.showValidationErrors;
+  @Input() keydownKeyPattern = /Enter/;
 
   @ViewChild('textarea', { static: true }) textareaElement!: ElementRef;
   @ViewChild('textareaHidden', { static: true }) textareaHiddenElement!: ElementRef;
@@ -55,6 +56,11 @@ export class TextComponent implements ControlValueAccessor, Validator {
     this.renderer.setStyle(textareaHidden, 'width', `calc(${textarea.scrollWidth}px - 1em)`);
     this.renderer.setStyle(textareaHidden, 'height', 'auto');
     this.renderer.setStyle(textarea, 'height', `${textareaHidden.scrollHeight}px`);
+  }
+
+  onKeydown(event: KeyboardEvent): void {
+    if (this.keydownKeyPattern.test(event.key) === false) return;
+    event.preventDefault();
   }
 
   onChange(_model: string | null) { }
