@@ -1,3 +1,7 @@
+:host.ng-invalid.ng-dirty textarea {
+  border-color: red;
+}
+
 textarea {
   background: white;
   border-color: lightgrey;
@@ -10,27 +14,36 @@ textarea {
   flex: 1;
   overflow: hidden;
   resize: none;
-  transition: all 1s ease;
-  outline: none;
+  transition: all 700ms ease;
 
   &:focus,
   &:hover {
     box-shadow: 0 0 0.5em black;
   }
 
-  &.active {
-    border-color: #247;
-    box-shadow: inset 0 0 0.5em black;
-  }
-
-  &.invalid {
-    border-color: red;
-  }
-
   &:disabled {
     opacity: 0.3;
     cursor: not-allowed;
     box-shadow: none;
+    border-color: lightgrey;
+  }
+
+  &.active {
+    border-color: #247;
+    box-shadow: inset 0 0 0.5em black;
+
+    &:not(:disabled) {
+      &:focus,
+      &:hover {
+        box-shadow: 0 0 0.5em black, inset 0 0 0.5em black;
+      }
+    }
+  }
+
+  @media print {
+    transition: none;
+    border-style: none;
+    box-shadow: none !important;
   }
 
   &.hidden {
@@ -38,19 +51,5 @@ textarea {
     position: absolute;
     visibility: hidden;
     transition: none;
-  }
-}
-
-.pos-rel {
-  position: relative;
-}
-
-.label {
-  padding: 0 0.5em;
-  > .icon {
-    color: lightgray;
-    align-self: flex-end;
-    user-select: none;
-    font-size: small;
   }
 }

@@ -4,23 +4,16 @@
   width: 100%;
 }
 
-.label {
-  padding: 0 0.5em;
-  .caret {
-    color: lightgray;
-    transition: transform 700ms;
-    transform: rotate(90deg);
-    align-self: flex-end;
-    user-select: none;
-    font-size: small;
+.label > .icon {
+  transition: transform 700ms;
+  transform: rotate(90deg);
 
-    &.rotate-0 {
-      transform: rotate(0deg);
-    }
+  &.rotate-0 {
+    transform: rotate(0deg);
+  }
 
-    &.rotate-180 {
-      transform: rotate(180deg);
-    }
+  &.rotate-180 {
+    transform: rotate(180deg);
   }
 }
 
