@@ -1,10 +1,10 @@
 # Form Control
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.8.
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
 
 ## About
 
-These styled components enable type-safe value binding
+These styled components enable type-safe value binding inside a form element
 
 [Testing Playground](https://github.com/joster422/form-control)
 
