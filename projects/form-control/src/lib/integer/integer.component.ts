@@ -1,9 +1,9 @@
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, forwardRef, Input, ElementRef } from '@angular/core';
 import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ControlValueAccessor, Validator, ValidationErrors } from '@angular/forms';
 import { FormControlService } from '../form-control.service';
 
 @Component({
-  selector: 'fc-integer[name]',
+  selector: 'fc-integer',
   templateUrl: './integer.component.html',
   styleUrls: ['./integer.component.scss', '../styles.scss'],
   providers: [
@@ -23,8 +23,9 @@ export class IntegerComponent implements ControlValueAccessor, Validator {
   @Input() nullDisplay = this.formControlService.nullDisplay;
   @Input() nullTitle = this.formControlService.nullTitle;
   @Input() showNull = this.formControlService.showNull;
-  @Input() name!: string;
-  @Input() label?: string;
+  @Input() showValidationErrors = this.formControlService.showValidationErrors;
+  @Input() name: string | null = null;
+  @Input() label: string | null = null;
   @Input() addDisplay = '➕';
   @Input() addTitle = 'Add';
   @Input() subtractDisplay = '➖';
@@ -33,15 +34,12 @@ export class IntegerComponent implements ControlValueAccessor, Validator {
   @Input() max = 9;
   @Input() step = 1;
   @Input() required = false;
-  @Input() showValidationErrors = this.formControlService.showValidationErrors;
 
   isDisabled = false;
-  error?: 'required' | 'min' | 'max';
+  error: 'required' | 'min' | 'max' | null = null;
   _model: number | null = null;
-  onChange = (_model: number | null) => { };
-  onTouched = () => { };
 
-  constructor(private formControlService: FormControlService) { }
+  constructor(private hostElement: ElementRef, private formControlService: FormControlService) { }
 
   get model() {
     return this._model;
@@ -52,16 +50,24 @@ export class IntegerComponent implements ControlValueAccessor, Validator {
     this.onChange(this._model);
   }
 
-  get disableAdd() {
+  get isDisabledAdd() {
+    if (this.isDisabled === true) return true;
+
     if (this.model === null) return false;
 
     return this.model + this.step > this.max;
   }
 
-  get disableSubtract() {
+  get isDisabledSubtract() {
+    if (this.isDisabled === true) return true;
+
     if (this.model === null) return false;
 
     return this.model - this.step < this.min;
+  }
+
+  get isInvalid() {
+    return this.hostElement.nativeElement.classList.contains('ng-invalid');
   }
 
   add() {
@@ -92,10 +98,12 @@ export class IntegerComponent implements ControlValueAccessor, Validator {
     this.model -= this.step;
   }
 
+  onChange(_model: number | null) { }
   registerOnChange(fn: any) {
     this.onChange = fn;
   }
 
+  onTouched() { }
   registerOnTouched(fn: any) {
     this.onTouched = fn;
   }
@@ -120,7 +128,7 @@ export class IntegerComponent implements ControlValueAccessor, Validator {
       return { min: true };
     }
 
-    this.error = undefined;
+    this.error = null;
     return null;
   }
 
