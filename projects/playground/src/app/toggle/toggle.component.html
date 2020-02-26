@@ -1,4 +1,4 @@
-<h1>Toggle</h1>
+<h2>Toggle</h2>
 <ol>
   <li>
     <i>model</i> will be <b>boolean</b> or <b>null</b>
@@ -21,22 +21,41 @@
     <legend>form</legend>
     <fieldset>
       <legend>fieldset</legend>
-      <fc-toggle [(ngModel)]="default" label="default" name="default" [disabled]="isFormDisabled" [required]="isFormRequired" [showNull]="isFormShowNull"></fc-toggle>
+      <fc-toggle
+        [(ngModel)]="default"
+        label="default"
+        name="default"
+        [disabled]="isFormDisabled"
+        [required]="isFormRequired"
+        [showNull]="isFormShowNull"
+      ></fc-toggle>
     </fieldset>
     <fieldset>
       <legend>options</legend>
       <label>
-        <input type="checkbox" [(ngModel)]="isFormDisabled" name="isFormDisabled" />
+        <input
+          type="checkbox"
+          [(ngModel)]="isFormDisabled"
+          name="isFormDisabled"
+        />
         disabled
       </label>
       <br />
       <label>
-        <input type="checkbox" [(ngModel)]="isFormRequired" name="isFormRequired" />
+        <input
+          type="checkbox"
+          [(ngModel)]="isFormRequired"
+          name="isFormRequired"
+        />
         required
       </label>
       <br />
       <label>
-        <input type="checkbox" [(ngModel)]="isFormShowNull" name="isFormShowNull" />
+        <input
+          type="checkbox"
+          [(ngModel)]="isFormShowNull"
+          name="isFormShowNull"
+        />
         show null
       </label>
     </fieldset>
@@ -66,17 +85,31 @@
       <legend>
         <u>disabled</u> fieldset
       </legend>
-      <fc-toggle [(ngModel)]="disabledFieldset" name="disabledFieldset" label="default" [required]="isDisabledFieldsetFormRequired" [showNull]="isDisabledFieldsetFormShowNull"></fc-toggle>
+      <fc-toggle
+        [(ngModel)]="disabledFieldset"
+        name="disabledFieldset"
+        label="default"
+        [required]="isDisabledFieldsetFormRequired"
+        [showNull]="isDisabledFieldsetFormShowNull"
+      ></fc-toggle>
     </fieldset>
     <fieldset>
       <legend>options</legend>
       <label>
-        <input type="checkbox" [(ngModel)]="isDisabledFieldsetFormRequired" name="isDisabledFieldsetFormRequired" />
+        <input
+          type="checkbox"
+          [(ngModel)]="isDisabledFieldsetFormRequired"
+          name="isDisabledFieldsetFormRequired"
+        />
         required
       </label>
       <br />
       <label>
-        <input type="checkbox" [(ngModel)]="isDisabledFieldsetFormShowNull" name="isDisabledFieldsetFormShowNull" />
+        <input
+          type="checkbox"
+          [(ngModel)]="isDisabledFieldsetFormShowNull"
+          name="isDisabledFieldsetFormShowNull"
+        />
         show null
       </label>
     </fieldset>

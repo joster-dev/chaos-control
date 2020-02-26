@@ -1,10 +1,23 @@
-.dis-flex span {
-  display: flex;
-  align-items: center;
-  border-color: lightgrey;
-  border-width: medium;
-  border-top-style: solid;
-  border-right-style: solid;
-  border-bottom-style: solid;
-  padding: 0 0.5em;
+.dis-flex {
+  @media print {
+    > fc-button {
+      display: none;
+    }
+  }
+
+  > span {
+    display: flex;
+    align-items: center;
+    border-color: lightgrey;
+    border-width: medium;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    padding: 0 0.5em;
+
+    @media print {
+      border-style: none;
+      padding: 0.5em;
+    }
+  }
 }

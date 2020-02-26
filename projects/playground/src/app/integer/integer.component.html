@@ -1,5 +1,5 @@
 <header>
-  <h1>Integer</h1>
+  <h2>Integer</h2>
   <ol>
     <li>
       <i>model</i> will be <b>number</b> or <b>null</b>
@@ -56,22 +56,41 @@
     <legend>form</legend>
     <fieldset>
       <legend>fieldset</legend>
-      <fc-integer [(ngModel)]="default" label="default" name="default" [disabled]="isFormDisabled" [required]="isFormRequired" [showNull]="isFormShowNull"></fc-integer>
+      <fc-integer
+        [(ngModel)]="default"
+        label="default"
+        name="default"
+        [disabled]="isFormDisabled"
+        [required]="isFormRequired"
+        [showNull]="isFormShowNull"
+      ></fc-integer>
     </fieldset>
     <fieldset>
       <legend>options</legend>
       <label>
-        <input type="checkbox" [(ngModel)]="isFormDisabled" name="isFormDisabled" />
+        <input
+          type="checkbox"
+          [(ngModel)]="isFormDisabled"
+          name="isFormDisabled"
+        />
         disabled
       </label>
       <br />
       <label>
-        <input type="checkbox" [(ngModel)]="isFormRequired" name="isFormRequired" />
+        <input
+          type="checkbox"
+          [(ngModel)]="isFormRequired"
+          name="isFormRequired"
+        />
         required
       </label>
       <br />
       <label>
-        <input type="checkbox" [(ngModel)]="isFormShowNull" name="isFormShowNull" />
+        <input
+          type="checkbox"
+          [(ngModel)]="isFormShowNull"
+          name="isFormShowNull"
+        />
         show null
       </label>
     </fieldset>
@@ -102,26 +121,65 @@
     <legend>form</legend>
     <fieldset>
       <legend>fieldset</legend>
-      <fc-integer [(ngModel)]="negative" name="negative" label="min is -10 & max is 10 & step is 2" [min]="-10" [max]="10" [step]="2" [disabled]="isExampleFormDisabled" [required]="isExampleFormRequired" [showNull]="isExampleFormShowNull"></fc-integer>
+      <fc-integer
+        [(ngModel)]="negative"
+        name="negative"
+        label="min is -10 & max is 10 & step is 2"
+        [min]="-10"
+        [max]="10"
+        [step]="2"
+        [disabled]="isExampleFormDisabled"
+        [required]="isExampleFormRequired"
+        [showNull]="isExampleFormShowNull"
+      ></fc-integer>
       <br />
-      <fc-integer [(ngModel)]="minError" name="minError" label="min is 5" [min]="5" [disabled]="isExampleFormDisabled" [required]="isExampleFormRequired" [showNull]="isExampleFormShowNull"></fc-integer>
+      <fc-integer
+        [(ngModel)]="minError"
+        name="minError"
+        label="min is 5"
+        [min]="5"
+        [disabled]="isExampleFormDisabled"
+        [required]="isExampleFormRequired"
+        [showNull]="isExampleFormShowNull"
+      ></fc-integer>
       <br />
-      <fc-integer [(ngModel)]="maxError" name="maxError" label="min is -9 & max is -5" [min]="-9" [max]="-5" [disabled]="isExampleFormDisabled" [required]="isExampleFormRequired" [showNull]="isExampleFormShowNull"></fc-integer>
+      <fc-integer
+        [(ngModel)]="maxError"
+        name="maxError"
+        label="min is -9 & max is -5"
+        [min]="-9"
+        [max]="-5"
+        [disabled]="isExampleFormDisabled"
+        [required]="isExampleFormRequired"
+        [showNull]="isExampleFormShowNull"
+      ></fc-integer>
     </fieldset>
     <fieldset>
       <legend>options</legend>
       <label>
-        <input type="checkbox" [(ngModel)]="isExampleFormDisabled" name="isExampleFormDisabled" />
+        <input
+          type="checkbox"
+          [(ngModel)]="isExampleFormDisabled"
+          name="isExampleFormDisabled"
+        />
         disabled
       </label>
       <br />
       <label>
-        <input type="checkbox" [(ngModel)]="isExampleFormRequired" name="isExampleFormRequired" />
+        <input
+          type="checkbox"
+          [(ngModel)]="isExampleFormRequired"
+          name="isExampleFormRequired"
+        />
         required
       </label>
       <br />
       <label>
-        <input type="checkbox" [(ngModel)]="isExampleFormShowNull" name="isExampleFormShowNull" />
+        <input
+          type="checkbox"
+          [(ngModel)]="isExampleFormShowNull"
+          name="isExampleFormShowNull"
+        />
         show null
       </label>
     </fieldset>
@@ -148,17 +206,31 @@
       <legend>
         <u>disabled</u> fieldset
       </legend>
-      <fc-integer [(ngModel)]="disabledFieldset" name="disabledFieldset" label="default" [required]="isDisabledFieldsetFormRequired" [showNull]="isDisabledFieldsetFormShowNull"></fc-integer>
+      <fc-integer
+        [(ngModel)]="disabledFieldset"
+        name="disabledFieldset"
+        label="default"
+        [required]="isDisabledFieldsetFormRequired"
+        [showNull]="isDisabledFieldsetFormShowNull"
+      ></fc-integer>
     </fieldset>
     <fieldset>
       <legend>options</legend>
       <label>
-        <input type="checkbox" [(ngModel)]="isDisabledFieldsetFormRequired" name="isDisabledFieldsetFormRequired" />
+        <input
+          type="checkbox"
+          [(ngModel)]="isDisabledFieldsetFormRequired"
+          name="isDisabledFieldsetFormRequired"
+        />
         required
       </label>
       <br />
       <label>
-        <input type="checkbox" [(ngModel)]="isDisabledFieldsetFormShowNull" name="isDisabledFieldsetFormShowNull" />
+        <input
+          type="checkbox"
+          [(ngModel)]="isDisabledFieldsetFormShowNull"
+          name="isDisabledFieldsetFormShowNull"
+        />
         show null
       </label>
     </fieldset>

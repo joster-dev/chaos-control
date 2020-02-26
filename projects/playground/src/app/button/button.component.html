@@ -1,42 +1,72 @@
 <header>
-  <h1>Button</h1>
+  <h2>Button</h2>
 </header>
 <form #form="ngForm">
   <fieldset>
     <legend>form</legend>
-    <fc-button [active]="isActive" [disabled]="isDisabled" (action)="actions = actions + 1">
+    <fc-button
+      [active]="isActive"
+      [disabled]="isDisabled"
+      (action)="actions = actions + 1"
+    >
       {{actions}} actions
     </fc-button>
     <br />
     <br />
-    <fc-button [active]="isActive" [block]="true" [disabled]="isDisabled" (action)="blockActions = blockActions + 1">
+    <fc-button
+      [active]="isActive"
+      [block]="true"
+      [disabled]="isDisabled"
+      (action)="blockActions = blockActions + 1"
+    >
       {{blockActions}} actions
     </fc-button>
     <br />
-    <fc-button textAlign="left" [active]="isActive" [block]="true" [disabled]="isDisabled">
+    <fc-button
+      textAlign="left"
+      [active]="isActive"
+      [block]="true"
+      [disabled]="isDisabled"
+    >
       <u>textAlign</u> is <b>left</b>
     </fc-button>
     <br />
-    <fc-button textAlign="right" [active]="isActive" [block]="true" [disabled]="isDisabled">
+    <fc-button
+      textAlign="right"
+      [active]="isActive"
+      [block]="true"
+      [disabled]="isDisabled"
+    >
       <u>textAlign</u> is <b>right</b>
     </fc-button>
     <br />
     <fieldset>
       <legend>options</legend>
       <label>
-        <input type="checkbox" [(ngModel)]="isActive" name="isActive" />
+        <input
+          type="checkbox"
+          [(ngModel)]="isActive"
+          name="isActive"
+        />
         active
       </label>
       <br />
       <label>
-        <input type="checkbox" [(ngModel)]="isDisabled" name="isDisabled" />
+        <input
+          type="checkbox"
+          [(ngModel)]="isDisabled"
+          name="isDisabled"
+        />
         disabled
       </label>
     </fieldset>
     <br />
     <fieldset>
       <legend>actions</legend>
-      <button type="button" (click)="reset()">
+      <button
+        type="button"
+        (click)="reset()"
+      >
         reset
       </button>
     </fieldset>
