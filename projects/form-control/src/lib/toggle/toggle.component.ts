@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, forwardRef, Input, ElementRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormControlService } from '../form-control.service';
 
@@ -19,7 +19,7 @@ export class ToggleComponent implements ControlValueAccessor {
   @Input() nullTitle = this.formControlService.nullTitle;
   @Input() showNull = this.formControlService.showNull;
   @Input() required = false;
-  @Input() label?: string;
+  @Input() label: string | null = null;
   @Input() trueDisplay = '👍';
   @Input() trueTitle = 'Yes';
   @Input() falseDisplay = '👎';
@@ -27,10 +27,8 @@ export class ToggleComponent implements ControlValueAccessor {
 
   isDisabled = false;
   _model: boolean | null = null;
-  onChange = (_value: boolean | null) => { };
-  onTouched = () => { };
 
-  constructor(private formControlService: FormControlService) { }
+  constructor(private hostElement: ElementRef, private formControlService: FormControlService) { }
 
   get model() {
     return this._model;
@@ -41,10 +39,22 @@ export class ToggleComponent implements ControlValueAccessor {
     this.onChange(value);
   }
 
+  get activeTitle() {
+    if (this._model === true) return this.trueTitle;
+    if (this._model === false) return this.falseTitle;
+    return '';
+  }
+
+  get isInvalid() {
+    return this.hostElement.nativeElement.classList.contains('ng-invalid');
+  }
+
+  onChange(_value: boolean | null) { }
   registerOnChange(fn: any) {
     this.onChange = fn;
   }
 
+  onTouched() { }
   registerOnTouched(fn: any) {
     this.onTouched = fn;
   }
