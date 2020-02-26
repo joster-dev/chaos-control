@@ -1,3 +1,12 @@
-<button [type]="type" [class.active]="active" [class.disabled]="disabled" [attr.tabindex]="disabled ? -1 : 0" [style.text-align]="textAlign" (blur)="blur.emit($event)" (click)="disabled === false && action.emit($event)">
+<button
+  [attr.tabindex]="disabled ? -1 : 0"
+  [class.active]="active === true"
+  [class.disabled]="disabled === true"
+  [class.invalid]="invalid === true"
+  [style.text-align]="textAlign"
+  [type]="type"
+  (blur)="loseFocus.emit($event)"
+  (click)="disabled === false && action.emit($event)"
+>
   <ng-content></ng-content>
 </button>
