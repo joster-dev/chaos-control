@@ -1,34 +1,78 @@
-<div *ngIf="label !== undefined" class="label dis-flex flex-space-between">
+<div
+  *ngIf="label !== undefined"
+  class="label dis-flex flex-space-between"
+>
   <label>
     {{label}}
-    <span *ngIf="required === true" class="required-icon">
+    <span *ngIf="required === true">
       *
     </span>
   </label>
-  <span *ngIf="showIcon === true" class="icon" [class.rotate-0]="showDropdown === true && isDropdownCloseToBottom === true" [class.rotate-180]="showDropdown === true && isDropdownCloseToBottom === false">
+  <span
+    *ngIf="showIcon === true"
+    class="icon"
+    [class.rotate-0]="showDropdown === true && isDropdownCloseToBottom === true"
+    [class.rotate-180]="showDropdown === true && isDropdownCloseToBottom === false"
+  >
     🛆
   </span>
 </div>
 
 <div class="dis-flex">
-  <fc-button *ngIf="showNull === true" [active]="model === null" [disabled]="isDisabled === true" [title]="nullTitle" (action)="model = null" (blur)="onTouched()">
+  <fc-button
+    *ngIf="showNull === true"
+    [active]="model === null"
+    [invalid]="error !== undefined"
+    [disabled]="isDisabled === true"
+    [title]="nullTitle"
+    (action)="model = null"
+    (loseFocus)="onTouched()"
+  >
     {{nullDisplay}}
   </fc-button>
-  <fc-button class="flex-1" textAlign="left" [active]="model !== null" [block]="true" (action)="showDropdown = !showDropdown">
+  <fc-button
+    class="flex-1"
+    textAlign="left"
+    [active]="model !== null"
+    [block]="true"
+    (action)="showDropdown = !showDropdown"
+  >
     <span *ngIf="hasSelected === true">
       {{selectedValue}}
     </span>
-    <span *ngIf="hasSelected === false" class="placeholder">
+    <span
+      *ngIf="hasSelected === false"
+      class="placeholder"
+    >
       {{placeholderText === undefined ? '&nbsp;' : placeholderText}}
     </span>
   </fc-button>
 </div>
-<div class="drop {{isDropdownCloseToBottom ? 'up' : 'down'}}" [hidden]="showDropdown === false" [style.max-height]="dropdownMaxHeight + 'px'">
-  <fc-button *ngIf="items.length === 0" class="flex-1" textAlign="left" [block]="true" (action)="showDropdown = false">
+<div
+  class="drop {{isDropdownCloseToBottom ? 'up' : 'down'}}"
+  [hidden]="showDropdown === false"
+  [style.max-height]="dropdownMaxHeight + 'px'"
+>
+  <fc-button
+    *ngIf="items.length === 0"
+    class="flex-1"
+    textAlign="left"
+    [block]="true"
+    (action)="showDropdown = false"
+  >
     🤷 No items to display
   </fc-button>
-  <div *ngFor="let item of items" class="dis-flex">
-    <fc-button class="flex-1" textAlign="left" [active]="model === item.key" [block]="true" (action)="model = item.key">
+  <div
+    *ngFor="let item of items"
+    class="dis-flex"
+  >
+    <fc-button
+      class="flex-1"
+      textAlign="left"
+      [active]="model === item.key"
+      [block]="true"
+      (action)="model = item.key"
+    >
       {{item.value}}
     </fc-button>
   </div>
