@@ -1,7 +1,3 @@
-:host.ng-invalid.ng-dirty textarea {
-  border-color: red;
-}
-
 textarea {
   background: white;
   border-color: lightgrey;
@@ -38,6 +34,10 @@ textarea {
         box-shadow: 0 0 0.5em black, inset 0 0 0.5em black;
       }
     }
+  }
+
+  &.invalid {
+    border-color: red;
   }
 
   @media print {

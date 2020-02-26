@@ -21,33 +21,39 @@ import { FormControlService } from '../form-control.service';
 })
 export class TextComponent implements ControlValueAccessor, Validator {
   @Input() showIcon = this.formControlService.showIcon;
-  @Input() label?: string;
-  @Input() placeholder?: string;
+  @Input() label: string | null = null;
+  @Input() placeholder: string | null = null;
   @Input() minlength = 0;
   @Input() maxlength = 100;
   @Input() required = false;
-  @Input() autocapitalize: 'none' | 'sentences' | 'words' | 'characters' = 'none';
-  @Input() spellcheck: 'true' | 'false' | 'default' = 'false';
   @Input() showValidationErrors = this.formControlService.showValidationErrors;
-  @Input() keydownKeyPattern = /Enter/;
 
   @ViewChild('textarea', { static: true }) textareaElement!: ElementRef;
   @ViewChild('textareaHidden', { static: true }) textareaHiddenElement!: ElementRef;
 
   isDisabled = false;
-  error?: 'required' | 'maxlength' | 'minlength';
-
-  constructor(private formControlService: FormControlService, private renderer: Renderer2) { }
-
+  error: 'required' | 'maxlength' | 'minlength' | null = null;
   _model: string | null = null;
+
+  constructor(
+    private formControlService: FormControlService,
+    private hostElement: ElementRef,
+    private renderer: Renderer2
+  ) { }
+
   get model() {
     return this._model;
   }
+
   set model(value: string | null) {
     value = value === null ? '' : value;
     this._model = value === '' ? null : value;
     this.onChange(this._model);
     setTimeout(() => this.setTextareaHeight());
+  }
+
+  get isInvalid() {
+    return this.hostElement.nativeElement.classList.contains('ng-invalid') === true;
   }
 
   setTextareaHeight() {
@@ -56,11 +62,6 @@ export class TextComponent implements ControlValueAccessor, Validator {
     this.renderer.setStyle(textareaHidden, 'width', `calc(${textarea.scrollWidth}px - 1em)`);
     this.renderer.setStyle(textareaHidden, 'height', 'auto');
     this.renderer.setStyle(textarea, 'height', `${textareaHidden.scrollHeight}px`);
-  }
-
-  onKeydown(event: KeyboardEvent): void {
-    if (this.keydownKeyPattern.test(event.key) === false) return;
-    event.preventDefault();
   }
 
   onChange(_model: string | null) { }
@@ -93,7 +94,7 @@ export class TextComponent implements ControlValueAccessor, Validator {
       return { minlength: true };
     }
 
-    this.error = undefined;
+    this.error = null;
     return null;
   }
 
