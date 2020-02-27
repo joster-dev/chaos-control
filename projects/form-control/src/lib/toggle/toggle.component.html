@@ -18,8 +18,8 @@
   </fc-button>
   <fc-button
     [active]="_model === false"
-    [invalid]="isInvalid === true"
     [disabled]="isDisabled === true"
+    [invalid]="isInvalid === true"
     [title]="falseTitle"
     (action)="model = false"
     (loseFocus)="onTouched()"
@@ -28,8 +28,8 @@
   </fc-button>
   <fc-button
     [active]="_model === true"
-    [invalid]="isInvalid === true"
     [disabled]="isDisabled === true"
+    [invalid]="isInvalid === true"
     [title]="trueTitle"
     (action)="model = true"
     (loseFocus)="onTouched()"
