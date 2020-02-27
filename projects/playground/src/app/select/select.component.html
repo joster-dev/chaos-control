@@ -1,5 +1,5 @@
 <header>
-  <h1>Select</h1>
+  <h2>Select</h2>
   <ol>
     <li>
       model will be string or number or null
@@ -18,26 +18,54 @@
 <form #form="ngForm">
   <fieldset>
     <legend>form</legend>
-    <fc-select [(ngModel)]="default" label="default" name="default" [items]="defaultData" [required]="isFormRequired" [showNull]="isFormShowNull" [showIcon]="isFormShowArrow"></fc-select>
+    <fc-select
+      [(ngModel)]="default"
+      label="default"
+      name="default"
+      [items]="defaultData"
+      [required]="isFormRequired"
+      [showNull]="isFormShowNull"
+      [showIcon]="isFormShowArrow"
+    ></fc-select>
     <br />
     <br />
-    <fc-select [(ngModel)]="empty" label="empty" name="empty" [items]="emptyData" [required]="isFormRequired" [showNull]="isFormShowNull" [showIcon]="isFormShowArrow"></fc-select>
+    <fc-select
+      [(ngModel)]="empty"
+      label="empty"
+      name="empty"
+      [items]="emptyData"
+      [required]="isFormRequired"
+      [showNull]="isFormShowNull"
+      [showIcon]="isFormShowArrow"
+    ></fc-select>
     <br />
     <br />
     <fieldset>
       <legend>options</legend>
       <label>
-        <input type="checkbox" [(ngModel)]="isFormRequired" name="isFormRequired" />
+        <input
+          type="checkbox"
+          [(ngModel)]="isFormRequired"
+          name="isFormRequired"
+        />
         required
       </label>
       <br />
       <label>
-        <input type="checkbox" [(ngModel)]="isFormShowNull" name="isFormShowNull" />
+        <input
+          type="checkbox"
+          [(ngModel)]="isFormShowNull"
+          name="isFormShowNull"
+        />
         show null
       </label>
       <br />
       <label>
-        <input type="checkbox" [(ngModel)]="isFormShowArrow" name="isFormShowArrow" />
+        <input
+          type="checkbox"
+          [(ngModel)]="isFormShowArrow"
+          name="isFormShowArrow"
+        />
         show arrow
       </label>
     </fieldset>

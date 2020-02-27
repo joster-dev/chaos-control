@@ -1,12 +1,21 @@
-:host.ng-invalid.ng-touched ::ng-deep fc-button > button:not(.active) {
-  border-color: red;
-}
+.dis-flex {
+  @media print {
+    > fc-button {
+      display: none;
+    }
+  }
 
-.dis-flex span {
-  display: flex;
-  align-items: center;
-  border-top: medium solid lightgrey;
-  border-right: medium solid lightgrey;
-  border-bottom: medium solid lightgrey;
-  padding: 0 0.5em;
+  > span {
+    display: flex;
+    align-items: center;
+    border-top: medium solid lightgrey;
+    border-right: medium solid lightgrey;
+    border-bottom: medium solid lightgrey;
+    padding: 0 0.5em;
+
+    @media print {
+      border-style: none;
+      padding: 0.5em;
+    }
+  }
 }

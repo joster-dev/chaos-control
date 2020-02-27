@@ -1,20 +1,42 @@
-<label *ngIf="label !== undefined">
+<label *ngIf="label !== null">
   {{label}}
-  <span *ngIf="required === true" class="required-icon">
+  <span *ngIf="required === true">
     *
   </span>
 </label>
+
 <div class="dis-flex flex-center flex-stretch">
-  <fc-button *ngIf="showNull" [active]="model === null" [disabled]="isDisabled" [title]="nullTitle" (action)="model = null" (blur)="onTouched()">
+  <fc-button
+    *ngIf="showNull === true"
+    [active]="_model === null"
+    [disabled]="isDisabled === true"
+    [title]="nullTitle"
+    (action)="model = null"
+    (loseFocus)="onTouched()"
+  >
     {{nullDisplay}}
   </fc-button>
-  <fc-button [active]="model === false" [disabled]="isDisabled" [title]="falseTitle" (action)="model = false" (blur)="onTouched()">
+  <fc-button
+    [active]="_model === false"
+    [invalid]="isInvalid === true"
+    [disabled]="isDisabled === true"
+    [title]="falseTitle"
+    (action)="model = false"
+    (loseFocus)="onTouched()"
+  >
     {{falseDisplay}}
   </fc-button>
-  <fc-button [active]="model === true" [disabled]="isDisabled" [title]="trueTitle" (action)="model = true" (blur)="onTouched()">
+  <fc-button
+    [active]="_model === true"
+    [invalid]="isInvalid === true"
+    [disabled]="isDisabled === true"
+    [title]="trueTitle"
+    (action)="model = true"
+    (loseFocus)="onTouched()"
+  >
     {{trueDisplay}}
   </fc-button>
   <span class="flex-1">
-    {{model === null ? '&nbsp;' : model === true ? trueTitle : falseTitle}}
+    {{activeTitle}}
   </span>
 </div>

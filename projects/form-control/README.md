@@ -14,4 +14,12 @@ These styled components enable type-safe value binding inside a form element
   - `fc-button`
 - form-control
   - `fc-toggle`
-  - `fc-small-number`
+  - `fc-integer`
+  - `fc-text`
+- upcoming
+  - `fc-single-select`
+  - `fc-multi-select`
+  - `fc-date`
+  - `fc-date-time`
+  - `fc-time`
+  - `fc-number`

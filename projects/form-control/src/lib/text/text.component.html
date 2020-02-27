@@ -1,21 +1,44 @@
 <div class="label dis-flex flex-space-between">
-  <label *ngIf="label !== undefined">
+  <label *ngIf="label !== null">
     {{label}}
-    <span *ngIf="required === true" class="required-icon">
+    <span *ngIf="required === true">
       *
     </span>
   </label>
-  <span *ngIf="showIcon === true" class="icon">
+  <span
+    *ngIf="showIcon === true"
+    class="icon"
+  >
     🖉
   </span>
 </div>
+
 <div class="dis-flex">
-  <textarea #textarea [(ngModel)]="model" rows="1" [autocapitalize]="autocapitalize" [class.active]="_model !== null" [class.invalid]="error !== undefined" [disabled]="isDisabled === true" [placeholder]="placeholder === undefined ? '' : placeholder" [spellcheck]="spellcheck" (blur)="onTouched()" (keydown)="onKeydown($event)"></textarea>
+  <textarea
+    #textarea
+    [(ngModel)]="model"
+    rows="1"
+    [class.active]="_model !== null"
+    [class.invalid]="isInvalid === true"
+    [disabled]="isDisabled === true"
+    [placeholder]="placeholder === null ? '' : placeholder"
+    (blur)="onTouched()"
+  ></textarea>
 </div>
+
 <div class="dis-flex">
-  <textarea #textareaHidden [ngModel]="model" rows="1" class="hidden"></textarea>
+  <textarea
+    #textareaHidden
+    [ngModel]="model"
+    rows="1"
+    class="hidden"
+  ></textarea>
 </div>
-<ul *ngIf="showValidationErrors" class="errors">
+
+<ul
+  *ngIf="showValidationErrors"
+  class="errors"
+>
   <li *ngIf="error === 'minlength'">
     minimum length is {{minlength}}
   </li>

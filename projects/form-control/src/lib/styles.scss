@@ -26,16 +26,18 @@
   flex: 3;
 }
 
-.label {
-  padding: 0 0.5em;
-
+label {
   @media print {
     font-weight: bold;
   }
 
-  > label > .required-icon {
+  > span {
     color: red;
   }
+}
+
+.label {
+  padding: 0 0.5em;
 
   > .icon {
     color: lightgray;

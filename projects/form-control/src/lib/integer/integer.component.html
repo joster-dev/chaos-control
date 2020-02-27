@@ -1,24 +1,48 @@
-<label *ngIf="label !== undefined">
+<label *ngIf="label !== null">
   {{label}}
-  <span *ngIf="required === true" class="required-icon">
+  <span *ngIf="required === true">
     *
   </span>
 </label>
+
 <div class="dis-flex flex-stretch">
-  <fc-button *ngIf="showNull === true" [active]="model === null" [disabled]="isDisabled === true" [title]="nullTitle" (action)="model = null" (blur)="onTouched()">
+  <fc-button
+    *ngIf="showNull === true"
+    [active]="_model === null"
+    [disabled]="isDisabled === true"
+    [title]="nullTitle"
+    (action)="model = null"
+    (loseFocus)="onTouched()"
+  >
     {{nullDisplay}}
   </fc-button>
-  <fc-button [disabled]="isDisabled === true || disableSubtract === true" [title]="subtractTitle" (action)="subtract()" (blur)="onTouched()">
+  <fc-button
+    [disabled]="isDisabledSubtract === true"
+    [invalid]="isInvalid === true"
+    [title]="subtractTitle"
+    (action)="subtract()"
+    (loseFocus)="onTouched()"
+  >
     {{subtractDisplay}}
   </fc-button>
-  <fc-button [disabled]="isDisabled === true || disableAdd === true" [title]="addTitle" (action)="add()" (blur)="onTouched()">
+  <fc-button
+    [disabled]="isDisabledAdd === true"
+    [invalid]="isInvalid === true"
+    [title]="addTitle"
+    (action)="add()"
+    (loseFocus)="onTouched()"
+  >
     {{addDisplay}}
   </fc-button>
   <span class="flex-1">
-    {{model === null ? '&nbsp;' : model}}
+    {{_model === null ? '' : _model}}
   </span>
 </div>
-<ul *ngIf="showValidationErrors" class="errors">
+
+<ul
+  *ngIf="showValidationErrors"
+  class="errors"
+>
   <li *ngIf="error === 'max'">
     maximum is {{max}}
   </li>
