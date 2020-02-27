@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "push-pages": "git push origin --delete gh-pages && git subtree push --prefix dist/fc-test origin gh-pages",
+    "push-pages": "git push origin --delete gh-pages && git subtree push --prefix dist/playground origin gh-pages",
     "copy-license": "powershell Copy-Item \".\\LICENSE\" -Destination \".\\dist\\form-control\"",
     "npm-pack": "cd dist/form-control && npm pack",
     "package": "npm run build-lib && npm run npm-pack",
