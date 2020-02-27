@@ -33,6 +33,10 @@ label {
 
   > span {
     color: red;
+
+    @media print {
+      display: none;
+    }
   }
 }
 
