@@ -20,7 +20,6 @@ import { FormControlService } from '../form-control.service';
   ]
 })
 export class TextComponent implements ControlValueAccessor, Validator {
-  @Input() showIcon = this.formControlService.showIcon;
   @Input() label: string | null = null;
   @Input() placeholder: string | null = null;
   @Input() minlength = 0;
@@ -34,6 +33,7 @@ export class TextComponent implements ControlValueAccessor, Validator {
   isDisabled = false;
   error: 'required' | 'maxlength' | 'minlength' | null = null;
   _model: string | null = null;
+  id = `_${Math.random().toString(36).substr(2, 9)}`;
 
   constructor(
     private formControlService: FormControlService,
@@ -46,9 +46,14 @@ export class TextComponent implements ControlValueAccessor, Validator {
   }
 
   set model(value: string | null) {
-    value = value === null ? '' : value;
-    this._model = value === '' ? null : value;
-    this.onChange(this._model);
+    this._model = value === ''
+      ? null
+      : value;
+    this.onChange(
+      this._model !== null && (this._model.length > this.maxlength || this._model.length < this.minlength)
+        ? null
+        : this._model
+    );
     setTimeout(() => this.setTextareaHeight());
   }
 
@@ -101,6 +106,10 @@ export class TextComponent implements ControlValueAccessor, Validator {
   writeValue(value: any): void {
     if (value !== null && typeof value !== 'string') {
       throw new Error('control value must be string or null');
+    }
+
+    if (value === '') {
+      value = null;
     }
 
     this._model = value;

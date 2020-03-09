@@ -1,4 +1,4 @@
-<h2>Toggle</h2>
+<h3>Toggle</h3>
 <ol>
   <li>
     <i>model</i> will be <b>boolean</b> or <b>null</b>
@@ -61,15 +61,24 @@
     </fieldset>
     <fieldset>
       <legend>actions</legend>
-      <fc-button (action)="setFormModels(true)">
+      <button
+        type="button"
+        (click)="setFormModels(true)"
+      >
         set <i>models</i> to <b>true</b>
-      </fc-button>
-      <fc-button (action)="setFormModels(false)">
+      </button>
+      <button
+        type="button"
+        (click)="setFormModels(false)"
+      >
         set <i>models</i> to <b>false</b>
-      </fc-button>
-      <fc-button (action)="form.reset()">
+      </button>
+      <button
+        type="button"
+        (click)="form.reset()"
+      >
         form reset
-      </fc-button>
+      </button>
     </fieldset>
     <fieldset>
       <legend>status</legend>
@@ -115,15 +124,24 @@
     </fieldset>
     <fieldset>
       <legend>actions</legend>
-      <fc-button (action)="setDisabledFieldsetModels(true)">
+      <button
+        type="button"
+        (click)="setDisabledFieldsetModels(true)"
+      >
         set <i>models</i> to <b>true</b>
-      </fc-button>
-      <fc-button (action)="setDisabledFieldsetModels(false)">
+      </button>
+      <button
+        type="button"
+        (click)="setDisabledFieldsetModels(false)"
+      >
         set <i>models</i> to <b>false</b>
-      </fc-button>
-      <fc-button (action)="disabledFieldsetForm.reset()">
+      </button>
+      <button
+        type="button"
+        (click)="disabledFieldsetForm.reset()"
+      >
         form reset
-      </fc-button>
+      </button>
     </fieldset>
     <fieldset>
       <legend>status</legend>

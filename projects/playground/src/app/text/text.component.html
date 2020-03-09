@@ -1,71 +1,133 @@
-<h2>Text</h2>
-<ol>
-  <li>
-    model will be string or null
-  </li>
-</ol>
+<h3>Text</h3>
 <h4>Features</h4>
 <ol>
   <li>
-    if text content is not null, control will be active
+    <i>model</i> will be <code>string</code> or <code>null</code>
   </li>
   <li>
-    if text content would overflow, height increases
+    if <i>model</i> is not <code>null</code>
+    <ul>
+      <li>
+        control will have a shadow
+      </li>
+    </ul>
   </li>
   <li>
-    if form is reset, height will be a single row
+    if <i>model</i> is set to empty string (<code>''</code>)
+    <ul>
+      <li>
+        control will be appear empty
+      </li>
+    </ul>
+  </li>
+  <li>
+    if text content would overflow
+    <ul>
+      <li>
+        height increases
+      </li>
+    </ul>
+  </li>
+  <li>
+    if text content is empty
+    <ul>
+      <li>
+        <i>model</i> will be <code>null</code>
+      </li>
+    </ul>
+  </li>
+  <li>
+    if form is reset
+    <ul>
+      <li>height will be a single row</li>
+    </ul>
+  </li>
+  <li>
+    <b>maxlength</b>
+    <ol>
+      <li>
+        if <i>model</i> length would be greater than <b>maxlength</b>
+        <ul>
+          <li>
+            <i>model</i> is <code>null</code>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <b>minlength</b>
+    <ol>
+      <li>
+        if <i>model</i> length would be less than <b>minlength</b>
+        <ul>
+          <li>
+            <i>model</i> is <code>null</code>
+          </li>
+        </ul>
+      </li>
+    </ol>
   </li>
 </ol>
-<h4>Todo</h4>
-<ul>
-  <li>
-    more dynamic errors
-  </li>
-  <li>
-    pattern support
-  </li>
-</ul>
 <form #form="ngForm">
   <fieldset>
     <legend>form</legend>
     <fieldset>
-      <legend>fieldset</legend>
+      <legend>default control</legend>
       <fc-text
         [(ngModel)]="default"
-        label="default"
+        label="label"
         name="default"
         [disabled]="isFormDisabled"
         [required]="isFormRequired"
       ></fc-text>
     </fieldset>
+    <br />
+    default control <i>model</i>:&nbsp;
+    <ng-container [ngSwitch]="default">
+      <code *ngSwitchCase="null">
+        null
+      </code>
+      <span *ngSwitchDefault>
+        {{default}}
+      </span>
+    </ng-container>
+    <br />
+    <br />
     <fieldset>
       <legend>options</legend>
       <label>
+        disabled
         <input
           type="checkbox"
           [(ngModel)]="isFormDisabled"
           name="isFormDisabled"
         />
-        disabled
       </label>
       <br />
       <label>
+        required
         <input
           type="checkbox"
           [(ngModel)]="isFormRequired"
           name="isFormRequired"
         />
-        required
       </label>
     </fieldset>
     <fieldset>
       <legend>actions</legend>
-      <fc-button (action)="setFormModels(testText)">
-        set <i>model</i> to <b>{{testText}}</b>
-      </fc-button>
-      <fc-button (action)="form.reset()">
+      <button
+        type="button"
+        (click)="setFormModels(testText)"
+      >
+        set <i>model</i> to <i>{{testText}}</i>
+      </button>
+      <button
+        type="button"
+        (click)="form.reset()"
+      >
         form reset
-      </fc-button>
+      </button>
     </fieldset>
     <fieldset>
       <legend>status</legend>
@@ -99,12 +161,18 @@
     </fieldset>
     <fieldset>
       <legend>actions</legend>
-      <fc-button (action)="setDisabledFieldsetFormModels(testText)">
+      <button
+        type="button"
+        (click)="setDisabledFieldsetFormModels(testText)"
+      >
         set <i>model</i> to <b>{{testText}}</b>
-      </fc-button>
-      <fc-button (action)="disabledFieldsetForm.reset()">
+      </button>
+      <button
+        type="button"
+        (click)="disabledFieldsetForm.reset()"
+      >
         form reset
-      </fc-button>
+      </button>
     </fieldset>
     <fieldset>
       <legend>status</legend>

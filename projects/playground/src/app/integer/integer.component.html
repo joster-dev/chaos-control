@@ -1,4 +1,4 @@
-<h2>Integer</h2>
+<h3>Integer</h3>
 <ol>
   <li>
     <i>model</i> will be <b>number</b> or <b>null</b>
@@ -94,18 +94,30 @@
     </fieldset>
     <fieldset>
       <legend>actions</legend>
-      <fc-button (action)="setFormModels(0)">
+      <button
+        type="button"
+        (click)="setFormModels(0)"
+      >
         set <i>models</i> to <b>0</b>
-      </fc-button>
-      <fc-button (action)="setFormModels(-1)">
+      </button>
+      <button
+        type="button"
+        (click)="setFormModels(-1)"
+      >
         set <i>models</i> to <b>-1</b>
-      </fc-button>
-      <fc-button (action)="setFormModels(10)">
+      </button>
+      <button
+        type="button"
+        (click)="setFormModels(10)"
+      >
         set <i>models</i> to <b>10</b>
-      </fc-button>
-      <fc-button (action)="form.reset()">
+      </button>
+      <button
+        type="button"
+        (click)="form.reset()"
+      >
         form reset
-      </fc-button>
+      </button>
     </fieldset>
     <fieldset>
       <legend>status</legend>
@@ -183,12 +195,24 @@
     </fieldset>
     <fieldset>
       <legend>actions</legend>
-      <fc-button (action)="setExampleFormModels(0)">
+      <button
+        type="button"
+        (click)="setExampleFormModels(0)"
+      >
         set <i>models</i> to <b>0</b>
-      </fc-button>
-      <fc-button (action)="exampleForm.reset()">
+      </button>
+      <button
+        type="button"
+        (click)="setExampleFormModels(1)"
+      >
+        set <i>models</i> to <b>1</b>
+      </button>
+      <button
+        type="button"
+        (click)="exampleForm.reset()"
+      >
         form reset
-      </fc-button>
+      </button>
     </fieldset>
     <fieldset>
       <legend>status</legend>
@@ -234,12 +258,18 @@
     </fieldset>
     <fieldset>
       <legend>actions</legend>
-      <fc-button (action)="setDisabledFieldsetFormModels(0)">
+      <button
+        type="button"
+        (click)="setDisabledFieldsetFormModels(0)"
+      >
         set <i>model</i> to <b>0</b>
-      </fc-button>
-      <fc-button (action)="disabledFieldsetForm.reset()">
+      </button>
+      <button
+        type="button"
+        (click)="disabledFieldsetForm.reset()"
+      >
         form reset
-      </fc-button>
+      </button>
     </fieldset>
     <fieldset>
       <legend>status</legend>

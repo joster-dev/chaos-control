@@ -5,6 +5,10 @@
     }
   }
 
+  &.invalid {
+    box-shadow: 0.2em 0.2em 0.2em darkred;
+  }
+
   > span {
     display: flex;
     align-items: center;
@@ -14,6 +18,14 @@
     border-right-style: solid;
     border-bottom-style: solid;
     padding: 0 0.5em;
+
+    &.active {
+      border-color: #247;
+    }
+
+    &.disabled {
+      opacity: 0.6;
+    }
 
     @media print {
       border-style: none;

@@ -12,32 +12,23 @@ textarea {
   resize: none;
   transition: all 700ms ease;
 
-  &:focus,
-  &:hover {
-    box-shadow: 0 0 0.5em black;
+  &.active {
+    border-color: #247;
+  }
+
+  &:focus {
+    box-shadow: 0.2em 0.2em 0.2em darkgrey;
   }
 
   &:disabled {
-    opacity: 0.3;
     cursor: not-allowed;
     box-shadow: none;
-    border-color: lightgrey;
-  }
-
-  &.active {
-    border-color: #247;
-    box-shadow: inset 0 0 0.5em black;
-
-    &:not(:disabled) {
-      &:focus,
-      &:hover {
-        box-shadow: 0 0 0.5em black, inset 0 0 0.5em black;
-      }
-    }
+    color: black;
+    opacity: 0.6;
   }
 
   &.invalid {
-    border-color: red;
+    box-shadow: 0.2em 0.2em 0.2em darkred;
   }
 
   @media print {

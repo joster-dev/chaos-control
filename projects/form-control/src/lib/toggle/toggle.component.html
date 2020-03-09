@@ -5,7 +5,10 @@
   </span>
 </label>
 
-<div class="dis-flex flex-center flex-stretch">
+<div
+  class="dis-flex flex-center flex-stretch"
+  [class.invalid]="isInvalid === true"
+>
   <fc-button
     *ngIf="showNull === true"
     [active]="_model === null"
@@ -19,7 +22,6 @@
   <fc-button
     [active]="_model === false"
     [disabled]="isDisabled === true"
-    [invalid]="isInvalid === true"
     [title]="falseTitle"
     (action)="model = false"
     (loseFocus)="onTouched()"
@@ -29,14 +31,17 @@
   <fc-button
     [active]="_model === true"
     [disabled]="isDisabled === true"
-    [invalid]="isInvalid === true"
     [title]="trueTitle"
     (action)="model = true"
     (loseFocus)="onTouched()"
   >
     {{trueDisplay}}
   </fc-button>
-  <span class="flex-1">
+  <span
+    class="flex-1"
+    [class.active]="_model !== null"
+    [class.disabled]="isDisabled === true"
+  >
     {{activeTitle}}
   </span>
 </div>

@@ -1,11 +1,28 @@
-<label *ngIf="label !== null">
-  {{label}}
-  <span *ngIf="required === true">
-    *
-  </span>
-</label>
+<div class="label dis-flex flex-space-between">
+  <label *ngIf="label !== null">
+    {{label}}
+    <span *ngIf="required === true">
+      *
+    </span>
+  </label>
+  <ul
+    *ngIf="showValidationErrors"
+    class="errors"
+  >
+    <li *ngIf="error === 'max'">
+      maximum is {{max}}
+    </li>
+    <li *ngIf="error === 'min'">
+      minimum is {{min}}
+    </li>
+  </ul>
+</div>
 
-<div class="dis-flex flex-stretch">
+
+<div
+  class="dis-flex flex-stretch"
+  [class.invalid]="isInvalid === true"
+>
   <fc-button
     *ngIf="showNull === true"
     [active]="_model === null"
@@ -18,7 +35,6 @@
   </fc-button>
   <fc-button
     [disabled]="isDisabledSubtract === true"
-    [invalid]="isInvalid === true"
     [title]="subtractTitle"
     (action)="subtract()"
     (loseFocus)="onTouched()"
@@ -27,26 +43,17 @@
   </fc-button>
   <fc-button
     [disabled]="isDisabledAdd === true"
-    [invalid]="isInvalid === true"
     [title]="addTitle"
     (action)="add()"
     (loseFocus)="onTouched()"
   >
     {{addDisplay}}
   </fc-button>
-  <span class="flex-1">
+  <span
+    class="flex-1"
+    [class.active]="_model !== null"
+    [class.disabled]="isDisabled === true"
+  >
     {{_model === null ? '' : _model}}
   </span>
 </div>
-
-<ul
-  *ngIf="showValidationErrors"
-  class="errors"
->
-  <li *ngIf="error === 'max'">
-    maximum is {{max}}
-  </li>
-  <li *ngIf="error === 'min'">
-    minimum is {{min}}
-  </li>
-</ul>
