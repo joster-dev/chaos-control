@@ -22,7 +22,7 @@
   <fc-button
     *ngIf="showNull === true"
     [active]="model === null"
-    [invalid]="error !== undefined"
+    [invalid]="error !== null"
     [disabled]="isDisabled === true"
     [title]="nullTitle"
     (action)="model = null"

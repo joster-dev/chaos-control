@@ -25,7 +25,7 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   @Input() nullTitle = this.formControlService.nullTitle;
   @Input() showNull = this.formControlService.showNull;
   @Input() showIcon = true;
-  @Input() items: KeyValue<number | string, string>[] = [];
+  @Input() items: KeyValue<null | boolean | number | string, string>[] = [];
   @Input() required = false;
   @Input() label?: string;
   @Input() placeholder?: string;
@@ -33,7 +33,7 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   dropdownMaxHeight = 200;
   isDisabled = false;
   searchTerm: string | null = null;
-  error?: 'required';
+  error: 'required' | null = null;
   isDropdownCloseToBottom = false;
 
   constructor(private hostElement: ElementRef, private formControlService: FormControlService) { }

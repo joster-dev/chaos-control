@@ -44,22 +44,8 @@ label {
   }
 }
 
-.label {
-  > .icon {
-    color: lightgray;
-    align-self: flex-end;
-    user-select: none;
-    font-size: small;
-
-    @media print {
-      display: none;
-    }
-  }
-}
-
 ul.errors {
   list-style: none;
   color: red;
   margin: 0;
-  padding: 0 0.5em;
 }

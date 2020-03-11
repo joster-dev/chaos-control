@@ -1,19 +1,29 @@
 :host {
   position: relative;
-  display: inline-block;
   width: 100%;
 }
 
-.label > .icon {
-  transition: transform 700ms;
-  transform: rotate(90deg);
+.label {
+  padding-right: 0.5em;
 
-  &.rotate-0 {
-    transform: rotate(0deg);
-  }
+  > .icon {
+    font-size: small;
+    align-self: flex-end;
+    user-select: none;
+    transition: transform 700ms;
+    transform: rotate(90deg);
 
-  &.rotate-180 {
-    transform: rotate(180deg);
+    &.rotate-0 {
+      transform: rotate(0deg);
+    }
+
+    &.rotate-180 {
+      transform: rotate(180deg);
+    }
+
+    @media print {
+      display: none;
+    }
   }
 }
 
