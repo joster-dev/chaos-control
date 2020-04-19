@@ -59,6 +59,8 @@
         label="default"
         name="default"
         [disabled]="isFormDisabled"
+        [min]="defaultMin"
+        [max]="defaultMax"
         [required]="isFormRequired"
         [showNull]="isFormShowNull"
       ></fc-integer>
@@ -96,21 +98,45 @@
       <legend>actions</legend>
       <button
         type="button"
-        (click)="setFormModels(0)"
+        (click)="default = 0"
       >
-        set <i>models</i> to <b>0</b>
+        set <i>model</i> to <b>0</b>
       </button>
       <button
         type="button"
-        (click)="setFormModels(-1)"
+        (click)="default = -1"
       >
-        set <i>models</i> to <b>-1</b>
+        set <i>model</i> to <b>-1</b>
       </button>
       <button
         type="button"
-        (click)="setFormModels(10)"
+        (click)="default = 10"
       >
-        set <i>models</i> to <b>10</b>
+        set <i>model</i> to <b>10</b>
+      </button>
+      <button
+        type="button"
+        (click)="defaultMax = 5"
+      >
+        set max to <b>5</b>
+      </button>
+      <button
+        type="button"
+        (click)="defaultMax = 9"
+      >
+        set max to 9
+      </button>
+      <button
+        type="button"
+        (click)="defaultMin = 5"
+      >
+        set min to <b>5</b>
+      </button>
+      <button
+        type="button"
+        (click)="defaultMin = 0"
+      >
+        set min to <b>0</b>
       </button>
       <button
         type="button"

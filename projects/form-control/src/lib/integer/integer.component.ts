@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, ElementRef } from '@angular/core';
+import { Component, forwardRef, Input, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ControlValueAccessor, Validator, ValidationErrors } from '@angular/forms';
 import { FormControlService } from '../form-control.service';
 
@@ -19,7 +19,7 @@ import { FormControlService } from '../form-control.service';
     }
   ]
 })
-export class IntegerComponent implements ControlValueAccessor, Validator {
+export class IntegerComponent implements ControlValueAccessor, Validator, OnChanges {
   @Input() nullDisplay = this.formControlService.nullDisplay;
   @Input() nullTitle = this.formControlService.nullTitle;
   @Input() showNull = this.formControlService.showNull;
@@ -40,6 +40,20 @@ export class IntegerComponent implements ControlValueAccessor, Validator {
   _model: number | null = null;
 
   constructor(private hostElement: ElementRef, private formControlService: FormControlService) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const min = changes.min;
+    const isMinChange = min !== undefined
+      && min.firstChange === false
+      && min.currentValue !== min.previousValue;
+    const max = changes.max;
+    const isMaxChange = max !== undefined
+      && max.firstChange === false
+      && max.currentValue !== max.previousValue;
+    if (isMinChange === true || isMaxChange === true) {
+      this.onChange(this._model);
+    }
+  }
 
   get model() {
     return this._model;

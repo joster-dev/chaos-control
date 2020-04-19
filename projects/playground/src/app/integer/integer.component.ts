@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class IntegerComponent {
   default: number | null = null;
+  defaultMin = 0;
+  defaultMax = 9;
   isFormDisabled = false;
   isFormRequired = false;
   isFormShowNull = false;
@@ -23,10 +25,6 @@ export class IntegerComponent {
   isDisabledFieldsetFormShowNull: boolean | null = null;
 
   constructor() { }
-
-  setFormModels(value: number) {
-    this.default = value;
-  }
 
   setExampleFormModels(value: number) {
     this.negative = value;
