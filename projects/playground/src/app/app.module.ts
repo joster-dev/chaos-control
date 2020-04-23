@@ -11,6 +11,8 @@ import { ButtonComponent } from './button/button.component';
 import { DateComponent } from './date/date.component';
 import { SelectComponent } from './select/select.component';
 import { TextComponent } from './text/text.component';
+import { ChoiceComponent } from './choice/choice.component';
+import { MultiChoiceComponent } from './multi-choice/multi-choice.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { TextComponent } from './text/text.component';
     ButtonComponent,
     DateComponent,
     SelectComponent,
-    TextComponent
+    TextComponent,
+    ChoiceComponent,
+    MultiChoiceComponent
   ],
   imports: [
     BrowserModule,

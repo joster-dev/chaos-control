@@ -1,0 +1,77 @@
+<svg
+  [class.disabled]="isDisabled === true"
+  version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  height="1em"
+  viewBox="0 0 100 100"
+>
+  <linearGradient
+    id="f-grad"
+    gradientTransform="rotate(90)"
+  >
+    <stop
+      offset="0%"
+      stop-color="#FFFFFF"
+    />
+    <stop
+      offset="100%"
+      stop-color="#EEEEEE"
+    />
+  </linearGradient>
+  <linearGradient
+    id="j-grad"
+    gradientTransform="rotate(90)"
+  >
+    <stop
+      offset="0%"
+      stop-color="#000000"
+    />
+    <stop
+      offset="100%"
+      stop-color="#224477"
+    />
+  </linearGradient>
+  <circle
+    *ngIf="type === 'radio'"
+    fill="url(#f-grad)"
+    [attr.stroke]="radioStroke"
+    stroke-width="2"
+    cx="50"
+    cy="50"
+    r="40"
+  />
+  <circle
+    *ngIf="type === 'radio' && isActive === true"
+    fill="url(#j-grad)"
+    stroke="#000000"
+    stroke-width="2"
+    cx="50"
+    cy="50"
+    r="20"
+  />
+  <rect
+    *ngIf="type === 'check'"
+    fill="url(#f-grad)"
+    [attr.stroke]="checkStroke"
+    stroke-width="2"
+    x="10"
+    y="10"
+    width="80"
+    height="80"
+    rx="15"
+  />
+  <polygon
+    *ngIf="type === 'check' && isActive === true"
+    fill="url(#j-grad)"
+    stroke="#000000"
+    stroke-width="2"
+    points="40,80 90,30 80,20 40,60 20,40 10,50"
+  />
+  <polygon
+    *ngIf="type === 'times'"
+    fill="url(#j-grad)"
+    stroke="#000000"
+    stroke-width="2"
+    points="20,90 10,80 40,50 10,20 20,10 50,40 80,10 90,20 60,50 90,80 80,90 50,60"
+  />
+</svg>

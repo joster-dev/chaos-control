@@ -1,0 +1,21 @@
+<h3>Multiple Choice</h3>
+<form #multiChoiceForm="ngForm">
+  <fieldset>
+    <legend>form</legend>
+    <fieldset>
+      <legend>fieldset</legend>
+      <fc-multi-choice
+        label="label"
+        [(ngModel)]="multiChoice"
+        name="multiChoice"
+        [disabled]="true"
+        [items]="data"
+        [required]="true"
+      ></fc-multi-choice>
+    </fieldset>
+    <fieldset>
+      <legend>status</legend>
+      {{multiChoiceForm.valid === true ? '🆗 form valid' : '❗ form not valid'}}
+    </fieldset>
+  </fieldset>
+</form>
