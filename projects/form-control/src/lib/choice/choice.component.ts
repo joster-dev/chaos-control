@@ -66,9 +66,8 @@ export class ChoiceComponent implements ControlValueAccessor {
       return;
     }
 
-    if (this.formControlService.isPrimitive(value) === false) {
+    if (this.formControlService.isPrimitive(value) === false)
       throw new Error('control value must be string, number, boolean or null');
-    }
 
     this._model = value;
   }
