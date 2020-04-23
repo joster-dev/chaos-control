@@ -1,5 +1,5 @@
 <h3>Multiple Choice</h3>
-<form #multiChoiceForm="ngForm">
+<form #form="ngForm">
   <fieldset>
     <legend>form</legend>
     <fieldset>
@@ -8,14 +8,43 @@
         label="label"
         [(ngModel)]="multiChoice"
         name="multiChoice"
-        [disabled]="true"
+        [disabled]="isFormDisabled"
         [items]="data"
-        [required]="true"
+        [required]="isFormRequired"
       ></fc-multi-choice>
     </fieldset>
     <fieldset>
+      <legend>options</legend>
+      <label>
+        <input
+          type="checkbox"
+          [(ngModel)]="isFormDisabled"
+          name="isFormDisabled"
+        />
+        disabled
+      </label>
+      <br />
+      <label>
+        <input
+          type="checkbox"
+          [(ngModel)]="isFormRequired"
+          name="isFormRequired"
+        />
+        required
+      </label>
+    </fieldset>
+    <fieldset>
+      <legend>actions</legend>
+      <button
+        type="button"
+        (click)="form.reset()"
+      >
+        form reset
+      </button>
+    </fieldset>
+    <fieldset>
       <legend>status</legend>
-      {{multiChoiceForm.valid === true ? '🆗 form valid' : '❗ form not valid'}}
+      {{form.valid === true ? '🆗 form valid' : '❗ form not valid'}}
     </fieldset>
   </fieldset>
 </form>

@@ -20,6 +20,7 @@ export class MultiChoiceComponent implements ControlValueAccessor {
   @Input() items: KeyValue<primitive, string>[] = [];
   @Input() required = false;
   @Input() label: string | null = null;
+  @Input() allowClear = true;
 
   isDisabled = false;
   _model: primitive[] = [];
@@ -61,16 +62,17 @@ export class MultiChoiceComponent implements ControlValueAccessor {
   }
 
   writeValue(value: any) {
-    if (value === null) {
+    if (value === null || value === undefined) {
       this._model = [];
       return;
     }
-    if (Array.isArray(value) === false) {
+
+    if (Array.isArray(value) === false)
       throw new Error('control value must be array');
-    }
-    if (value.every((item: any) => this.formControlService.isPrimitive(item) === true) === false) {
+
+    if (value.every((item: any) => this.formControlService.isPrimitive(item) === true) === false)
       throw new Error('control values must be string, number, boolean or null');
-    }
+
     this._model = value;
   }
 }

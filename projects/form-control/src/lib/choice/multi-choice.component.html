@@ -6,7 +6,8 @@
 </label>
 <div>
   <button
-    *ngIf="isDisabled === false"
+    *ngIf="allowClear === true && isDisabled === false"
+    title="Clear"
     type="button"
     (blur)="onTouched()"
     (click)="model = []"

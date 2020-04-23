@@ -18,6 +18,8 @@ export class MultiChoiceComponent {
     { key: 6, value: '6' },
     { key: 7, value: '7' }
   ];
+  isFormDisabled = false;
+  isFormRequired = false;
 
   constructor() { }
 }
