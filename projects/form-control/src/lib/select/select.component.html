@@ -21,21 +21,20 @@
 <div class="dis-flex">
   <fc-button
     *ngIf="showNull === true"
-    [active]="model === null"
-    [invalid]="error !== null"
-    [disabled]="isDisabled === true"
+    icon="times"
+    [isActive]="model === null"
+    [isValid]="error === null"
+    [isDisabled]="isDisabled === true"
     [title]="nullTitle"
-    (action)="model = null"
-    (loseFocus)="onTouched()"
+    (blurred)="onTouched()"
+    (clicked)="model = null"
   >
     {{nullDisplay}}
   </fc-button>
   <fc-button
-    class="flex-1"
-    textAlign="left"
-    [active]="model !== null"
-    [block]="true"
-    (action)="showDropdown = !showDropdown"
+    class="dis-flex flex-1"
+    [isActive]="model !== null"
+    (clicked)="showDropdown = !showDropdown"
   >
     <span *ngIf="hasSelected === true">
       {{selectedValue}}
@@ -55,10 +54,8 @@
 >
   <fc-button
     *ngIf="items.length === 0"
-    class="flex-1"
-    textAlign="left"
-    [block]="true"
-    (action)="showDropdown = false"
+    class="flex-1 dis-flex"
+    (clicked)="showDropdown = false"
   >
     🤷 No items to display
   </fc-button>
@@ -67,11 +64,9 @@
     class="dis-flex"
   >
     <fc-button
-      class="flex-1"
-      textAlign="left"
-      [active]="model === item.key"
-      [block]="true"
-      (action)="model = item.key"
+      class="flex-1 dis-flex"
+      [isActive]="model === item.key"
+      (clicked)="model = item.key"
     >
       {{item.value}}
     </fc-button>

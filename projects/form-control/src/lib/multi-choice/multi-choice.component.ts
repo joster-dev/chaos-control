@@ -1,13 +1,17 @@
 import { Component, Input, ElementRef, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { primitive } from '../../primitive.type';
 import { KeyValue } from '@angular/common';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
 import { FormControlService } from '../form-control.service';
+import { primitive } from '../primitive.type';
 
 @Component({
   selector: 'fc-multi-choice',
   templateUrl: './multi-choice.component.html',
-  styleUrls: ['./choice.component.scss', '../styles.scss'],
+  styleUrls: [
+    '../atomic.scss',
+    '../control.scss'
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -36,7 +40,8 @@ export class MultiChoiceComponent implements ControlValueAccessor {
   }
 
   get isValid() {
-    return this.hostElement.nativeElement.classList.contains('ng-invalid') === false;
+    return this.hostElement.nativeElement
+      .classList.contains('ng-invalid') === false;
   }
 
   onClick(item: KeyValue<primitive, string>) {
@@ -69,7 +74,7 @@ export class MultiChoiceComponent implements ControlValueAccessor {
 
     if (Array.isArray(value) === false)
       throw new Error('control value must be array');
-
+    debugger;
     if (value.every((item: any) => this.formControlService.isPrimitive(item) === true) === false)
       throw new Error('control values must be string, number, boolean or null');
 

@@ -1,12 +1,21 @@
 <button
-  [attr.tabindex]="disabled ? -1 : 0"
-  [class.active]="active === true"
-  [class.disabled]="disabled === true"
-  [class.invalid]="invalid === true"
-  [style.text-align]="textAlign"
+  class="flex-1 dis-flex flex-center"
+  [attr.tabindex]="isDisabled ? -1 : 0"
+  [class.active]="isActive === true"
+  [class.disabled]="isDisabled === true"
+  [class.invalid]="isValid === false"
   [type]="type"
-  (blur)="loseFocus.emit($event)"
-  (click)="disabled === false && action.emit($event)"
+  (blur)="blurred.emit($event)"
+  (click)="isDisabled === false && clicked.emit($event)"
 >
-  <ng-content></ng-content>
+  <fc-icon
+    *ngIf="icon !== null"
+    [type]="icon"
+    [isActive]="isActive === true"
+    [isDisabled]="isDisabled === true"
+    [isValid]="isValid === true"
+  ></fc-icon>
+  <span>
+    <ng-content></ng-content>
+  </span>
 </button>

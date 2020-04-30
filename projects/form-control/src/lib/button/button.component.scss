@@ -1,40 +1,10 @@
 button {
-  background: white;
-  border-color: lightgrey;
-  border-width: medium;
-  padding: 0.5em;
   cursor: pointer;
-  font-size: 1em;
-  flex: 1;
-  height: 100%;
-  transition: all 700ms ease;
 
-  &:focus,
-  &:hover {
-    box-shadow: 0.2em 0.2em 0.2em darkgrey;
-  }
-
-  &:disabled,
-  &.disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    box-shadow: none;
-  }
-
-  &.active {
-    box-shadow: inset 0 0 0.5em black;
-    border-color: #247;
-
-    &:not(:disabled),
-    &:not(.disabled) {
-      &:focus,
-      &:hover {
-        box-shadow: 0 0 0.5em black, inset 0 0 0.5em black;
-      }
+  > fc-icon + span {
+    padding-left: 0.5em;
+    &:empty {
+      display: none;
     }
-  }
-
-  &.invalid {
-    border-color: red;
   }
 }

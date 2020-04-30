@@ -5,7 +5,12 @@ import { FormControlService } from '../form-control.service';
 @Component({
   selector: 'fc-text',
   templateUrl: './text.component.html',
-  styleUrls: ['./text.component.scss', '../styles.scss'],
+  styleUrls: [
+    './text.component.scss',
+    '../atomic.scss',
+    '../control.scss',
+    '../input.scss'
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

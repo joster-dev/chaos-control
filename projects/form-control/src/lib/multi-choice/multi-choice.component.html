@@ -7,13 +7,20 @@
 
 <div class="dis-flex flex-wrap">
   <fc-button
+    *ngIf="allowClear === true && isDisabled === false"
+    icon="times"
+    title="Clear"
+    (blurred)="onTouched()"
+    (clicked)="model = []"
+  ></fc-button>
+  <fc-button
     *ngFor="let item of items"
-    icon="radio"
-    [isActive]="_model === item.key"
+    icon="check"
+    [isActive]="_model.includes(item.key) === true"
     [isDisabled]="isDisabled === true"
     [isValid]="isValid === true"
-    (clicked)="onClick(item)"
     (blurred)="onTouched()"
+    (clicked)="onClick(item)"
   >
     {{item.value}}
   </fc-button>

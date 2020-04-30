@@ -1,0 +1,32 @@
+:host {
+  display: block;
+}
+
+label {
+  @media print {
+    font-weight: bold;
+  }
+
+  + div.dis-flex {
+    padding-top: 0.25em;
+
+    > span {
+      padding: 0 0.5em;
+    }
+  }
+
+  > span {
+    color: red;
+
+    @media print {
+      display: none;
+    }
+  }
+}
+
+ul.errors {
+  list-style: none;
+  color: red;
+  margin: 0;
+  padding: 0;
+}

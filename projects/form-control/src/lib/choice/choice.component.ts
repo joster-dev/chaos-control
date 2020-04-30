@@ -1,13 +1,16 @@
 import { Component, forwardRef, Input, ElementRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { KeyValue } from '@angular/common';
-import { primitive } from '../../primitive.type';
+import { primitive } from '../primitive.type';
 import { FormControlService } from '../form-control.service';
 
 @Component({
   selector: 'fc-choice',
   templateUrl: './choice.component.html',
-  styleUrls: ['./choice.component.scss', '../styles.scss'],
+  styleUrls: [
+    '../atomic.scss',
+    '../control.scss'
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

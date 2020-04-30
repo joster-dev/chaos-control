@@ -6,7 +6,6 @@ import { FormControlModule } from 'dist/form-control';
 
 import { AppComponent } from './app.component';
 import { IntegerComponent } from './integer/integer.component';
-import { ToggleComponent } from './toggle/toggle.component';
 import { ButtonComponent } from './button/button.component';
 import { DateComponent } from './date/date.component';
 import { SelectComponent } from './select/select.component';
@@ -18,7 +17,6 @@ import { MultiChoiceComponent } from './multi-choice/multi-choice.component';
   declarations: [
     AppComponent,
     IntegerComponent,
-    ToggleComponent,
     ButtonComponent,
     DateComponent,
     SelectComponent,

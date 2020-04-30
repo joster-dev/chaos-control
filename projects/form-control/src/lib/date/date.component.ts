@@ -4,7 +4,10 @@ import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator, Vali
 @Component({
   selector: 'fc-date[name]',
   templateUrl: './date.component.html',
-  styleUrls: ['./date.component.scss', '../styles.scss'],
+  styleUrls: [
+    './date.component.scss',
+    '../atomic.scss'
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

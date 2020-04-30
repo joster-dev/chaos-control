@@ -34,8 +34,8 @@
   <circle
     *ngIf="type === 'radio'"
     fill="url(#f-grad)"
-    [attr.stroke]="radioStroke"
-    stroke-width="2"
+    [attr.stroke]="dynamicStroke"
+    stroke-width="5"
     cx="50"
     cy="50"
     r="40"
@@ -44,7 +44,7 @@
     *ngIf="type === 'radio' && isActive === true"
     fill="url(#j-grad)"
     stroke="#000000"
-    stroke-width="2"
+    stroke-width="5"
     cx="50"
     cy="50"
     r="20"
@@ -52,8 +52,8 @@
   <rect
     *ngIf="type === 'check'"
     fill="url(#f-grad)"
-    [attr.stroke]="checkStroke"
-    stroke-width="2"
+    [attr.stroke]="dynamicStroke"
+    stroke-width="5"
     x="10"
     y="10"
     width="80"
@@ -64,14 +64,31 @@
     *ngIf="type === 'check' && isActive === true"
     fill="url(#j-grad)"
     stroke="#000000"
-    stroke-width="2"
+    stroke-width="5"
     points="40,80 90,30 80,20 40,60 20,40 10,50"
   />
   <polygon
     *ngIf="type === 'times'"
-    fill="url(#j-grad)"
-    stroke="#000000"
-    stroke-width="2"
+    fill="url(#f-grad)"
+    stroke="black"
+    stroke-width="5"
     points="20,90 10,80 40,50 10,20 20,10 50,40 80,10 90,20 60,50 90,80 80,90 50,60"
+  />
+  <polygon
+    *ngIf="type === 'plus'"
+    fill="url(#f-grad)"
+    [attr.stroke]="dynamicStroke"
+    stroke-width="5"
+    points="40,90 60,90 60,60 90,60 90,40 60,40 60,10 40,10 40,40 10,40 10,60 40,60"
+  />
+  <rect
+    *ngIf="type === 'minus'"
+    fill="url(#f-grad)"
+    [attr.stroke]="dynamicStroke"
+    stroke-width="5"
+    x="10"
+    y="40"
+    width="80"
+    height="20"
   />
 </svg>

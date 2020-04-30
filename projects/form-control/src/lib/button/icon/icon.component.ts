@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { IconType } from './icon-type.enum';
 
 @Component({
   selector: 'fc-icon',
@@ -6,25 +7,17 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./icon.component.scss']
 })
 export class IconComponent {
-  @Input() type: 'radio' | 'check' | 'times' = 'radio';
+  @Input() type = IconType.radio;
   @Input() isActive = false;
   @Input() isDisabled = false;
   @Input() isValid = true;
 
   constructor() { }
 
-  get radioStroke() {
-    if (this.isDisabled)
+  get dynamicStroke() {
+    if (this.isDisabled === true)
       return 'lightgrey';
-    if (this.isValid)
-      return 'black';
-    return 'red';
-  }
-
-  get checkStroke() {
-    if (this.isDisabled)
-      return 'lightgrey';
-    if (this.isValid)
+    if (this.isValid === true)
       return 'black';
     return 'red';
   }

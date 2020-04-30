@@ -1,59 +1,55 @@
-<div class="label dis-flex flex-space-between">
-  <label *ngIf="label !== null">
-    {{label}}
-    <span *ngIf="required === true">
-      *
-    </span>
-  </label>
-  <ul
-    *ngIf="showValidationErrors"
-    class="errors"
-  >
-    <li *ngIf="error === 'max'">
-      maximum is {{max}}
-    </li>
-    <li *ngIf="error === 'min'">
-      minimum is {{min}}
-    </li>
-  </ul>
-</div>
+<label *ngIf="label !== null">
+  {{label}}
+  <span *ngIf="required === true">
+    *
+  </span>
+</label>
 
-
-<div
-  class="dis-flex flex-stretch"
-  [class.invalid]="isInvalid === true"
->
+<div class="dis-flex flex-stretch">
   <fc-button
     *ngIf="showNull === true"
-    [active]="_model === null"
-    [disabled]="isDisabled === true"
+    icon="times"
+    [isActive]="_model === null"
+    [isDisabled]="isDisabled === true"
     [title]="nullTitle"
-    (action)="model = null"
-    (loseFocus)="onTouched()"
+    (blurred)="onTouched()"
+    (clicked)="model = null"
   >
     {{nullDisplay}}
   </fc-button>
   <fc-button
-    [disabled]="isDisabledSubtract === true"
-    [title]="subtractTitle"
-    (action)="subtract()"
-    (loseFocus)="onTouched()"
-  >
-    {{subtractDisplay}}
-  </fc-button>
+    icon="minus"
+    title="Subtract"
+    [isDisabled]="isDisabledSubtract === true"
+    [isValid]="isValid === true"
+    (blurred)="onTouched()"
+    (clicked)="subtract()"
+  ></fc-button>
   <fc-button
-    [disabled]="isDisabledAdd === true"
-    [title]="addTitle"
-    (action)="add()"
-    (loseFocus)="onTouched()"
-  >
-    {{addDisplay}}
-  </fc-button>
+    icon="plus"
+    title="Add"
+    [isDisabled]="isDisabledAdd === true"
+    [isValid]="isValid === true"
+    (blurred)="onTouched()"
+    (clicked)="add()"
+  ></fc-button>
   <span
-    class="flex-1"
+    class="flex-1 dis-flex flex-center"
     [class.active]="_model !== null"
     [class.disabled]="isDisabled === true"
   >
     {{_model === null ? '' : _model}}
   </span>
 </div>
+
+<ul
+  *ngIf="showValidationErrors"
+  class="errors"
+>
+  <li *ngIf="error === 'max'">
+    maximum is {{max}}
+  </li>
+  <li *ngIf="error === 'min'">
+    minimum is {{min}}
+  </li>
+</ul>

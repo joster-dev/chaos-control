@@ -1,30 +1,18 @@
-<div class="label dis-flex flex-space-between">
-  <label
-    *ngIf="label !== null"
-    [for]="id"
-  >
-    {{label}}
-    <span *ngIf="required === true">
-      *
-    </span>
-  </label>
-  <ul
-    *ngIf="showValidationErrors"
-    class="errors"
-  >
-    <li *ngIf="error === 'minlength'">
-      minimum length is {{minlength}}
-    </li>
-    <li *ngIf="error === 'maxlength'">
-      maximum length is {{maxlength}}
-    </li>
-  </ul>
-</div>
+<label
+  *ngIf="label !== null"
+  [for]="id"
+>
+  {{label}}
+  <span *ngIf="required === true">
+    *
+  </span>
+</label>
 
 <div class="dis-flex">
   <textarea
     #textarea
     [(ngModel)]="model"
+    class="flex-1"
     rows="1"
     [class.active]="_model !== null"
     [class.invalid]="isInvalid === true"
@@ -39,7 +27,19 @@
   <textarea
     #textareaHidden
     [ngModel]="model"
+    class="hidden flex-1"
     rows="1"
-    class="hidden"
   ></textarea>
 </div>
+
+<ul
+  *ngIf="showValidationErrors"
+  class="errors"
+>
+  <li *ngIf="error === 'minlength'">
+    minimum length is {{minlength}}
+  </li>
+  <li *ngIf="error === 'maxlength'">
+    maximum length is {{maxlength}}
+  </li>
+</ul>

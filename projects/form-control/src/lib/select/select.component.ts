@@ -6,7 +6,10 @@ import { FormControlService } from '../form-control.service';
 @Component({
   selector: 'fc-select',
   templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss', '../styles.scss'],
+  styleUrls: [
+    './select.component.scss',
+    '../atomic.scss'
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

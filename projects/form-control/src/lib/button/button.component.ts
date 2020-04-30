@@ -1,26 +1,24 @@
-import { Component, Input, Output, EventEmitter, ElementRef, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { IconType } from './icon/icon-type.enum';
 
 @Component({
   selector: 'fc-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss', '../styles.scss']
+  styleUrls: [
+    './button.component.scss',
+    '../atomic.scss',
+    '../input.scss'
+  ]
 })
-export class ButtonComponent implements OnChanges {
-  @Input() active = false;
-  @Input() block = false;
-  @Input() disabled = false;
-  @Input() invalid = false;
+export class ButtonComponent {
+  @Input() isActive = false;
+  @Input() isDisabled = false;
+  @Input() isValid = true;
   @Input() type: 'button' | 'submit' = 'button';
-  @Input() textAlign: 'left' | 'right' | 'center' = 'center';
+  @Input() icon: IconType | null = null;
 
-  @Output() loseFocus = new EventEmitter();
-  @Output() action = new EventEmitter();
+  @Output() blurred = new EventEmitter();
+  @Output() clicked = new EventEmitter();
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.block) {
-      this.renderer.setStyle(this.elementRef.nativeElement, 'display', this.block === true ? 'flex' : 'inline-block');
-    }
-  }
+  constructor() { }
 }

@@ -5,7 +5,10 @@ import { FormControlService } from '../form-control.service';
 @Component({
   selector: 'fc-integer',
   templateUrl: './integer.component.html',
-  styleUrls: ['./integer.component.scss', '../styles.scss'],
+  styleUrls: [
+    '../atomic.scss',
+    '../control.scss'
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -26,10 +29,6 @@ export class IntegerComponent implements ControlValueAccessor, Validator, OnChan
   @Input() showValidationErrors = this.formControlService.showValidationErrors;
   @Input() name: string | null = null;
   @Input() label: string | null = null;
-  @Input() addDisplay = '➕';
-  @Input() addTitle = 'Add';
-  @Input() subtractDisplay = '➖';
-  @Input() subtractTitle = 'Subtract';
   @Input() min = 0;
   @Input() max = 9;
   @Input() step = 1;
@@ -50,9 +49,8 @@ export class IntegerComponent implements ControlValueAccessor, Validator, OnChan
     const isMaxChange = max !== undefined
       && max.firstChange === false
       && max.currentValue !== max.previousValue;
-    if (isMinChange === true || isMaxChange === true) {
+    if (isMinChange === true || isMaxChange === true)
       this.onChange(this._model);
-    }
   }
 
   get model() {
@@ -65,23 +63,20 @@ export class IntegerComponent implements ControlValueAccessor, Validator, OnChan
   }
 
   get isDisabledAdd() {
-    if (this.isDisabled === true) return true;
-
-    if (this.model === null) return false;
-
-    return this.model + this.step > this.max;
+    return this.isDisabled === true
+      || this.model !== null
+      && this.model + this.step > this.max;
   }
 
   get isDisabledSubtract() {
-    if (this.isDisabled === true) return true;
-
-    if (this.model === null) return false;
-
-    return this.model - this.step < this.min;
+    return this.isDisabled === true
+      || this._model !== null
+      && this._model - this.step < this.min;
   }
 
-  get isInvalid() {
-    return this.hostElement.nativeElement.classList.contains('ng-invalid');
+  get isValid() {
+    return this.hostElement.nativeElement
+      .classList.contains('ng-invalid') === false;
   }
 
   add() {
@@ -147,9 +142,13 @@ export class IntegerComponent implements ControlValueAccessor, Validator, OnChan
   }
 
   writeValue(value: any) {
-    if (value !== null && typeof value !== 'number') {
-      throw new Error('control value must be number or null');
+    if (value === null || value === undefined) {
+      this._model = null;
+      return;
     }
+
+    if (typeof value !== 'number')
+      throw new Error('control value must be number or null');
 
     this._model = value;
   }
