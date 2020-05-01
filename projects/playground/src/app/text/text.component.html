@@ -70,7 +70,7 @@
   </li>
 </ol>
 <form #form="ngForm">
-  <fieldset>
+  <fieldset class="min-width-auto">
     <legend>form</legend>
     <fieldset>
       <legend>default control</legend>
@@ -82,18 +82,17 @@
         [required]="isFormRequired"
       ></fc-text>
     </fieldset>
-    <br />
-    default control <i>model</i>:&nbsp;
-    <ng-container [ngSwitch]="default">
-      <code *ngSwitchCase="null">
-        null
-      </code>
-      <span *ngSwitchDefault>
-        {{default}}
-      </span>
-    </ng-container>
-    <br />
-    <br />
+    <fieldset class="word-break-all">
+      <legend><i>model</i></legend>
+      <ng-container [ngSwitch]="default">
+        <code *ngSwitchCase="null">
+          null
+        </code>
+        <span *ngSwitchDefault>
+          {{default}}
+        </span>
+      </ng-container>
+    </fieldset>
     <fieldset>
       <legend>options</legend>
       <label>
