@@ -8,24 +8,12 @@ import { Component } from '@angular/core';
 export class TextComponent {
   testText = 'Lorem ipsum dolor sit amet, consectetuer adipiscin';
 
-  default: string | null = null;
-  disabled: string | null = null;
-  required: string | null = null;
-  isFormDisabled = false;
-  isFormRequired = false;
+  example1: string | null = null;
+  isExample1Disabled = false;
+  isExample1Required = false;
 
-  disabledFieldset: string | null = null;
-  isDisabledFieldsetFormRequired = false;
+  example2: string | null = null;
+  isExample2Required = false;
 
   constructor() { }
-
-  setFormModels(value: string) {
-    this.default = value;
-    this.disabled = value;
-    this.required = value;
-  }
-
-  setDisabledFieldsetFormModels(value: string) {
-    this.disabledFieldset = value;
-  }
 }

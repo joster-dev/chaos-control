@@ -109,13 +109,11 @@ export class TextComponent implements ControlValueAccessor, Validator {
   }
 
   writeValue(value: any): void {
-    if (value !== null && typeof value !== 'string') {
-      throw new Error('control value must be string or null');
-    }
-
-    if (value === '') {
+    if (value === '' || value === undefined)
       value = null;
-    }
+
+    if (value !== null && typeof value !== 'string')
+      throw new Error('control value must be string or null');
 
     this._model = value;
     setTimeout(() => this.setTextareaHeight());
