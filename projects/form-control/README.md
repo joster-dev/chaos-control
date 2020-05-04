@@ -18,7 +18,7 @@ These styled components enable type-safe value binding inside a form element
   - `fc-choice`
   - `fc-multi-choice`
 - upcoming
-  - `fc-single-select`
+  - `fc-select`
   - `fc-multi-select`
   - `fc-date`
   - `fc-date-time`
