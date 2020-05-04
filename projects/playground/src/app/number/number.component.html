@@ -1,0 +1,48 @@
+<h3>Number</h3>
+<h4>Features</h4>
+<form #form="ngForm">
+  <fieldset class="min-width-auto">
+    <legend>form</legend>
+    <fieldset>
+      <legend>fieldset</legend>
+      <fc-number
+        [(ngModel)]="example"
+        name="example"
+        label="example"
+        [disabled]="isFormDisabled"
+        [required]="isFormRequired"
+      ></fc-number>
+    </fieldset>
+    <fieldset class="word-break-all">
+      <legend><i>model</i></legend>
+      <ng-container [ngSwitch]="example">
+        <code *ngSwitchCase="null">
+          null
+        </code>
+        <span *ngSwitchDefault>
+          {{example}}
+        </span>
+      </ng-container>
+    </fieldset>
+    <fieldset>
+      <legend>options</legend>
+      <label>
+        disabled
+        <input
+          type="checkbox"
+          [(ngModel)]="isFormDisabled"
+          name="isFormDisabled"
+        />
+      </label>
+      <br />
+      <label>
+        required
+        <input
+          type="checkbox"
+          [(ngModel)]="isFormRequired"
+          name="isFormRequired"
+        />
+      </label>
+    </fieldset>
+  </fieldset>
+</form>

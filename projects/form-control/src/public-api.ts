@@ -9,3 +9,4 @@ export { MultiChoiceComponent } from './lib/multi-choice/multi-choice.component'
 // experimental
 export { DateComponent } from './lib/date/date.component';
 export { SelectComponent } from './lib/select/select.component';
+export { NumberComponent } from './lib/number/number.component';

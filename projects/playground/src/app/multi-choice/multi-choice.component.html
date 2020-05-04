@@ -1,25 +1,33 @@
 <h3>Multiple Choice</h3>
-<form #form="ngForm">
+<form #form1="ngForm">
   <fieldset>
     <legend>form</legend>
     <fieldset>
       <legend>fieldset</legend>
       <fc-multi-choice
-        label="label"
-        [(ngModel)]="multiChoice"
-        name="multiChoice"
-        [disabled]="isFormDisabled"
-        [items]="data"
-        [required]="isFormRequired"
+        label="example 1"
+        [(ngModel)]="example1"
+        name="example1"
+        [disabled]="isExample1Disabled === true"
+        [items]="data1"
+        [required]="isExample1Required === true"
       ></fc-multi-choice>
+    </fieldset>
+    <fieldset>
+      <legend><i>model</i></legend>
+      <code>{{example1 | json}}</code>
+    </fieldset>
+    <fieldset>
+      <legend><u>items</u></legend>
+      <code>{{data1 | json}}</code>
     </fieldset>
     <fieldset>
       <legend>options</legend>
       <label>
         <input
           type="checkbox"
-          [(ngModel)]="isFormDisabled"
-          name="isFormDisabled"
+          [(ngModel)]="isExample1Disabled"
+          name="isExample1Disabled"
         />
         disabled
       </label>
@@ -27,8 +35,8 @@
       <label>
         <input
           type="checkbox"
-          [(ngModel)]="isFormRequired"
-          name="isFormRequired"
+          [(ngModel)]="isExample1Required"
+          name="isExample1Required"
         />
         required
       </label>
@@ -37,14 +45,80 @@
       <legend>actions</legend>
       <button
         type="button"
-        (click)="form.reset()"
+        (click)="example1 = [true]"
+      >
+        set <i>model</i> to <code>{{[true] | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="form1.reset()"
       >
         form reset
       </button>
     </fieldset>
     <fieldset>
       <legend>status</legend>
-      {{form.valid === true ? '🆗 form valid' : '❗ form not valid'}}
+      {{form1.valid === true ? '🆗 form valid' : '❗ form not valid'}}
+    </fieldset>
+  </fieldset>
+</form>
+<br />
+<form #form2="ngForm">
+  <fieldset>
+    <legend>form</legend>
+    <fieldset disabled>
+      <legend>
+        <u>disabled</u> fieldset
+      </legend>
+      <fc-multi-choice
+        label="example 2"
+        [(ngModel)]="example2"
+        name="example2"
+        [items]="data2"
+        [required]="isExample2Required === true"
+      ></fc-multi-choice>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <i>model</i>
+      </legend>
+      <code>{{example2 | json}}</code>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <u>items</u>
+      </legend>
+      <code>{{data2 | json}}</code>
+    </fieldset>
+    <fieldset>
+      <legend>options</legend>
+      <label>
+        <input
+          type="checkbox"
+          [(ngModel)]="isExample2Required"
+          name="isExample2Required"
+        />
+        required
+      </label>
+    </fieldset>
+    <fieldset>
+      <legend>actions</legend>
+      <button
+        type="button"
+        (click)="example2 = [true]"
+      >
+        set <i>model</i> to <code>{{[true] | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="form2.reset()"
+      >
+        form reset
+      </button>
+    </fieldset>
+    <fieldset>
+      <legend>status</legend>
+      {{form2.valid === true ? '🆗 form valid' : '❗ form not valid'}}
     </fieldset>
   </fieldset>
 </form>

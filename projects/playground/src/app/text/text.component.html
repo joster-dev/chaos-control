@@ -83,15 +83,12 @@
       ></fc-text>
     </fieldset>
     <fieldset class="word-break-all">
-      <legend><i>model</i></legend>
-      <ng-container [ngSwitch]="default">
-        <code *ngSwitchCase="null">
-          null
-        </code>
-        <span *ngSwitchDefault>
-          {{default}}
-        </span>
-      </ng-container>
+      <legend>
+        <i>model</i>
+      </legend>
+      <code>
+        {{default | json}}
+      </code>
     </fieldset>
     <fieldset>
       <legend>options</legend>
@@ -119,7 +116,7 @@
         type="button"
         (click)="setFormModels(testText)"
       >
-        set <i>model</i> to <i>{{testText}}</i>
+        set <i>model</i> to <code>{{testText | json}}</code>
       </button>
       <button
         type="button"
@@ -136,7 +133,7 @@
 </form>
 <br />
 <form #disabledFieldsetForm="ngForm">
-  <fieldset>
+  <fieldset class="min-width-auto">
     <legend>form</legend>
     <fieldset disabled>
       <legend><u>disabled</u> fieldset</legend>
@@ -146,6 +143,10 @@
         label="default"
         [required]="isDisabledFieldsetFormRequired"
       ></fc-text>
+    </fieldset>
+    <fieldset class="word-break-all">
+      <legend><i>model</i></legend>
+      <code>{{disabledFieldset | json}}</code>
     </fieldset>
     <fieldset>
       <legend>options</legend>
@@ -164,7 +165,7 @@
         type="button"
         (click)="setDisabledFieldsetFormModels(testText)"
       >
-        set <i>model</i> to <b>{{testText}}</b>
+        set <i>model</i> to <code>{{testText | json}}</code>
       </button>
       <button
         type="button"

@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./choice.component.scss']
 })
 export class ChoiceComponent {
-  choice = null;
-  data = [
+  example1: boolean | number | null = null;
+  data1 = [
     { key: true, value: 'Yes' },
     { key: false, value: 'No' },
     { key: 1, value: '1' },
@@ -18,9 +18,16 @@ export class ChoiceComponent {
     { key: 6, value: '6' },
     { key: 7, value: '7' }
   ];
+  isExample1Disabled = false;
+  isExample1Required = false;
 
-  isFormDisabled = false;
-  isFormRequired = false;
+  example2: boolean | null = null;
+  data2 = [
+    { key: true, value: 'Yes' },
+    { key: false, value: 'No' }
+  ];
+  isExample2Disabled = false;
+  isExample2Required = false;
 
   constructor() { }
 }

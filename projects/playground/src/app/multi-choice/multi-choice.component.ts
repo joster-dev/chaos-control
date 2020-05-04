@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./multi-choice.component.scss']
 })
 export class MultiChoiceComponent {
-  multiChoice = null;
-  data = [
-    { key: true, value: 'Yes' },
-    { key: false, value: 'No' },
+  example1: (boolean | number)[] | null = null;
+  data1 = [
+    { key: true, value: 'Right' },
+    { key: false, value: 'Left' },
     { key: 1, value: '1' },
     { key: 2, value: '2' },
     { key: 3, value: '3' },
@@ -18,8 +18,15 @@ export class MultiChoiceComponent {
     { key: 6, value: '6' },
     { key: 7, value: '7' }
   ];
-  isFormDisabled = false;
-  isFormRequired = false;
+  isExample1Disabled = false;
+  isExample1Required = false;
+
+  example2: boolean[] | null = null;
+  data2 = [
+    { key: true, value: 'Right' },
+    { key: false, value: 'Left' }
+  ];
+  isExample2Required = false;
 
   constructor() { }
 }

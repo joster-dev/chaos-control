@@ -1,34 +1,32 @@
 button,
+input,
 textarea {
+  color: black;
   background: white;
-  border-color: lightgrey;
-  border-width: medium;
-  // border-style: outset
+  border-color: #dddddd;
+  border-width: 0.25em;
+  border-style: outset;
   padding: 0.5em;
   font-size: 1em;
   height: 100%;
-  // todo: remove when select gets chevron
-  text-align: left;
+  outline: none;
   // todo: angular animations
-  // transition: all 700ms ease;
+  transition: all 700ms ease;
 
   &:focus {
     box-shadow: inset 0 0 0.5em darkgrey;
   }
 
+  &.active {
+    border-style: inset;
+    border-color: #247000;
+  }
+
   &:disabled,
   &.disabled {
     cursor: not-allowed;
-    border-color: transparent;
+    border-style: dashed;
     box-shadow: none;
-  }
-
-  &.active {
-    border-color: #247;
-
-    &:focus {
-      box-shadow: inset 0 0 0.5em black;
-    }
   }
 
   &.invalid {

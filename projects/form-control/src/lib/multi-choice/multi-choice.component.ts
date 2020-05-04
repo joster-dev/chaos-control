@@ -24,7 +24,7 @@ export class MultiChoiceComponent implements ControlValueAccessor {
   @Input() items: KeyValue<primitive, string>[] = [];
   @Input() required = false;
   @Input() label: string | null = null;
-  @Input() allowClear = true;
+  @Input() allowClear = false;
 
   isDisabled = false;
   _model: primitive[] = [];
@@ -74,7 +74,7 @@ export class MultiChoiceComponent implements ControlValueAccessor {
 
     if (Array.isArray(value) === false)
       throw new Error('control value must be array');
-    debugger;
+
     if (value.every((item: any) => this.formControlService.isPrimitive(item) === true) === false)
       throw new Error('control values must be string, number, boolean or null');
 

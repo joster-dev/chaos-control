@@ -2,14 +2,16 @@
 <form #form="ngForm">
   <fieldset>
     <legend>form</legend>
-    <fc-button
-      [isActive]="isActive === true"
-      [isDisabled]="isDisabled === true"
-      (clicked)="actions = actions + 1"
-    >
-      {{actions}} actions
-    </fc-button>
-    <br />
+    <fieldset>
+      <legend>fieldset</legend>
+      <fc-button
+        [isActive]="isActive === true"
+        [isDisabled]="isDisabled === true"
+        (clicked)="actions = actions + 1"
+      >
+        {{actions}} actions
+      </fc-button>
+    </fieldset>
     <fieldset>
       <legend>options</legend>
       <label>
@@ -30,7 +32,14 @@
         disabled
       </label>
     </fieldset>
-    <br />
+    <fieldset disabled>
+      <legend>
+        <u>disabled</u> fieldset
+      </legend>
+      <fc-button (clicked)="disabledFieldsetActions = disabledFieldsetActions + 1">
+        {{disabledFieldsetActions}} actions
+      </fc-button>
+    </fieldset>
     <fieldset>
       <legend>actions</legend>
       <button
@@ -39,13 +48,6 @@
       >
         reset
       </button>
-    </fieldset>
-    <br />
-    <fieldset disabled>
-      <legend>disabled fieldset</legend>
-      <fc-button (clicked)="disabledFieldsetActions = disabledFieldsetActions + 1">
-        {{disabledFieldsetActions}} actions
-      </fc-button>
     </fieldset>
   </fieldset>
 </form>
