@@ -46,6 +46,9 @@ export class MultiChoiceComponent implements ControlValueAccessor {
 
   onClick(item: KeyValue<primitive, string>) {
     if (this._model.includes(item.key) === true) {
+      if (this.required === true && this._model.length === 1)
+        return;
+
       this.model = this._model.filter(i => i !== item.key);
       return;
     }

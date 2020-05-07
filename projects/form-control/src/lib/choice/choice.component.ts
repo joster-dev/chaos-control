@@ -38,11 +38,15 @@ export class ChoiceComponent implements ControlValueAccessor {
   }
 
   get isValid() {
-    return this.hostElement.nativeElement.classList.contains('ng-invalid') === false;
+    return this.hostElement.nativeElement
+      .classList.contains('ng-invalid') === false;
   }
 
   onClick(item: KeyValue<primitive, string>) {
     if (this._model === item.key) {
+      if (this.required === true)
+        return;
+
       this.model = null;
       return;
     }
