@@ -1,5 +1,5 @@
 import { Component, Input, forwardRef, ElementRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, ControlValueAccessor, ValidationErrors } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, ControlValueAccessor, ValidationErrors, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'fc-color',
@@ -24,10 +24,10 @@ export class ColorComponent implements ControlValueAccessor, Validator {
   @Input() required = false;
   @Input() label: string | null = null;
   @Input() min = '000000';
-  @Input() max = 'FFFFFF';
+  @Input() max = 'ffffff';
 
   isDisabled = false;
-  error?: 'required' | 'maxlength' | 'minlength';
+  error?: 'required' | 'invalid' | 'max' | 'min';
   _model: string | null = null;
 
   constructor(private hostElement: ElementRef) { }
@@ -71,10 +71,25 @@ export class ColorComponent implements ControlValueAccessor, Validator {
     this.isDisabled = isDisabled;
   }
 
-  validate(): ValidationErrors | null {
-    if (this._model === null && this.required === true) {
+  validate(control: AbstractControl): ValidationErrors | null {
+    if (control.value === null && this.required === true) {
       this.error = 'required';
       return { required: true };
+    }
+
+    if (control.value !== null && /^[0-9A-Fa-f]{6}$/.test(control.value) === false) {
+      this.error = 'invalid';
+      return { invalid: true };
+    }
+
+    if (parseInt(control.value, 16) < parseInt(this.min, 16)) {
+      this.error = 'min';
+      return { min: true };
+    }
+
+    if (parseInt(control.value, 16) > parseInt(this.max, 16)) {
+      this.error = 'max';
+      return { max: true };
     }
 
     delete this.error;
