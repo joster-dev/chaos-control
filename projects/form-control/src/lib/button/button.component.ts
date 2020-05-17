@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { IconType } from './icon/icon-type.enum';
+import { IconType } from '../icon/icon-type.enum';
 
 @Component({
   selector: 'fc-button',

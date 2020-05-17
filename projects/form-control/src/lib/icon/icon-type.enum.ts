@@ -3,5 +3,6 @@ export enum IconType {
   check = 'check',
   times = 'times',
   plus = 'plus',
-  minus = 'minus'
+  minus = 'minus',
+  square = 'square'
 }

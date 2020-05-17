@@ -1,0 +1,27 @@
+<label *ngIf="label !== null">
+  {{label}}
+  <span *ngIf="required === true">
+    *
+  </span>
+</label>
+
+<div class="dis-flex flex-stretch">
+  <div class="dis-flex flex-center">
+    <fc-icon
+      type="square"
+      [fill]="_model"
+      [isDisabled]="isDisabled === true"
+      [isValid]="isValid === true"
+    ></fc-icon>
+  </div>
+  <input
+    [(ngModel)]="model"
+    autocomplete="off"
+    maxlength="6"
+    size="6"
+    spellcheck="false"
+    type="text"
+    [disabled]="isDisabled === true"
+    (beforeinput)="onBeforeinput($event)"
+  />
+</div>

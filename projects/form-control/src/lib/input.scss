@@ -25,7 +25,7 @@ textarea {
   &:disabled,
   &.disabled {
     cursor: not-allowed;
-    border-style: dashed;
+    border-style: solid;
     box-shadow: none;
   }
 

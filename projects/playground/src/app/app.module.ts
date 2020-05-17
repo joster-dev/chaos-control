@@ -13,6 +13,7 @@ import { TextComponent } from './text/text.component';
 import { ChoiceComponent } from './choice/choice.component';
 import { MultiChoiceComponent } from './multi-choice/multi-choice.component';
 import { NumberComponent } from './number/number.component';
+import { ColorComponent } from './color/color.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NumberComponent } from './number/number.component';
     TextComponent,
     ChoiceComponent,
     MultiChoiceComponent,
-    NumberComponent
+    NumberComponent,
+    ColorComponent
   ],
   imports: [
     BrowserModule,

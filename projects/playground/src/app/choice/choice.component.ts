@@ -26,7 +26,6 @@ export class ChoiceComponent {
     { key: true, value: 'Yes' },
     { key: false, value: 'No' }
   ];
-  isExample2Disabled = false;
   isExample2Required = false;
 
   constructor() { }

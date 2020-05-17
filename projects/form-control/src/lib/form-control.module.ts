@@ -9,8 +9,9 @@ import { TextComponent } from './text/text.component';
 import { DateComponent } from './date/date.component';
 import { ChoiceComponent } from './choice/choice.component';
 import { MultiChoiceComponent } from './multi-choice/multi-choice.component';
-import { IconComponent } from './button/icon/icon.component';
+import { IconComponent } from './icon/icon.component';
 import { NumberComponent } from './number/number.component';
+import { ColorComponent } from './color/color.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NumberComponent } from './number/number.component';
     ChoiceComponent,
     MultiChoiceComponent,
     IconComponent,
-    NumberComponent
+    NumberComponent,
+    ColorComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,8 @@ import { NumberComponent } from './number/number.component';
     MultiChoiceComponent,
     SelectComponent,
     TextComponent,
-    NumberComponent
+    NumberComponent,
+    ColorComponent
   ]
 })
 export class FormControlModule { }

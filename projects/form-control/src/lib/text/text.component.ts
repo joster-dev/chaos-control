@@ -1,6 +1,7 @@
 import { Component, forwardRef, Input, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, ControlValueAccessor, ValidationErrors } from '@angular/forms';
 import { FormControlService } from '../form-control.service';
+// todo: https://medium.com/angular-in-depth/dont-reinvent-the-wheel-when-implementing-controlvalueaccessor-a0ed4ad0fafd
 
 @Component({
   selector: 'fc-text',
