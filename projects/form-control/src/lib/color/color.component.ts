@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef, ElementRef } from '@angular/core';
+import { Component, Input, forwardRef, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, ControlValueAccessor, ValidationErrors, AbstractControl } from '@angular/forms';
 
 @Component({
@@ -20,7 +20,7 @@ import { NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, ControlValueAccessor, Vali
     multi: true
   }]
 })
-export class ColorComponent implements ControlValueAccessor, Validator {
+export class ColorComponent implements ControlValueAccessor, Validator, OnChanges {
   @Input() required = false;
   @Input() label: string | null = null;
   @Input() min = '000000';
@@ -31,6 +31,19 @@ export class ColorComponent implements ControlValueAccessor, Validator {
   _model: string | null = null;
 
   constructor(private hostElement: ElementRef) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const isValidationInputChanged = ['min', 'max']
+      .some(item => {
+        const input = changes[item];
+        return input !== undefined
+          && input.firstChange === false
+          && input.currentValue !== input.previousValue;
+      });
+
+    if (isValidationInputChanged === true)
+      this.onChange(this._model);
+  }
 
   get model() {
     return this._model;
@@ -97,11 +110,11 @@ export class ColorComponent implements ControlValueAccessor, Validator {
   }
 
   writeValue(value: any): void {
-    if (value === '' || value === undefined)
-      value = null;
+    if (value !== null && value !== undefined && typeof value !== 'string')
+      throw new Error('control value must be string');
 
-    if (value !== null && typeof value !== 'string')
-      throw new Error('control value must be string or null');
+    if (value === '' || value === undefined || /^[0-9A-Fa-f]{6}$/.test(value) === false)
+      value = null;
 
     this._model = value;
   }

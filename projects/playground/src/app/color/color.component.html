@@ -9,6 +9,8 @@
         [(ngModel)]="example1"
         name="example1"
         [disabled]="isExample1Disabled === true"
+        [min]="example1Min"
+        [max]="example1Max"
         [required]="isExample1Required === true"
       ></fc-color>
     </fieldset>
@@ -51,6 +53,30 @@
         (click)="example1 = 'ZYTAFF'"
       >
         set <i>model</i> to <code>{{'ZYTAFF' | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="example1Min = '000000'"
+      >
+        set <b>min</b> to <code>{{'000000' | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="example1Min = '222222'"
+      >
+        set <b>min</b> to <code>{{'222222' | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="example1Max = 'ffffff'"
+      >
+        set <b>max</b> to <code>{{'ffffff' | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="example1Max = 'dddddd'"
+      >
+        set <b>max</b> to <code>{{'dddddd' | json}}</code>
       </button>
       <button
         type="button"
