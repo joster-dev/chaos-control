@@ -1,4 +1,4 @@
-<label *ngIf="label !== null">
+<label *ngIf="label !== undefined">
   {{label}}
   <span *ngIf="required === true">
     *
@@ -11,7 +11,7 @@
       type="square"
       [fill]="_model"
       [isDisabled]="isDisabled === true"
-      [isValid]="isValid === true"
+      [isValid]="ngControl.control?.valid === true"
     ></fc-icon>
   </div>
   <input
@@ -25,3 +25,15 @@
     (beforeinput)="onBeforeinput($event)"
   />
 </div>
+
+<ul *ngIf="ngControl.control?.errors !== null">
+  <li *ngIf="ngControl.control?.errors.invalid !== undefined">
+    invalid model
+  </li>
+  <li *ngIf="ngControl.control?.errors.min !== undefined">
+    minimum is {{min | json}}
+  </li>
+  <li *ngIf="ngControl.control?.errors.max !== undefined">
+    maximum is {{max | json}}
+  </li>
+</ul>

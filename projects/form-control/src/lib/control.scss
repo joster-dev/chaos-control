@@ -24,9 +24,12 @@ label {
   }
 }
 
-ul.errors {
+ul {
   list-style: none;
   color: red;
   margin: 0;
   padding: 0;
+  > li {
+    padding-top: 0.25em;
+  }
 }

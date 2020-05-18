@@ -1,5 +1,5 @@
-import { Component, Input, forwardRef, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
-import { NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, ControlValueAccessor, ValidationErrors, AbstractControl } from '@angular/forms';
+import { Component, Input, Self } from '@angular/core';
+import { ControlValueAccessor, ValidationErrors, AbstractControl, NgControl, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'fc-color',
@@ -9,46 +9,48 @@ import { NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, ControlValueAccessor, Vali
     '../atomic.scss',
     '../control.scss',
     '../input.scss'
-  ],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    multi: true,
-    useExisting: forwardRef(() => ColorComponent)
-  }, {
-    provide: NG_VALIDATORS,
-    useExisting: forwardRef(() => ColorComponent),
-    multi: true
-  }]
+  ]
 })
-export class ColorComponent implements ControlValueAccessor, Validator, OnChanges {
-  @Input() required = false;
-  @Input() label: string | null = null;
-  @Input() min = '000000';
-  @Input() max = 'ffffff';
-
-  isDisabled = false;
-  error?: 'required' | 'invalid' | 'max' | 'min';
-  _model: string | null = null;
-
-  constructor(private hostElement: ElementRef) { }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    const isValidationInputChanged = ['min', 'max']
-      .some(item => {
-        const input = changes[item];
-        return input !== undefined
-          && input.firstChange === false
-          && input.currentValue !== input.previousValue;
-      });
-
-    if (isValidationInputChanged === true)
-      this.onChange(this._model);
+export class ColorComponent implements ControlValueAccessor {
+  @Input()
+  get required() {
+    return this._required;
   }
+  set required(value: any) {
+    this._required = value === '' || value === true;
+    this.validate();
+  }
+  _required = false;
+
+  @Input()
+  get min() {
+    return this._min
+  }
+  set min(value: any) {
+    if (/^[0-9A-Fa-f]{6}$/.test(value) === false)
+      throw new Error('min input must be a hex string');
+    this._min = value;
+    this.validate()
+  }
+  _min = '000000';
+
+  @Input()
+  get max() {
+    return this._max;
+  }
+  set max(value: any) {
+    if (/^[0-9A-Fa-f]{6}$/.test(value) === false)
+      throw new Error('max input must be a hex string');
+    this._max = value;
+    this.validate();
+  }
+  _max = 'ffffff';
+
+  @Input() label?: string;
 
   get model() {
     return this._model;
   }
-
   set model(value: string | null) {
     this._model = value === ''
       ? null
@@ -59,10 +61,15 @@ export class ColorComponent implements ControlValueAccessor, Validator, OnChange
         : this._model
     );
   }
+  _model: string | null = null;
 
-  get isValid() {
-    return this.hostElement.nativeElement
-      .classList.contains('ng-invalid') === false;
+  isDisabled = false;
+
+  constructor(
+    @Self() public ngControl: NgControl
+  ) {
+    ngControl.valueAccessor = this;
+    this.validate();
   }
 
   onBeforeinput(event: InputEvent) {
@@ -84,31 +91,6 @@ export class ColorComponent implements ControlValueAccessor, Validator, OnChange
     this.isDisabled = isDisabled;
   }
 
-  validate(control: AbstractControl): ValidationErrors | null {
-    if (control.value === null && this.required === true) {
-      this.error = 'required';
-      return { required: true };
-    }
-
-    if (control.value !== null && /^[0-9A-Fa-f]{6}$/.test(control.value) === false) {
-      this.error = 'invalid';
-      return { invalid: true };
-    }
-
-    if (parseInt(control.value, 16) < parseInt(this.min, 16)) {
-      this.error = 'min';
-      return { min: true };
-    }
-
-    if (parseInt(control.value, 16) > parseInt(this.max, 16)) {
-      this.error = 'max';
-      return { max: true };
-    }
-
-    delete this.error;
-    return null;
-  }
-
   writeValue(value: any): void {
     if (value !== null && value !== undefined && typeof value !== 'string')
       throw new Error('control value must be string');
@@ -117,5 +99,40 @@ export class ColorComponent implements ControlValueAccessor, Validator, OnChange
       value = null;
 
     this._model = value;
+  }
+
+  private invalidValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null =>
+      control.value !== null && /^[0-9A-Fa-f]{6}$/.test(control.value) === false
+        ? { invalid: control.value }
+        : null
+  }
+
+  private minValidator(min: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null =>
+      parseInt(control.value, 16) < parseInt(min, 16)
+        ? { min: control.value }
+        : null
+  }
+
+  private maxValidator(max: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null =>
+      parseInt(control.value, 16) > parseInt(this.max, 16)
+        ? { max: control.value }
+        : null
+  }
+
+  private validate() {
+    const validators: ValidatorFn[] = [
+      this.invalidValidator(),
+      this.minValidator(this.min),
+      this.maxValidator(this.max)
+    ];
+
+    if (this.required === true)
+      validators.push(Validators.required);
+
+    this.ngControl.control?.setValidators(validators);
+    this.ngControl.control?.updateValueAndValidity();
   }
 }
