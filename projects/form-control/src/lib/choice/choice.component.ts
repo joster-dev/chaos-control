@@ -1,8 +1,8 @@
-import { Component, forwardRef, Input, ElementRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, Input, Self } from '@angular/core';
+import { ControlValueAccessor, ValidatorFn, Validators, ValidationErrors, AbstractControl, NgControl } from '@angular/forms';
 import { KeyValue } from '@angular/common';
-import { primitive } from '../primitive.type';
-import { FormControlService } from '../form-control.service';
+import { primitive } from '../primitive/primitive.type';
+import { isPrimitive } from '../primitive/is-primitive';
 
 @Component({
   selector: 'fc-choice',
@@ -10,36 +10,48 @@ import { FormControlService } from '../form-control.service';
   styleUrls: [
     '../atomic.scss',
     '../control.scss'
-  ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      multi: true,
-      useExisting: forwardRef(() => ChoiceComponent)
-    }
   ]
 })
 export class ChoiceComponent implements ControlValueAccessor {
-  @Input() items: KeyValue<primitive, string>[] = [];
-  @Input() required = false;
-  @Input() label: string | null = null;
+  @Input()
+  get required() {
+    return this._required;
+  }
+  set required(value: any) {
+    this._required = value === '' || value === true;
+    this.validate();
+  }
+  _required = false;
 
-  isDisabled = false;
-  _model: primitive | null = null;
+  @Input()
+  get items() {
+    return this._items;
+  }
+  set items(value: any) {
+    // if(Array.isArray(value) === false || value.every((item: any) => isPrimitive(item) === true) === false)
+    //   throw new Error('items input must be: KeyValue<primitive, string>[]')
+    this._items = value;
+  }
+  _items: KeyValue<primitive, string>[] = [];
 
-  constructor(
-    private formControlService: FormControlService,
-    private hostElement: ElementRef
-  ) { }
+  @Input() label?: string;
 
+  get model() {
+    return this._model;
+  }
   set model(value: primitive | null) {
     this._model = value;
     this.onChange(value);
   }
+  _model: primitive | null = null;
 
-  get isValid() {
-    return this.hostElement.nativeElement
-      .classList.contains('ng-invalid') === false;
+  isDisabled = false;
+
+  constructor(
+    @Self() public ngControl: NgControl
+  ) {
+    ngControl.valueAccessor = this;
+    this.validate();
   }
 
   onClick(item: KeyValue<primitive, string>) {
@@ -68,14 +80,31 @@ export class ChoiceComponent implements ControlValueAccessor {
   }
 
   writeValue(value: any) {
-    if (value === null || value === undefined) {
-      this._model = null;
-      return;
-    }
+    if (value !== null && value !== undefined && isPrimitive(value) === false)
+      throw new Error('control value must be primitive');
 
-    if (this.formControlService.isPrimitive(value) === false)
-      throw new Error('control value must be string, number, boolean or null');
+    if (value === undefined)
+      value = null;
 
     this._model = value;
+  }
+
+  private invalidValidator(items: KeyValue<primitive, string>[]): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null =>
+      control.value !== null && items.map(item => item.key).includes(control.value) === false
+        ? { invalid: control.value }
+        : null
+  }
+
+  private validate() {
+    const validators: ValidatorFn[] = [
+      this.invalidValidator(this.items)
+    ];
+
+    if (this.required === true)
+      validators.push(Validators.required);
+
+    this.ngControl.control?.setValidators(validators);
+    this.ngControl.control?.updateValueAndValidity();
   }
 }

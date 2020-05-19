@@ -1,4 +1,4 @@
-<label *ngIf="label !== null">
+<label *ngIf="label !== undefined">
   {{label}}
   <span *ngIf="required === true">
     *
@@ -11,10 +11,16 @@
     icon="radio"
     [isActive]="_model === item.key"
     [isDisabled]="isDisabled === true"
-    [isValid]="isValid === true"
+    [isValid]="ngControl.control?.invalid !== true"
     (clicked)="onClick(item)"
     (blurred)="onTouched()"
   >
     {{item.value}}
   </fc-button>
 </div>
+
+<ul *ngIf="ngControl.control?.errors !== null">
+  <li *ngIf="ngControl.control?.errors.invalid !== undefined">
+    invalid model
+  </li>
+</ul>

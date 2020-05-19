@@ -3,16 +3,11 @@
 }
 
 label {
+  display: inline-block;
+  padding-bottom: 0.25em;
+
   @media print {
     font-weight: bold;
-  }
-
-  + div.dis-flex {
-    padding-top: 0.25em;
-
-    > span {
-      padding: 0 0.5em;
-    }
   }
 
   > span {

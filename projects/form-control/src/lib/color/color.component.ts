@@ -28,7 +28,7 @@ export class ColorComponent implements ControlValueAccessor {
   }
   set min(value: any) {
     if (/^[0-9A-Fa-f]{6}$/.test(value) === false)
-      throw new Error('min input must be a hex string');
+      throw new Error('min input must be hex string');
     this._min = value;
     this.validate()
   }
@@ -40,7 +40,7 @@ export class ColorComponent implements ControlValueAccessor {
   }
   set max(value: any) {
     if (/^[0-9A-Fa-f]{6}$/.test(value) === false)
-      throw new Error('max input must be a hex string');
+      throw new Error('max input must be hex string');
     this._max = value;
     this.validate();
   }
@@ -117,7 +117,7 @@ export class ColorComponent implements ControlValueAccessor {
 
   private maxValidator(max: string): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null =>
-      parseInt(control.value, 16) > parseInt(this.max, 16)
+      parseInt(control.value, 16) > parseInt(max, 16)
         ? { max: control.value }
         : null
   }

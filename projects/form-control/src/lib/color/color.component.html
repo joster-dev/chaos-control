@@ -31,9 +31,19 @@
     invalid model
   </li>
   <li *ngIf="ngControl.control?.errors.min !== undefined">
-    minimum is {{min | json}}
+    <fc-icon
+      class="dis-ib"
+      type="square"
+      [fill]="min"
+    ></fc-icon>
+    minimum is #{{min}}
   </li>
   <li *ngIf="ngControl.control?.errors.max !== undefined">
-    maximum is {{max | json}}
+    <fc-icon
+      class="dis-ib"
+      type="square"
+      [fill]="max"
+    ></fc-icon>
+    maximum is #{{max}}
   </li>
 </ul>
