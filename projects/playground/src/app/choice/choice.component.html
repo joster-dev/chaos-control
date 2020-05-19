@@ -53,6 +53,12 @@
       </button>
       <button
         type="button"
+        (click)="example1 = 8"
+      >
+        set <i>model</i> to <code>{{8 | json}}</code>
+      </button>
+      <button
+        type="button"
         (click)="form1.reset()"
       >
         form reset
