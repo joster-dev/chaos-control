@@ -27,7 +27,7 @@ export class ColorComponent implements ControlValueAccessor {
     return this._min
   }
   set min(value: any) {
-    if (/^[0-9A-Fa-f]{6}$/.test(value) === false)
+    if (typeof value !== 'string' || /^[0-9A-Fa-f]{6}$/.test(value) === false)
       throw new Error('min input must be hex string');
     this._min = value;
     this.validate()
@@ -39,7 +39,7 @@ export class ColorComponent implements ControlValueAccessor {
     return this._max;
   }
   set max(value: any) {
-    if (/^[0-9A-Fa-f]{6}$/.test(value) === false)
+    if (typeof value !== 'string' || /^[0-9A-Fa-f]{6}$/.test(value) === false)
       throw new Error('max input must be hex string');
     this._max = value;
     this.validate();
