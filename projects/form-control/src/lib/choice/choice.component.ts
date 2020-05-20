@@ -1,8 +1,7 @@
 import { Component, Input, Self } from '@angular/core';
 import { ControlValueAccessor, ValidatorFn, Validators, ValidationErrors, AbstractControl, NgControl } from '@angular/forms';
 import { KeyValue } from '@angular/common';
-import { primitive } from '../primitive/primitive.type';
-import { isPrimitive } from '../primitive/is-primitive';
+import { primitive, isItems, isPrimitive } from '../primitive';
 
 @Component({
   selector: 'fc-choice',
@@ -28,8 +27,9 @@ export class ChoiceComponent implements ControlValueAccessor {
     return this._items;
   }
   set items(value: any) {
-    // if(Array.isArray(value) === false || value.every((item: any) => isPrimitive(item) === true) === false)
-    //   throw new Error('items input must be: KeyValue<primitive, string>[]')
+    if (isItems(value) === false)
+      throw new Error('items input must be: KeyValue<primitive, string>[]');
+
     this._items = value;
   }
   _items: KeyValue<primitive, string>[] = [];
@@ -47,9 +47,7 @@ export class ChoiceComponent implements ControlValueAccessor {
 
   isDisabled = false;
 
-  constructor(
-    @Self() public ngControl: NgControl
-  ) {
+  constructor(@Self() public ngControl: NgControl) {
     ngControl.valueAccessor = this;
     this.validate();
   }

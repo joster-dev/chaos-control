@@ -11,7 +11,7 @@
     icon="radio"
     [isActive]="_model === item.key"
     [isDisabled]="isDisabled === true"
-    [isValid]="ngControl.control?.invalid !== true"
+    [isValid]="ngControl.control?.invalid === false"
     (clicked)="onClick(item)"
     (blurred)="onTouched()"
   >
