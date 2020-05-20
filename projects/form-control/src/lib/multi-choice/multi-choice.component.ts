@@ -26,7 +26,10 @@ export class MultiChoiceComponent implements ControlValueAccessor {
 
   @Input()
   get allowClear() {
-    return this._allowClear && this.items.length > 3;
+    return this._allowClear === true
+      && this.isDisabled === false
+      && this.required === false
+      && this.items.length > 3;
   }
   set allowClear(value: any) {
     this._allowClear = value === '' || value === true;
