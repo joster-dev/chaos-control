@@ -1,9 +1,9 @@
-import { Component, Input, ElementRef, forwardRef } from '@angular/core';
+import { Component, Input, Self } from '@angular/core';
 import { KeyValue } from '@angular/common';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, AbstractControl, ValidationErrors, ValidatorFn, Validators, NgControl } from '@angular/forms';
 
-import { FormControlService } from '../form-control.service';
-import { primitive } from '../primitive.type';
+import { primitive } from '../primitive/primitive.type';
+import { isPrimitive, isItems } from '../primitive';
 
 @Component({
   selector: 'fc-multi-choice',
@@ -11,45 +11,64 @@ import { primitive } from '../primitive.type';
   styleUrls: [
     '../atomic.scss',
     '../control.scss'
-  ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      multi: true,
-      useExisting: forwardRef(() => MultiChoiceComponent)
-    }
   ]
 })
 export class MultiChoiceComponent implements ControlValueAccessor {
-  @Input() items: KeyValue<primitive, string>[] = [];
-  @Input() required = false;
-  @Input() label: string | null = null;
-  @Input() allowClear = false;
+  @Input()
+  get required() {
+    return this._required;
+  }
+  set required(value: any) {
+    this._required = value === '' || value === true;
+    this.validate();
+  }
+  _required = false;
+
+  @Input()
+  get allowClear() {
+    return this._allowClear && this.items.length > 3;
+  }
+  set allowClear(value: any) {
+    this._allowClear = value === '' || value === true;
+  }
+  _allowClear = true;
+
+  @Input()
+  get items() {
+    return this._items;
+  }
+  set items(value: any) {
+    if (isItems(value) === false)
+      throw new Error('items input must be: KeyValue<primitive, string>[]');
+
+    this._items = value;
+    this.validate();
+  }
+  _items: KeyValue<primitive, string>[] = [];
+
+  @Input() label?: string;
+  @Input() limit = 0;
 
   isDisabled = false;
   _model: primitive[] = [];
 
-  constructor(
-    private formControlService: FormControlService,
-    private hostElement: ElementRef
-  ) { }
+  constructor(@Self() public ngControl: NgControl) {
+    ngControl.valueAccessor = this;
+    this.validate();
+  }
 
   set model(value: primitive[]) {
     this._model = value;
     this.onChange(this._model.length === 0 ? null : this._model);
   }
 
-  get isValid() {
-    return this.hostElement.nativeElement
-      .classList.contains('ng-invalid') === false;
-  }
-
   onClick(item: KeyValue<primitive, string>) {
+    this._model = this.removeInvalid();
     if (this._model.includes(item.key) === true) {
       if (this.required === true && this._model.length === 1)
         return;
 
-      this.model = this._model.filter(i => i !== item.key);
+      this.model = this._model.filter(key => key !== item.key);
       return;
     }
     this.model = [...this._model, item.key];
@@ -70,17 +89,46 @@ export class MultiChoiceComponent implements ControlValueAccessor {
   }
 
   writeValue(value: any) {
-    if (value === null || value === undefined) {
-      this._model = [];
-      return;
-    }
+    const isPrimitiveArray = Array.isArray(value) === true
+      && value.every((item: any) => isPrimitive(item) === true) === true;
 
-    if (Array.isArray(value) === false)
-      throw new Error('control value must be array');
+    if (value !== null && value !== undefined && isPrimitiveArray !== true)
+      throw new Error('control value must be primitive array');
 
-    if (value.every((item: any) => this.formControlService.isPrimitive(item) === true) === false)
-      throw new Error('control values must be string, number, boolean or null');
+    if (value === undefined || value === null)
+      value = [];
 
     this._model = value;
+  }
+
+  private removeInvalid(): primitive[] {
+    return this._model.filter(key => this._items.map(item => item.key).includes(key));
+  }
+
+  private invalidValidator(items: KeyValue<primitive, string>[]): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null =>
+      control.value !== null && control.value.every((key: any) => items.map(item => item.key).includes(key) === true) === false
+        ? { invalid: control.value }
+        : null
+  }
+
+  private limitValidator(limit: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null =>
+      control.value !== null && limit > 0 && control.value.length > limit
+        ? { limit: control.value }
+        : null
+  }
+
+  private validate() {
+    const validators = [
+      this.invalidValidator(this.items),
+      this.limitValidator(this.limit)
+    ];
+
+    if (this.required === true)
+      validators.push(Validators.required);
+
+    this.ngControl.control?.setValidators(validators);
+    this.ngControl.control?.updateValueAndValidity();
   }
 }
