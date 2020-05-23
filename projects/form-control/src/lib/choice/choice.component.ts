@@ -17,6 +17,9 @@ export class ChoiceComponent implements ControlValueAccessor {
     return this._required;
   }
   set required(value: any) {
+    if (!(value === '' || typeof value === 'boolean'))
+      throw new Error('required input must be: boolean');
+
     this._required = value === '' || value === true;
     this.validate();
   }
@@ -31,6 +34,7 @@ export class ChoiceComponent implements ControlValueAccessor {
       throw new Error('items input must be: KeyValue<primitive, string>[]');
 
     this._items = value;
+    this.validate();
   }
   _items: KeyValue<primitive, string>[] = [];
 
@@ -49,7 +53,6 @@ export class ChoiceComponent implements ControlValueAccessor {
 
   constructor(@Self() public ngControl: NgControl) {
     ngControl.valueAccessor = this;
-    this.validate();
   }
 
   onClick(item: KeyValue<primitive, string>) {

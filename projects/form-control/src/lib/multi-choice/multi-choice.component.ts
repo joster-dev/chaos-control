@@ -19,6 +19,9 @@ export class MultiChoiceComponent implements ControlValueAccessor {
     return this._required;
   }
   set required(value: any) {
+    if (!(value === '' || typeof value === 'boolean'))
+      throw new Error('required input must be: boolean');
+
     this._required = value === '' || value === true;
     this.validate();
   }
@@ -32,6 +35,9 @@ export class MultiChoiceComponent implements ControlValueAccessor {
       && this.items.length > 3;
   }
   set allowClear(value: any) {
+    if (!(value === '' || typeof value === 'boolean'))
+      throw new Error('allowClear input must be: boolean');
+
     this._allowClear = value === '' || value === true;
   }
   _allowClear = true;
@@ -57,7 +63,6 @@ export class MultiChoiceComponent implements ControlValueAccessor {
 
   constructor(@Self() public ngControl: NgControl) {
     ngControl.valueAccessor = this;
-    this.validate();
   }
 
   set model(value: primitive[]) {
