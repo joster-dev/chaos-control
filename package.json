@@ -2,13 +2,15 @@
   "name": "form-control",
   "version": "0.0.1",
   "scripts": {
-    "build-pages": "ng build --project=playground --prod --base-href=https://joster422.github.io/form-control/",
+    "ghp-build": "ng build --project=playground --prod --base-href=https://joster422.github.io/form-control/",
+    "ghp-deploy": "git add . && git commit --message=\"chore - gh-pages deploy\" && git push",
+    "ghp-remove-old": "git push origin --delete gh-pages",
+    "ghp-push": "git subtree push --prefix dist origin gh-pages",
+    "gh-pages": "npm run ghp-build && npm run ghp-deploy && npm run ghp-remove-old && npm run ghp-push",
     "build-lib": "ng build form-control && npm run copy-license",
-    "push-pages": "git push origin --delete gh-pages && git subtree push --prefix dist/playground origin gh-pages",
     "copy-license": "powershell Copy-Item \".\\LICENSE\" -Destination \".\\dist\\form-control\"",
     "npm-pack": "cd dist/form-control && npm pack",
-    "package": "npm run build-lib && npm run npm-pack",
-    "pages": "npm run build-pages && npm run push-pages"
+    "package": "npm run build-lib && npm run npm-pack"
   },
   "private": true,
   "dependencies": {
