@@ -1,5 +1,5 @@
 <label
-  *ngIf="label !== null"
+  *ngIf="label !== undefined"
   [for]="id"
 >
   {{label}}
@@ -15,10 +15,10 @@
     class="flex-1"
     rows="1"
     [class.active]="_model !== null"
-    [class.invalid]="isInvalid === true"
+    [class.invalid]="ngControl.control?.invalid === true"
     [disabled]="isDisabled === true"
     [id]="id"
-    [placeholder]="placeholder === null ? '' : placeholder"
+    [placeholder]="placeholder"
     (blur)="onTouched()"
   ></textarea>
 </div>
@@ -32,14 +32,11 @@
   ></textarea>
 </div>
 
-<ul
-  *ngIf="showValidationErrors"
-  class="errors"
->
-  <li *ngIf="error === 'minlength'">
+<ul *ngIf="ngControl.control?.errors !== null">
+  <li *ngIf="ngControl.control?.errors.minlength !== undefined">
     minimum length is {{minlength}}
   </li>
-  <li *ngIf="error === 'maxlength'">
+  <li *ngIf="ngControl.control?.errors.maxlength !== undefined">
     maximum length is {{maxlength}}
   </li>
 </ul>

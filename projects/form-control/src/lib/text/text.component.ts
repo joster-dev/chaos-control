@@ -1,7 +1,5 @@
-import { Component, forwardRef, Input, Renderer2, ElementRef, ViewChild } from '@angular/core';
-import { NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, ControlValueAccessor, ValidationErrors } from '@angular/forms';
-import { FormControlService } from '../form-control.service';
-// todo: https://medium.com/angular-in-depth/dont-reinvent-the-wheel-when-implementing-controlvalueaccessor-a0ed4ad0fafd
+import { Component, Input, Renderer2, ElementRef, ViewChild, Self } from '@angular/core';
+import { ControlValueAccessor, ValidationErrors, ValidatorFn, AbstractControl, Validators, NgControl } from '@angular/forms';
 
 @Component({
   selector: 'fc-text',
@@ -11,41 +9,78 @@ import { FormControlService } from '../form-control.service';
     '../atomic.scss',
     '../control.scss',
     '../input.scss'
-  ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => TextComponent),
-      multi: true
-    },
-    {
-      provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => TextComponent),
-      multi: true
-    }
   ]
 })
-export class TextComponent implements ControlValueAccessor, Validator {
-  @Input() label: string | null = null;
-  @Input() placeholder: string | null = null;
-  @Input() minlength = 0;
-  @Input() maxlength = 100;
-  @Input() required = false;
-  @Input() showValidationErrors = this.formControlService.showValidationErrors;
+export class TextComponent implements ControlValueAccessor {
+  @Input()
+  get placeholder() {
+    if (this._placeholder === undefined)
+      return '';
+
+    return this._placeholder;
+  }
+  set placeholder(value: any) {
+    if (typeof value !== 'string')
+      throw new Error('placeholder input must be: string');
+
+    this._placeholder = value;
+  }
+  _placeholder?: string;
+
+  @Input()
+  get minlength() {
+    return this._minlength;
+  }
+  set minlength(value: any) {
+    if (typeof value !== 'number')
+      throw new Error('minlength input must be: number');
+
+    this._minlength = value;
+    this.validate();
+  }
+  _minlength = 0;
+
+  @Input()
+  get maxlength() {
+    return this._maxlength;
+  }
+  set maxlength(value: any) {
+    if (typeof value !== 'number')
+      throw new Error('maxlength input must be: number');
+
+    this._maxlength = value;
+    this.validate();
+  }
+  _maxlength = 100;
+
+  @Input()
+  get required() {
+    return this._required;
+  }
+  set required(value: any) {
+    if (!(value === '' || typeof value === 'boolean'))
+      throw new Error('required input must be: boolean');
+
+    this._required = value === '' || value === true;
+    this.validate();
+  }
+  _required = false;
+
+  @Input() label?: string;
 
   @ViewChild('textarea', { static: true }) textareaElement!: ElementRef;
   @ViewChild('textareaHidden', { static: true }) textareaHiddenElement!: ElementRef;
 
   isDisabled = false;
-  error: 'required' | 'maxlength' | 'minlength' | null = null;
   _model: string | null = null;
   id = `_${Math.random().toString(36).substr(2, 9)}`;
 
   constructor(
-    private formControlService: FormControlService,
-    private hostElement: ElementRef,
+    @Self() public ngControl: NgControl,
     private renderer: Renderer2
-  ) { }
+  ) {
+    ngControl.valueAccessor = this;
+  }
 
   get model() {
     return this._model;
@@ -61,10 +96,6 @@ export class TextComponent implements ControlValueAccessor, Validator {
         : this._model
     );
     setTimeout(() => this.setTextareaHeight());
-  }
-
-  get isInvalid() {
-    return this.hostElement.nativeElement.classList.contains('ng-invalid') === true;
   }
 
   setTextareaHeight() {
@@ -89,34 +120,41 @@ export class TextComponent implements ControlValueAccessor, Validator {
     this.isDisabled = isDisabled;
   }
 
-  validate(): ValidationErrors | null {
-    if (this._model === null && this.required === true) {
-      this.error = 'required';
-      return { required: true };
-    }
-
-    if (this._model !== null && this._model.length > this.maxlength) {
-      this.error = 'maxlength';
-      return { maxlength: true };
-    }
-
-    if ((this._model === null ? '' : this._model).length < this.minlength) {
-      this.error = 'minlength';
-      return { minlength: true };
-    }
-
-    this.error = null;
-    return null;
-  }
-
   writeValue(value: any): void {
     if (value === '' || value === undefined)
       value = null;
 
-    if (value !== null && typeof value !== 'string')
-      throw new Error('control value must be string or null');
+    if (!(value === null || typeof value === 'string'))
+      throw new Error('control value must be: string');
 
     this._model = value;
     setTimeout(() => this.setTextareaHeight());
+  }
+
+  private minlengthValidator(minlength: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null =>
+      control.value !== null && control.value.length < minlength
+        ? { minlength: control.value }
+        : null
+  }
+
+  private maxlengthValidator(maxlength: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null =>
+      control.value !== null && control.value.length > maxlength
+        ? { maxlength: control.value }
+        : null
+  }
+
+  private validate() {
+    const validators: ValidatorFn[] = [
+      this.minlengthValidator(this.minlength),
+      this.maxlengthValidator(this.maxlength)
+    ];
+
+    if (this.required === true)
+      validators.push(Validators.required);
+
+    this.ngControl.control?.setValidators(validators);
+    this.ngControl.control?.updateValueAndValidity();
   }
 }
