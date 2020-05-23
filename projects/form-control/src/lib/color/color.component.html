@@ -23,6 +23,7 @@
     type="text"
     [disabled]="isDisabled === true"
     (beforeinput)="onBeforeinput($event)"
+    (blur)="onTouched()"
   />
 </div>
 

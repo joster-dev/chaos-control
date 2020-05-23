@@ -17,6 +17,9 @@ export class ColorComponent implements ControlValueAccessor {
     return this._required;
   }
   set required(value: any) {
+    if (!(value === '' || typeof value === 'boolean'))
+      throw new Error('required input must be: boolean');
+
     this._required = value === '' || value === true;
     this.validate();
   }
@@ -28,7 +31,8 @@ export class ColorComponent implements ControlValueAccessor {
   }
   set min(value: any) {
     if (typeof value !== 'string' || /^[0-9A-Fa-f]{6}$/.test(value) === false)
-      throw new Error('min input must be hex string');
+      throw new Error('min input must be: hex string');
+
     this._min = value;
     this.validate()
   }
@@ -40,7 +44,8 @@ export class ColorComponent implements ControlValueAccessor {
   }
   set max(value: any) {
     if (typeof value !== 'string' || /^[0-9A-Fa-f]{6}$/.test(value) === false)
-      throw new Error('max input must be hex string');
+      throw new Error('max input must be: hex string');
+
     this._max = value;
     this.validate();
   }
@@ -52,28 +57,22 @@ export class ColorComponent implements ControlValueAccessor {
     return this._model;
   }
   set model(value: string | null) {
-    this._model = value === ''
-      ? null
-      : value;
-    this.onChange(
-      this._model !== null && (/^[0-9A-Fa-f]{6}$/.test(this._model) === false)
-        ? null
-        : this._model
-    );
+    if (value === '')
+      value = null;
+
+    this._model = value;
+    this.onChange(this._model);
   }
   _model: string | null = null;
 
   isDisabled = false;
 
-  constructor(
-    @Self() public ngControl: NgControl
-  ) {
+  constructor(@Self() public ngControl: NgControl) {
     ngControl.valueAccessor = this;
-    this.validate();
   }
 
   onBeforeinput(event: InputEvent) {
-    if (event.data !== null && /^[0-9A-Fa-f]$/.test(event.data) === false)
+    if (event.data !== null && /^[0-9A-Fa-f]{1,6}$/.test(event.data) === false)
       event.preventDefault();
   }
 
@@ -93,9 +92,9 @@ export class ColorComponent implements ControlValueAccessor {
 
   writeValue(value: any): void {
     if (value !== null && value !== undefined && typeof value !== 'string')
-      throw new Error('control value must be string');
+      throw new Error('control value must be: string');
 
-    if (value === '' || value === undefined || /^[0-9A-Fa-f]{6}$/.test(value) === false)
+    if (value === undefined || value === '' || /^[0-9A-Fa-f]{6}$/.test(value) === false)
       value = null;
 
     this._model = value;
