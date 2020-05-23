@@ -1,9 +1,10 @@
 {
   "name": "@joster/form-control",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "controls for your form",
   "keywords": [
     "angular",
+    "typescript",
     "form",
     "library"
   ],

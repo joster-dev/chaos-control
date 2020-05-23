@@ -17,6 +17,7 @@ These styled components enable type-safe value binding inside a form element
   - `fc-text`
   - `fc-choice`
   - `fc-multi-choice`
+  - `fc-color`
 - upcoming
   - `fc-select`
   - `fc-multi-select`
