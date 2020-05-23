@@ -61,7 +61,11 @@ export class ColorComponent implements ControlValueAccessor {
       value = null;
 
     this._model = value;
-    this.onChange(this._model);
+    this.onChange(
+      this._model !== null && (/^[0-9A-Fa-f]{6}$/.test(this._model) === false)
+        ? null
+        : this._model
+    );
   }
   _model: string | null = null;
 
@@ -94,7 +98,7 @@ export class ColorComponent implements ControlValueAccessor {
     if (value !== null && value !== undefined && typeof value !== 'string')
       throw new Error('control value must be: string');
 
-    if (value === undefined || value === '' || /^[0-9A-Fa-f]{6}$/.test(value) === false)
+    if (value === undefined || value === '' || /^[0-9A-Fa-f]{1,6}$/.test(value) === false)
       value = null;
 
     this._model = value;
