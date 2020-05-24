@@ -11,20 +11,35 @@
       type="square"
       [fill]="_model"
       [isDisabled]="isDisabled === true"
-      [isValid]="ngControl.control?.valid === true"
     ></fc-icon>
   </div>
   <input
     [(ngModel)]="model"
     autocomplete="off"
     maxlength="6"
-    size="6"
+    class="flex-1"
     spellcheck="false"
     type="text"
+    [class.invalid]="ngControl.control?.invalid === true"
     [disabled]="isDisabled === true"
     (beforeinput)="onBeforeinput($event)"
+    (keydown)="onKeydown($event)"
     (blur)="onTouched()"
   />
+  <fc-button
+    icon="minus"
+    title="Subtract"
+    [isDisabled]="isDisabledSubtract === true"
+    (blurred)="onTouched()"
+    (clicked)="subtract()"
+  ></fc-button>
+  <fc-button
+    icon="plus"
+    title="Add"
+    [isDisabled]="isDisabledAdd === true"
+    (blurred)="onTouched()"
+    (clicked)="add()"
+  ></fc-button>
 </div>
 
 <ul *ngIf="ngControl.control?.errors !== null">

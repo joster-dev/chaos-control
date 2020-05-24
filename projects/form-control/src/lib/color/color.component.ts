@@ -49,9 +49,10 @@ export class ColorComponent implements ControlValueAccessor {
     this._max = value;
     this.validate();
   }
-  _max = 'ffffff';
+  _max = 'FFFFFF';
 
   @Input() label?: string;
+  @Input() step = 16;
 
   get model() {
     return this._model;
@@ -75,9 +76,65 @@ export class ColorComponent implements ControlValueAccessor {
     ngControl.valueAccessor = this;
   }
 
+  get isDisabledAdd() {
+    return this.isDisabled === true
+      || this.model !== null
+      && parseInt(this.model, 16) + this.step > parseInt(this.max, 16);
+  }
+
+  get isDisabledSubtract() {
+    return this.isDisabled === true
+      || this.model !== null
+      && parseInt(this.model, 16) - this.step < parseInt(this.min, 16);
+  }
+
+  add() {
+    if (this.model === null) {
+      this.model = this.max;
+      return;
+    }
+
+    if (parseInt(this.model, 16) + this.step < parseInt(this.min, 16)) {
+      this.model = this.min;
+      return;
+    }
+
+    this.model = this.addHex(parseInt(this.model, 16), this.step);
+  }
+
+  subtract() {
+    if (this.model === null) {
+      this.model = this.min;
+      return;
+    }
+
+    if (parseInt(this.model, 16) - this.step > parseInt(this.max, 16)) {
+      this.model = this.max;
+      return;
+    }
+
+    this.model = this.addHex(parseInt(this.model, 16), -this.step);
+  }
+
   onBeforeinput(event: InputEvent) {
     if (event.data !== null && /^[0-9A-Fa-f]{1,6}$/.test(event.data) === false)
       event.preventDefault();
+  }
+
+  onKeydown(event: KeyboardEvent) {
+    const isArrowDown = event.code === 'ArrowDown';
+    const isArrowUp = event.code === 'ArrowUp'
+
+    if (!(isArrowDown || isArrowUp))
+      return;
+
+    event.preventDefault();
+
+    if (isArrowDown && !this.isDisabledSubtract)
+      this.subtract();
+
+    if (isArrowUp && !this.isDisabledAdd)
+      this.add();
   }
 
   onChange(_model: string | null) { }
@@ -102,6 +159,15 @@ export class ColorComponent implements ControlValueAccessor {
       value = null;
 
     this._model = value;
+  }
+
+  private addHex(value1: number, value2: number) {
+    const sum = value1 + value2;
+    let result = sum.toString(16);
+    while (result.length < 6)
+      result = `0${result}`;
+
+    return result.toUpperCase();
   }
 
   private invalidValidator(): ValidatorFn {
