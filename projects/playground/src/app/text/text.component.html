@@ -42,32 +42,6 @@
       <li>height will be a single row</li>
     </ul>
   </li>
-  <li>
-    <b>maxlength</b>
-    <ol>
-      <li>
-        if <i>model</i> length would be greater than <b>maxlength</b>
-        <ul>
-          <li>
-            <i>model</i> is <code>null</code>
-          </li>
-        </ul>
-      </li>
-    </ol>
-  </li>
-  <li>
-    <b>minlength</b>
-    <ol>
-      <li>
-        if <i>model</i> length would be less than <b>minlength</b>
-        <ul>
-          <li>
-            <i>model</i> is <code>null</code>
-          </li>
-        </ul>
-      </li>
-    </ol>
-  </li>
 </ol>
 <form #form1="ngForm">
   <fieldset class="min-width-auto">
@@ -155,7 +129,7 @@
       <legend>🔍 form status</legend>
       {{form1.valid ? '🆗 form valid' : '❗ form not valid'}}
       <br />
-      {{form2.invalid ? '❗ form is invalid' : '🆗 form is not invalid'}}
+      {{form1.invalid ? '❗ form is invalid' : '🆗 form is not invalid'}}
     </fieldset>
   </fieldset>
 </form>
