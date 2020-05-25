@@ -58,7 +58,7 @@ export class TextComponent implements ControlValueAccessor {
     return this._required;
   }
   set required(value: any) {
-    if (!(value === '' || typeof value === 'boolean'))
+    if (!(value === null || value === '' || typeof value === 'boolean'))
       throw new Error('required input must be: boolean');
 
     this._required = value === '' || value === true;
@@ -87,14 +87,12 @@ export class TextComponent implements ControlValueAccessor {
   }
 
   set model(value: string | null) {
-    this._model = value === ''
-      ? null
-      : value;
-    this.onChange(
-      this._model !== null && (this._model.length > this.maxlength || this._model.length < this.minlength)
-        ? null
-        : this._model
-    );
+    if (value === '')
+      value = null;
+
+    this._model = value;
+
+    this.onChange(this._model);
     setTimeout(() => this.setTextareaHeight());
   }
 
@@ -124,31 +122,26 @@ export class TextComponent implements ControlValueAccessor {
     if (value === '' || value === undefined)
       value = null;
 
-    if (!(value === null || typeof value === 'string'))
+    const isString = typeof value === 'string';
+    if (value !== null) {
+      if (typeof value === 'number')
+        value = value.toString();
+
+      if (isString && value.length > this.maxlength)
+        value = value.substring(0, this.maxlength);
+    }
+
+    if (!(value === null || isString))
       throw new Error('control value must be: string');
 
     this._model = value;
     setTimeout(() => this.setTextareaHeight());
   }
 
-  private minlengthValidator(minlength: number): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null =>
-      control.value !== null && control.value.length < minlength
-        ? { minlength: control.value }
-        : null
-  }
-
-  private maxlengthValidator(maxlength: number): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null =>
-      control.value !== null && control.value.length > maxlength
-        ? { maxlength: control.value }
-        : null
-  }
-
   private validate() {
     const validators: ValidatorFn[] = [
-      this.minlengthValidator(this.minlength),
-      this.maxlengthValidator(this.maxlength)
+      Validators.minLength(this.minlength),
+      Validators.maxLength(this.maxlength)
     ];
 
     if (this.required === true)
