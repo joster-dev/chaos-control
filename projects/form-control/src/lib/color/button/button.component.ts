@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { timer, Subscription } from 'rxjs';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Subscription, timer } from 'rxjs';
 
 @Component({
   selector: 'fc-color-button[title]',

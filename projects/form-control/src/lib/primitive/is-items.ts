@@ -1,6 +1,7 @@
-import { primitive } from './primitive.type';
 import { KeyValue } from '@angular/common';
+
 import { isPrimitive } from './is-primitive';
+import { primitive } from './primitive.type';
 
 export function isItems(value: any): value is KeyValue<primitive, string>[] {
   return Array.isArray(value)

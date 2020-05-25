@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+
 import { IconType } from './icon-type.enum';
 
 @Component({

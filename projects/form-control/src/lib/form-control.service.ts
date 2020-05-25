@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { primitive } from './primitive/primitive.type';
 
 @Injectable({
   providedIn: 'root'

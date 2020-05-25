@@ -1,9 +1,8 @@
-import { Component, Input, Self } from '@angular/core';
 import { KeyValue } from '@angular/common';
-import { ControlValueAccessor, AbstractControl, ValidationErrors, ValidatorFn, Validators, NgControl } from '@angular/forms';
+import { Component, Input, Self } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
-import { primitive } from '../primitive/primitive.type';
-import { isPrimitive, isItems } from '../primitive';
+import { isItems, isPrimitive, primitive } from '../primitive';
 
 @Component({
   selector: 'fc-multi-choice',

@@ -1,5 +1,5 @@
-import { Component, Input, Renderer2, ElementRef, ViewChild, Self } from '@angular/core';
-import { ControlValueAccessor, ValidationErrors, ValidatorFn, AbstractControl, Validators, NgControl } from '@angular/forms';
+import { Component, ElementRef, Input, Renderer2, Self, ViewChild } from '@angular/core';
+import { ControlValueAccessor, NgControl, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'fc-text',

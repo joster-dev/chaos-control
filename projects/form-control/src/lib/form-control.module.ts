@@ -1,16 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { ButtonComponent } from './button/button.component';
+import { ChoiceComponent } from './choice/choice.component';
+import { DateComponent } from './date/date.component';
+import { IconComponent } from './icon/icon.component';
 import { IntegerComponent } from './integer/integer.component';
+import { MultiChoiceComponent } from './multi-choice/multi-choice.component';
+import { NumberComponent } from './number/number.component';
 import { SelectComponent } from './select/select.component';
 import { TextComponent } from './text/text.component';
-import { DateComponent } from './date/date.component';
-import { ChoiceComponent } from './choice/choice.component';
-import { MultiChoiceComponent } from './multi-choice/multi-choice.component';
-import { IconComponent } from './icon/icon.component';
-import { NumberComponent } from './number/number.component';
 
 @NgModule({
   declarations: [

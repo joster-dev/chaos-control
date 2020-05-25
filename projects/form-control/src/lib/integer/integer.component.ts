@@ -1,5 +1,6 @@
-import { Component, forwardRef, Input, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
-import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ControlValueAccessor, Validator, ValidationErrors } from '@angular/forms';
+import { Component, ElementRef, forwardRef, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+
 import { FormControlService } from '../form-control.service';
 
 @Component({

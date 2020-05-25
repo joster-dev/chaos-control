@@ -1,5 +1,5 @@
 import { Component, forwardRef, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator, ValidationErrors } from '@angular/forms';
+import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 
 @Component({
   selector: 'fc-date[name]',
@@ -80,9 +80,8 @@ export class DateComponent implements ControlValueAccessor, Validator {
   }
 
   writeValue(value: any): void {
-    if (value !== null && !/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    if (value !== null && !/^\d{4}-\d{2}-\d{2}$/.test(value))
       throw new Error('control value must be "YYYY-MM-DD" or null');
-    }
 
     this._model = value;
   }

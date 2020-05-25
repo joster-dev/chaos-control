@@ -1,6 +1,7 @@
-import { Component, forwardRef, Input, HostListener, ElementRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, NG_VALIDATORS, ControlValueAccessor, Validator, ValidationErrors } from '@angular/forms';
 import { KeyValue } from '@angular/common';
+import { Component, ElementRef, forwardRef, HostListener, Input } from '@angular/core';
+import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+
 import { FormControlService } from '../form-control.service';
 
 @Component({
@@ -80,9 +81,8 @@ export class SelectComponent implements ControlValueAccessor, Validator {
 
   @HostListener('document:mousedown', ['$event'])
   onGlobalClick(event: MouseEvent) {
-    if (this.hostElement.nativeElement.contains(event.target) === false) {
+    if (this.hostElement.nativeElement.contains(event.target) === false)
       this._showDropdown = false;
-    }
   }
 
   onChange(_model: number | string | null) { }
@@ -109,9 +109,8 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   }
 
   writeValue(value: any): void {
-    if (value !== null && typeof value !== 'string' && typeof value !== 'number') {
+    if (value !== null && typeof value !== 'string' && typeof value !== 'number')
       throw new Error('control value must be string or number or null');
-    }
 
     // set _model instead of model to not trigger a change event
     this._model = value;
