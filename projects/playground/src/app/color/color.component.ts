@@ -7,8 +7,6 @@ import { Component } from '@angular/core';
 })
 export class ColorComponent {
   example1: string | null = null;
-  example1Min = '000000';
-  example1Max = 'ffffff';
   isExample1Disabled = false;
   isExample1Required = false;
 

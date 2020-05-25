@@ -8,18 +8,18 @@ textarea {
   border-style: outset;
   padding: 0.5em;
   font-size: 1em;
-  height: 100%;
-  outline: none;
+  // outline: none;
   // todo: angular animations
   transition: all 700ms ease;
 
-  &:focus {
-    box-shadow: inset 0 0 0.5em darkgrey;
-  }
+  // &:focus {
+  //   box-shadow: inset 0 0 0.5em darkgrey;
+  // }
 
+  &:active,
   &.active {
     border-style: inset;
-    border-color: #247000;
+    border-color: #bbbbbb;
   }
 
   &:disabled,

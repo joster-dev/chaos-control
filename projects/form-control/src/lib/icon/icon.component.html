@@ -1,5 +1,4 @@
 <svg
-  [class.disabled]="isDisabled === true"
   version="1.1"
   xmlns="http://www.w3.org/2000/svg"
   height="1em"
@@ -90,15 +89,5 @@
     y="40"
     width="80"
     height="20"
-  />
-  <rect
-    *ngIf="type === 'square'"
-    [attr.fill]="squareFill"
-    [attr.fill-opacity]="squareFillOpacity"
-    stroke-width="5"
-    x="5"
-    y="5"
-    width="90"
-    height="90"
   />
 </svg>

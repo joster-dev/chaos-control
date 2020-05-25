@@ -10,4 +10,6 @@ export { MultiChoiceComponent } from './lib/multi-choice/multi-choice.component'
 export { DateComponent } from './lib/date/date.component';
 export { SelectComponent } from './lib/select/select.component';
 export { NumberComponent } from './lib/number/number.component';
+// color
+export { ColorModule } from './lib/color/color.module';
 export { ColorComponent } from './lib/color/color.component';

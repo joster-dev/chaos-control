@@ -7,11 +7,10 @@
 
 <div class="dis-flex flex-stretch">
   <div class="dis-flex flex-center">
-    <fc-icon
+    <fc-color-icon
       type="square"
-      [fill]="_model"
-      [isDisabled]="isDisabled === true"
-    ></fc-icon>
+      [fill]="ngControl.control?.value"
+    ></fc-color-icon>
   </div>
   <input
     [(ngModel)]="model"
@@ -20,46 +19,42 @@
     class="flex-1"
     spellcheck="false"
     type="text"
+    [class.active]="ngControl.control?.value !== null"
     [class.invalid]="ngControl.control?.invalid === true"
     [disabled]="isDisabled === true"
     (beforeinput)="onBeforeinput($event)"
-    (keydown)="onKeydown($event)"
     (blur)="onTouched()"
   />
-  <fc-button
-    icon="minus"
-    title="Subtract"
-    [isDisabled]="isDisabledSubtract === true"
-    (blurred)="onTouched()"
-    (clicked)="subtract()"
-  ></fc-button>
-  <fc-button
-    icon="plus"
-    title="Add"
-    [isDisabled]="isDisabledAdd === true"
-    (blurred)="onTouched()"
-    (clicked)="add()"
-  ></fc-button>
+  <ng-container *ngFor="let x of ['','','']; let idx = index">
+    <fc-color-button
+      class="dis-flex"
+      title="Subtract {{display(idx)}}"
+      [isDisabled]="isDisabledSubtract(idx)"
+      (blurred)="onTouched()"
+      (continuousClick)="subtract(idx)"
+    >
+      <fc-color-icon
+        type="minus"
+        [fill]="fill(idx)"
+      ></fc-color-icon>
+    </fc-color-button>
+    <fc-color-button
+      class="dis-flex"
+      title="Add {{display(idx)}}"
+      [isDisabled]="isDisabledAdd(idx)"
+      (blurred)="onTouched()"
+      (continuousClick)="add(idx)"
+    >
+      <fc-color-icon
+        type="plus"
+        [fill]="fill(idx)"
+      ></fc-color-icon>
+    </fc-color-button>
+  </ng-container>
 </div>
 
 <ul *ngIf="ngControl.control?.errors !== null">
   <li *ngIf="ngControl.control?.errors.invalid !== undefined">
     invalid model
-  </li>
-  <li *ngIf="ngControl.control?.errors.min !== undefined">
-    <fc-icon
-      class="dis-ib"
-      type="square"
-      [fill]="min"
-    ></fc-icon>
-    minimum is #{{min}}
-  </li>
-  <li *ngIf="ngControl.control?.errors.max !== undefined">
-    <fc-icon
-      class="dis-ib"
-      type="square"
-      [fill]="max"
-    ></fc-icon>
-    maximum is #{{max}}
   </li>
 </ul>

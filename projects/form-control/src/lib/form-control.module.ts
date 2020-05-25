@@ -11,7 +11,6 @@ import { ChoiceComponent } from './choice/choice.component';
 import { MultiChoiceComponent } from './multi-choice/multi-choice.component';
 import { IconComponent } from './icon/icon.component';
 import { NumberComponent } from './number/number.component';
-import { ColorComponent } from './color/color.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +22,7 @@ import { ColorComponent } from './color/color.component';
     ChoiceComponent,
     MultiChoiceComponent,
     IconComponent,
-    NumberComponent,
-    ColorComponent
+    NumberComponent
   ],
   imports: [
     CommonModule,
@@ -38,8 +36,7 @@ import { ColorComponent } from './color/color.component';
     MultiChoiceComponent,
     SelectComponent,
     TextComponent,
-    NumberComponent,
-    ColorComponent
+    NumberComponent
   ]
 })
 export class FormControlModule { }

@@ -1,0 +1,35 @@
+<svg
+  version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  height="1em"
+  viewBox="0 0 100 100"
+>
+  <polygon
+    *ngIf="type === 'plus'"
+    attr.fill="#{{fill}}"
+    stroke="#000"
+    stroke-width="5"
+    points="40,90 60,90 60,60 90,60 90,40 60,40 60,10 40,10 40,40 10,40 10,60 40,60"
+  />
+  <rect
+    *ngIf="type === 'minus'"
+    [attr.fill]="'#' + fill"
+    stroke="#000"
+    stroke-width="5"
+    x="10"
+    y="40"
+    width="80"
+    height="20"
+  />
+  <rect
+    *ngIf="type === 'square'"
+    [attr.fill]="'#' + fill"
+    [attr.fill-opacity]="fillOpacity"
+    attr.stroke="#{{fill}}"
+    stroke-width="5"
+    x="5"
+    y="5"
+    width="90"
+    height="90"
+  />
+</svg>

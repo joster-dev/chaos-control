@@ -1,0 +1,16 @@
+<button
+  type="button"
+  class="dis-flex"
+  [attr.tabindex]="isDisabled ? -1 : 0"
+  [class.disabled]="isDisabled === true"
+  [title]="title"
+  (blur)="blurred.emit()"
+  (mousedown)="start()"
+  (mouseup)="stop()"
+  (mouseleave)="stop()"
+  (touchstart)="start()"
+  (touchend)="stop()"
+  (touchcancel)="stop()"
+>
+  <ng-content></ng-content>
+</button>

@@ -25,34 +25,7 @@ export class ColorComponent implements ControlValueAccessor {
   }
   _required = false;
 
-  @Input()
-  get min() {
-    return this._min
-  }
-  set min(value: any) {
-    if (typeof value !== 'string' || /^[0-9A-Fa-f]{6}$/.test(value) === false)
-      throw new Error('min input must be: hex string');
-
-    this._min = value;
-    this.validate()
-  }
-  _min = '000000';
-
-  @Input()
-  get max() {
-    return this._max;
-  }
-  set max(value: any) {
-    if (typeof value !== 'string' || /^[0-9A-Fa-f]{6}$/.test(value) === false)
-      throw new Error('max input must be: hex string');
-
-    this._max = value;
-    this.validate();
-  }
-  _max = 'FFFFFF';
-
   @Input() label?: string;
-  @Input() step = 16;
 
   get model() {
     return this._model;
@@ -71,70 +44,110 @@ export class ColorComponent implements ControlValueAccessor {
   _model: string | null = null;
 
   isDisabled = false;
+  addTimeouts: number[] = [];
+  subtractTimeouts: number[] = [];
 
   constructor(@Self() public ngControl: NgControl) {
     ngControl.valueAccessor = this;
   }
 
-  get isDisabledAdd() {
+  get value(): string | null {
+    if (this.ngControl.control === null)
+      throw new Error('control is null');
+    return this.ngControl.control.value;
+  }
+
+  display(part: 0 | 1 | 2) {
+    if (part === 0)
+      return 'Red';
+    if (part === 1)
+      return 'Green';
+    return 'Blue';
+  }
+
+  fill(part: 0 | 1 | 2) {
+    if (part === 0)
+      return 'FF0000';
+    if (part === 1)
+      return '00FF00';
+    return '0000FF';
+  }
+
+  startAdd(part: 0 | 1 | 2) {
+    this.add(part);
+
+    this.addTimeouts[part] = window
+      .setTimeout(() => this.startAdd(part), 150);
+  }
+
+  stopAdd(part: 0 | 1 | 2) {
+    window.clearTimeout(this.addTimeouts[part]);
+  }
+
+  startSubtract(part: 0 | 1 | 2) {
+    this.add(part);
+
+    this.addTimeouts[part] = window
+      .setTimeout(() => this.startSubtract(part), 150);
+  }
+
+  stopSubtract(part: 0 | 1 | 2) {
+    window.clearTimeout(this.subtractTimeouts[part]);
+  }
+
+  isDisabledAdd(part: 0 | 1 | 2) {
+    const idx = part * 2;
     return this.isDisabled === true
-      || this.model !== null
-      && parseInt(this.model, 16) + this.step > parseInt(this.max, 16);
+      || this.ngControl.control?.invalid === true
+      || this.value === null
+      || parseInt(this.value.substring(idx, idx + 2), 16) + 1 > 255;
   }
 
-  get isDisabledSubtract() {
+  isDisabledSubtract(part: 0 | 1 | 2) {
+    const idx = part * 2;
     return this.isDisabled === true
-      || this.model !== null
-      && parseInt(this.model, 16) - this.step < parseInt(this.min, 16);
+      || this.ngControl.control?.invalid === true
+      || this.value === null
+      || parseInt(this.value.substring(idx, idx + 2), 16) - 1 < 0;
   }
 
-  add() {
-    if (this.model === null) {
-      this.model = this.max;
+  add(part: 0 | 1 | 2) {
+    if (this.isDisabledAdd(part)) {
+      console.log(new Date().getTime())
       return;
     }
 
-    if (parseInt(this.model, 16) + this.step < parseInt(this.min, 16)) {
-      this.model = this.min;
+    if (this.value === null) {
+      this.model = 'FFFFFF';
       return;
     }
 
-    this.model = this.addHex(parseInt(this.model, 16), this.step);
+    const idx = part * 2;
+    const newValue = parseInt(this.value.substring(idx, idx + 2), 16) + 1;
+    this.model = this.value.substring(0, idx)
+      + this.toHexString(newValue)
+      + this.value.substring(idx + 2, this.value.length);
   }
 
-  subtract() {
-    if (this.model === null) {
-      this.model = this.min;
+  subtract(part: 0 | 1 | 2) {
+    if (this.isDisabledSubtract(part))
+      return;
+
+    if (this.value === null) {
+      this.model = '000000';
       return;
     }
 
-    if (parseInt(this.model, 16) - this.step > parseInt(this.max, 16)) {
-      this.model = this.max;
-      return;
-    }
-
-    this.model = this.addHex(parseInt(this.model, 16), -this.step);
+    const idx = part * 2;
+    const newValue = parseInt(this.value.substring(idx, idx + 2), 16) - 1;
+    this.model = this.value.substring(0, idx)
+      + this.toHexString(newValue)
+      + this.value.substring(idx + 2, this.value.length);
   }
 
   onBeforeinput(event: InputEvent) {
     if (event.data !== null && /^[0-9A-Fa-f]{1,6}$/.test(event.data) === false)
       event.preventDefault();
-  }
-
-  onKeydown(event: KeyboardEvent) {
-    const isArrowDown = event.code === 'ArrowDown';
-    const isArrowUp = event.code === 'ArrowUp'
-
-    if (!(isArrowDown || isArrowUp))
-      return;
-
-    event.preventDefault();
-
-    if (isArrowDown && !this.isDisabledSubtract)
-      this.subtract();
-
-    if (isArrowUp && !this.isDisabledAdd)
-      this.add();
   }
 
   onChange(_model: string | null) { }
@@ -161,13 +174,11 @@ export class ColorComponent implements ControlValueAccessor {
     this._model = value;
   }
 
-  private addHex(value1: number, value2: number) {
-    const sum = value1 + value2;
-    let result = sum.toString(16);
-    while (result.length < 6)
+  private toHexString(value: number, length = 2) {
+    let result = value.toString(16).toUpperCase();
+    while (result.length < length)
       result = `0${result}`;
-
-    return result.toUpperCase();
+    return result;
   }
 
   private invalidValidator(): ValidatorFn {
@@ -177,25 +188,9 @@ export class ColorComponent implements ControlValueAccessor {
         : null
   }
 
-  private minValidator(min: string): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null =>
-      parseInt(control.value, 16) < parseInt(min, 16)
-        ? { min: control.value }
-        : null
-  }
-
-  private maxValidator(max: string): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null =>
-      parseInt(control.value, 16) > parseInt(max, 16)
-        ? { max: control.value }
-        : null
-  }
-
   private validate() {
     const validators: ValidatorFn[] = [
-      this.invalidValidator(),
-      this.minValidator(this.min),
-      this.maxValidator(this.max)
+      this.invalidValidator()
     ];
 
     if (this.required === true)

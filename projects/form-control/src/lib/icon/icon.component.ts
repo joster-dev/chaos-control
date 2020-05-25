@@ -11,7 +11,6 @@ export class IconComponent {
   @Input() isActive = false;
   @Input() isDisabled = false;
   @Input() isValid = true;
-  @Input() fill: string | null = null;
 
   constructor() { }
 
@@ -21,19 +20,5 @@ export class IconComponent {
     if (this.isValid === true)
       return 'black';
     return 'red';
-  }
-
-  get squareFill() {
-    if (this.fill === null || /^[0-9A-Fa-f]{6}$/.test(this.fill) === false)
-      return '#FFF';
-
-    return `#${this.fill}`;
-  }
-
-  get squareFillOpacity() {
-    if (this.fill === null || /^[0-9A-Fa-f]{6}$/.test(this.fill) === false)
-      return '0.0';
-
-    return '1.0';
   }
 }
