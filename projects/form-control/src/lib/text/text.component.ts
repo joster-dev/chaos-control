@@ -122,16 +122,10 @@ export class TextComponent implements ControlValueAccessor {
     if (value === '' || value === undefined)
       value = null;
 
-    const isString = typeof value === 'string';
-    if (value !== null) {
-      if (typeof value === 'number')
-        value = value.toString();
+    if (typeof value === 'number')
+      value = value.toString();
 
-      if (isString && value.length > this.maxlength)
-        value = value.substring(0, this.maxlength);
-    }
-
-    if (!(value === null || isString))
+    if (!(value === null || typeof value === 'string'))
       throw new Error('control value must be: string');
 
     this._model = value;
