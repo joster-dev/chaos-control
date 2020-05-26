@@ -1,4 +1,4 @@
-import { Component, Self } from '@angular/core';
+import { Component, Input, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
@@ -15,6 +15,24 @@ import { ControlConnector } from '../control-connector';
   ]
 })
 export class ColorComponent extends ControlConnector implements ControlValueAccessor {
+  @Input()
+  get placeholder() {
+    if (this._placeholder === null)
+      return '';
+
+    return this._placeholder;
+  }
+  set placeholder(value: any) {
+    if (value === undefined)
+      value = null;
+
+    if (!(value === null || typeof value === 'string' || /^[0-9A-Fa-f]{6}$/.test(value)))
+      throw new Error('placeholder input must be: hex string');
+
+    this._placeholder = value;
+  }
+  _placeholder: string | null = null;
+
   get model() {
     return this._model;
   }
@@ -45,6 +63,14 @@ export class ColorComponent extends ControlConnector implements ControlValueAcce
     return this.ngControl.control.value;
   }
 
+  get squareFill() {
+    if (this.value !== null && /^[0-9A-Fa-f]{6}$/.test(this.value))
+      return this.value;
+    if (this._placeholder !== null)
+      return this._placeholder;
+    return null;
+  }
+
   display(part: 0 | 1 | 2) {
     if (part === 0)
       return 'Red';
@@ -63,52 +89,58 @@ export class ColorComponent extends ControlConnector implements ControlValueAcce
 
   isDisabledAdd(part: 0 | 1 | 2) {
     const idx = part * 2;
+    let value = this.value;
+    if (!(value !== null && /^[0-9A-Fa-f]{6}$/.test(value)))
+      value = this._placeholder;
     return this.isDisabled === true
-      || this.ngControl.control?.invalid === true
-      || this.value === null
-      || parseInt(this.value.substring(idx, idx + 2), 16) + 1 > 255;
+      || value === null
+      || parseInt(value.substring(idx, idx + 2), 16) + 1 > 255;
   }
 
   isDisabledSubtract(part: 0 | 1 | 2) {
     const idx = part * 2;
+    let value = this.value;
+    if (!(value !== null && /^[0-9A-Fa-f]{6}$/.test(value)))
+      value = this._placeholder;
     return this.isDisabled === true
-      || this.ngControl.control?.invalid === true
-      || this.value === null
-      || parseInt(this.value.substring(idx, idx + 2), 16) - 1 < 0;
+      || value === null
+      || parseInt(value.substring(idx, idx + 2), 16) - 1 < 0;
   }
 
   add(part: 0 | 1 | 2) {
-    if (this.isDisabledAdd(part)) {
-      console.log(new Date().getTime())
+    if (this.isDisabledAdd(part))
       return;
-    }
 
-    if (this.value === null) {
-      this.model = 'FFFFFF';
-      return;
-    }
+    let value = this.value;
+    if (!(value !== null && /^[0-9A-Fa-f]{6}$/.test(value)))
+      value = this._placeholder;
+
+    if (value === null)
+      throw new Error('cannot add null');
 
     const idx = part * 2;
-    const newValue = parseInt(this.value.substring(idx, idx + 2), 16) + 1;
-    this.model = this.value.substring(0, idx)
+    const newValue = parseInt(value.substring(idx, idx + 2), 16) + 1;
+    this.model = value.substring(0, idx)
       + this.toHexString(newValue)
-      + this.value.substring(idx + 2, this.value.length);
+      + value.substring(idx + 2, value.length);
   }
 
   subtract(part: 0 | 1 | 2) {
     if (this.isDisabledSubtract(part))
       return;
 
-    if (this.value === null) {
-      this.model = '000000';
-      return;
-    }
+    let value = this.value;
+    if (!(value !== null && /^[0-9A-Fa-f]{6}$/.test(value)))
+      value = this._placeholder;
+
+    if (value === null)
+      throw new Error('cannot subtract null');
 
     const idx = part * 2;
-    const newValue = parseInt(this.value.substring(idx, idx + 2), 16) - 1;
-    this.model = this.value.substring(0, idx)
+    const newValue = parseInt(value.substring(idx, idx + 2), 16) - 1;
+    this.model = value.substring(0, idx)
       + this.toHexString(newValue)
-      + this.value.substring(idx + 2, this.value.length);
+      + value.substring(idx + 2, value.length);
   }
 
   onBeforeinput(event: InputEvent) {

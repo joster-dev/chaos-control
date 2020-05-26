@@ -15,8 +15,9 @@
         label="example 1"
         [(ngModel)]="example1"
         name="example1"
-        [disabled]="isExample1Disabled === true"
-        [required]="isExample1Required === true"
+        [placeholder]="example1Placeholder"
+        [disabled]="isExample1Disabled"
+        [required]="isExample1Required"
       ></fc-color>
     </fieldset>
     <fieldset>
@@ -60,6 +61,18 @@
         (click)="example1 = 'ZYTAFF'"
       >
         set <i>model</i> to <code>{{'ZYTAFF' | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="example1Placeholder = '00FF00'"
+      >
+        set <b>placeholder</b> to <code>{{'00FF00' | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="example1Placeholder = null"
+      >
+        set <b>placeholder</b> to <code>{{null | json}}</code>
       </button>
       <button
         type="button"

@@ -37,10 +37,14 @@ export class ColorButtonComponent {
   }
 
   onKeydown(event: KeyboardEvent) {
-    console.log(event)
+    if (event.code !== 'Space')
+      return;
+    this.start();
   }
 
   onKeyup(event: KeyboardEvent) {
-    console.log(event)
+    if (event.code !== 'Space')
+      return;
+    this.stop();
   }
 }

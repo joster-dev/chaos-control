@@ -23,9 +23,9 @@
   />
   <rect
     *ngIf="type === 'square'"
-    [attr.fill]="'#' + fill"
-    [attr.fill-opacity]="fillOpacity"
-    attr.stroke="#{{fill}}"
+    attr.fill="#{{fill === null ? '000' : fill}}"
+    [attr.fill-opacity]="fill === null ? '0.0' : '1.0'"
+    attr.stroke="#{{fill === null ? '000' : fill}}"
     stroke-width="5"
     x="5"
     y="5"

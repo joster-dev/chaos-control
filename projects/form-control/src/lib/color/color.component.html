@@ -9,7 +9,7 @@
   <div class="dis-flex flex-center">
     <fc-color-icon
       type="square"
-      [fill]="ngControl.control?.value"
+      [fill]="squareFill"
     ></fc-color-icon>
   </div>
   <input
@@ -22,6 +22,7 @@
     [class.active]="ngControl.control?.value !== null"
     [class.invalid]="ngControl.control?.invalid === true"
     [disabled]="isDisabled === true"
+    [placeholder]="placeholder"
     (beforeinput)="onBeforeinput($event)"
     (blur)="onTouched()"
   />
