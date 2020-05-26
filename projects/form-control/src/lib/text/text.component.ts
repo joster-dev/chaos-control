@@ -61,7 +61,6 @@ export class TextComponent extends ControlConnector implements ControlValueAcces
   get model() {
     return this._model;
   }
-
   set model(value: string | null) {
     if (value === '')
       value = null;
@@ -83,8 +82,6 @@ export class TextComponent extends ControlConnector implements ControlValueAcces
     this.validation.subscribe(() => this.validate());
     ngControl.valueAccessor = this;
   }
-
-
 
   setTextareaHeight() {
     const textarea = this.textareaElement.nativeElement as HTMLElement;
