@@ -1,9 +1,11 @@
-<h3>Button</h3>
+<h3 id="button">
+  Button
+</h3>
 <form #form="ngForm">
   <fieldset>
     <legend>form</legend>
     <fieldset>
-      <legend>fieldset</legend>
+      <legend>⭐ fieldset</legend>
       <fc-button
         [isActive]="isActive === true"
         [isDisabled]="isDisabled === true"
@@ -13,7 +15,7 @@
       </fc-button>
     </fieldset>
     <fieldset>
-      <legend>options</legend>
+      <legend>⚙️ options</legend>
       <label>
         <input
           type="checkbox"
@@ -34,14 +36,14 @@
     </fieldset>
     <fieldset disabled>
       <legend>
-        <u>disabled</u> fieldset
+        ⭐ <u>disabled</u> fieldset
       </legend>
       <fc-button (clicked)="disabledFieldsetActions = disabledFieldsetActions + 1">
         {{disabledFieldsetActions}} actions
       </fc-button>
     </fieldset>
     <fieldset>
-      <legend>actions</legend>
+      <legend>⚙️ actions</legend>
       <button
         type="button"
         (click)="reset()"

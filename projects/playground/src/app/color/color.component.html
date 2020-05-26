@@ -1,14 +1,16 @@
-<h3>Color</h3>
+<h3 id="color">
+  Color
+</h3>
 <h4>todo</h4>
 <ul>
   <li>text mask for #______</li>
   <li>support for up/down keys</li>
 </ul>
 <form #form1="ngForm">
-  <fieldset>
+  <fieldset class="min-width-auto">
     <legend>form</legend>
-    <fieldset>
-      <legend>fieldset</legend>
+    <fieldset class="word-break-all">
+      <legend>⭐ fieldset</legend>
       <fc-color
         label="example 1"
         [(ngModel)]="example1"
@@ -18,13 +20,15 @@
       ></fc-color>
     </fieldset>
     <fieldset>
-      <legend><i>model</i></legend>
+      <legend>
+        🔍 <i>model</i>
+      </legend>
       <code>
         {{example1 | json}}
       </code>
     </fieldset>
     <fieldset>
-      <legend>options</legend>
+      <legend>⚙️ options</legend>
       <label>
         <input
           type="checkbox"
@@ -44,7 +48,7 @@
       </label>
     </fieldset>
     <fieldset>
-      <legend>actions</legend>
+      <legend>⚙️ actions</legend>
       <button
         type="button"
         (click)="example1 = '5C4DFF'"
@@ -65,8 +69,10 @@
       </button>
     </fieldset>
     <fieldset>
-      <legend>status</legend>
-      {{form1.valid === true ? '🆗 form valid' : '❗ form not valid'}}
+      <legend>🔍 form status</legend>
+      {{form1.valid === true ? '🆗 valid' : '❗ not valid'}}
+      <br />
+      {{form1.invalid ? '❗ invalid' : '🆗 not invalid'}}
     </fieldset>
   </fieldset>
 </form>
@@ -75,7 +81,9 @@
   <fieldset>
     <legend>form</legend>
     <fieldset disabled>
-      <legend><u>disabled</u> fieldset</legend>
+      <legend>
+        ⭐ <u>disabled</u> fieldset
+      </legend>
       <fc-color
         label="example 2"
         [(ngModel)]="example2"
@@ -84,13 +92,15 @@
       ></fc-color>
     </fieldset>
     <fieldset>
-      <legend><i>model</i></legend>
+      <legend>
+        🔍 <i>model</i>
+      </legend>
       <code>
         {{example2 | json}}
       </code>
     </fieldset>
     <fieldset>
-      <legend>options</legend>
+      <legend>⚙️ options</legend>
       <label>
         <input
           type="checkbox"
@@ -101,7 +111,7 @@
       </label>
     </fieldset>
     <fieldset>
-      <legend>actions</legend>
+      <legend>⚙️ actions</legend>
       <button
         type="button"
         (click)="example2 = '5C4DFF'"
@@ -122,8 +132,10 @@
       </button>
     </fieldset>
     <fieldset>
-      <legend>status</legend>
-      {{form2.valid === true ? '🆗 form valid' : '❗ form not valid'}}
+      <legend>🔍 form status</legend>
+      {{form2.valid === true ? '🆗 valid' : '❗ not valid'}}
+      <br />
+      {{form2.invalid ? '❗ invalid' : '🆗 not invalid'}}
     </fieldset>
   </fieldset>
 </form>

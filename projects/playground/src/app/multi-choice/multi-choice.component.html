@@ -1,9 +1,11 @@
-<h3>Multiple Choice</h3>
+<h3 id="multi-choice">
+  Multiple Choice
+</h3>
 <form #form1="ngForm">
   <fieldset>
     <legend>form</legend>
     <fieldset>
-      <legend>fieldset</legend>
+      <legend>⭐ fieldset</legend>
       <fc-multi-choice
         label="example 1"
         [(ngModel)]="example1"
@@ -14,15 +16,19 @@
       ></fc-multi-choice>
     </fieldset>
     <fieldset>
-      <legend><i>model</i></legend>
+      <legend>
+        🔍 <i>model</i>
+      </legend>
       <code>{{example1 | json}}</code>
     </fieldset>
     <fieldset>
-      <legend><u>items</u></legend>
+      <legend>
+        🔍 <u>items</u>
+      </legend>
       <code>{{data1 | json}}</code>
     </fieldset>
     <fieldset>
-      <legend>options</legend>
+      <legend>⚙️ options</legend>
       <label>
         <input
           type="checkbox"
@@ -42,7 +48,7 @@
       </label>
     </fieldset>
     <fieldset>
-      <legend>actions</legend>
+      <legend>⚙️ actions</legend>
       <button
         type="button"
         (click)="example1 = [true]"
@@ -63,7 +69,7 @@
       </button>
     </fieldset>
     <fieldset>
-      <legend>status</legend>
+      <legend>🔍 form status</legend>
       {{form1.valid === true ? '🆗 form valid' : '❗ form not valid'}}
     </fieldset>
   </fieldset>
@@ -74,7 +80,7 @@
     <legend>form</legend>
     <fieldset disabled>
       <legend>
-        <u>disabled</u> fieldset
+        ⭐ <u>disabled</u> fieldset
       </legend>
       <fc-multi-choice
         label="example 2"
@@ -86,18 +92,18 @@
     </fieldset>
     <fieldset>
       <legend>
-        <i>model</i>
+        🔍 <i>model</i>
       </legend>
       <code>{{example2 | json}}</code>
     </fieldset>
     <fieldset>
       <legend>
-        <u>items</u>
+        🔍 <u>items</u>
       </legend>
       <code>{{data2 | json}}</code>
     </fieldset>
     <fieldset>
-      <legend>options</legend>
+      <legend>⚙️ options</legend>
       <label>
         <input
           type="checkbox"
@@ -108,7 +114,7 @@
       </label>
     </fieldset>
     <fieldset>
-      <legend>actions</legend>
+      <legend>⚙️ actions</legend>
       <button
         type="button"
         (click)="example2 = [true]"
@@ -123,8 +129,8 @@
       </button>
     </fieldset>
     <fieldset>
-      <legend>status</legend>
-      {{form2.valid === true ? '🆗 form valid' : '❗ form not valid'}}
+      <legend>🔍 form status</legend>
+      {{form2.valid === true ? '🆗 valid' : '❗ not valid'}}
     </fieldset>
   </fieldset>
 </form>
