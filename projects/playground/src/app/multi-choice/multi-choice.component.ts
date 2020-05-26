@@ -10,13 +10,13 @@ export class MultiChoiceComponent {
   data1 = [
     { key: true, value: 'Right' },
     { key: false, value: 'Left' },
-    { key: 1, value: '1' },
-    { key: 2, value: '2' },
-    { key: 3, value: '3' },
-    { key: 4, value: '4' },
-    { key: 5, value: '5' },
-    { key: 6, value: '6' },
-    { key: 7, value: '7' }
+    { key: 1, value: 'One' },
+    { key: 2, value: 'Two' },
+    { key: 3, value: 'Three' },
+    { key: 4, value: 'Four' },
+    { key: 5, value: 'Five' },
+    { key: 6, value: 'Six' },
+    { key: 7, value: 'Seven' }
   ];
   isExample1Disabled = false;
   isExample1Required = false;
