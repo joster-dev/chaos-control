@@ -8,6 +8,7 @@
 <div class="dis-flex flex-wrap">
   <fc-button
     *ngFor="let item of items"
+    class="dis-flex"
     icon="radio"
     [isActive]="_model === item.key"
     [isDisabled]="isDisabled === true"

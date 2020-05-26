@@ -16,6 +16,7 @@
   ></fc-button>
   <fc-button
     *ngFor="let item of items"
+    class="dis-flex"
     icon="check"
     [isActive]="_model.includes(item.key) === true"
     [isDisabled]="isDisabled === true"
