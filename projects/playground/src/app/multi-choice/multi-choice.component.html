@@ -70,7 +70,9 @@
     </fieldset>
     <fieldset>
       <legend>🔍 form status</legend>
-      {{form1.valid === true ? '🆗 form valid' : '❗ form not valid'}}
+      {{form1.valid ? '🆗 form valid' : '❗ form not valid'}}
+      <br />
+      {{form1.invalid ? '❗ invalid' : '🆗 not invalid'}}
     </fieldset>
   </fieldset>
 </form>
@@ -87,7 +89,7 @@
         [(ngModel)]="example2"
         name="example2"
         [items]="data2"
-        [required]="isExample2Required === true"
+        [required]="isExample2Required"
       ></fc-multi-choice>
     </fieldset>
     <fieldset>
@@ -130,7 +132,9 @@
     </fieldset>
     <fieldset>
       <legend>🔍 form status</legend>
-      {{form2.valid === true ? '🆗 valid' : '❗ not valid'}}
+      {{form2.valid ? '🆗 valid' : '❗ not valid'}}
+      <br />
+      {{form2.invalid ? '❗ invalid' : '🆗 not invalid'}}
     </fieldset>
   </fieldset>
 </form>
