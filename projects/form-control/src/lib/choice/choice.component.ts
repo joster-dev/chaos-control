@@ -1,7 +1,9 @@
 import { KeyValue } from '@angular/common';
 import { Component, Input, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 
+import { ControlConnector } from '../control-connector';
 import { isItems, isPrimitive, primitive } from '../primitive';
 
 @Component({
@@ -12,20 +14,7 @@ import { isItems, isPrimitive, primitive } from '../primitive';
     '../control.scss'
   ]
 })
-export class ChoiceComponent implements ControlValueAccessor {
-  @Input()
-  get required() {
-    return this._required;
-  }
-  set required(value: any) {
-    if (!(value === '' || typeof value === 'boolean'))
-      throw new Error('required input must be: boolean');
-
-    this._required = value === '' || value === true;
-    this.validate();
-  }
-  _required = false;
-
+export class ChoiceComponent extends ControlConnector implements ControlValueAccessor {
   @Input()
   get items() {
     return this._items;
@@ -35,24 +24,21 @@ export class ChoiceComponent implements ControlValueAccessor {
       throw new Error('items input must be: KeyValue<primitive, string>[]');
 
     this._items = value;
-    this.validate();
+    this.validation.next();
   }
   _items: KeyValue<primitive, string>[] = [];
 
-  @Input() label?: string;
-
-  get model() {
-    return this._model;
-  }
   set model(value: primitive | null) {
     this._model = value;
     this.onChange(value);
   }
   _model: primitive | null = null;
 
-  isDisabled = false;
-
   constructor(@Self() public ngControl: NgControl) {
+    super();
+    this.validation
+      .pipe(debounceTime(100))
+      .subscribe(() => this.validate());
     ngControl.valueAccessor = this;
   }
 
@@ -70,15 +56,6 @@ export class ChoiceComponent implements ControlValueAccessor {
   onChange(_value: primitive | null) { }
   registerOnChange(fn: any) {
     this.onChange = fn;
-  }
-
-  onTouched() { }
-  registerOnTouched(fn: any) {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean) {
-    this.isDisabled = isDisabled;
   }
 
   writeValue(value: any) {

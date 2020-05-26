@@ -1,7 +1,9 @@
 import { KeyValue } from '@angular/common';
 import { Component, Input, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 
+import { ControlConnector } from '../control-connector';
 import { isItems, isPrimitive, primitive } from '../primitive';
 
 @Component({
@@ -12,20 +14,7 @@ import { isItems, isPrimitive, primitive } from '../primitive';
     '../control.scss'
   ]
 })
-export class MultiChoiceComponent implements ControlValueAccessor {
-  @Input()
-  get required() {
-    return this._required;
-  }
-  set required(value: any) {
-    if (!(value === '' || typeof value === 'boolean'))
-      throw new Error('required input must be: boolean');
-
-    this._required = value === '' || value === true;
-    this.validate();
-  }
-  _required = false;
-
+export class MultiChoiceComponent extends ControlConnector implements ControlValueAccessor {
   @Input()
   get allowClear() {
     return this._allowClear === true
@@ -34,7 +23,7 @@ export class MultiChoiceComponent implements ControlValueAccessor {
       && this.items.length > 3;
   }
   set allowClear(value: any) {
-    if (!(value === '' || typeof value === 'boolean'))
+    if (!(value === null || value === '' || typeof value === 'boolean'))
       throw new Error('allowClear input must be: boolean');
 
     this._allowClear = value === '' || value === true;
@@ -50,23 +39,35 @@ export class MultiChoiceComponent implements ControlValueAccessor {
       throw new Error('items input must be: KeyValue<primitive, string>[]');
 
     this._items = value;
-    this.validate();
+    this.validation.next();
   }
   _items: KeyValue<primitive, string>[] = [];
 
-  @Input() label?: string;
-  @Input() limit = 0;
-
-  isDisabled = false;
-  _model: primitive[] = [];
-
-  constructor(@Self() public ngControl: NgControl) {
-    ngControl.valueAccessor = this;
+  @Input()
+  get limit() {
+    return this._limit;
   }
+  set limit(value: any) {
+    if (!(typeof value === 'number' || Number.isInteger(value)))
+      throw new Error('limit input must be: integer');
 
+    this._limit = value;
+    this.validation.next();
+  }
+  _limit = 0;
+
+  _model: primitive[] = [];
   set model(value: primitive[]) {
     this._model = value;
     this.onChange(this._model.length === 0 ? null : this._model);
+  }
+
+  constructor(@Self() public ngControl: NgControl) {
+    super();
+    this.validation
+      .pipe(debounceTime(100))
+      .subscribe(() => this.validate());
+    ngControl.valueAccessor = this;
   }
 
   onClick(item: KeyValue<primitive, string>) {
@@ -84,15 +85,6 @@ export class MultiChoiceComponent implements ControlValueAccessor {
   onChange(_value: primitive[] | null) { }
   registerOnChange(fn: any) {
     this.onChange = fn;
-  }
-
-  onTouched() { }
-  registerOnTouched(fn: any) {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean) {
-    this.isDisabled = isDisabled;
   }
 
   writeValue(value: any) {

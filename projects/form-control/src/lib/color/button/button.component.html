@@ -11,6 +11,8 @@
   (touchstart)="start()"
   (touchend)="stop()"
   (touchcancel)="stop()"
+  (keydown)="onKeydown($event)"
+  (keyup)="onKeyup($event)"
 >
   <ng-content></ng-content>
 </button>

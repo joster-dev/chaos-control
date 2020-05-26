@@ -16,14 +16,17 @@ export class ColorButtonComponent {
   @Output() blurred = new EventEmitter<void>();
   @Output() continuousClick = new EventEmitter<void>();
 
-  timer = timer(0, 120);
+  timer = timer(0, 100);
   clickSubscription?: Subscription;
 
   constructor() { }
 
   start() {
+    if (this.clickSubscription?.closed === false)
+      return;
+
     this.clickSubscription = this.timer
-      .subscribe(() => this.continuousClick.emit());
+      .subscribe(() => !this.isDisabled && this.continuousClick.emit());
   }
 
   stop() {
@@ -31,5 +34,13 @@ export class ColorButtonComponent {
       return;
 
     this.clickSubscription.unsubscribe();
+  }
+
+  onKeydown(event: KeyboardEvent) {
+    console.log(event)
+  }
+
+  onKeyup(event: KeyboardEvent) {
+    console.log(event)
   }
 }

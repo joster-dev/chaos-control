@@ -1,6 +1,8 @@
 import { Component, ElementRef, Input, Renderer2, Self, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NgControl, ValidatorFn, Validators } from '@angular/forms';
 
+import { ControlConnector } from '../control-connector';
+
 @Component({
   selector: 'fc-text',
   templateUrl: './text.component.html',
@@ -11,7 +13,7 @@ import { ControlValueAccessor, NgControl, ValidatorFn, Validators } from '@angul
     '../input.scss'
   ]
 })
-export class TextComponent implements ControlValueAccessor {
+export class TextComponent extends ControlConnector implements ControlValueAccessor {
   @Input()
   get placeholder() {
     if (this._placeholder === undefined)
@@ -36,7 +38,7 @@ export class TextComponent implements ControlValueAccessor {
       throw new Error('minlength input must be: number');
 
     this._minlength = value;
-    this.validate();
+    this.validation.next();
   }
   _minlength = 0;
 
@@ -49,38 +51,12 @@ export class TextComponent implements ControlValueAccessor {
       throw new Error('maxlength input must be: number');
 
     this._maxlength = value;
-    this.validate();
+    this.validation.next();
   }
   _maxlength = 100;
 
-  @Input()
-  get required() {
-    return this._required;
-  }
-  set required(value: any) {
-    if (!(value === null || value === '' || typeof value === 'boolean'))
-      throw new Error('required input must be: boolean');
-
-    this._required = value === '' || value === true;
-    this.validate();
-  }
-  _required = false;
-
-  @Input() label?: string;
-
   @ViewChild('textarea', { static: true }) textareaElement!: ElementRef;
   @ViewChild('textareaHidden', { static: true }) textareaHiddenElement!: ElementRef;
-
-  isDisabled = false;
-  _model: string | null = null;
-  id = `_${Math.random().toString(36).substr(2, 9)}`;
-
-  constructor(
-    @Self() public ngControl: NgControl,
-    private renderer: Renderer2
-  ) {
-    ngControl.valueAccessor = this;
-  }
 
   get model() {
     return this._model;
@@ -95,6 +71,20 @@ export class TextComponent implements ControlValueAccessor {
     this.onChange(this._model);
     setTimeout(() => this.setTextareaHeight());
   }
+  _model: string | null = null;
+
+  id = `_${Math.random().toString(36).substr(2, 9)}`;
+
+  constructor(
+    @Self() public ngControl: NgControl,
+    private renderer: Renderer2
+  ) {
+    super();
+    this.validation.subscribe(() => this.validate());
+    ngControl.valueAccessor = this;
+  }
+
+
 
   setTextareaHeight() {
     const textarea = this.textareaElement.nativeElement as HTMLElement;
@@ -107,15 +97,6 @@ export class TextComponent implements ControlValueAccessor {
   onChange(_model: string | null) { }
   registerOnChange(fn: any): void {
     this.onChange = fn;
-  }
-
-  onTouched() { }
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.isDisabled = isDisabled;
   }
 
   writeValue(value: any): void {

@@ -1,5 +1,8 @@
-import { Component, Input, Self } from '@angular/core';
+import { Component, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
+
+import { ControlConnector } from '../control-connector';
 
 @Component({
   selector: 'fc-color',
@@ -11,22 +14,7 @@ import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, Val
     '../input.scss'
   ]
 })
-export class ColorComponent implements ControlValueAccessor {
-  @Input()
-  get required() {
-    return this._required;
-  }
-  set required(value: any) {
-    if (!(value === '' || typeof value === 'boolean'))
-      throw new Error('required input must be: boolean');
-
-    this._required = value === '' || value === true;
-    this.validate();
-  }
-  _required = false;
-
-  @Input() label?: string;
-
+export class ColorComponent extends ControlConnector implements ControlValueAccessor {
   get model() {
     return this._model;
   }
@@ -43,11 +31,11 @@ export class ColorComponent implements ControlValueAccessor {
   }
   _model: string | null = null;
 
-  isDisabled = false;
-  addTimeouts: number[] = [];
-  subtractTimeouts: number[] = [];
-
   constructor(@Self() public ngControl: NgControl) {
+    super();
+    this.validation
+      .pipe(debounceTime(100))
+      .subscribe(() => this.validate());
     ngControl.valueAccessor = this;
   }
 
@@ -71,28 +59,6 @@ export class ColorComponent implements ControlValueAccessor {
     if (part === 1)
       return '00FF00';
     return '0000FF';
-  }
-
-  startAdd(part: 0 | 1 | 2) {
-    this.add(part);
-
-    this.addTimeouts[part] = window
-      .setTimeout(() => this.startAdd(part), 150);
-  }
-
-  stopAdd(part: 0 | 1 | 2) {
-    window.clearTimeout(this.addTimeouts[part]);
-  }
-
-  startSubtract(part: 0 | 1 | 2) {
-    this.add(part);
-
-    this.addTimeouts[part] = window
-      .setTimeout(() => this.startSubtract(part), 150);
-  }
-
-  stopSubtract(part: 0 | 1 | 2) {
-    window.clearTimeout(this.subtractTimeouts[part]);
   }
 
   isDisabledAdd(part: 0 | 1 | 2) {
@@ -153,15 +119,6 @@ export class ColorComponent implements ControlValueAccessor {
   onChange(_model: string | null) { }
   registerOnChange(fn: any) {
     this.onChange = fn;
-  }
-
-  onTouched() { }
-  registerOnTouched(fn: any) {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean) {
-    this.isDisabled = isDisabled;
   }
 
   writeValue(value: any): void {
