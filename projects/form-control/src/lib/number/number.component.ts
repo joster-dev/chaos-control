@@ -1,5 +1,5 @@
-import { Component, forwardRef, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator } from '@angular/forms';
+import { Component, Input, Self } from '@angular/core';
+import { ControlValueAccessor, NgControl } from '@angular/forms';
 
 import { ControlConnector } from '../control-connector';
 
@@ -20,8 +20,10 @@ export class NumberComponent extends ControlConnector implements ControlValueAcc
 
   _model: number | null = null;
 
-  constructor() {
-    super()
+  constructor(@Self() public ngControl: NgControl) {
+    super();
+    this.validation.subscribe(() => this.validate());
+    ngControl.valueAccessor = this;
   }
 
   get model() {
@@ -79,14 +81,19 @@ export class NumberComponent extends ControlConnector implements ControlValueAcc
   }
 
   writeValue(value: any) {
-    if (value === null || value === undefined) {
-      this._model = null;
-      return;
-    }
+    if (value === undefined)
+      value = null;
 
-    if (typeof value !== 'number')
+    if (typeof value === 'string')
+      value = parseFloat(value);
+
+    if (!(value === null || typeof value === 'number' || isNaN(value)))
       throw new Error('control value must be number or null');
 
     this._model = value;
+  }
+
+  private validate() {
+
   }
 }

@@ -6,12 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./number.component.scss']
 })
 export class NumberComponent {
-  example: number | null = null;
-  exampleMin = 0;
-  exampleMax = 9;
-  isFormDisabled = false;
-  isFormRequired = false;
-  isFormShowNull = false;
+  example1: number | null = null;
+  example1Min = 0;
+  example1Max = 9;
+  isExample1Disabled = false;
+  isExample1Required = false;
 
   constructor() { }
 }

@@ -6,10 +6,10 @@
 </label>
 
 
-<!-- <div class="dis-flex flex-stretch">
-
+<div class="dis-flex flex-stretch">
   <input
     [(ngModel)]="model"
+    #input
     class="flex-1 dis-flex flex-center"
     type="number"
     [min]="min"
@@ -20,17 +20,15 @@
     icon="minus"
     title="Subtract"
     [isDisabled]="isDisabledSubtract === true"
-    [isValid]="isValid === true"
     (blurred)="onTouched()"
-    (clicked)="subtract()"
+    (clicked)="input.stepDown()"
   ></fc-button>
   <fc-button
     class="dis-flex"
     icon="plus"
     title="Add"
     [isDisabled]="isDisabledAdd === true"
-    [isValid]="isValid === true"
     (blurred)="onTouched()"
-    (clicked)="add()"
+    (clicked)="input.stepUp()"
   ></fc-button>
-</div> -->
+</div>
