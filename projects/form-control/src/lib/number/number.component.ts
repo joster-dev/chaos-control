@@ -15,10 +15,33 @@ import { ControlConnector } from '../control-connector';
 })
 export class NumberComponent extends ControlConnector implements ControlValueAccessor {
   @Input() min = 0;
-  @Input() max = 9;
-  @Input() step = 1;
+
+  @Input()
+  get max() {
+    return this._max;
+  }
+  set max(value: any) {
+    if (typeof value !== 'number')
+      throw new Error('max input must be: number');
+    this._max = value;
+    this.validation.next();
+  }
+  _max = 9;
+
+  @Input()
+  get step() {
+    return this._step;
+  }
+  set step(value: any) {
+    if (typeof value !== 'number')
+      throw new Error('step input must be: number');
+    this._step = value;
+    this.mustBeInteger = Number.isInteger(this._step);
+  }
+  _step = 1;
 
   _model: number | null = null;
+  mustBeInteger = true;
 
   constructor(@Self() public ngControl: NgControl) {
     super();
@@ -45,6 +68,14 @@ export class NumberComponent extends ControlConnector implements ControlValueAcc
     return this.isDisabled === true
       || this._model !== null
       && this._model - this.step < this.min;
+  }
+
+  onBeforeinput(event: InputEvent) {
+    const test = this.mustBeInteger
+      ? /\i*/
+      : /\i*.\i*/;
+    if (event.data !== null && test.test(event.data) === false)
+      event.preventDefault();
   }
 
   add() {

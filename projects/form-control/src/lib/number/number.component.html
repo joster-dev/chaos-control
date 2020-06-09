@@ -14,6 +14,7 @@
     type="number"
     [min]="min"
     [max]="max"
+    (beforeinput)="onBeforeinput($event)"
   />
   <fc-button
     class="dis-flex"
@@ -21,7 +22,7 @@
     title="Subtract"
     [isDisabled]="isDisabledSubtract === true"
     (blurred)="onTouched()"
-    (clicked)="input.stepDown()"
+    (clicked)="subtract()"
   ></fc-button>
   <fc-button
     class="dis-flex"
@@ -29,6 +30,6 @@
     title="Add"
     [isDisabled]="isDisabledAdd === true"
     (blurred)="onTouched()"
-    (clicked)="input.stepUp()"
+    (clicked)="add()"
   ></fc-button>
 </div>
