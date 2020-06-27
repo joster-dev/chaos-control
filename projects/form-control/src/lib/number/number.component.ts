@@ -14,7 +14,17 @@ import { ControlConnector } from '../control-connector';
   ]
 })
 export class NumberComponent extends ControlConnector implements ControlValueAccessor {
-  @Input() min = 0;
+  @Input()
+  get min() {
+    return this._min;
+  }
+  set min(value: any) {
+    if (typeof value !== 'number')
+      throw new Error('min input must be: number');
+    this._min = value;
+    this.validation.next();
+  }
+  _min = 0;
 
   @Input()
   get max() {
@@ -40,7 +50,7 @@ export class NumberComponent extends ControlConnector implements ControlValueAcc
   }
   _step = 1;
 
-  _model: number | null = null;
+
   mustBeInteger = true;
 
   constructor(@Self() public ngControl: NgControl) {
@@ -49,10 +59,10 @@ export class NumberComponent extends ControlConnector implements ControlValueAcc
     ngControl.valueAccessor = this;
   }
 
+  _model: number | null = null;
   get model() {
     return this._model;
   }
-
   set model(value: number | null) {
     this._model = value;
     this.onChange(this._model);
@@ -70,11 +80,20 @@ export class NumberComponent extends ControlConnector implements ControlValueAcc
       && this._model - this.step < this.min;
   }
 
+  get maxlength() {
+    return Math.max(
+      this.step.toString().length,
+      this.min.toString().length,
+      this.max.toString().length
+    );
+  }
+
   onBeforeinput(event: InputEvent) {
-    const test = this.mustBeInteger
+    const integerRegex = this.mustBeInteger
       ? /\i*/
       : /\i*.\i*/;
-    if (event.data !== null && test.test(event.data) === false)
+    console.log(event.data);
+    if (event.data !== null && (integerRegex.test(event.data) === false || event.data.length > this.maxlength))
       event.preventDefault();
   }
 
