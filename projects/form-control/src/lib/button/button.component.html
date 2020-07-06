@@ -5,17 +5,16 @@
   [class.disabled]="isDisabled === true"
   [class.invalid]="isValid === false"
   [type]="type"
-  (blur)="blurred.emit($event)"
-  (click)="isDisabled === false && clicked.emit($event)"
+  (blur)="onBlur($event)"
+  (click)="onClick($event)"
+  (keydown)="onKeydown($event)"
+  (keyup)="onKeyup($event)"
+  (mousedown)="start()"
+  (mouseup)="stop()"
+  (mouseleave)="stop()"
+  (touchstart)="start()"
+  (touchend)="stop()"
+  (touchcancel)="stop()"
 >
-  <fc-icon
-    *ngIf="icon !== null"
-    [type]="icon"
-    [isActive]="isActive === true"
-    [isDisabled]="isDisabled === true"
-    [isValid]="isValid === true"
-  ></fc-icon>
-  <span>
-    <ng-content></ng-content>
-  </span>
+  <ng-content></ng-content>
 </button>

@@ -7,10 +7,12 @@
 
 <div class="dis-flex flex-stretch">
   <div class="dis-flex flex-center">
-    <fc-color-icon
+    <icon
+      size="1em"
       type="square"
-      [fill]="squareFill"
-    ></fc-color-icon>
+      [fill]="squareFill || []"
+      [stroke]="squareFill || '000000'"
+    ></icon>
   </div>
   <input
     [(ngModel)]="model"
@@ -27,30 +29,32 @@
     (blur)="onTouched()"
   />
   <ng-container *ngFor="let x of ['','','']; let idx = index">
-    <fc-color-button
+    <fc-button
       class="dis-flex"
       title="Subtract {{display(idx)}}"
       [isDisabled]="isDisabledSubtract(idx)"
       (blurred)="onTouched()"
       (continuousClick)="subtract(idx)"
     >
-      <fc-color-icon
+      <icon
+        size="1em"
         type="minus"
         [fill]="fill(idx)"
-      ></fc-color-icon>
-    </fc-color-button>
-    <fc-color-button
+      ></icon>
+    </fc-button>
+    <fc-button
       class="dis-flex"
       title="Add {{display(idx)}}"
       [isDisabled]="isDisabledAdd(idx)"
       (blurred)="onTouched()"
       (continuousClick)="add(idx)"
     >
-      <fc-color-icon
+      <icon
+        size="1em"
         type="plus"
         [fill]="fill(idx)"
-      ></fc-color-icon>
-    </fc-color-button>
+      ></icon>
+    </fc-button>
   </ng-container>
 </div>
 

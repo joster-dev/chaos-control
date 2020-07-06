@@ -9,21 +9,36 @@
   <fc-button
     *ngIf="allowClear === true"
     class="dis-flex"
-    icon="times"
     title="Clear"
     (blurred)="onTouched()"
     (clicked)="model = []"
-  ></fc-button>
+  >
+    <icon
+      type="times"
+      size="1em"
+    ></icon>
+  </fc-button>
   <fc-button
     *ngFor="let item of items"
     class="dis-flex"
-    icon="check"
     [isActive]="_model.includes(item.key) === true"
     [isDisabled]="isDisabled === true"
     [isValid]="ngControl.control?.invalid === false"
     (blurred)="onTouched()"
     (clicked)="onClick(item)"
   >
+    <div class="icon-stack icon-space">
+      <icon
+        type="squircle"
+        size="1em"
+      ></icon>
+      <icon
+        *ngIf="_model.includes(item.key) === true"
+        type="check"
+        size="1em"
+        [fill]="['000000', '247000']"
+      ></icon>
+    </div>
     {{item.value}}
   </fc-button>
 </div>

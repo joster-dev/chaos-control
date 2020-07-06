@@ -50,7 +50,6 @@ export class NumberComponent extends ControlConnector implements ControlValueAcc
   }
   _step = 1;
 
-
   mustBeInteger = true;
 
   constructor(@Self() public ngControl: NgControl) {

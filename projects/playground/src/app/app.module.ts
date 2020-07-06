@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
-import { FormControlModule, ColorModule } from 'dist/form-control';
+import { FormControlModule } from 'dist/form-control';
+// import { FormControlModule } from '@joster/form-control';
 
 import { AppComponent } from './app.component';
 import { IntegerComponent } from './integer/integer.component';
@@ -31,7 +32,6 @@ import { ColorComponent } from './color/color.component';
   imports: [
     BrowserModule,
     FormControlModule,
-    ColorModule,
     FormsModule
   ],
   providers: [],

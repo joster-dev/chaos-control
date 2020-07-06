@@ -17,18 +17,30 @@
   />
   <fc-button
     class="dis-flex"
-    icon="minus"
     title="Subtract"
     [isDisabled]="isDisabledSubtract === true"
     (blurred)="onTouched()"
     (clicked)="subtract()"
-  ></fc-button>
+  >
+    <icon
+      size="1em"
+      type="minus"
+      [fill]="['FFFFFF', 'DDDDDD']"
+      [fillRotate]="90"
+    ></icon>
+  </fc-button>
   <fc-button
     class="dis-flex"
-    icon="plus"
     title="Add"
     [isDisabled]="isDisabledAdd === true"
     (blurred)="onTouched()"
     (clicked)="add()"
-  ></fc-button>
+  >
+    <icon
+      size="1em"
+      type="plus"
+      [fill]="['FFFFFF', 'DDDDDD']"
+      [fillRotate]="90"
+    ></icon>
+  </fc-button>
 </div>

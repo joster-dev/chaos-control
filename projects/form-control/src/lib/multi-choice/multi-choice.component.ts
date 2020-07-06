@@ -11,7 +11,8 @@ import { isItems, isPrimitive, primitive } from '../primitive';
   templateUrl: './multi-choice.component.html',
   styleUrls: [
     '../atomic.scss',
-    '../control.scss'
+    '../control.scss',
+    './multi-choice.component.scss'
   ]
 })
 export class MultiChoiceComponent extends ControlConnector implements ControlValueAccessor {

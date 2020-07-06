@@ -1,6 +1,6 @@
 {
   "name": "@joster/form-control",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "controls for your form",
   "keywords": [
     "angular",
@@ -21,6 +21,7 @@
   "peerDependencies": {
     "@angular/common": "^9.0.2",
     "@angular/core": "^9.0.2",
+    "@joster/icon": "^0.0.4",
     "tslib": "^1.10.0"
   }
 }

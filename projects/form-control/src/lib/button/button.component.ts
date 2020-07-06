@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-
-import { IconType } from '../icon/icon-type.enum';
+import { Subscription, timer } from 'rxjs';
 
 @Component({
   selector: 'fc-button',
@@ -16,10 +15,49 @@ export class ButtonComponent {
   @Input() isDisabled = false;
   @Input() isValid = true;
   @Input() type: 'button' | 'submit' = 'button';
-  @Input() icon: IconType | null = null;
 
-  @Output() blurred = new EventEmitter();
-  @Output() clicked = new EventEmitter();
+  @Output() blurred = new EventEmitter<FocusEvent>();
+  @Output() clicked = new EventEmitter<MouseEvent>();
+  @Output() continuousClick = new EventEmitter<void>();
+
+  timer = timer(0, 100);
+  clickSubscription?: Subscription;
 
   constructor() { }
+
+  onClick(event: MouseEvent) {
+    if (this.isDisabled)
+      return;
+    this.clicked.emit(event);
+  }
+
+  onBlur(event: FocusEvent) {
+    this.blurred.emit(event);
+    this.stop();
+  }
+
+  onKeydown(event: KeyboardEvent) {
+    if (event.code !== 'Space')
+      return;
+    this.start();
+  }
+
+  onKeyup(event: KeyboardEvent) {
+    if (event.code !== 'Space')
+      return;
+    this.stop();
+  }
+
+  start() {
+    if (this.clickSubscription?.closed === false)
+      return;
+    this.clickSubscription = this.timer
+      .subscribe(() => !this.isDisabled && this.continuousClick.emit());
+  }
+
+  stop() {
+    if (this.clickSubscription === undefined)
+      return;
+    this.clickSubscription.unsubscribe();
+  }
 }
