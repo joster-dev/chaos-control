@@ -1,7 +1,9 @@
 import { primitive } from './primitive.type';
 
 export function isPrimitive(value: any): value is primitive {
-  return typeof value === 'string'
+  return value === undefined
+    || value === null
+    || typeof value === 'boolean'
     || typeof value === 'number'
-    || typeof value === 'boolean';
+    || typeof value === 'string';
 }
