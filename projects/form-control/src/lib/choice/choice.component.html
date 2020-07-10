@@ -15,20 +15,21 @@
     (clicked)="onClick(item)"
     (blurred)="onTouched()"
   >
-    <div class="icon-stack icon-space">
+    <icon-stack
+      class="margin-right-1"
+      size="1em"
+    >
       <icon
         type="circle"
-        size="1em"
+        fillRotate
         [fill]="['FFFFFF', 'DDDDDD']"
-        [fillRotate]="90"
       ></icon>
       <icon
         *ngIf="_model === item.key"
         type="dot"
-        size="1em"
         [fill]="['000000', '247000']"
       ></icon>
-    </div>
+    </icon-stack>
     {{item.value}}
   </fc-button>
 </div>

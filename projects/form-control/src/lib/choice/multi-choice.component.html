@@ -27,18 +27,21 @@
     (blurred)="onTouched()"
     (clicked)="onClick(item)"
   >
-    <div class="icon-stack icon-space">
+    <icon-stack
+      class="margin-right-1"
+      size="1em"
+    >
       <icon
         type="squircle"
-        size="1em"
+        [fill]="['FFFFFF', 'DDDDDD']"
+        fillRotate
       ></icon>
       <icon
         *ngIf="_model.includes(item.key) === true"
         type="check"
-        size="1em"
         [fill]="['000000', '247000']"
       ></icon>
-    </div>
+    </icon-stack>
     {{item.value}}
   </fc-button>
 </div>

@@ -1,5 +1,5 @@
 import { Component, Input, Self } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { ControlValueAccessor, NgControl, ValidatorFn, Validators } from '@angular/forms';
 
 import { ControlConnector } from '../control-connector';
 
@@ -79,20 +79,13 @@ export class NumberComponent extends ControlConnector implements ControlValueAcc
       && this._model - this.step < this.min;
   }
 
-  get maxlength() {
-    return Math.max(
-      this.step.toString().length,
-      this.min.toString().length,
-      this.max.toString().length
-    );
-  }
-
   onBeforeinput(event: InputEvent) {
-    const integerRegex = this.mustBeInteger
-      ? /\i*/
-      : /\i*.\i*/;
-    console.log(event.data);
-    if (event.data !== null && (integerRegex.test(event.data) === false || event.data.length > this.maxlength))
+    if (event.data === null)
+      return;
+    const isDigit = /\d/.test(event.data);
+    const isMinus = event.data === '-';
+    const isMinusAllowed = this.min < 0;
+    if (!isDigit && !(isMinus && isMinusAllowed))
       event.preventDefault();
   }
 
@@ -137,12 +130,21 @@ export class NumberComponent extends ControlConnector implements ControlValueAcc
       value = parseFloat(value);
 
     if (!(value === null || typeof value === 'number' || isNaN(value)))
-      throw new Error('control value must be number or null');
+      throw new Error('control value must be: number or null');
 
     this._model = value;
   }
 
   private validate() {
+    const validators: ValidatorFn[] = [
+      Validators.min(this.min),
+      Validators.max(this.max)
+    ];
 
+    if (this.required === true)
+      validators.push(Validators.required);
+
+    this.ngControl.control?.setValidators(validators);
+    this.ngControl.control?.updateValueAndValidity();
   }
 }

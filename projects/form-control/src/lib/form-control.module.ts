@@ -6,10 +6,10 @@ import { IconModule } from '@joster/icon';
 
 import { ButtonComponent } from './button/button.component';
 import { ChoiceComponent } from './choice/choice.component';
+import { MultiChoiceComponent } from './choice/multi-choice.component';
 import { ColorComponent } from './color/color.component';
 import { DateComponent } from './date/date.component';
 import { IntegerComponent } from './integer/integer.component';
-import { MultiChoiceComponent } from './multi-choice/multi-choice.component';
 import { NumberComponent } from './number/number.component';
 import { SelectComponent } from './select/select.component';
 import { TextComponent } from './text/text.component';
@@ -28,8 +28,8 @@ import { TextComponent } from './text/text.component';
   ],
   imports: [
     CommonModule,
-    IconModule,
-    FormsModule
+    FormsModule,
+    IconModule
   ],
   exports: [
     ButtonComponent,

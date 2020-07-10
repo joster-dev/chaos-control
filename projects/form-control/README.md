@@ -6,7 +6,7 @@ This library was generated with [Angular CLI](https://github.com/angular/angular
 
 These styled components enable type-safe value binding inside a form element
 
-[Testing Playground](https://github.com/joster422/form-control)
+[Testing Playground](https://github.com/joster-dev/form-control)
 
 ## Contents
 

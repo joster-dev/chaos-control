@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "ghp-build": "ng build --project=playground --prod --base-href=https://joster422.github.io/form-control/",
+    "ghp-build": "ng build --project=playground --prod --base-href=https://joster-dev.github.io/form-control/",
     "ghp-deploy": "git add . && git commit --message=\"chore - gh-pages deploy\" && git push",
     "ghp-remove-old": "git push origin --delete gh-pages",
     "ghp-push": "git subtree push --prefix dist/playground origin gh-pages",
@@ -23,7 +23,7 @@
     "@angular/platform-browser-dynamic": "~9.1.7",
     "@angular/router": "~9.1.7",
     "@joster/form-control": "0.0.6",
-    "@joster/icon": "0.0.4",
+    "@joster/icon": "0.0.5",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

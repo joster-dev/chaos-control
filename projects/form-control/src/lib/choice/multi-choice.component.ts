@@ -3,8 +3,8 @@ import { Component, Input, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
-import { ControlConnector } from '../control-connector';
-import { isItems, isPrimitive, primitive } from '../primitive';
+import { isPrimitive, primitive } from '../primitive';
+import { ChoiceConnector } from './choice-connector';
 
 @Component({
   selector: 'fc-multi-choice',
@@ -15,7 +15,7 @@ import { isItems, isPrimitive, primitive } from '../primitive';
     './multi-choice.component.scss'
   ]
 })
-export class MultiChoiceComponent extends ControlConnector implements ControlValueAccessor {
+export class MultiChoiceComponent extends ChoiceConnector implements ControlValueAccessor {
   @Input()
   get allowClear() {
     return this._allowClear === true
@@ -24,34 +24,25 @@ export class MultiChoiceComponent extends ControlConnector implements ControlVal
       && this.items.length > 3;
   }
   set allowClear(value: any) {
-    if (!(value === null || value === '' || typeof value === 'boolean'))
+    if (value === '')
+      value = true;
+    if (value === null || value === undefined)
+      value = false;
+    if (typeof value !== 'boolean')
       throw new Error('allowClear input must be: boolean');
-
-    this._allowClear = value === '' || value === true;
+    this._allowClear = value;
   }
   _allowClear = true;
-
-  @Input()
-  get items() {
-    return this._items;
-  }
-  set items(value: any) {
-    if (isItems(value) === false)
-      throw new Error('items input must be: KeyValue<primitive, string>[]');
-
-    this._items = value;
-    this.validation.next();
-  }
-  _items: KeyValue<primitive, string>[] = [];
 
   @Input()
   get limit() {
     return this._limit;
   }
   set limit(value: any) {
-    if (!(typeof value === 'number' || Number.isInteger(value)))
-      throw new Error('limit input must be: integer');
-
+    if (value === null || value === undefined)
+      value = 0;
+    if (typeof value !== 'number' || !Number.isInteger(value) || value < 0)
+      throw new Error('limit input must be: integer greater than -1');
     this._limit = value;
     this.validation.next();
   }
@@ -107,14 +98,14 @@ export class MultiChoiceComponent extends ControlConnector implements ControlVal
 
   private invalidValidator(items: KeyValue<primitive, string>[]): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null =>
-      control.value !== null && control.value.every((key: any) => items.map(item => item.key).includes(key) === true) === false
+      control.value !== null && control.value.every((key: any) => !items.map(item => item.key).includes(key))
         ? { invalid: control.value }
         : null
   }
 
   private limitValidator(limit: number): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null =>
-      control.value !== null && limit > 0 && control.value.length > limit
+      control.value !== null && limit !== 0 && control.value.length > limit
         ? { limit: control.value }
         : null
   }

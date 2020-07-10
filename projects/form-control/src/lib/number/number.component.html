@@ -11,6 +11,9 @@
     [(ngModel)]="model"
     class="flex-1 dis-flex flex-center"
     type="number"
+    [class.active]="_model !== null"
+    [class.invalid]="ngControl.control?.invalid === true"
+    [disabled]="isDisabled === true"
     [min]="min"
     [max]="max"
     (beforeinput)="onBeforeinput($event)"
@@ -20,13 +23,13 @@
     title="Subtract"
     [isDisabled]="isDisabledSubtract === true"
     (blurred)="onTouched()"
-    (clicked)="subtract()"
+    (continuousClick)="subtract()"
   >
     <icon
-      size="1em"
       type="minus"
+      size="1em"
       [fill]="['FFFFFF', 'DDDDDD']"
-      [fillRotate]="90"
+      fillRotate
     ></icon>
   </fc-button>
   <fc-button
@@ -34,13 +37,13 @@
     title="Add"
     [isDisabled]="isDisabledAdd === true"
     (blurred)="onTouched()"
-    (clicked)="add()"
+    (continuousClick)="add()"
   >
     <icon
-      size="1em"
       type="plus"
+      size="1em"
       [fill]="['FFFFFF', 'DDDDDD']"
-      [fillRotate]="90"
+      fillRotate
     ></icon>
   </fc-button>
 </div>

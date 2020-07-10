@@ -1,10 +1,10 @@
 import { KeyValue } from '@angular/common';
-import { Component, Input, Self } from '@angular/core';
+import { Component, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
-import { ControlConnector } from '../control-connector';
-import { isItems, isPrimitive, primitive } from '../primitive';
+import { isPrimitive, primitive } from '../primitive';
+import { ChoiceConnector } from './choice-connector';
 
 @Component({
   selector: 'fc-choice',
@@ -15,20 +15,7 @@ import { isItems, isPrimitive, primitive } from '../primitive';
     './choice.component.scss'
   ]
 })
-export class ChoiceComponent extends ControlConnector implements ControlValueAccessor {
-  @Input()
-  get items() {
-    return this._items;
-  }
-  set items(value: any) {
-    if (isItems(value) === false)
-      throw new Error('items input must be: KeyValue<primitive, string>[]');
-
-    this._items = value;
-    this.validation.next();
-  }
-  _items: KeyValue<primitive, string>[] = [];
-
+export class ChoiceComponent extends ChoiceConnector implements ControlValueAccessor {
   set model(value: primitive | null) {
     this._model = value;
     this.onChange(value);
@@ -60,18 +47,18 @@ export class ChoiceComponent extends ControlConnector implements ControlValueAcc
   }
 
   writeValue(value: any) {
-    if (value !== null && value !== undefined && isPrimitive(value) === false)
-      throw new Error('control value must be primitive');
-
     if (value === undefined)
       value = null;
+
+    if (value !== null && !isPrimitive(value))
+      throw new Error('control value must be primitive');
 
     this._model = value;
   }
 
   private invalidValidator(items: KeyValue<primitive, string>[]): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null =>
-      control.value !== null && items.map(item => item.key).includes(control.value) === false
+      control.value !== null && !items.map(item => item.key).includes(control.value)
         ? { invalid: control.value }
         : null
   }
@@ -84,7 +71,10 @@ export class ChoiceComponent extends ControlConnector implements ControlValueAcc
     if (this.required === true)
       validators.push(Validators.required);
 
-    this.ngControl.control?.setValidators(validators);
-    this.ngControl.control?.updateValueAndValidity();
+    if (this.ngControl.control === null)
+      throw new Error('expected control to be defined');
+
+    this.ngControl.control.setValidators(validators);
+    this.ngControl.control.updateValueAndValidity();
   }
 }
