@@ -29,6 +29,7 @@ export class ButtonComponent {
     if (this.isDisabled)
       return;
     this.clicked.emit(event);
+    this.continuousClick.emit();
   }
 
   onBlur(event: FocusEvent) {
