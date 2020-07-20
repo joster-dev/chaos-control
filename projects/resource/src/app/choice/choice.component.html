@@ -1,5 +1,5 @@
 <h2 id="choice">
-  Choice
+  <code>fc-choice</code>
 </h2>
 <form #form1="ngForm">
   <fieldset>
@@ -30,26 +30,6 @@
       <code>{{data1 | json}}</code>
     </fieldset>
     <fieldset>
-      <legend>⚙️ options</legend>
-      <label>
-        <input
-          type="checkbox"
-          [(ngModel)]="isExample1Disabled"
-          name="isExample1Disabled"
-        />
-        disabled
-      </label>
-      <br />
-      <label>
-        <input
-          type="checkbox"
-          [(ngModel)]="isExample1Required"
-          name="isExample1Required"
-        />
-        required
-      </label>
-    </fieldset>
-    <fieldset>
       <legend>⚙️ actions</legend>
       <button
         type="button"
@@ -63,6 +43,33 @@
       >
         set <i>model</i> to <code>{{8 | json}}</code>
       </button>
+      <br />
+      <button
+        type="button"
+        (click)="isExample1Required = true"
+      >
+        set <b>required</b> to <code>{{true | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="isExample1Required = false"
+      >
+        set <b>required</b> to <code>{{false | json}}</code>
+      </button>
+      <br />
+      <button
+        type="button"
+        (click)="isExample1Disabled = true"
+      >
+        set <b>disabled</b> to <code>{{true | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="isExample1Disabled = false"
+      >
+        set <b>disabled</b> to <code>{{false | json}}</code>
+      </button>
+      <br />
       <button
         type="button"
         (click)="form1.reset()"
@@ -84,7 +91,7 @@
     <legend>form</legend>
     <fieldset disabled>
       <legend>
-        ⭐ <u>disabled</u> fieldset
+        ⭐ <b>disabled</b> fieldset
       </legend>
       <fc-choice
         label="example 2"
@@ -109,17 +116,6 @@
       <code>{{data2 | json}}</code>
     </fieldset>
     <fieldset>
-      <legend>⚙️ options</legend>
-      <label>
-        <input
-          type="checkbox"
-          [(ngModel)]="isExample2Required"
-          name="isExample2Required"
-        />
-        required
-      </label>
-    </fieldset>
-    <fieldset>
       <legend>⚙️ actions</legend>
       <button
         type="button"
@@ -127,6 +123,20 @@
       >
         set <i>model</i> to <code>true</code>
       </button>
+      <br />
+      <button
+        type="button"
+        (click)="isExample2Required = true"
+      >
+        set <b>required</b> to <code>{{true | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="isExample2Required = false"
+      >
+        set <b>required</b> to <code>{{false | json}}</code>
+      </button>
+      <br />
       <button
         type="button"
         (click)="form2.reset()"

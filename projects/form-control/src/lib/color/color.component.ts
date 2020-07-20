@@ -81,10 +81,10 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
 
   fill(part: 0 | 1 | 2) {
     if (part === 0)
-      return 'FF0000';
+      return ['FF0000', '660000'];
     if (part === 1)
-      return '00FF00';
-    return '0000FF';
+      return ['00FF00', '006600'];
+    return ['0000FF', '000066'];
   }
 
   isDisabledAdd(part: 0 | 1 | 2) {
