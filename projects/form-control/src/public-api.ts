@@ -1,8 +1,8 @@
+// Public API Surface of form-control
 export { FormControlModule } from './lib/form-control.module';
 export { FormControlService } from './lib/form-control.service';
 // useable
 export { ButtonComponent } from './lib/button/button.component';
-export { IntegerComponent } from './lib/integer/integer.component';
 export { TextComponent } from './lib/text/text.component';
 export { ChoiceComponent } from './lib/choice/choice.component';
 export { MultiChoiceComponent } from './lib/choice/multi-choice.component';

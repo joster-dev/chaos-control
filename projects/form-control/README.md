@@ -1,6 +1,6 @@
 # Form Control
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.3.
 
 ## About
 

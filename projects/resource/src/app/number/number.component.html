@@ -1,0 +1,48 @@
+<h3>Number</h3>
+<form #form1="ngForm">
+  <fieldset class="min-width-auto">
+    <legend>form</legend>
+    <fieldset>
+      <legend>⭐ fieldset</legend>
+      <fc-number
+        [(ngModel)]="example1"
+        name="example1"
+        label="example 1"
+        [disabled]="isExample1Disabled"
+        [required]="isExample1Required"
+      ></fc-number>
+    </fieldset>
+    <fieldset class="word-break-all">
+      <legend>
+        🔍 <i>model</i>
+      </legend>
+      <code>{{example1 | json}}</code>
+    </fieldset>
+    <fieldset>
+      <legend>⚙️ options</legend>
+      <label>
+        disabled
+        <input
+          type="checkbox"
+          [(ngModel)]="isExample1Disabled"
+          name="isExample1Disabled"
+        />
+      </label>
+      <br />
+      <label>
+        required
+        <input
+          type="checkbox"
+          [(ngModel)]="isExample1Required"
+          name="isExample1Required"
+        />
+      </label>
+    </fieldset>
+    <fieldset>
+      <legend>🔍 form status</legend>
+      {{form1.valid === true ? '🆗 valid' : '❗ not valid'}}
+      <br />
+      {{form1.invalid ? '❗ invalid' : '🆗 not invalid'}}
+    </fieldset>
+  </fieldset>
+</form>

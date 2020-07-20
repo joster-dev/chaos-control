@@ -1,26 +1,9 @@
 {
   "extends": "../../tslint.json",
   "rules": {
-    "ordered-imports": [
-      true,
-      {
-        "import-sources-order": "case-insensitive",
-        "named-imports-order": "case-insensitive",
-        "grouped-imports": true,
-        "groups": [
-          "^(@|rxjs|ngx)",
-          "^."
-        ]
-      }
-    ],
-    "curly": [
-      true,
-      "as-needed"
-    ],
     "directive-selector": [
       true,
       "attribute",
-      "fc",
       "camelCase"
     ],
     "component-selector": [

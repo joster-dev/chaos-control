@@ -48,32 +48,32 @@
         }
       }
     },
-    "playground": {
+    "resource": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/playground",
-      "sourceRoot": "projects/playground/src",
-      "prefix": "pg",
+      "root": "projects/resource",
+      "sourceRoot": "projects/resource/src",
+      "prefix": "res",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/playground",
-            "index": "projects/playground/src/index.html",
-            "main": "projects/playground/src/main.ts",
-            "polyfills": "projects/playground/src/polyfills.ts",
-            "tsConfig": "projects/playground/tsconfig.app.json",
+            "outputPath": "dist/resource",
+            "index": "projects/resource/src/index.html",
+            "main": "projects/resource/src/main.ts",
+            "polyfills": "projects/resource/src/polyfills.ts",
+            "tsConfig": "projects/resource/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/playground/src/favicon.ico",
-              "projects/playground/src/assets"
+              "projects/resource/src/favicon.ico",
+              "projects/resource/src/assets"
             ],
             "styles": [
-              "projects/playground/src/styles.scss"
+              "projects/resource/src/styles.scss"
             ],
             "scripts": []
           },
@@ -81,8 +81,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/playground/src/environments/environment.ts",
-                  "with": "projects/playground/src/environments/environment.prod.ts"
+                  "replace": "projects/resource/src/environments/environment.ts",
+                  "with": "projects/resource/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -111,33 +111,33 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "playground:build"
+            "browserTarget": "resource:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "playground:build:production"
+              "browserTarget": "resource:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "playground:build"
+            "browserTarget": "resource:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/playground/src/test.ts",
-            "polyfills": "projects/playground/src/polyfills.ts",
-            "tsConfig": "projects/playground/tsconfig.spec.json",
-            "karmaConfig": "projects/playground/karma.conf.js",
+            "main": "projects/resource/src/test.ts",
+            "polyfills": "projects/resource/src/polyfills.ts",
+            "tsConfig": "projects/resource/tsconfig.spec.json",
+            "karmaConfig": "projects/resource/karma.conf.js",
             "assets": [
-              "projects/playground/src/favicon.ico",
-              "projects/playground/src/assets"
+              "projects/resource/src/favicon.ico",
+              "projects/resource/src/assets"
             ],
             "styles": [
-              "projects/playground/src/styles.scss"
+              "projects/resource/src/styles.scss"
             ],
             "scripts": []
           }
@@ -146,9 +146,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/playground/tsconfig.app.json",
-              "projects/playground/tsconfig.spec.json",
-              "projects/playground/e2e/tsconfig.json"
+              "projects/resource/tsconfig.app.json",
+              "projects/resource/tsconfig.spec.json",
+              "projects/resource/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -158,12 +158,12 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/playground/e2e/protractor.conf.js",
-            "devServerTarget": "playground:serve"
+            "protractorConfig": "projects/resource/e2e/protractor.conf.js",
+            "devServerTarget": "resource:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "playground:serve:production"
+              "devServerTarget": "resource:serve:production"
             }
           }
         }

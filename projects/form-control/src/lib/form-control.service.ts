@@ -4,11 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class FormControlService {
-  showValidationErrors = true;
-  showNull = false;
-  nullDisplay = '❓';
-  nullTitle = 'Unknown';
+  hasErrors = true;
 
   constructor() { }
-
 }

@@ -1,6 +1,6 @@
 {
   "name": "@joster/form-control",
-  "version": "0.1.0",
+  "version": "0.0.7",
   "description": "controls for your form",
   "keywords": [
     "angular",
@@ -19,9 +19,11 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^9.0.2",
-    "@angular/core": "^9.0.2",
-    "@joster/icon": "^0.0.5",
-    "tslib": "^1.10.0"
+    "@angular/common": "^10.0.3",
+    "@angular/core": "^10.0.3",
+    "@joster/icon": "0.0.5"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
   }
 }

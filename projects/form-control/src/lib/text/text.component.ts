@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, Renderer2, Self, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NgControl, ValidatorFn, Validators } from '@angular/forms';
 
-import { ControlConnector } from '../control-connector';
+import { ControlDirective } from '../control.directive';
 
 @Component({
   selector: 'fc-text',
@@ -13,7 +13,7 @@ import { ControlConnector } from '../control-connector';
     '../input.scss'
   ]
 })
-export class TextComponent extends ControlConnector implements ControlValueAccessor {
+export class TextComponent extends ControlDirective implements ControlValueAccessor {
   @Input()
   get placeholder() {
     if (this._placeholder === undefined)

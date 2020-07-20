@@ -2,7 +2,7 @@ import { Component, Input, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
-import { ControlConnector } from '../control-connector';
+import { ControlDirective } from '../control.directive';
 
 @Component({
   selector: 'fc-color',
@@ -14,7 +14,7 @@ import { ControlConnector } from '../control-connector';
     '../input.scss'
   ]
 })
-export class ColorComponent extends ControlConnector implements ControlValueAccessor {
+export class ColorComponent extends ControlDirective implements ControlValueAccessor {
   @Input()
   get placeholder() {
     if (this._placeholder === null)

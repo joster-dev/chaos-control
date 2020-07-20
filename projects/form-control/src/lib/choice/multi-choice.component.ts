@@ -4,7 +4,7 @@ import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, Val
 import { debounceTime } from 'rxjs/operators';
 
 import { isPrimitive, primitive } from '../primitive';
-import { ChoiceConnector } from './choice-connector';
+import { ChoiceDirective } from './choice.directive';
 
 @Component({
   selector: 'fc-multi-choice',
@@ -15,7 +15,7 @@ import { ChoiceConnector } from './choice-connector';
     './multi-choice.component.scss'
   ]
 })
-export class MultiChoiceComponent extends ChoiceConnector implements ControlValueAccessor {
+export class MultiChoiceComponent extends ChoiceDirective implements ControlValueAccessor {
   @Input()
   get allowClear() {
     return this._allowClear === true
@@ -100,14 +100,14 @@ export class MultiChoiceComponent extends ChoiceConnector implements ControlValu
     return (control: AbstractControl): ValidationErrors | null =>
       control.value !== null && control.value.every((key: any) => !items.map(item => item.key).includes(key))
         ? { invalid: control.value }
-        : null
+        : null;
   }
 
   private limitValidator(limit: number): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null =>
       control.value !== null && limit !== 0 && control.value.length > limit
         ? { limit: control.value }
-        : null
+        : null;
   }
 
   private validate() {

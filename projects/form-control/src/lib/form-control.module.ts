@@ -9,22 +9,24 @@ import { ChoiceComponent } from './choice/choice.component';
 import { MultiChoiceComponent } from './choice/multi-choice.component';
 import { ColorComponent } from './color/color.component';
 import { DateComponent } from './date/date.component';
-import { IntegerComponent } from './integer/integer.component';
 import { NumberComponent } from './number/number.component';
 import { SelectComponent } from './select/select.component';
 import { TextComponent } from './text/text.component';
+import { ControlDirective } from './control.directive';
+import { ChoiceDirective } from './choice/choice.directive';
 
 @NgModule({
   declarations: [
     ButtonComponent,
     DateComponent,
-    IntegerComponent,
     SelectComponent,
     TextComponent,
     ChoiceComponent,
     MultiChoiceComponent,
     NumberComponent,
-    ColorComponent
+    ColorComponent,
+    ControlDirective,
+    ChoiceDirective
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,6 @@ import { TextComponent } from './text/text.component';
     ButtonComponent,
     ChoiceComponent,
     DateComponent,
-    IntegerComponent,
     MultiChoiceComponent,
     SelectComponent,
     TextComponent,

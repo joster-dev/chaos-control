@@ -1,0 +1,122 @@
+<h1 id="playground">
+  Form Control Resource
+</h1>
+<a href="">
+  v0.0.7
+</a>
+<h2>About</h2>
+<ul>
+  <li>
+    styled controls for forms
+    <ul>
+      <li>
+        helpful error messages when invalid <b>input</b> values are provided
+      </li>
+    </ul>
+  </li>
+  <li>
+    accessible
+    <ul>
+      <li>passes WCAG AA standards</li>
+    </ul>
+  </li>
+  <li>
+    keyboard friendly
+    <ul>
+      <li>tab-index-able</li>
+      <li>conforms to standard layout</li>
+      <li>handles up and down keys for incrementing</li>
+    </ul>
+  </li>
+  <li>
+    touchscreen friendly
+    <ul>
+      <li>handles long-press for incrementing</li>
+    </ul>
+  </li>
+  <li>
+    visual indication for control statuses
+    <ul>
+      <li>red * suffix when required</li>
+      <li>error text when invalid</li>
+    </ul>
+  </li>
+  <li>
+    print friendly
+    <ul>
+      <li>always see selected value</li>
+      <li>removal of borders for a clean print</li>
+    </ul>
+  </li>
+</ul>
+<h2>Getting Started</h2>
+<ol>
+  <li>
+    in your angular project run
+    <ul>
+      <li>
+        <code>npm install @joster/form-control --save</code>
+      </li>
+    </ul>
+  </li>
+  <li>
+    in the module that utilizes these controls add
+    <ul>
+      <li>
+        <code>{{"import { FormControlModule } from '@joster/form-control'"}}</code>
+      </li>
+    </ul>
+  </li>
+  <li>
+    in the module update your imports
+    <ul>
+      <li>
+        <code>imports: [..., FormControlModule]</code>
+      </li>
+    </ul>
+  </li>
+</ol>
+<!-- <nav>
+  <a href="#playground">
+    🔝
+  </a>
+  <a href="#button">
+    Button
+  </a>
+  <a href="#choice">
+    Choice
+  </a>
+  <a href="#multi-choice">
+    Multi Choice
+  </a>
+  <a href="#text">
+    Text
+  </a>
+  <a href="#color">
+    Color
+  </a>
+</nav> -->
+<res-button></res-button>
+<br />
+<br />
+<res-text></res-text>
+<br />
+<br />
+<res-number></res-number>
+<br />
+<br />
+<res-choice></res-choice>
+<br />
+<br />
+<res-multi-choice></res-multi-choice>
+<br />
+<br />
+<res-color></res-color>
+<br />
+<br />
+<!-- <res-select></res-select>
+<br />
+<br />
+<res-date></res-date>
+<br />
+<br /> -->

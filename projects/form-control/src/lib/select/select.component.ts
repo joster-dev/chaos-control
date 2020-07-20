@@ -3,6 +3,7 @@ import { Component, ElementRef, forwardRef, HostListener, Input } from '@angular
 import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 
 import { FormControlService } from '../form-control.service';
+import { primitive } from '../primitive';
 
 @Component({
   selector: 'fc-select',
@@ -25,11 +26,11 @@ import { FormControlService } from '../form-control.service';
   ]
 })
 export class SelectComponent implements ControlValueAccessor, Validator {
-  @Input() nullDisplay = this.formControlService.nullDisplay;
-  @Input() nullTitle = this.formControlService.nullTitle;
-  @Input() showNull = this.formControlService.showNull;
+  @Input() nullDisplay = 'Unknown';
+  @Input() nullTitle = '❓';
+  @Input() showNull = false;
   @Input() showIcon = true;
-  @Input() items: KeyValue<null | boolean | number | string, string>[] = [];
+  @Input() items: KeyValue<primitive, string>[] = [];
   @Input() required = false;
   @Input() label?: string;
   @Input() placeholder?: string;

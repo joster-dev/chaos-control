@@ -4,7 +4,7 @@ import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, Val
 import { debounceTime } from 'rxjs/operators';
 
 import { isPrimitive, primitive } from '../primitive';
-import { ChoiceConnector } from './choice-connector';
+import { ChoiceDirective } from './choice.directive';
 
 @Component({
   selector: 'fc-choice',
@@ -15,7 +15,7 @@ import { ChoiceConnector } from './choice-connector';
     './choice.component.scss'
   ]
 })
-export class ChoiceComponent extends ChoiceConnector implements ControlValueAccessor {
+export class ChoiceComponent extends ChoiceDirective implements ControlValueAccessor {
   set model(value: primitive | null) {
     this._model = value;
     this.onChange(value);
@@ -60,7 +60,7 @@ export class ChoiceComponent extends ChoiceConnector implements ControlValueAcce
     return (control: AbstractControl): ValidationErrors | null =>
       control.value !== null && !items.map(item => item.key).includes(control.value)
         ? { invalid: control.value }
-        : null
+        : null;
   }
 
   private validate() {

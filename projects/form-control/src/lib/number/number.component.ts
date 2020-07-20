@@ -1,7 +1,7 @@
 import { Component, Input, Self } from '@angular/core';
 import { ControlValueAccessor, NgControl, ValidatorFn, Validators } from '@angular/forms';
 
-import { ControlConnector } from '../control-connector';
+import { ControlDirective } from '../control.directive';
 
 @Component({
   selector: 'fc-number',
@@ -13,7 +13,7 @@ import { ControlConnector } from '../control-connector';
     '../input.scss'
   ]
 })
-export class NumberComponent extends ControlConnector implements ControlValueAccessor {
+export class NumberComponent extends ControlDirective implements ControlValueAccessor {
   @Input()
   get min() {
     return this._min;
