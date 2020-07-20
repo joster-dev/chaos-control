@@ -1,12 +1,14 @@
 {
   "name": "@joster/form-control",
   "version": "0.0.7",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "description": "controls for your form",
   "keywords": [
-    "angular",
-    "typescript",
-    "form",
-    "library"
+    "form inputs",
+    "text input",
+    "number input"
   ],
   "repository": {
     "type": "git",
