@@ -1,11 +1,12 @@
 <h2 id="text">
   <code>fc-text</code>
 </h2>
-<h4>Features</h4>
-<ol>
+<ul>
   <li>
     <i>model</i> will be <code>string</code> or <code>null</code>
   </li>
+</ul>
+<ol>
   <li>
     if text content would overflow
     <ul>
@@ -18,23 +19,26 @@
     if <i>model</i> is not <code>null</code>
     <ul>
       <li>
-        control will have a shadow
+        control border will darken
       </li>
     </ul>
   </li>
-  <li>
+  <!-- <li>
     if <i>model</i> is empty string <code>""</code>
     <ul>
       <li>
         control will be appear empty
       </li>
     </ul>
-  </li>
+  </li> -->
   <li>
-    if text content is empty
+    if text is cleared by the user
     <ul>
       <li>
-        <i>model</i> will be <code>null</code>
+        <i>model</i> will be set to <code>null</code>
+      </li>
+      <li>
+        <i>model</i> will not be set to <code>""</code>
       </li>
     </ul>
   </li>
@@ -108,6 +112,7 @@
       >
         set <b>minlength</b> to <code>{{0 | json}}</code>
       </button>
+      <br />
       <button
         type="button"
         (click)="example1Maxlength = 80"
@@ -120,6 +125,7 @@
       >
         set <b>maxlength</b> to <code>{{100 | json}}</code>
       </button>
+      <br />
       <button
         type="button"
         (click)="form1.reset()"

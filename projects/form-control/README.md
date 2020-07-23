@@ -4,24 +4,36 @@ This library was generated with [Angular CLI](https://github.com/angular/angular
 
 ## About
 
-These styled components enable type-safe value binding inside a form element
-
-[Testing Playground](https://github.com/joster-dev/form-control)
+Styled customizable components, that enable type-safe value binding. Can be utilized inside a `<form>...</form>` element.
 
 ## Contents
 
+- form controls
+  - `fc-number`
+    - `number | null`
+  - `fc-text`
+    - `string | null`
+  - `fc-choice`
+    - `primitive | null`
+  - `fc-multi-choice`
+    - `primitive[] | null`
+  - `fc-color`
+    - `hexstring | null`
+
 - utility
   - `fc-button`
-- form-control
-  - `fc-integer`
-  - `fc-text`
-  - `fc-choice`
-  - `fc-multi-choice`
-  - `fc-color`
+
 - upcoming
   - `fc-select`
   - `fc-multi-select`
   - `fc-date`
   - `fc-date-time`
   - `fc-time`
-  - `fc-number`
+
+## Wiki
+
+[Visit the Form Control Resource](https://github.com/joster-dev/form-control)
+
+- definitions
+  1. `primitive` = `null | boolean | number | string`
+  1. `hexstring` = `string` that passes [`/^[0-9A-Fa-f]{6}$/`](https://regexper.com/#%2F%5E%5B0-9A-Fa-f%5D%7B6%7D%24%2F)

@@ -2,6 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
 import { IconModule } from '@joster/icon';
 
 import { ButtonComponent } from './button/button.component';
