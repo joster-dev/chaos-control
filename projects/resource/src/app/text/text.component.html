@@ -1,5 +1,5 @@
 <h2 id="text">
-  <code>fc-text</code>
+  Text
 </h2>
 <ul>
   <li>
@@ -73,24 +73,12 @@
       </code>
     </fieldset>
     <fieldset>
-      <legend>⚙️ options</legend>
-      <label>
-        disabled
-        <input
-          type="checkbox"
-          [(ngModel)]="isExample1Disabled"
-          name="isExample1Disabled"
-        />
-      </label>
-      <br />
-      <label>
-        required
-        <input
-          type="checkbox"
-          [(ngModel)]="isExample1Required"
-          name="isExample1Required"
-        />
-      </label>
+      <legend>
+        🔍 code
+      </legend>
+      <code>
+        {{example1Html}}
+      </code>
     </fieldset>
     <fieldset>
       <legend>⚙️ actions</legend>
@@ -100,6 +88,33 @@
       >
         set <i>model</i> to <code>{{testText | json}}</code>
       </button>
+      <br />
+      <button
+        type="button"
+        (click)="isExample1Required = true"
+      >
+        set <b>required</b> to <code>{{true | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="isExample1Required = false"
+      >
+        set <b>required</b> to <code>{{false | json}}</code>
+      </button>
+      <br />
+      <button
+        type="button"
+        (click)="isExample1Disabled = true"
+      >
+        set <b>disabled</b> to <code>{{true | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="isExample1Disabled = false"
+      >
+        set <b>disabled</b> to <code>{{false | json}}</code>
+      </button>
+      <br />
       <button
         type="button"
         (click)="example1Minlength = 20"
@@ -165,17 +180,6 @@
       <code>{{example2 | json}}</code>
     </fieldset>
     <fieldset>
-      <legend>⚙️ options</legend>
-      <label>
-        <input
-          type="checkbox"
-          [(ngModel)]="isExample2Required"
-          name="isExample2Required"
-        />
-        required
-      </label>
-    </fieldset>
-    <fieldset>
       <legend>⚙️ actions</legend>
       <button
         type="button"
@@ -183,6 +187,20 @@
       >
         set <i>model</i> to <code>{{testText | json}}</code>
       </button>
+      <br />
+      <button
+        type="button"
+        (click)="isExample2Required = true"
+      >
+        set <b>required</b> to <code>{{true | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="isExample2Required = false"
+      >
+        set <b>required</b> to <code>{{false | json}}</code>
+      </button>
+      <br />
       <button
         type="button"
         (click)="example2Minlength = 20"
@@ -195,6 +213,7 @@
       >
         set <b>minlength</b> to <code>{{0 | json}}</code>
       </button>
+      <br />
       <button
         type="button"
         (click)="example2Maxlength = 70"
@@ -207,6 +226,7 @@
       >
         set <b>maxlength</b> to <code>{{100 | json}}</code>
       </button>
+      <br />
       <button
         type="button"
         (click)="form2.reset()"

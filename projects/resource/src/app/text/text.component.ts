@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'res-text',
@@ -20,5 +20,21 @@ export class TextComponent {
   example2Maxlength = 100;
 
   constructor() { }
+
+  get example1Html() {
+    const req = this.isExample1Required
+      ? ' required'
+      : '';
+    const dis = this.isExample1Disabled
+      ? ' disabled'
+      : '';
+    const min = this.example1Minlength === 0
+      ? ''
+      : ` [minlength]="${this.example2Minlength}"`;
+    const max = this.example1Maxlength === 100
+      ? ''
+      : ` [maxlength]="${this.example1Maxlength}"`;
+    return `<fc-text${req}${dis}${min}${max}></fc-text>`;
+  }
 }
 
