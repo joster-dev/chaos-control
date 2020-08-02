@@ -1,14 +1,14 @@
 {
   "name": "@joster-dev/form-control",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
   "description": "controls for your form",
   "keywords": [
-    "form input",
-    "text input",
-    "number input"
+    "form",
+    "text",
+    "number"
   ],
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
   "peerDependencies": {
     "@angular/common": "^10.0.3",
     "@angular/core": "^10.0.3",
-    "@joster/icon": "0.0.5"
+    "@joster-dev/icon": "0.0.2"
   },
   "dependencies": {
     "tslib": "^2.0.0"
