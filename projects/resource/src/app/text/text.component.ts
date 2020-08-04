@@ -30,7 +30,7 @@ export class TextComponent {
       : '';
     const min = this.example1Minlength === 0
       ? ''
-      : ` [minlength]="${this.example2Minlength}"`;
+      : ` [minlength]="${this.example1Minlength}"`;
     const max = this.example1Maxlength === 100
       ? ''
       : ` [maxlength]="${this.example1Maxlength}"`;
