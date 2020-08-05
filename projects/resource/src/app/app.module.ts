@@ -12,6 +12,7 @@ import { ColorComponent } from './color/color.component';
 import { TextComponent } from './text/text.component';
 import { ChoiceComponent } from './choice/choice.component';
 import { MultiChoiceComponent } from './multi-choice/multi-choice.component';
+import { PanelComponent } from './panel/panel.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MultiChoiceComponent } from './multi-choice/multi-choice.component';
     ColorComponent,
     TextComponent,
     ChoiceComponent,
-    MultiChoiceComponent
+    MultiChoiceComponent,
+    PanelComponent
   ],
   imports: [
     BrowserModule,

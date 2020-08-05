@@ -3,7 +3,7 @@
 </h2>
 <ul>
   <li>
-    <i>model</i> will be <code>string</code> or <code>null</code>
+    <i>model</i> will be <code>string</code> or <code>null</code> once a user interacts with the control
   </li>
 </ul>
 <ol>
@@ -157,9 +157,36 @@
   </fieldset>
 </form>
 <br />
-<form #form2="ngForm">
+<res-panel [panel]="example2Panel">
+  <fieldset disabled>
+    <legend>
+      ⭐ <u>disabled</u> fieldset
+    </legend>
+    <fc-text
+      [(ngModel)]="example2Panel.model"
+      name="example2"
+      label="example 2"
+      [minlength]="example2Minlength"
+      [maxlength]="example2Maxlength"
+      [required]="isExample2Required"
+    ></fc-text>
+  </fieldset>
+</res-panel>
+<!-- <form #form2="ngForm">
   <fieldset class="min-width-auto">
     <legend>form</legend>
+    <ul>
+      <li>
+        if required and empty
+        <ul>
+          <li>parent form will be invalid</li>
+          <li>control will be visually invalid</li>
+        </ul>
+      </li>
+      <li>
+        and inavlid control will be
+      </li>
+    </ul>
     <fieldset disabled>
       <legend>
         ⭐ <u>disabled</u> fieldset
@@ -187,6 +214,18 @@
       >
         set <i>model</i> to <code>{{testText | json}}</code>
       </button>
+      <button
+        type="button"
+        (click)="example2 = 'Lorum ipsum'"
+      >
+        set <i>model</i> to <code>{{'Lorum ipsum' | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="example2 = 'L'"
+      >
+        set <i>model</i> to <code>{{'L' | json}}</code>
+      </button>
       <br />
       <button
         type="button"
@@ -203,9 +242,9 @@
       <br />
       <button
         type="button"
-        (click)="example2Minlength = 20"
+        (click)="example2Minlength = 5"
       >
-        set <b>minlength</b> to <code>{{20 | json}}</code>
+        set <b>minlength</b> to <code>{{5 | json}}</code>
       </button>
       <button
         type="button"
@@ -216,9 +255,9 @@
       <br />
       <button
         type="button"
-        (click)="example2Maxlength = 70"
+        (click)="example2Maxlength = 10"
       >
-        set <b>maxlength</b> to <code>{{70 | json}}</code>
+        set <b>maxlength</b> to <code>{{10 | json}}</code>
       </button>
       <button
         type="button"
@@ -241,4 +280,4 @@
       {{form2.invalid ? '❗ invalid' : '🆗 not invalid'}}
     </fieldset>
   </fieldset>
-</form>
+</form> -->

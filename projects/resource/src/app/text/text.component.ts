@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Panel } from '../panel/panel';
 
 @Component({
   selector: 'res-text',
@@ -14,27 +15,30 @@ export class TextComponent {
   example1Minlength = 0;
   example1Maxlength = 100;
 
+  example2Panel: Panel;
   example2: string | null = null;
+  isExample2Disabled = false;
   isExample2Required = false;
   example2Minlength = 0;
   example2Maxlength = 100;
 
-  constructor() { }
-
-  get example1Html() {
-    const req = this.isExample1Required
-      ? ' required'
-      : '';
-    const dis = this.isExample1Disabled
-      ? ' disabled'
-      : '';
-    const min = this.example1Minlength === 0
-      ? ''
-      : ` [minlength]="${this.example1Minlength}"`;
-    const max = this.example1Maxlength === 100
-      ? ''
-      : ` [maxlength]="${this.example1Maxlength}"`;
-    return `<fc-text${req}${dis}${min}${max}></fc-text>`;
+  constructor() {
+    this.example2Panel = new Panel(
+      this.example2,
+      [
+        this.testText,
+        'Lorem ipsum',
+        'L'
+      ],
+      [
+        { key: this.isExample2Required, value: true, display: 'required' },
+        { key: this.isExample2Disabled, value: false, display: 'disabled' },
+        { key: this.example2Minlength, value: [0, 5], display: 'minlength' },
+        { key: this.example2Maxlength, value: [100, 10], display: 'maxlength' }
+      ]
+    );
   }
+
+
 }
 

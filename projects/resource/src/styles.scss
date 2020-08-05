@@ -25,6 +25,11 @@ code {
   background: linear-gradient(45deg, moccasin, lightcyan);
 }
 
+.col-1-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .col-2-1 {
   display: grid;
   grid-template-columns: 2fr 1fr;

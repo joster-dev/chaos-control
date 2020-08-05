@@ -1,0 +1,95 @@
+<form #form="ngForm">
+  <fieldset class="min-width-auto">
+    <legend>form</legend>
+    <fieldset>
+      <legend>
+        🔍 form status
+      </legend>
+      <div class="col-1-1">
+        <div>{{form.valid ? '🆗 valid' : '❗ not valid'}}</div>
+        <div>{{form.invalid ? '❗ invalid' : '🆗 not invalid'}}</div>
+      </div>
+    </fieldset>
+    <ng-content></ng-content>
+    <fieldset class="word-break-all">
+      <legend>
+        🔍 <i>model</i>
+      </legend>
+      <code>{{panel.model | json}}</code>
+    </fieldset>
+    <fieldset>
+      <legend>
+        🔍 code
+      </legend>
+      <code>{{example1Html}}</code>
+    </fieldset>
+    <fieldset>
+      <legend>⚙️ actions</legend>
+      <button
+        type="button"
+        (click)="panel.model = 'abc'"
+      >
+        set <i>model</i> to <code>{{'abc' | json}}</code>
+      </button>
+      <!-- <button
+        type="button"
+        (click)="example2 = 'Lorum ipsum'"
+      >
+        set <i>model</i> to <code>{{'Lorum ipsum' | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="example2 = 'L'"
+      >
+        set <i>model</i> to <code>{{'L' | json}}</code>
+      </button>
+      <br />
+      <button
+        type="button"
+        (click)="isExample2Required = true"
+      >
+        set <b>required</b> to <code>{{true | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="isExample2Required = false"
+      >
+        set <b>required</b> to <code>{{false | json}}</code>
+      </button>
+      <br />
+      <button
+        type="button"
+        (click)="example2Minlength = 5"
+      >
+        set <b>minlength</b> to <code>{{5 | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="example2Minlength = 0"
+      >
+        set <b>minlength</b> to <code>{{0 | json}}</code>
+      </button>
+      <br />
+      <button
+        type="button"
+        (click)="example2Maxlength = 10"
+      >
+        set <b>maxlength</b> to <code>{{10 | json}}</code>
+      </button>
+      <button
+        type="button"
+        (click)="example2Maxlength = 100"
+      >
+        set <b>maxlength</b> to <code>{{100 | json}}</code>
+      </button> -->
+      <br />
+      <button
+        type="button"
+        (click)="form.reset()"
+      >
+        form reset
+      </button>
+    </fieldset>
+
+  </fieldset>
+</form>
