@@ -10,24 +10,25 @@ import { Panel } from './panel';
 export class PanelComponent implements OnInit {
   @Input() panel!: Panel;
 
+  isMoreCode = false;
+
   constructor() { }
 
   ngOnInit(): void { }
 
-  get example1Html() {
-    // const req = this.isExample1Required
-    //   ? ' required'
-    //   : '';
-    // const dis = this.isExample1Disabled
-    //   ? ' disabled'
-    //   : '';
-    // const min = this.example1Minlength === 0
-    //   ? ''
-    //   : ` [minlength]="${this.example1Minlength}"`;
-    // const max = this.example1Maxlength === 100
-    //   ? ''
-    //   : ` [maxlength]="${this.example1Maxlength}"`;
-    // return `<fc-text${req}${dis}${min}${max}></fc-text>`;
-    return '';
+  get codeHtml() {
+    const attributes = this.panel.actions.reduce((acc, cur) => {
+      if (cur.value === true || cur.value === false) {
+        if (this.isMoreCode)
+          return acc.concat(` [${cur.display}]="${cur.key}"`);
+        if (cur.key === false)
+          return acc.concat('');
+        return acc.concat(` ${cur.display}`);
+      }
+      if (cur.key === cur.value[0] && !this.isMoreCode)
+        return acc.concat('');
+      return acc.concat(` [${cur.display}]="${cur.key}"`);
+    }, [] as string[]);
+    return `<fc-${this.panel.self.display}${attributes.join('')}></fc-${this.panel.self.display}>`;
   }
 }

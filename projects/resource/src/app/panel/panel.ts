@@ -1,7 +1,6 @@
 export class Panel {
   constructor(
-    public model: any,
-    public selfActions: any[],
+    public self: PanelSlot,
     public actions: PanelSlot[] = []
   ) { }
 }

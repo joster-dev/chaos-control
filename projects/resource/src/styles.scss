@@ -25,6 +25,11 @@ code {
   background: linear-gradient(45deg, moccasin, lightcyan);
 }
 
+.f-sb {
+  display: flex;
+  justify-content: space-between;
+}
+
 .col-1-1 {
   display: grid;
   grid-template-columns: 1fr 1fr;

@@ -3,10 +3,10 @@
 </h2>
 <ul>
   <li>
-    <i>model</i> will be <code>string</code> or <code>null</code> once a user interacts with the control
+    <i>model</i> will be <code>string</code> or <code>null</code>
   </li>
 </ul>
-<ol>
+<!-- <ol>
   <li>
     if text content would overflow
     <ul>
@@ -23,14 +23,14 @@
       </li>
     </ul>
   </li>
-  <!-- <li>
+  <li>
     if <i>model</i> is empty string <code>""</code>
     <ul>
       <li>
         control will be appear empty
       </li>
     </ul>
-  </li> -->
+  </li>
   <li>
     if text is cleared by the user
     <ul>
@@ -48,7 +48,7 @@
       <li>height will be a single row</li>
     </ul>
   </li>
-</ol>
+</ol> -->
 <form #form1="ngForm">
   <fieldset class="min-width-auto">
     <legend>form</legend>
@@ -72,14 +72,14 @@
         {{example1 | json}}
       </code>
     </fieldset>
-    <fieldset>
+    <!-- <fieldset>
       <legend>
         🔍 code
       </legend>
       <code>
         {{example1Html}}
       </code>
-    </fieldset>
+    </fieldset> -->
     <fieldset>
       <legend>⚙️ actions</legend>
       <button
@@ -157,25 +157,10 @@
   </fieldset>
 </form>
 <br />
-<res-panel [panel]="example2Panel">
-  <fieldset disabled>
-    <legend>
-      ⭐ <u>disabled</u> fieldset
-    </legend>
-    <fc-text
-      [(ngModel)]="example2Panel.model"
-      name="example2"
-      label="example 2"
-      [minlength]="example2Minlength"
-      [maxlength]="example2Maxlength"
-      [required]="isExample2Required"
-    ></fc-text>
-  </fieldset>
-</res-panel>
-<!-- <form #form2="ngForm">
+<form #form2="ngForm">
   <fieldset class="min-width-auto">
     <legend>form</legend>
-    <ul>
+    <!-- <ul>
       <li>
         if required and empty
         <ul>
@@ -186,7 +171,7 @@
       <li>
         and inavlid control will be
       </li>
-    </ul>
+    </ul> -->
     <fieldset disabled>
       <legend>
         ⭐ <u>disabled</u> fieldset
@@ -280,4 +265,4 @@
       {{form2.invalid ? '❗ invalid' : '🆗 not invalid'}}
     </fieldset>
   </fieldset>
-</form> -->
+</form>

@@ -15,74 +15,66 @@
       <legend>
         🔍 <i>model</i>
       </legend>
-      <code>{{panel.model | json}}</code>
+      <code>{{panel.self.key | json}}</code>
     </fieldset>
     <fieldset>
       <legend>
         🔍 code
       </legend>
-      <code>{{example1Html}}</code>
+      <code>{{codeHtml}}</code>
+      <br />
+      <br />
+      <button
+        type="button"
+        (click)="isMoreCode = true"
+      >
+        More
+      </button>
+      <button
+        type="button"
+        (click)="isMoreCode = false"
+      >
+        Less
+      </button>
     </fieldset>
     <fieldset>
       <legend>⚙️ actions</legend>
-      <button
-        type="button"
-        (click)="panel.model = 'abc'"
-      >
-        set <i>model</i> to <code>{{'abc' | json}}</code>
-      </button>
-      <!-- <button
-        type="button"
-        (click)="example2 = 'Lorum ipsum'"
-      >
-        set <i>model</i> to <code>{{'Lorum ipsum' | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="example2 = 'L'"
-      >
-        set <i>model</i> to <code>{{'L' | json}}</code>
-      </button>
-      <br />
-      <button
-        type="button"
-        (click)="isExample2Required = true"
-      >
-        set <b>required</b> to <code>{{true | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="isExample2Required = false"
-      >
-        set <b>required</b> to <code>{{false | json}}</code>
-      </button>
-      <br />
-      <button
-        type="button"
-        (click)="example2Minlength = 5"
-      >
-        set <b>minlength</b> to <code>{{5 | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="example2Minlength = 0"
-      >
-        set <b>minlength</b> to <code>{{0 | json}}</code>
-      </button>
-      <br />
-      <button
-        type="button"
-        (click)="example2Maxlength = 10"
-      >
-        set <b>maxlength</b> to <code>{{10 | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="example2Maxlength = 100"
-      >
-        set <b>maxlength</b> to <code>{{100 | json}}</code>
-      </button> -->
-      <br />
+      <ng-container *ngFor="let value of panel.self.value">
+        <button
+          type="button"
+          (click)="panel.self.key = value"
+        >
+          set <i>model</i> to <code>{{value | json}}</code>
+        </button>
+      </ng-container>
+      <ng-container *ngFor="let action of panel.actions">
+        <div *ngIf="action.value === true || action.value === false; else array">
+          <button
+            type="button"
+            (click)="action.key = true"
+          >
+            set <b>{{action.display}}</b> to <code>{{true | json}}</code>
+          </button>
+          <button
+            type="button"
+            (click)="action.key = false"
+          >
+            set <b>{{action.display}}</b> to <code>{{false | json}}</code>
+          </button>
+        </div>
+        <ng-template #array>
+          <div>
+            <ng-container *ngFor="let actionValue of action.value">
+              <button
+                type="button"
+                (click)="action.key = actionValue"
+              >
+                set <b>{{action.display}}</b> to <code>{{actionValue | json}}</code>
+              </button>
+            </ng-container>
+          </div>
+        </ng-template>
+      </ng-container>
       <button
         type="button"
         (click)="form.reset()"
@@ -90,6 +82,5 @@
         form reset
       </button>
     </fieldset>
-
   </fieldset>
 </form>
