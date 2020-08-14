@@ -1,4 +1,4 @@
-import { Component, Input, Self } from '@angular/core';
+import { Component, Self, ViewChild, ElementRef } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
@@ -15,39 +15,11 @@ import { ControlDirective } from '../control.directive';
   ]
 })
 export class ColorComponent extends ControlDirective implements ControlValueAccessor {
-  @Input()
-  get placeholder() {
-    if (this._placeholder === null)
-      return '';
+  @ViewChild('input', { static: false }) inputElement!: ElementRef<HTMLInputElement>;
 
-    return this._placeholder;
-  }
-  set placeholder(value: any) {
-    if (value === undefined)
-      value = null;
-
-    if (!(value === null || typeof value === 'string' || /^[0-9A-Fa-f]{6}$/.test(value)))
-      throw new Error('placeholder input must be: hex string');
-
-    this._placeholder = value;
-  }
-  _placeholder: string | null = null;
-
-  get model() {
-    return this._model;
-  }
-  set model(value: string | null) {
-    if (value === '')
-      value = null;
-
-    this._model = value;
-    this.onChange(
-      this._model !== null && (/^[0-9A-Fa-f]{6}$/.test(this._model) === false)
-        ? null
-        : this._model
-    );
-  }
-  _model: string | null = null;
+  _model = '#______';
+  hex = /^[0-9A-Fa-f]{6}$/;
+  selectionStart = 0;
 
   constructor(@Self() public ngControl: NgControl) {
     super();
@@ -64,88 +36,110 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
   }
 
   get squareFill() {
-    if (this.value !== null && /^[0-9A-Fa-f]{6}$/.test(this.value))
+    if (this.value !== null && this.hex.test(this.value))
       return this.value;
-    if (this._placeholder !== null)
-      return this._placeholder;
     return null;
   }
 
-  display(part: 0 | 1 | 2) {
-    if (part === 0)
-      return 'Red';
-    if (part === 1)
-      return 'Green';
-    return 'Blue';
+  get model() {
+    return this._model;
+  }
+  set model(value: string) {
+    const removeHash = value.substr(1);
+    this._model = value;
+    this.onChange(this.hex.test(removeHash) ? removeHash : null);
   }
 
-  fill(part: 0 | 1 | 2) {
-    if (part === 0)
-      return ['FF0000', '660000'];
-    if (part === 1)
-      return ['00FF00', '006600'];
-    return ['0000FF', '000066'];
+  onClick(event: PointerEvent) {
+    const ele = event.target as HTMLInputElement;
+    this.selectionStart = ele.selectionStart || 0;
+    this.setSelection(ele);
   }
 
-  isDisabledAdd(part: 0 | 1 | 2) {
-    const idx = part * 2;
-    let value = this.value;
-    if (!(value !== null && /^[0-9A-Fa-f]{6}$/.test(value)))
-      value = this._placeholder;
-    return this.isDisabled === true
-      || value === null
-      || parseInt(value.substring(idx, idx + 2), 16) + 1 > 255;
-  }
-
-  isDisabledSubtract(part: 0 | 1 | 2) {
-    const idx = part * 2;
-    let value = this.value;
-    if (!(value !== null && /^[0-9A-Fa-f]{6}$/.test(value)))
-      value = this._placeholder;
-    return this.isDisabled === true
-      || value === null
-      || parseInt(value.substring(idx, idx + 2), 16) - 1 < 0;
-  }
-
-  add(part: 0 | 1 | 2) {
-    if (this.isDisabledAdd(part))
-      return;
-
-    let value = this.value;
-    if (!(value !== null && /^[0-9A-Fa-f]{6}$/.test(value)))
-      value = this._placeholder;
-
-    if (value === null)
-      throw new Error('cannot add null');
-
-    const idx = part * 2;
-    const newValue = parseInt(value.substring(idx, idx + 2), 16) + 1;
-    this.model = value.substring(0, idx)
-      + this.toHexString(newValue)
-      + value.substring(idx + 2, value.length);
-  }
-
-  subtract(part: 0 | 1 | 2) {
-    if (this.isDisabledSubtract(part))
-      return;
-
-    let value = this.value;
-    if (!(value !== null && /^[0-9A-Fa-f]{6}$/.test(value)))
-      value = this._placeholder;
-
-    if (value === null)
-      throw new Error('cannot subtract null');
-
-    const idx = part * 2;
-    const newValue = parseInt(value.substring(idx, idx + 2), 16) - 1;
-    this.model = value.substring(0, idx)
-      + this.toHexString(newValue)
-      + value.substring(idx + 2, value.length);
+  private setSelection(ele: HTMLInputElement) {
+    setTimeout(() => {
+      ele.selectionStart = ele.selectionEnd = this.selectionStart;
+    });
   }
 
   onBeforeinput(event: InputEvent) {
+    // const ele: HTMLInputElement = event.target;
+    console.log('beforeInput', event.data);
+
     if (event.data !== null && /^[0-9A-Fa-f]{1,6}$/.test(event.data) === false)
       event.preventDefault();
+  }
+
+  onKeydown(event: KeyboardEvent) {
+    const ele = event.target as HTMLInputElement;
+    // console.log(ele.selectionStart);
+    // console.log(ele.selectionEnd);
+    const start = ele.selectionStart;
+    if (ele.selectionStart !== null) {
+      this.selectionStart = ele.selectionStart;
+    }
+    console.log(event.key);
+    if (event.key === 'Home') {
+      event.preventDefault();
+      this.selectionStart = 1;
+      this.setSelection(ele);
+      return;
+    }
+    if (event.key === 'Delete') {
+      if (ele.selectionStart === 0 || ele.selectionStart === 7)
+        event.preventDefault();
+      if (ele.selectionStart !== null && [1, 2, 3, 4, 5, 6].includes(ele.selectionStart)) {
+        event.preventDefault();
+        this.model = this.model.substring(0, ele.selectionStart)
+          + '_'
+          + this.model.substring(ele.selectionStart + 1, this.model.length);
+        this.setSelection(ele);
+      }
+      return;
+    }
+    if (event.key === 'Backspace') {
+      if (ele.selectionStart === 1)
+        event.preventDefault();
+      if (ele.selectionStart !== null && [2, 3, 4, 5, 6, 7].includes(ele.selectionStart)) {
+        event.preventDefault();
+        this.selectionStart = ele.selectionStart - 1;
+        this.model = this.model.substring(0, this.selectionStart)
+          + '_'
+          + this.model.substring(this.selectionStart + 1, this.model.length);
+        this.setSelection(ele);
+      }
+      return;
+    }
+    if (event.key === 'ArrowUp') {
+      if (ele.selectionStart !== null) {
+        if ([1, 2].includes(ele.selectionStart))
+          this.add(0);
+        if ([3, 4].includes(ele.selectionStart))
+          this.add(1);
+        if ([5, 6, 7].includes(ele.selectionStart))
+          this.add(2);
+        this.setSelection(ele);
+        // ele.setSelectionRange(1, 3, 'backward');
+      }
+      event.preventDefault();
+    }
+    if (event.key === 'ArrowDown') {
+      if (ele.selectionStart !== null) {
+        if ([1, 2].includes(ele.selectionStart))
+          this.subtract(0);
+        if ([3, 4].includes(ele.selectionStart))
+          this.subtract(1);
+        if ([5, 6, 7].includes(ele.selectionStart))
+          this.subtract(2);
+        this.setSelection(ele);
+      }
+      event.preventDefault();
+    }
+    if (event.key === 'ArrowLeft' && ele.selectionStart === 1) {
+      event.preventDefault();
+    }
+    // console.log(event);
+    // debugger;
   }
 
   onChange(_model: string | null) { }
@@ -154,27 +148,57 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
   }
 
   writeValue(value: any): void {
-    if (value !== null && value !== undefined && typeof value !== 'string')
+    const isHex = this.hex.test(value);
+    if (value === undefined || value === null || !isHex)
+      value = '#______';
+
+    if (typeof value !== 'string')
       throw new Error('control value must be: string');
 
-    if (value === undefined || value === '' || /^[0-9A-Fa-f]{1,6}$/.test(value) === false)
-      value = null;
+    if (isHex)
+      value = `#${value}`;
 
     this._model = value;
   }
 
-  private toHexString(value: number, length = 2) {
-    let result = value.toString(16).toUpperCase();
-    while (result.length < length)
-      result = `0${result}`;
-    return result;
+  // private toHexString(value: number, length = 2) {
+  //   let result = value.toString(16).toUpperCase();
+  //   while (result.length < length)
+  //     result = `0${result}`;
+  //   return result;
+  // }
+
+  private add(part: 0 | 1 | 2) {
+    const idx = part * 2 + 1;
+    let int = parseInt(this.model.substring(idx, idx + 2), 16);
+    if (int === 255)
+      return;
+    if (isNaN(int))
+      int = 0;
+    const newValue = int + 1;
+    this.model = this.model.substring(0, idx)
+      + this.toHexString(newValue)
+      + this.model.substring(idx + 2, this.model.length);
+  }
+
+  private subtract(part: 0 | 1 | 2) {
+    const idx = part * 2 + 1;
+    let int = parseInt(this.model.substring(idx, idx + 2), 16);
+    if (int === 0)
+      return;
+    if (isNaN(int))
+      int = parseInt('FF', 16);
+    const newValue = int - 1;
+    this.model = this.model.substring(0, idx)
+      + this.toHexString(newValue)
+      + this.model.substring(idx + 2, this.model.length);
   }
 
   private invalidValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null =>
-      control.value !== null && /^[0-9A-Fa-f]{6}$/.test(control.value) === false
+      control.value !== null && this.hex.test(control.value) === false
         ? { invalid: control.value }
-        : null
+        : null;
   }
 
   private validate() {
@@ -188,4 +212,21 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
     this.ngControl.control?.setValidators(validators);
     this.ngControl.control?.updateValueAndValidity();
   }
+
+  private toHexString(value: number, length = 2) {
+    let result = value.toString(16).toUpperCase();
+    while (result.length < length)
+      result = `0${result}`;
+    return result;
+  }
+
+  // private textMask(value: string | null): string {
+  //   const base = '';
+  //   if (value === null)
+  //     return base;
+  //   const matchArray = value.match(/[0-9A-Fa-f]{1}/g);
+  //   if (matchArray === null)
+  //     return base;
+  //   return `#${matchArray[0] || '_'}${matchArray[1] || '_'}${matchArray[2] || '_'}${matchArray[3] || '_'}${matchArray[4] || '_'}${matchArray[5] || '_'}`;
+  // }
 }

@@ -16,48 +16,19 @@
   </div>
   <input
     [(ngModel)]="model"
+    #input
     autocomplete="off"
-    maxlength="6"
-    class="flex-1 margin-left-1"
+    class="margin-left-1"
     spellcheck="false"
     type="text"
     [class.active]="ngControl.control?.value !== null"
     [class.invalid]="ngControl.control?.invalid === true"
     [disabled]="isDisabled === true"
-    [placeholder]="placeholder"
     (beforeinput)="onBeforeinput($event)"
     (blur)="onTouched()"
+    (click)="onClick($event)"
+    (keydown)="onKeydown($event)"
   />
-  <ng-container *ngFor="let x of ['','','']; let idx = index">
-    <fc-button
-      class="dis-flex"
-      title="Subtract {{display(idx)}}"
-      [isDisabled]="isDisabledSubtract(idx)"
-      (blurred)="onTouched()"
-      (continuousClick)="subtract(idx)"
-    >
-      <icon
-        size="1em"
-        type="minus"
-        [fill]="fill(idx)"
-        fillRotate
-      ></icon>
-    </fc-button>
-    <fc-button
-      class="dis-flex"
-      title="Add {{display(idx)}}"
-      [isDisabled]="isDisabledAdd(idx)"
-      (blurred)="onTouched()"
-      (continuousClick)="add(idx)"
-    >
-      <icon
-        size="1em"
-        type="plus"
-        [fill]="fill(idx)"
-        fillRotate
-      ></icon>
-    </fc-button>
-  </ng-container>
 </div>
 
 <ul *ngIf="ngControl.control?.errors !== null">
