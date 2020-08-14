@@ -3,7 +3,7 @@
 </h2>
 <ul>
   <li>
-    <i>model</i> will be <code>hexString</code> or <code>null</code>
+    <i>model</i> will be <code>string</code> or <code>null</code>
   </li>
 </ul>
 <!-- <h4>todo</h4>
@@ -20,7 +20,6 @@
         label="example 1"
         [(ngModel)]="example1"
         name="example1"
-        [placeholder]="example1Placeholder"
         [disabled]="isExample1Disabled"
         [required]="isExample1Required"
       ></fc-color>
@@ -66,18 +65,6 @@
         (click)="example1 = 'ZYTAFF'"
       >
         set <i>model</i> to <code>{{'ZYTAFF' | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="example1Placeholder = '00FF00'"
-      >
-        set <b>placeholder</b> to <code>{{'00FF00' | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="example1Placeholder = null"
-      >
-        set <b>placeholder</b> to <code>{{null | json}}</code>
       </button>
       <button
         type="button"
