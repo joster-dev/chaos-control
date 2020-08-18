@@ -7,6 +7,8 @@ import { Panel } from '../panel/panel';
   styleUrls: ['./text.component.scss']
 })
 export class TextComponent {
+  testText = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula.';
+
   example1Panel: Panel;
   example1: string | null = null;
   example1Label = 'Lorum ipsum';
