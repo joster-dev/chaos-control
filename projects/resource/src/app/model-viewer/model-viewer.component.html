@@ -1,0 +1,71 @@
+<fieldset class="word-break-all">
+  <legend>
+    🔍 <i>model</i>
+  </legend>
+  <code>
+    {{model | json}}
+  </code>
+</fieldset>
+<fieldset>
+  <legend>⚙️ actions</legend>
+  <res-action-viewer
+    [model]="model"
+    (modelChange)="modelChange.emit($event)"
+    text="model"
+    [items]="items"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="label"
+    (modelChange)="labelChange.emit($event)"
+    text="label"
+    [items]="labelItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="required"
+    (modelChange)="requiredChange.emit($event)"
+    text="required"
+    [items]="boolItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="disabled"
+    (modelChange)="disabledChange.emit($event)"
+    text="disabled"
+    [items]="boolItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="minlength"
+    (modelChange)="minlengthChange.emit($event)"
+    text="minlength"
+    [items]="minlengthItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="maxlength"
+    (modelChange)="maxlengthChange.emit($event)"
+    text="maxlength"
+    [items]="maxlengthItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="min"
+    (modelChange)="minChange.emit($event)"
+    text="min"
+    [items]="minItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="max"
+    (modelChange)="maxChange.emit($event)"
+    text="max"
+    [items]="maxItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="step"
+    (modelChange)="stepChange.emit($event)"
+    text="step"
+    [items]="stepItems"
+  ></res-action-viewer>
+</fieldset>
+<fieldset>
+  <legend>
+    🔍 code
+  </legend>
+  <code>{{codeHtml}}</code>
+</fieldset>

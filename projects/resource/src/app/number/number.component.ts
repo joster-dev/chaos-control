@@ -10,26 +10,21 @@ import { Panel } from '../panel/panel';
 export class NumberComponent {
   billion = 1000000000;
 
-  example1Panel: Panel;
   example1: number | null = null;
+  example1Label = 'Lorum ipsum';
   example1Min = 0;
   example1Max = 9;
+  example1Step = 1;
   isExample1Disabled = false;
   isExample1Required = false;
 
-  constructor() {
-    // this.example1Panel = new Panel(
-    //   {
-    //     key: this.example1,
-    //     value: [this.billion, 100, 1],
-    //     display: 'text'
-    //   },
-    //   [
-    //     { key: this.isExample1Disabled, value: false, display: 'disabled' },
-    //     { key: this.isExample1Required, value: true, display: 'required' },
-    //     { key: this.example1Min, value: [0, 5], display: 'min' },
-    //     { key: this.example1Max, value: [9, 6], display: 'max' }
-    //   ]
-    // );
-  }
+  example2: number | null = null;
+  example2Label = 'Lorum ipsum';
+  example2Min = 0;
+  example2Max = 9;
+  example2Step = 1;
+  isExample2Disabled = false;
+  isExample2Required = false;
+
+  constructor() { }
 }

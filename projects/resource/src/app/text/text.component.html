@@ -49,118 +49,7 @@
     </ul>
   </li>
 </ol> -->
-<form #form1="ngForm">
-  <fieldset class="min-width-auto">
-    <legend>form</legend>
-    <fieldset>
-      <legend>⭐ fieldset</legend>
-      <fc-text
-        [(ngModel)]="example1"
-        label="example1"
-        name="example1"
-        [minlength]="example1Minlength"
-        [maxlength]="example1Maxlength"
-        [disabled]="isExample1Disabled"
-        [required]="isExample1Required"
-      ></fc-text>
-    </fieldset>
-    <fieldset class="word-break-all">
-      <legend>
-        🔍 <i>model</i>
-      </legend>
-      <code>
-        {{example1 | json}}
-      </code>
-    </fieldset>
-    <!-- <fieldset>
-      <legend>
-        🔍 code
-      </legend>
-      <code>
-        {{example1Html}}
-      </code>
-    </fieldset> -->
-    <fieldset>
-      <legend>⚙️ actions</legend>
-      <button
-        type="button"
-        (click)="example1 = testText"
-      >
-        set <i>model</i> to <code>{{testText | json}}</code>
-      </button>
-      <br />
-      <button
-        type="button"
-        (click)="isExample1Required = true"
-      >
-        set <b>required</b> to <code>{{true | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="isExample1Required = false"
-      >
-        set <b>required</b> to <code>{{false | json}}</code>
-      </button>
-      <br />
-      <button
-        type="button"
-        (click)="isExample1Disabled = true"
-      >
-        set <b>disabled</b> to <code>{{true | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="isExample1Disabled = false"
-      >
-        set <b>disabled</b> to <code>{{false | json}}</code>
-      </button>
-      <br />
-      <button
-        type="button"
-        (click)="example1Minlength = 20"
-      >
-        set <b>minlength</b> to <code>{{20 | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="example1Minlength = 0"
-      >
-        set <b>minlength</b> to <code>{{0 | json}}</code>
-      </button>
-      <br />
-      <button
-        type="button"
-        (click)="example1Maxlength = 80"
-      >
-        set <b>maxlength</b> to <code>{{80 | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="example1Maxlength = 100"
-      >
-        set <b>maxlength</b> to <code>{{100 | json}}</code>
-      </button>
-      <br />
-      <button
-        type="button"
-        (click)="form1.reset()"
-      >
-        form reset
-      </button>
-    </fieldset>
-    <fieldset>
-      <legend>🔍 form status</legend>
-      {{form1.valid ? '🆗 valid' : '❗ not valid'}}
-      <br />
-      {{form1.invalid ? '❗ invalid' : '🆗 not invalid'}}
-    </fieldset>
-  </fieldset>
-</form>
-<br />
-<form #form2="ngForm">
-  <fieldset class="min-width-auto">
-    <legend>form</legend>
-    <!-- <ul>
+<!-- <ul>
       <li>
         if required and empty
         <ul>
@@ -172,97 +61,67 @@
         and inavlid control will be
       </li>
     </ul> -->
+<form #form1="ngForm">
+  <fieldset class="min-width-auto">
+    <legend>form</legend>
+    <res-form-settings [form]="form1"></res-form-settings>
+    <fieldset>
+      <legend>⭐ example</legend>
+      <fc-text
+        [(ngModel)]="example1"
+        name="example1"
+        [label]="example1Label"
+        [minlength]="example1Minlength"
+        [maxlength]="example1Maxlength"
+        [disabled]="isExample1Disabled"
+        [required]="isExample1Required"
+      ></fc-text>
+    </fieldset>
+    <res-model-viewer
+      [(model)]="example1"
+      [items]="[testText, 'Lorum ipsum', 'L']"
+      [(label)]="example1Label"
+      [(required)]="isExample1Required"
+      [(disabled)]="isExample1Disabled"
+      [(minlength)]="example1Minlength"
+      [minlengthItems]="[20, 0]"
+      [(maxlength)]="example1Maxlength"
+      [maxlengthItems]="[80, 100]"
+      display="text"
+    ></res-model-viewer>
+  </fieldset>
+</form>
+<br />
+<form #form2="ngForm">
+  <fieldset class="min-width-auto">
+    <legend>form</legend>
+    <res-form-settings [form]="form2"></res-form-settings>
     <fieldset disabled>
       <legend>
-        ⭐ <u>disabled</u> fieldset
+        ⭐ <b>disabled</b> fieldset example
       </legend>
       <fc-text
         [(ngModel)]="example2"
         name="example2"
-        label="example 2"
+        [label]="example2Label"
         [minlength]="example2Minlength"
         [maxlength]="example2Maxlength"
+        [disabled]="isExample2Disabled"
         [required]="isExample2Required"
       ></fc-text>
     </fieldset>
-    <fieldset class="word-break-all">
-      <legend>
-        🔍 <i>model</i>
-      </legend>
-      <code>{{example2 | json}}</code>
-    </fieldset>
-    <fieldset>
-      <legend>⚙️ actions</legend>
-      <button
-        type="button"
-        (click)="example2 = testText"
-      >
-        set <i>model</i> to <code>{{testText | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="example2 = 'Lorum ipsum'"
-      >
-        set <i>model</i> to <code>{{'Lorum ipsum' | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="example2 = 'L'"
-      >
-        set <i>model</i> to <code>{{'L' | json}}</code>
-      </button>
-      <br />
-      <button
-        type="button"
-        (click)="isExample2Required = true"
-      >
-        set <b>required</b> to <code>{{true | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="isExample2Required = false"
-      >
-        set <b>required</b> to <code>{{false | json}}</code>
-      </button>
-      <br />
-      <button
-        type="button"
-        (click)="example2Minlength = 5"
-      >
-        set <b>minlength</b> to <code>{{5 | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="example2Minlength = 0"
-      >
-        set <b>minlength</b> to <code>{{0 | json}}</code>
-      </button>
-      <br />
-      <button
-        type="button"
-        (click)="example2Maxlength = 10"
-      >
-        set <b>maxlength</b> to <code>{{10 | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="example2Maxlength = 100"
-      >
-        set <b>maxlength</b> to <code>{{100 | json}}</code>
-      </button>
-      <br />
-      <button
-        type="button"
-        (click)="form2.reset()"
-      >
-        form reset
-      </button>
-    </fieldset>
-    <fieldset>
-      <legend>🔍 form status</legend>
-      {{form2.valid ? '🆗 valid' : '❗ not valid'}}
-      <br />
-      {{form2.invalid ? '❗ invalid' : '🆗 not invalid'}}
-    </fieldset>
+    <res-model-viewer
+      [(model)]="example2"
+      [items]="[testText, 'Lorum ipsum', 'L']"
+      [(label)]="example2Label"
+      [labelItems]="[testText, 'Lorum ipsum', '', undefined]"
+      [(required)]="isExample2Required"
+      [(disabled)]="isExample2Disabled"
+      [(minlength)]="example2Minlength"
+      [minlengthItems]="[5, 0]"
+      [(maxlength)]="example2Maxlength"
+      [maxlengthItems]="[10, 100]"
+      display="text"
+    ></res-model-viewer>
   </fieldset>
 </form>

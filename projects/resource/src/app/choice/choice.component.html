@@ -12,11 +12,11 @@
     <fieldset>
       <legend>⭐ fieldset</legend>
       <fc-choice
-        label="example 1"
         [(ngModel)]="example1"
         name="example1"
-        [disabled]="isExample1Disabled === true"
         [items]="data1"
+        [label]="example1Label"
+        [disabled]="isExample1Disabled === true"
         [required]="isExample1Required === true"
       ></fc-choice>
     </fieldset>

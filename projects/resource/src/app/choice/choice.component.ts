@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class ChoiceComponent {
   example1: boolean | number | null = null;
+  example1Label = 'Lorum ipsum';
   data1 = [
     { key: true, value: 'Yes' },
     { key: false, value: 'No' },

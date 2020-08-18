@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { FormControlModule } from '@joster-dev/form-control';
-// import { FormControlModule } from 'dist/form-control';
+// import { FormControlModule } from '@joster-dev/form-control';
+import { FormControlModule } from 'dist/form-control';
 
 import { AppComponent } from './app.component';
 import { NumberComponent } from './number/number.component';
@@ -13,6 +13,9 @@ import { TextComponent } from './text/text.component';
 import { ChoiceComponent } from './choice/choice.component';
 import { MultiChoiceComponent } from './multi-choice/multi-choice.component';
 import { PanelComponent } from './panel/panel.component';
+import { FormSettingsComponent } from './form-settings/form-settings.component';
+import { ModelViewerComponent } from './model-viewer/model-viewer.component';
+import { ActionViewerComponent } from './action-viewer/action-viewer.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { PanelComponent } from './panel/panel.component';
     TextComponent,
     ChoiceComponent,
     MultiChoiceComponent,
-    PanelComponent
+    PanelComponent,
+    FormSettingsComponent,
+    ModelViewerComponent,
+    ActionViewerComponent
   ],
   imports: [
     BrowserModule,
