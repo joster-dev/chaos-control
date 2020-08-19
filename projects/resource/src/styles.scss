@@ -4,13 +4,13 @@ body {
   margin: auto;
   padding: 0 0.25em;
 
-  @media (min-width: 576px) {
-    max-width: 540px;
-  }
-
-  @media (min-width: 768px) {
+  @media screen {
     max-width: 720px;
   }
+}
+
+.active {
+  border-style: double;
 }
 
 .min-width-auto {

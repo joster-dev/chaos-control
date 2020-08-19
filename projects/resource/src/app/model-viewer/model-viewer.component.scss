@@ -1,0 +1,7 @@
+:host > fieldset {
+  border-color: transparent;
+
+  > res-action-viewer:not(:last-child) {
+    margin-bottom: 0.25em;
+  }
+}

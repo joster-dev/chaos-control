@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { KeyValue } from '@angular/common';
 
 @Component({
   selector: 'res-choice',
@@ -8,6 +9,16 @@ import { Component } from '@angular/core';
 export class ChoiceComponent {
   example1: boolean | number | null = null;
   example1Label = 'Lorum ipsum';
+  isExample1Disabled = false;
+  isExample1Required = false;
+  example1Items: KeyValue<boolean | number, string>[];
+
+  example2: boolean | number | null = null;
+  example2Label = 'Lorum ipsum';
+  isExample2Disabled = false;
+  isExample2Required = false;
+  example2Items: KeyValue<boolean | number, string>[];
+
   data1 = [
     { key: true, value: 'Yes' },
     { key: false, value: 'No' },
@@ -19,15 +30,13 @@ export class ChoiceComponent {
     { key: 6, value: 'Six' },
     { key: 7, value: 'Seven' }
   ];
-  isExample1Disabled = false;
-  isExample1Required = false;
-
-  example2: boolean | null = null;
   data2 = [
     { key: true, value: 'Yes' },
     { key: false, value: 'No' }
   ];
-  isExample2Required = false;
 
-  constructor() { }
+  constructor() {
+    this.example1Items = this.data1;
+    this.example2Items = this.data2;
+  }
 }

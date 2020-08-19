@@ -1,7 +1,7 @@
 :host {
   display: block;
-}
 
-.active {
-  border-style: double;
+  &:empty {
+    display: none;
+  }
 }

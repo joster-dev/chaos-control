@@ -9,151 +9,57 @@
 <form #form1="ngForm">
   <fieldset>
     <legend>form</legend>
+    <res-form-settings [form]="form1"></res-form-settings>
     <fieldset>
       <legend>⭐ fieldset</legend>
       <fc-choice
         [(ngModel)]="example1"
         name="example1"
-        [items]="data1"
+        [items]="example1Items"
         [label]="example1Label"
-        [disabled]="isExample1Disabled === true"
-        [required]="isExample1Required === true"
+        [disabled]="isExample1Disabled"
+        [required]="isExample1Required"
       ></fc-choice>
     </fieldset>
-    <fieldset>
-      <legend>
-        🔍 <i>model</i>
-      </legend>
-      <code>
-        {{example1 | json}}
-      </code>
-    </fieldset>
-    <fieldset>
-      <legend>
-        🔍 <u>items</u>
-      </legend>
-      <code>{{data1 | json}}</code>
-    </fieldset>
-    <fieldset>
-      <legend>⚙️ actions</legend>
-      <button
-        type="button"
-        (click)="example1 = true"
-      >
-        set <i>model</i> to <code>true</code>
-      </button>
-      <button
-        type="button"
-        (click)="example1 = 8"
-      >
-        set <i>model</i> to <code>{{8 | json}}</code>
-      </button>
-      <br />
-      <button
-        type="button"
-        (click)="isExample1Required = true"
-      >
-        set <b>required</b> to <code>{{true | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="isExample1Required = false"
-      >
-        set <b>required</b> to <code>{{false | json}}</code>
-      </button>
-      <br />
-      <button
-        type="button"
-        (click)="isExample1Disabled = true"
-      >
-        set <b>disabled</b> to <code>{{true | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="isExample1Disabled = false"
-      >
-        set <b>disabled</b> to <code>{{false | json}}</code>
-      </button>
-      <br />
-      <button
-        type="button"
-        (click)="form1.reset()"
-      >
-        form reset
-      </button>
-    </fieldset>
-    <fieldset>
-      <legend>🔍 form status</legend>
-      {{form1.valid === true ? '🆗 valid' : '❗ not valid'}}
-      <br />
-      {{form1.invalid ? '❗ invalid' : '🆗 not invalid'}}
-    </fieldset>
+    <res-model-viewer
+      [(model)]="example1"
+      [modelItems]="[true, 2, 8, 99]"
+      [(label)]="example1Label"
+      [(required)]="isExample1Required"
+      [(disabled)]="isExample1Disabled"
+      [(choice)]="example1Items"
+      [choiceItems]="[data1, data2]"
+      display="choice"
+    ></res-model-viewer>
   </fieldset>
 </form>
 <br />
 <form #form2="ngForm">
   <fieldset>
     <legend>form</legend>
+    <res-form-settings [form]="form2"></res-form-settings>
     <fieldset disabled>
       <legend>
         ⭐ <b>disabled</b> fieldset
       </legend>
       <fc-choice
-        label="example 2"
         [(ngModel)]="example2"
         name="example2"
-        [items]="data2"
-        [required]="isExample2Required === true"
+        [label]="example2Label"
+        [disabled]="isExample2Disabled"
+        [required]="isExample2Required"
+        [items]="example2Items"
       ></fc-choice>
     </fieldset>
-    <fieldset>
-      <legend>
-        🔍 <i>model</i>
-      </legend>
-      <code>
-        {{example2 | json}}
-      </code>
-    </fieldset>
-    <fieldset>
-      <legend>
-        🔍 <u>items</u>
-      </legend>
-      <code>{{data2 | json}}</code>
-    </fieldset>
-    <fieldset>
-      <legend>⚙️ actions</legend>
-      <button
-        type="button"
-        (click)="example2 = true"
-      >
-        set <i>model</i> to <code>true</code>
-      </button>
-      <br />
-      <button
-        type="button"
-        (click)="isExample2Required = true"
-      >
-        set <b>required</b> to <code>{{true | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="isExample2Required = false"
-      >
-        set <b>required</b> to <code>{{false | json}}</code>
-      </button>
-      <br />
-      <button
-        type="button"
-        (click)="form2.reset()"
-      >
-        form reset
-      </button>
-    </fieldset>
-    <fieldset>
-      <legend>🔍 form status</legend>
-      {{form2.valid === true ? '🆗 valid' : '❗ not valid'}}
-      <br />
-      {{form2.invalid ? '❗ invalid' : '🆗 not invalid'}}
-    </fieldset>
+    <res-model-viewer
+      [(model)]="example2"
+      [modelItems]="[true, 2, 8, 99]"
+      [(label)]="example2Label"
+      [(required)]="isExample2Required"
+      [(disabled)]="isExample2Disabled"
+      [(choice)]="example2Items"
+      [choiceItems]="[data1, data2]"
+      display="choice"
+    ></res-model-viewer>
   </fieldset>
 </form>

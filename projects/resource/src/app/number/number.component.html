@@ -23,7 +23,7 @@
     </fieldset>
     <res-model-viewer
       [(model)]="example1"
-      [items]="[0, -1, 11, billion]"
+      [modelItems]="[0, -1, 11, billion]"
       [(label)]="example1Label"
       [(required)]="isExample1Required"
       [(disabled)]="isExample1Disabled"
@@ -37,12 +37,13 @@
     ></res-model-viewer>
   </fieldset>
 </form>
+<br />
 <form #form2="ngForm">
   <fieldset class="min-width-auto">
     <legend>form</legend>
     <res-form-settings [form]="form2"></res-form-settings>
     <fieldset disabled>
-      <legend>⭐ disabled fieldset example</legend>
+      <legend>⭐ <b>disabled</b> fieldset</legend>
       <fc-number
         [(ngModel)]="example2"
         name="example2"
@@ -56,7 +57,7 @@
     </fieldset>
     <res-model-viewer
       [(model)]="example2"
-      [items]="[0, -1, 11, billion]"
+      [modelItems]="[0, -1, 11, billion]"
       [(label)]="example2Label"
       [(required)]="isExample2Required"
       [(disabled)]="isExample2Disabled"

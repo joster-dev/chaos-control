@@ -71,15 +71,15 @@
         [(ngModel)]="example1"
         name="example1"
         [label]="example1Label"
-        [minlength]="example1Minlength"
-        [maxlength]="example1Maxlength"
         [disabled]="isExample1Disabled"
         [required]="isExample1Required"
+        [minlength]="example1Minlength"
+        [maxlength]="example1Maxlength"
       ></fc-text>
     </fieldset>
     <res-model-viewer
       [(model)]="example1"
-      [items]="[testText, 'Lorum ipsum', 'L']"
+      [modelItems]="[testText, 'Lorum ipsum', 'L']"
       [(label)]="example1Label"
       [(required)]="isExample1Required"
       [(disabled)]="isExample1Disabled"
@@ -112,9 +112,8 @@
     </fieldset>
     <res-model-viewer
       [(model)]="example2"
-      [items]="[testText, 'Lorum ipsum', 'L']"
+      [modelItems]="[testText, 'Lorum ipsum', 'L']"
       [(label)]="example2Label"
-      [labelItems]="[testText, 'Lorum ipsum', '', undefined]"
       [(required)]="isExample2Required"
       [(disabled)]="isExample2Disabled"
       [(minlength)]="example2Minlength"

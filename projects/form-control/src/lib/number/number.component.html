@@ -1,10 +1,9 @@
-<label *ngIf="label !== undefined">
+<label *ngIf="label !== null">
   {{label}}
   <span *ngIf="required === true">
     *
   </span>
 </label>
-
 
 <div class="dis-flex flex-stretch">
   <input
@@ -23,7 +22,7 @@
     title="Subtract"
     [isDisabled]="isDisabledSubtract === true"
     (blurred)="onTouched()"
-    (continuousClick)="subtract()"
+    (clicked)="subtract()"
   >
     <icon
       type="minus"
@@ -37,7 +36,7 @@
     title="Add"
     [isDisabled]="isDisabledAdd === true"
     (blurred)="onTouched()"
-    (continuousClick)="add()"
+    (clicked)="add()"
   >
     <icon
       type="plus"

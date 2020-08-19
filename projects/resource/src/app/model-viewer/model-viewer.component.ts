@@ -6,14 +6,12 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./model-viewer.component.scss']
 })
 export class ModelViewerComponent {
-  // [key: string]: any;
-
   @Input() display: string;
 
   @Input() model: any;
   @Output() modelChange = new EventEmitter();
 
-  @Input() items: any[] = [];
+  @Input() modelItems: any[] = [];
 
   @Input() label: string;
   @Output() labelChange = new EventEmitter();
@@ -21,8 +19,8 @@ export class ModelViewerComponent {
   @Input() labelItems = [
     'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula.',
     'Lorem ipsum',
-    'L',
-    undefined
+    '',
+    null
   ];
 
   @Input() required: boolean;
@@ -56,6 +54,11 @@ export class ModelViewerComponent {
 
   @Input() stepItems: number[] = [];
 
+  @Input() choice: any;
+  @Output() choiceChange = new EventEmitter();
+
+  @Input() choiceItems: any[] = [];
+
   boolItems = [true, false];
   isMoreCode = false;
   codeProps = [
@@ -66,22 +69,30 @@ export class ModelViewerComponent {
     'maxlength',
     'min',
     'max',
-    'step'
+    'step',
+    'items'
   ];
   testText = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula.';
 
   constructor() { }
 
-  private get codeHtmlAttributes() {
+  get codeHtmlAttributes() {
     return this.codeProps
       .filter(prop => this[prop] !== undefined)
       .map(prop => {
         if (typeof this[prop] === 'string')
           return ` ${prop}="${this[prop]}"`;
         return ` [${prop}]="${this[prop]}"`;
-      });
+      })
+      .concat(this.choiceItems.length === 0 ? [] : ` [items]="data${this.choiceItems.indexOf(this.choice) + 1}"`);
   }
 
+  get codeHtmlStart() {
+    return `<fc-${this.display}`;
+  }
+  get codeHtmlEnd() {
+    return `></fc-${this.display}>`;
+  }
   get codeHtml() {
     return `<fc-${this.display} ${this.codeHtmlAttributes.join(' ')}></fc-${this.display}>`;
   }

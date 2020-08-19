@@ -12,7 +12,7 @@
     [model]="model"
     (modelChange)="modelChange.emit($event)"
     text="model"
-    [items]="items"
+    [items]="modelItems"
   ></res-action-viewer>
   <res-action-viewer
     [model]="label"
@@ -62,10 +62,38 @@
     text="step"
     [items]="stepItems"
   ></res-action-viewer>
+  <fieldset *ngFor="let item of choiceItems; let idx = index">
+    <legend>
+      <button
+        type="button"
+        [class.active]="choice === item"
+        (click)="choiceChange.emit(item)"
+      >
+        set
+        <b>items</b>
+        to
+        <code>data{{idx + 1}}</code>
+      </button>
+    </legend>
+    <code>
+      {{item | json}}
+    </code>
+  </fieldset>
+  <ng-container *ngIf="choiceItems.length > 0">
+
+  </ng-container>
 </fieldset>
 <fieldset>
   <legend>
-    🔍 code
+    🔍 html code
   </legend>
-  <code>{{codeHtml}}</code>
+  <!-- <code>{{codeHtml}}</code>
+  <hr /> -->
+  <code>{{codeHtmlStart}}</code>
+  <br />
+  <ng-container *ngFor="let item of codeHtmlAttributes">
+    <code>&nbsp;&nbsp;{{item}}</code>
+    <br />
+  </ng-container>
+  <code>{{codeHtmlEnd}}</code>
 </fieldset>
