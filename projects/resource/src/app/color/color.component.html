@@ -6,79 +6,28 @@
     <i>model</i> will be <code>string</code> or <code>null</code>
   </li>
 </ul>
-<!-- <h4>todo</h4>
-<ul>
-  <li>text mask for #______</li>
-  <li>support for up/down keys</li>
-</ul> -->
 <form #form1="ngForm">
   <fieldset class="min-width-auto">
     <legend>form</legend>
+    <res-form-settings [form]="form1"></res-form-settings>
     <fieldset class="word-break-all">
       <legend>⭐ fieldset</legend>
       <fc-color
-        label="example 1"
         [(ngModel)]="example1"
         name="example1"
+        [label]="example1Label"
         [disabled]="isExample1Disabled"
         [required]="isExample1Required"
       ></fc-color>
     </fieldset>
-    <fieldset>
-      <legend>
-        🔍 <i>model</i>
-      </legend>
-      <code>
-        {{example1 | json}}
-      </code>
-    </fieldset>
-    <fieldset>
-      <legend>⚙️ options</legend>
-      <label>
-        <input
-          type="checkbox"
-          [(ngModel)]="isExample1Disabled"
-          name="isExample1Disabled"
-        />
-        disabled
-      </label>
-      <br />
-      <label>
-        <input
-          type="checkbox"
-          [(ngModel)]="isExample1Required"
-          name="isExample1Required"
-        />
-        required
-      </label>
-    </fieldset>
-    <fieldset>
-      <legend>⚙️ actions</legend>
-      <button
-        type="button"
-        (click)="example1 = '5C4DFF'"
-      >
-        set <i>model</i> to <code>{{'5C4DFF' | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="example1 = 'ZYTAFF'"
-      >
-        set <i>model</i> to <code>{{'ZYTAFF' | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="form1.reset()"
-      >
-        form reset
-      </button>
-    </fieldset>
-    <fieldset>
-      <legend>🔍 form status</legend>
-      {{form1.valid === true ? '🆗 valid' : '❗ not valid'}}
-      <br />
-      {{form1.invalid ? '❗ invalid' : '🆗 not invalid'}}
-    </fieldset>
+    <res-model-viewer
+      [(model)]="example1"
+      [modelItems]="['5C4DFF', 'ZYTAFF']"
+      [(label)]="example1Label"
+      [(required)]="isExample1Required"
+      [(disabled)]="isExample1Disabled"
+      display="color"
+    ></res-model-viewer>
   </fieldset>
 </form>
 <br />
@@ -90,57 +39,20 @@
         ⭐ <u>disabled</u> fieldset
       </legend>
       <fc-color
-        label="example 2"
         [(ngModel)]="example2"
         name="example2"
-        [required]="isExample2Required === true"
+        [label]="example2Label"
+        [disabled]="isExample2Disabled"
+        [required]="isExample2Required"
       ></fc-color>
     </fieldset>
-    <fieldset>
-      <legend>
-        🔍 <i>model</i>
-      </legend>
-      <code>
-        {{example2 | json}}
-      </code>
-    </fieldset>
-    <fieldset>
-      <legend>⚙️ options</legend>
-      <label>
-        <input
-          type="checkbox"
-          [(ngModel)]="isExample2Required"
-          name="isExample2Required"
-        />
-        required
-      </label>
-    </fieldset>
-    <fieldset>
-      <legend>⚙️ actions</legend>
-      <button
-        type="button"
-        (click)="example2 = '5C4DFF'"
-      >
-        set <i>model</i> to <code>{{'5C4DFF' | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="example2 = 'ZYTAFF'"
-      >
-        set <i>model</i> to <code>{{'ZYTAFF' | json}}</code>
-      </button>
-      <button
-        type="button"
-        (click)="form2.reset()"
-      >
-        form reset
-      </button>
-    </fieldset>
-    <fieldset>
-      <legend>🔍 form status</legend>
-      {{form2.valid === true ? '🆗 valid' : '❗ not valid'}}
-      <br />
-      {{form2.invalid ? '❗ invalid' : '🆗 not invalid'}}
-    </fieldset>
+    <res-model-viewer
+      [(model)]="example2"
+      [modelItems]="['5C4DFF', 'ZYTAFF']"
+      [(label)]="example2Label"
+      [(required)]="isExample2Required"
+      [(disabled)]="isExample2Disabled"
+      display="color"
+    ></res-model-viewer>
   </fieldset>
 </form>

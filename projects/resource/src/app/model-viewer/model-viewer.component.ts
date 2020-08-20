@@ -59,6 +59,11 @@ export class ModelViewerComponent {
 
   @Input() choiceItems: any[] = [];
 
+  @Input() limit: number;
+  @Output() limitChange = new EventEmitter();
+
+  @Input() limitItems: number[] = [];
+
   boolItems = [true, false];
   isMoreCode = false;
   codeProps = [
