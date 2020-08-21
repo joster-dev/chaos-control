@@ -52,8 +52,10 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
 
   onClick(event: PointerEvent) {
     const ele = event.target as HTMLInputElement;
-    this.selectionStart = ele.selectionStart || 0;
-    this.setSelection(ele);
+    if (ele.selectionStart === null || ele.selectionStart === 0) {
+      this.selectionStart = 1;
+      this.setSelection(ele);
+    }
   }
 
   private setSelection(ele: HTMLInputElement) {
@@ -63,11 +65,22 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
   }
 
   onBeforeinput(event: InputEvent) {
-    // const ele: HTMLInputElement = event.target;
-    console.log('beforeInput', event.data);
+    event.preventDefault();
+    if (event.data === null || !/^[0-9A-Fa-f]{1,6}$/.test(event.data))
+      return;
 
-    if (event.data !== null && /^[0-9A-Fa-f]{1,6}$/.test(event.data) === false)
-      event.preventDefault();
+    const ele = event.target as HTMLInputElement;
+    if (ele.selectionStart === null || ele.selectionStart === 0)
+      return;
+    this.selectionStart = ele.selectionStart;
+
+    if (7 - this.selectionStart >= event.data.length) {
+      this.model = this.model.substring(0, this.selectionStart)
+        + event.data.toUpperCase()
+        + this.model.substring(this.selectionStart + event.data.length, this.model.length);
+      this.selectionStart = this.selectionStart + event.data.length;
+      this.setSelection(ele);
+    }
   }
 
   onKeydown(event: KeyboardEvent) {
@@ -75,9 +88,8 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
     // console.log(ele.selectionStart);
     // console.log(ele.selectionEnd);
     const start = ele.selectionStart;
-    if (ele.selectionStart !== null) {
+    if (ele.selectionStart !== null)
       this.selectionStart = ele.selectionStart;
-    }
     console.log(event.key);
     if (event.key === 'Home') {
       event.preventDefault();
@@ -135,11 +147,8 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
       }
       event.preventDefault();
     }
-    if (event.key === 'ArrowLeft' && ele.selectionStart === 1) {
+    if (event.key === 'ArrowLeft' && ele.selectionStart === 1)
       event.preventDefault();
-    }
-    // console.log(event);
-    // debugger;
   }
 
   onChange(_model: string | null) { }
@@ -219,14 +228,4 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
       result = `0${result}`;
     return result;
   }
-
-  // private textMask(value: string | null): string {
-  //   const base = '';
-  //   if (value === null)
-  //     return base;
-  //   const matchArray = value.match(/[0-9A-Fa-f]{1}/g);
-  //   if (matchArray === null)
-  //     return base;
-  //   return `#${matchArray[0] || '_'}${matchArray[1] || '_'}${matchArray[2] || '_'}${matchArray[3] || '_'}${matchArray[4] || '_'}${matchArray[5] || '_'}`;
-  // }
 }
