@@ -1,6 +1,6 @@
 {
   "name": "@joster-dev/form-control",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
@@ -8,7 +8,10 @@
   "keywords": [
     "form",
     "text",
-    "number"
+    "number",
+    "choice",
+    "multi-choice",
+    "color"
   ],
   "repository": {
     "type": "git",
