@@ -19,6 +19,7 @@
     #input
     autocomplete="off"
     class="margin-left-1"
+    size="6"
     spellcheck="false"
     type="text"
     [class.active]="ngControl.control?.value !== null"
@@ -27,7 +28,6 @@
     (beforeinput)="onBeforeinput($event)"
     (blur)="onTouched()"
     (click)="onClick($event)"
-    (keydown)="onKeydown($event)"
   />
 </div>
 
