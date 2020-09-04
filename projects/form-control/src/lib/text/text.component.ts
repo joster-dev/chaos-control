@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, Renderer2, Self, ViewChild } from '@angular/core';
-import { ControlValueAccessor, NgControl, ValidatorFn, Validators } from '@angular/forms';
+import { ControlValueAccessor, NgControl, ValidatorFn, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 
 import { ControlDirective } from '../control.directive';
 
@@ -110,10 +110,17 @@ export class TextComponent extends ControlDirective implements ControlValueAcces
     setTimeout(() => this.setTextareaHeight());
   }
 
+  private maxlengthValidator(maxlength: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null =>
+      control.value !== null && maxlength > 0 && control.value.length > maxlength
+        ? { maxlength: control.value }
+        : null;
+  }
+
   private validate() {
     const validators: ValidatorFn[] = [
       Validators.minLength(this.minlength),
-      Validators.maxLength(this.maxlength)
+      this.maxlengthValidator(this.maxlength)
     ];
 
     if (this.required === true)

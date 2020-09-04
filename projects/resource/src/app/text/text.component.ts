@@ -15,7 +15,7 @@ export class TextComponent {
   isExample1Disabled = false;
   isExample1Required = false;
   example1Minlength = 0;
-  example1Maxlength = 100;
+  example1Maxlength = 0;
 
   example2Panel: Panel;
   example2: string | null = null;
@@ -23,7 +23,7 @@ export class TextComponent {
   isExample2Disabled = false;
   isExample2Required = false;
   example2Minlength = 0;
-  example2Maxlength = 100;
+  example2Maxlength = 0;
 
   constructor() { }
 }
