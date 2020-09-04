@@ -1,6 +1,6 @@
 {
   "name": "@joster-dev/form-control",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
@@ -24,9 +24,9 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^10.0.3",
-    "@angular/core": "^10.0.3",
-    "@joster-dev/icon": "^0.0.2"
+    "@angular/common": "^10.1.0",
+    "@angular/core": "^10.1.0",
+    "@joster-dev/icon": "^0.0.4"
   },
   "dependencies": {
     "tslib": "^2.0.0"

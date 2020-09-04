@@ -53,7 +53,7 @@ export class TextComponent extends ControlDirective implements ControlValueAcces
     this._maxlength = value;
     this.validation.next();
   }
-  _maxlength = 100;
+  _maxlength = 0;
 
   @ViewChild('textarea', { static: true }) textareaElement!: ElementRef;
   @ViewChild('textareaHidden', { static: true }) textareaHiddenElement!: ElementRef;
