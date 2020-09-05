@@ -30,30 +30,30 @@ export class TextComponent extends ControlDirective implements ControlValueAcces
   _placeholder?: string;
 
   @Input()
-  get minlength() {
-    return this._minlength;
+  get minLength() {
+    return this._minLength;
   }
-  set minlength(value: any) {
+  set minLength(value: any) {
     if (typeof value !== 'number')
       throw new Error('minlength input must be: number');
 
-    this._minlength = value;
+    this._minLength = value;
     this.validation.next();
   }
-  _minlength = 0;
+  _minLength = 0;
 
   @Input()
-  get maxlength() {
-    return this._maxlength;
+  get maxLength() {
+    return this._maxLength;
   }
-  set maxlength(value: any) {
+  set maxLength(value: any) {
     if (typeof value !== 'number')
       throw new Error('maxlength input must be: number');
 
-    this._maxlength = value;
+    this._maxLength = value;
     this.validation.next();
   }
-  _maxlength = 0;
+  _maxLength = 0;
 
   @ViewChild('textarea', { static: true }) textareaElement!: ElementRef;
   @ViewChild('textareaHidden', { static: true }) textareaHiddenElement!: ElementRef;
@@ -111,6 +111,7 @@ export class TextComponent extends ControlDirective implements ControlValueAcces
   }
 
   private maxlengthValidator(maxlength: number): ValidatorFn {
+
     return (control: AbstractControl): ValidationErrors | null =>
       control.value !== null && maxlength > 0 && control.value.length > maxlength
         ? { maxlength: control.value }
@@ -119,8 +120,8 @@ export class TextComponent extends ControlDirective implements ControlValueAcces
 
   private validate() {
     const validators: ValidatorFn[] = [
-      Validators.minLength(this.minlength),
-      this.maxlengthValidator(this.maxlength)
+      Validators.minLength(this.minLength),
+      this.maxlengthValidator(this.maxLength)
     ];
 
     if (this.required === true)

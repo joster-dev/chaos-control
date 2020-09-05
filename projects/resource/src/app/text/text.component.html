@@ -63,18 +63,18 @@
     </ul> -->
 <form #form1="ngForm">
   <fieldset class="min-width-auto">
-    <legend>form</legend>
+    <legend>example 1 form</legend>
     <res-form-settings [form]="form1"></res-form-settings>
     <fieldset>
-      <legend>⭐ example</legend>
+      <legend>⭐ fieldset</legend>
       <fc-text
         [(ngModel)]="example1"
         name="example1"
         [label]="example1Label"
         [disabled]="isExample1Disabled"
         [required]="isExample1Required"
-        [minlength]="example1Minlength"
-        [maxlength]="example1Maxlength"
+        [minLength]="example1Minlength"
+        [maxLength]="example1Maxlength"
       ></fc-text>
     </fieldset>
     <res-model-viewer
@@ -91,14 +91,13 @@
     ></res-model-viewer>
   </fieldset>
 </form>
-<br />
 <form #form2="ngForm">
   <fieldset class="min-width-auto">
-    <legend>form</legend>
+    <legend>example 2 form</legend>
     <res-form-settings [form]="form2"></res-form-settings>
     <fieldset disabled>
       <legend>
-        ⭐ <b>disabled</b> fieldset example
+        ⭐ <b>disabled</b> fieldset
       </legend>
       <fc-text
         [(ngModel)]="example2"

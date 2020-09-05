@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { Panel } from '../panel/panel';
-
 @Component({
   selector: 'res-number',
   templateUrl: './number.component.html',

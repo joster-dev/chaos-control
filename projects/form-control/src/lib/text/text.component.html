@@ -14,8 +14,8 @@
     [(ngModel)]="model"
     class="flex-1"
     rows="1"
-    [minlength]="minlength"
-    [maxlength]="maxlength"
+    [minlength]="minLength"
+    [maxlength]="maxLength"
     [class.active]="_model !== null"
     [class.invalid]="ngControl.control?.invalid === true"
     [disabled]="isDisabled === true"
@@ -36,9 +36,9 @@
 
 <ul *ngIf="ngControl.control?.errors !== null">
   <li *ngIf="ngControl.control?.errors.minlength !== undefined">
-    minimum length is {{minlength}}
+    minimum length is {{minLength}}
   </li>
   <li *ngIf="ngControl.control?.errors.maxlength !== undefined">
-    maximum length is {{maxlength}}
+    maximum length is {{maxLength}}
   </li>
 </ul>

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Panel } from '../panel/panel';
 
 @Component({
   selector: 'res-text',
@@ -9,7 +8,6 @@ import { Panel } from '../panel/panel';
 export class TextComponent {
   testText = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula.';
 
-  example1Panel: Panel;
   example1: string | null = null;
   example1Label = 'Lorum ipsum';
   isExample1Disabled = false;
@@ -17,7 +15,6 @@ export class TextComponent {
   example1Minlength = 0;
   example1Maxlength = 0;
 
-  example2Panel: Panel;
   example2: string | null = null;
   example2Label = 'Lorum ipsum';
   isExample2Disabled = false;

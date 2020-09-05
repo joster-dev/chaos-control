@@ -25,21 +25,9 @@ code {
   background: linear-gradient(45deg, moccasin, lightcyan);
 }
 
-.ta-c {
-  text-align: center;
-}
-
-.f-sb {
-  display: flex;
-  justify-content: space-between;
-}
-
-.col-1-1 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.col-2-1 {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
+ul,
+ul li,
+ol,
+ol li {
+  margin-top: 0.5em;
 }

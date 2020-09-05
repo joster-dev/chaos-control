@@ -12,7 +12,6 @@ import { ColorComponent } from './color/color.component';
 import { TextComponent } from './text/text.component';
 import { ChoiceComponent } from './choice/choice.component';
 import { MultiChoiceComponent } from './multi-choice/multi-choice.component';
-import { PanelComponent } from './panel/panel.component';
 import { FormSettingsComponent } from './form-settings/form-settings.component';
 import { ModelViewerComponent } from './model-viewer/model-viewer.component';
 import { ActionViewerComponent } from './action-viewer/action-viewer.component';
@@ -26,7 +25,6 @@ import { ActionViewerComponent } from './action-viewer/action-viewer.component';
     TextComponent,
     ChoiceComponent,
     MultiChoiceComponent,
-    PanelComponent,
     FormSettingsComponent,
     ModelViewerComponent,
     ActionViewerComponent

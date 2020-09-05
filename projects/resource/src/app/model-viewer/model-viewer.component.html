@@ -90,10 +90,10 @@
   <!-- <code>{{codeHtml}}</code>
   <hr /> -->
   <code>{{codeHtmlStart}}</code>
-  <br />
-  <ng-container *ngFor="let item of codeHtmlAttributes">
-    <code>&nbsp;&nbsp;{{item}}</code>
-    <br />
-  </ng-container>
+  <div *ngFor="let item of codeHtmlAttributes">
+    <div>
+      <code>&nbsp;&nbsp;{{item}}</code>
+    </div>
+  </div>
   <code>{{codeHtmlEnd}}</code>
 </fieldset>
