@@ -16,10 +16,7 @@
   </div>
   <input
     [(ngModel)]="model"
-    #input
-    autocomplete="off"
-    class="margin-left-1"
-    size="6"
+    class="flex-1 margin-left-1"
     spellcheck="false"
     type="text"
     [class.active]="ngControl.control?.value !== null"
@@ -28,6 +25,7 @@
     (beforeinput)="onBeforeinput($event)"
     (blur)="onTouched()"
     (click)="onClick($event)"
+    (keydown)="onKeydown($event)"
   />
 </div>
 

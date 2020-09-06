@@ -1,4 +1,4 @@
-import { Component, Self, ViewChild, ElementRef } from '@angular/core';
+import { Component, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
@@ -15,8 +15,6 @@ import { ControlDirective } from '../control.directive';
   ]
 })
 export class ColorComponent extends ControlDirective implements ControlValueAccessor {
-  @ViewChild('input', { static: false }) inputElement!: ElementRef<HTMLInputElement>;
-
   _model = '#______';
   hex = /^[0-9A-Fa-f]{6}$/;
   selectionStart = 0;
@@ -64,15 +62,68 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
     });
   }
 
+  private insertText(text: string) {
+    this.model = this.model.substring(0, this.selectionStart)
+      + text
+      + this.model.substring(this.selectionStart + text.length, this.model.length);
+  }
+
   onBeforeinput(event: InputEvent) {
     event.preventDefault();
-    if (event.data === null || !/^[0-9A-Fa-f]{1,6}$/.test(event.data))
-      return;
-
     const ele = event.target as HTMLInputElement;
-    if (ele.selectionStart === null || ele.selectionStart === 0)
+    if (ele.selectionStart === null || ele.selectionEnd === null)
       return;
     this.selectionStart = ele.selectionStart;
+    if (event.data === null) {
+      if (event.inputType === 'deleteContentForward') {
+        if (this.selectionStart === 7)
+          return;
+        if (this.selectionStart === ele.selectionEnd) {
+          if (this.selectionStart === 0) {
+            this.selectionStart = 1;
+            this.setSelection(ele);
+            return;
+          }
+          this.insertText('_');
+          this.selectionStart = this.selectionStart + 1;
+          this.setSelection(ele);
+          return;
+        }
+        if (this.selectionStart === 0)
+          this.selectionStart = 1;
+        this.insertText('_'.repeat(ele.selectionEnd - this.selectionStart));
+        this.setSelection(ele);
+      }
+      else if (event.inputType === 'deleteContentBackward') {
+        if (this.selectionStart === ele.selectionEnd) {
+          if (this.selectionStart <= 1) {
+            this.selectionStart = 1;
+            this.setSelection(ele);
+            return;
+          }
+          this.selectionStart = this.selectionStart - 1;
+          this.insertText('_');
+          this.setSelection(ele);
+          return;
+        }
+        if (this.selectionStart === 0)
+          this.selectionStart = 1;
+        this.insertText('_'.repeat(ele.selectionEnd - this.selectionStart));
+        this.setSelection(ele);
+      }
+      return;
+    }
+
+    if (/^#[0-9A-Fa-f]{6}$/.test(event.data)) {
+      this.model = event.data;
+      return;
+    }
+
+    if (!/^[0-9A-Fa-f]{1,6}$/.test(event.data))
+      return;
+
+    if (this.selectionStart === 0)
+      this.selectionStart = 1;
 
     if (7 - this.selectionStart >= event.data.length) {
       this.model = this.model.substring(0, this.selectionStart)
@@ -85,41 +136,10 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
 
   onKeydown(event: KeyboardEvent) {
     const ele = event.target as HTMLInputElement;
-    // console.log(ele.selectionStart);
-    // console.log(ele.selectionEnd);
-    const start = ele.selectionStart;
-    if (ele.selectionStart !== null)
-      this.selectionStart = ele.selectionStart;
-    console.log(event.key);
     if (event.key === 'Home') {
       event.preventDefault();
       this.selectionStart = 1;
       this.setSelection(ele);
-      return;
-    }
-    if (event.key === 'Delete') {
-      if (ele.selectionStart === 0 || ele.selectionStart === 7)
-        event.preventDefault();
-      if (ele.selectionStart !== null && [1, 2, 3, 4, 5, 6].includes(ele.selectionStart)) {
-        event.preventDefault();
-        this.model = this.model.substring(0, ele.selectionStart)
-          + '_'
-          + this.model.substring(ele.selectionStart + 1, this.model.length);
-        this.setSelection(ele);
-      }
-      return;
-    }
-    if (event.key === 'Backspace') {
-      if (ele.selectionStart === 1)
-        event.preventDefault();
-      if (ele.selectionStart !== null && [2, 3, 4, 5, 6, 7].includes(ele.selectionStart)) {
-        event.preventDefault();
-        this.selectionStart = ele.selectionStart - 1;
-        this.model = this.model.substring(0, this.selectionStart)
-          + '_'
-          + this.model.substring(this.selectionStart + 1, this.model.length);
-        this.setSelection(ele);
-      }
       return;
     }
     if (event.key === 'ArrowUp') {
@@ -130,8 +150,8 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
           this.add(1);
         if ([5, 6, 7].includes(ele.selectionStart))
           this.add(2);
+        this.selectionStart = ele.selectionStart;
         this.setSelection(ele);
-        // ele.setSelectionRange(1, 3, 'backward');
       }
       event.preventDefault();
     }
@@ -143,6 +163,7 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
           this.subtract(1);
         if ([5, 6, 7].includes(ele.selectionStart))
           this.subtract(2);
+        this.selectionStart = ele.selectionStart;
         this.setSelection(ele);
       }
       event.preventDefault();
