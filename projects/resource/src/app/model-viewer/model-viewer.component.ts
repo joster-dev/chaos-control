@@ -19,8 +19,7 @@ export class ModelViewerComponent {
   @Input() labelItems = [
     'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula.',
     'Lorem ipsum',
-    '',
-    null
+    ''
   ];
 
   @Input() required: boolean;

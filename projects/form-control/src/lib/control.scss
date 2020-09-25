@@ -6,16 +6,12 @@ label {
   display: inline-block;
   padding-bottom: 0.25em;
 
-  @media print {
-    font-weight: bold;
+  &:empty {
+    display: none;
   }
 
-  > span {
-    color: red;
-
-    @media print {
-      display: none;
-    }
+  @media print {
+    font-weight: bold;
   }
 }
 

@@ -6,21 +6,6 @@ import { Subject } from 'rxjs';
 })
 export class ControlDirective implements OnDestroy {
   @Input()
-  get label() {
-    return this._label;
-  }
-  set label(value: any) {
-    if (value === undefined)
-      value = null;
-    if (typeof value === 'number')
-      value = value.toString();
-    if (value !== null && typeof value !== 'string')
-      throw new Error('label input must be: string');
-    this._label = value;
-  }
-  _label: string | null = null;
-
-  @Input()
   get required() {
     return this._required;
   }

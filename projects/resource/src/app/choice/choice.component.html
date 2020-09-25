@@ -16,10 +16,9 @@
         [(ngModel)]="example1"
         name="example1"
         [items]="example1Items"
-        [label]="example1Label"
         [disabled]="isExample1Disabled"
         [required]="isExample1Required"
-      ></fc-choice>
+      >{{example1Label}}</fc-choice>
     </fieldset>
     <res-model-viewer
       [(model)]="example1"
@@ -44,11 +43,10 @@
       <fc-choice
         [(ngModel)]="example2"
         name="example2"
-        [label]="example2Label"
         [disabled]="isExample2Disabled"
         [required]="isExample2Required"
         [items]="example2Items"
-      ></fc-choice>
+      >{{example2Label}}</fc-choice>
     </fieldset>
     <res-model-viewer
       [(model)]="example2"

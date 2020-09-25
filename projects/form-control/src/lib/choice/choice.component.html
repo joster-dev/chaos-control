@@ -1,8 +1,5 @@
-<label *ngIf="label !== null">
-  {{label}}
-  <span *ngIf="required === true">
-    *
-  </span>
+<label>
+  <ng-content></ng-content>
 </label>
 
 <div class="dis-flex flex-wrap">

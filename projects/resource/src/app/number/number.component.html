@@ -13,13 +13,12 @@
       <fc-number
         [(ngModel)]="example1"
         name="example1"
-        [label]="example1Label"
         [disabled]="isExample1Disabled"
         [required]="isExample1Required"
         [min]="example1Min"
         [max]="example1Max"
         [step]="example1Step"
-      ></fc-number>
+      >{{example1Label}}</fc-number>
     </fieldset>
     <res-model-viewer
       [(model)]="example1"
@@ -46,13 +45,12 @@
       <fc-number
         [(ngModel)]="example2"
         name="example2"
-        [label]="example2Label"
         [disabled]="isExample2Disabled"
         [required]="isExample2Required"
         [min]="example2Min"
         [max]="example2Max"
         [step]="example2Step"
-      ></fc-number>
+      >{{example2Label}}</fc-number>
     </fieldset>
     <res-model-viewer
       [(model)]="example2"

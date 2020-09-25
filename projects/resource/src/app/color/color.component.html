@@ -15,10 +15,9 @@
       <fc-color
         [(ngModel)]="example1"
         name="example1"
-        [label]="example1Label"
         [disabled]="isExample1Disabled"
         [required]="isExample1Required"
-      ></fc-color>
+      >{{example1Label}}</fc-color>
     </fieldset>
     <res-model-viewer
       [(model)]="example1"
@@ -40,10 +39,9 @@
       <fc-color
         [(ngModel)]="example2"
         name="example2"
-        [label]="example2Label"
         [disabled]="isExample2Disabled"
         [required]="isExample2Required"
-      ></fc-color>
+      >{{example2Label}}</fc-color>
     </fieldset>
     <res-model-viewer
       [(model)]="example2"
