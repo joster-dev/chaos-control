@@ -1,7 +1,7 @@
 <header id="top">
   <h1>Form Control Resource</h1>
   <a href="https://github.com/joster-dev/form-control/packages/322201">
-    github v0.0.4
+    github v0.0.5
   </a>
   <h2>About</h2>
   <ul>
@@ -51,31 +51,33 @@
 <h2>Getting Started</h2>
 <ol>
   <li>
-    in your angular project run
+    in your <a href="https://angular.io/">angular</a> project run
     <ul>
       <li>
-        <code>npm install @joster-dev/form-control --save</code>
-      </li>
-      <li>
-        <code>npm install @joster-dev/icon --save</code>
+        <code>npm install @joster-dev/form-control @joster-dev/icon --save</code>
       </li>
     </ul>
   </li>
   <li>
-    in the module that utilizes these controls add
-    <ul>
+    in the module that utilizes these controls
+    <ol>
       <li>
-        <code>{{"import { FormControlModule } from '@joster-dev/form-control'"}}</code>
+        import the dependency
+        <ul>
+          <li>
+            <code>{{"import { FormControlModule } from '@joster-dev/form-control'"}}</code>
+          </li>
+        </ul>
       </li>
-    </ul>
-  </li>
-  <li>
-    in the module update your imports
-    <ul>
       <li>
-        <code>imports: [..., FormControlModule]</code>
+        update your dependencies
+        <ul>
+          <li>
+            <code>imports: [..., FormControlModule]</code>
+          </li>
+        </ul>
       </li>
-    </ul>
+    </ol>
   </li>
 </ol>
 <!-- <nav>

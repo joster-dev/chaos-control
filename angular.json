@@ -133,7 +133,6 @@
             "tsConfig": "projects/resource/tsconfig.spec.json",
             "karmaConfig": "projects/resource/karma.conf.js",
             "assets": [
-              "projects/resource/src/favicon.ico",
               "projects/resource/src/assets"
             ],
             "styles": [

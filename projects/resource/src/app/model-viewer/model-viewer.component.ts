@@ -66,7 +66,6 @@ export class ModelViewerComponent {
   boolItems = [true, false];
   isMoreCode = false;
   codeProps = [
-    'label',
     'required',
     'disabled',
     'minlength',
@@ -95,7 +94,7 @@ export class ModelViewerComponent {
     return `<fc-${this.display}`;
   }
   get codeHtmlEnd() {
-    return `></fc-${this.display}>`;
+    return `>${this.label}</fc-${this.display}>`;
   }
   get codeHtml() {
     return `<fc-${this.display} ${this.codeHtmlAttributes.join(' ')}></fc-${this.display}>`;
