@@ -22,6 +22,9 @@ textarea {
     cursor: not-allowed;
     border-style: solid;
     box-shadow: none;
+    ::ng-deep icon {
+      opacity: 0.5;
+    }
   }
 
   &.invalid {
