@@ -13,8 +13,9 @@
   </div>
   <input
     [(ngModel)]="model"
-    class="flex-1 margin-left-1"
+    class="margin-left-1"
     spellcheck="false"
+    size="5"
     type="text"
     [class.active]="ngControl.control?.value !== null"
     [class.invalid]="ngControl.control?.invalid === true"
