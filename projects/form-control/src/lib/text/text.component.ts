@@ -35,7 +35,7 @@ export class TextComponent extends ControlDirective implements ControlValueAcces
   }
   set minLength(value: any) {
     if (typeof value !== 'number')
-      throw new Error('minlength input must be: number');
+      throw new Error('minLength input must be: number');
 
     this._minLength = value;
     this.validation.next();
@@ -48,7 +48,7 @@ export class TextComponent extends ControlDirective implements ControlValueAcces
   }
   set maxLength(value: any) {
     if (typeof value !== 'number')
-      throw new Error('maxlength input must be: number');
+      throw new Error('maxLength input must be: number');
 
     this._maxLength = value;
     this.validation.next();
@@ -110,18 +110,17 @@ export class TextComponent extends ControlDirective implements ControlValueAcces
     setTimeout(() => this.setTextareaHeight());
   }
 
-  private maxlengthValidator(maxlength: number): ValidatorFn {
-
+  private maxLengthValidator(maxLength: number): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null =>
-      control.value !== null && maxlength > 0 && control.value.length > maxlength
-        ? { maxlength: control.value }
+      control.value !== null && maxLength > 0 && control.value.length > maxLength
+        ? { maxLength: control.value }
         : null;
   }
 
   private validate() {
     const validators: ValidatorFn[] = [
       Validators.minLength(this.minLength),
-      this.maxlengthValidator(this.maxLength)
+      this.maxLengthValidator(this.maxLength)
     ];
 
     if (this.required === true)
