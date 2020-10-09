@@ -69,6 +69,7 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
   }
 
   onBeforeinput(event: InputEvent) {
+    console.log(event.inputType, event.data);
     event.preventDefault();
     const ele = event.target as HTMLInputElement;
     if (ele.selectionStart === null || ele.selectionEnd === null)
