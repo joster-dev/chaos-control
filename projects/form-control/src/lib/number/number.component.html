@@ -5,9 +5,11 @@
 <div class="dis-flex flex-stretch">
   <input
     [(ngModel)]="model"
-    class="flex-1 dis-flex flex-center"
+    class="dis-flex flex-center"
     type="number"
+    [size]="maxDigitSize"
     [class.active]="_model !== null"
+    [class.br-left]="brLeft"
     [class.invalid]="ngControl.control?.invalid === true"
     [disabled]="isDisabled === true"
     [min]="min"
@@ -17,6 +19,8 @@
   <fc-button
     class="dis-flex"
     title="Subtract"
+    [brRight]="false"
+    [brLeft]="false"
     [isDisabled]="isDisabledSubtract === true"
     (blurred)="onTouched()"
     (clicked)="subtract()"
@@ -31,6 +35,8 @@
   <fc-button
     class="dis-flex"
     title="Add"
+    [brLeft]="false"
+    [brRight]="brRight"
     [isDisabled]="isDisabledAdd === true"
     (blurred)="onTouched()"
     (clicked)="add()"

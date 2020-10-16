@@ -1,14 +1,12 @@
-<h2 id="color">
-  Color
-</h2>
-<ul>
+<h2>Color</h2>
+<!-- <ul>
   <li>
     <i>model</i> will be <code>string</code> or <code>null</code>
   </li>
-</ul>
+</ul> -->
 <form #form1="ngForm">
   <fieldset class="min-width-auto">
-    <legend>form</legend>
+    <legend>form 1</legend>
     <res-form-settings [form]="form1"></res-form-settings>
     <fieldset class="word-break-all">
       <legend>⭐ fieldset</legend>
@@ -17,6 +15,8 @@
         name="example1"
         [disabled]="isExample1Disabled"
         [required]="isExample1Required"
+        [brLeft]="isExample1BrLeft"
+        [brRight]="isExample1BrRight"
       >{{example1Label}}</fc-color>
     </fieldset>
     <res-model-viewer
@@ -25,22 +25,26 @@
       [(label)]="example1Label"
       [(required)]="isExample1Required"
       [(disabled)]="isExample1Disabled"
+      [(brLeft)]="isExample1BrLeft"
+      [(brRight)]="isExample1BrRight"
       display="color"
     ></res-model-viewer>
   </fieldset>
 </form>
 <form #form2="ngForm">
   <fieldset>
-    <legend>form</legend>
+    <legend>form 2</legend>
     <fieldset disabled>
       <legend>
-        ⭐ <u>disabled</u> fieldset
+        ⭐ <b>disabled</b> fieldset
       </legend>
       <fc-color
         [(ngModel)]="example2"
         name="example2"
         [disabled]="isExample2Disabled"
         [required]="isExample2Required"
+        [brLeft]="isExample2BrLeft"
+        [brRight]="isExample2BrRight"
       >{{example2Label}}</fc-color>
     </fieldset>
     <res-model-viewer
@@ -49,6 +53,8 @@
       [(label)]="example2Label"
       [(required)]="isExample2Required"
       [(disabled)]="isExample2Disabled"
+      [(brLeft)]="isExample2BrLeft"
+      [(brRight)]="isExample2BrRight"
       display="color"
     ></res-model-viewer>
   </fieldset>

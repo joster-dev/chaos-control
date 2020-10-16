@@ -7,6 +7,8 @@
     *ngIf="allowClear === true"
     class="dis-flex"
     title="Clear"
+    [brRight]="false"
+    [brLeft]="brLeft"
     (blurred)="onTouched()"
     (clicked)="model = []"
   >
@@ -16,8 +18,10 @@
     ></icon>
   </fc-button>
   <fc-button
-    *ngFor="let item of items"
+    *ngFor="let item of items; let idx = index"
     class="dis-flex"
+    [brRight]="brRight && idx === items.length - 1"
+    [brLeft]="brLeft && !allowClear && idx === 0"
     [isActive]="_model.includes(item.key) === true"
     [isDisabled]="isDisabled === true"
     [isValid]="ngControl.control?.invalid === false"

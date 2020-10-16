@@ -18,6 +18,8 @@
     size="5"
     type="text"
     [class.active]="ngControl.control?.value !== null"
+    [class.br-right]="brRight"
+    [class.br-left]="brLeft"
     [class.invalid]="ngControl.control?.invalid === true"
     [disabled]="isDisabled === true"
     (beforeinput)="onBeforeinput($event)"

@@ -15,6 +15,7 @@ import { SelectComponent } from './select/select.component';
 import { TextComponent } from './text/text.component';
 import { ControlDirective } from './control.directive';
 import { ChoiceDirective } from './choice/choice.directive';
+import { BrDirective } from './br.directive';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ChoiceDirective } from './choice/choice.directive';
     NumberComponent,
     ColorComponent,
     ControlDirective,
-    ChoiceDirective
+    ChoiceDirective,
+    BrDirective
   ],
   imports: [
     CommonModule,

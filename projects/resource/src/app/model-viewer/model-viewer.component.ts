@@ -28,6 +28,12 @@ export class ModelViewerComponent {
   @Input() disabled: boolean;
   @Output() disabledChange = new EventEmitter();
 
+  @Input() brLeft: boolean;
+  @Output() brLeftChange = new EventEmitter();
+
+  @Input() brRight: boolean;
+  @Output() brRightChange = new EventEmitter();
+
   @Input() minlength: number;
   @Output() minlengthChange = new EventEmitter();
 

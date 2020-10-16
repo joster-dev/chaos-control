@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { BrDirective } from '../br.directive';
 
 @Component({
   selector: 'fc-button',
@@ -9,7 +10,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
     '../input.scss'
   ]
 })
-export class ButtonComponent {
+export class ButtonComponent extends BrDirective {
   @Input() isActive = false;
   @Input() isDisabled = false;
   @Input() isValid = true;
@@ -18,7 +19,9 @@ export class ButtonComponent {
   @Output() blurred = new EventEmitter<FocusEvent>();
   @Output() clicked = new EventEmitter<MouseEvent>();
 
-  constructor() { }
+  constructor() {
+    super();
+  }
 
   onClick(event: MouseEvent) {
     if (this.isDisabled)

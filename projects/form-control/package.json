@@ -1,6 +1,6 @@
 {
   "name": "@joster-dev/form-control",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
@@ -15,18 +15,18 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/joster-dev/form-control"
+    "url": "https://github.com/joster-dev/form-control/"
   },
-  "homepage": "https://joster-dev.github.io/form-control",
+  "homepage": "https://joster-dev.github.io/form-control/",
   "author": {
     "name": "Jacob Osterhout",
-    "url": "https://joster-dev.github.io"
+    "url": "https://joster-dev.github.io/"
   },
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^10.1.0",
     "@angular/core": "^10.1.0",
-    "@joster-dev/icon": "^0.0.6"
+    "@joster-dev/icon": "^0.0.10"
   },
   "dependencies": {
     "tslib": "^2.0.0"

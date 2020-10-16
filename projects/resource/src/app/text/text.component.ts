@@ -12,6 +12,8 @@ export class TextComponent {
   example1Label = 'Lorum ipsum';
   isExample1Disabled = false;
   isExample1Required = false;
+  isExample1BrLeft = true;
+  isExample1BrRight = true;
   example1Minlength = 0;
   example1Maxlength = 0;
 
@@ -19,6 +21,8 @@ export class TextComponent {
   example2Label = 'Lorum ipsum';
   isExample2Disabled = false;
   isExample2Required = false;
+  isExample2BrLeft = true;
+  isExample2BrRight = true;
   example2Minlength = 0;
   example2Maxlength = 0;
 

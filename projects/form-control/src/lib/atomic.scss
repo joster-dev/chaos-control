@@ -34,3 +34,13 @@
 .margin-left-1 {
   margin-left: 0.5em;
 }
+
+$br: 0.5em;
+.br-right {
+  border-top-right-radius: $br;
+  border-bottom-right-radius: $br;
+}
+.br-left {
+  border-top-left-radius: $br;
+  border-bottom-left-radius: $br;
+}

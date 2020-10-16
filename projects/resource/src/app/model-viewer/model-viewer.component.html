@@ -33,6 +33,18 @@
     [items]="boolItems"
   ></res-action-viewer>
   <res-action-viewer
+    [model]="brLeft"
+    (modelChange)="brLeftChange.emit($event)"
+    text="brLeft"
+    [items]="boolItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="brRight"
+    (modelChange)="brRightChange.emit($event)"
+    text="brRight"
+    [items]="boolItems"
+  ></res-action-viewer>
+  <res-action-viewer
     [model]="minlength"
     (modelChange)="minlengthChange.emit($event)"
     text="minlength"
@@ -75,13 +87,10 @@
         <code>data{{idx + 1}}</code>
       </button>
     </legend>
-    <code>
+    <code class="block">
       {{item | json}}
     </code>
   </fieldset>
-  <ng-container *ngIf="choiceItems.length > 0">
-
-  </ng-container>
 </fieldset>
 <fieldset>
   <legend>
@@ -89,11 +98,11 @@
   </legend>
   <!-- <code>{{codeHtml}}</code>
   <hr /> -->
-  <code>{{codeHtmlStart}}</code>
-  <div *ngFor="let item of codeHtmlAttributes">
-    <div>
-      <code>&nbsp;&nbsp;{{item}}</code>
+  <code class="block">
+    <div>{{codeHtmlStart}}</div>
+    <div *ngFor="let item of codeHtmlAttributes">
+      &nbsp;&nbsp;{{item}}
     </div>
-  </div>
-  <code>{{codeHtmlEnd}}</code>
+    <div>{{codeHtmlEnd}}</div>
+  </code>
 </fieldset>

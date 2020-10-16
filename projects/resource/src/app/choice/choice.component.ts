@@ -11,12 +11,16 @@ export class ChoiceComponent {
   example1Label = 'Lorum ipsum';
   isExample1Disabled = false;
   isExample1Required = false;
+  isExample1BrLeft = true;
+  isExample1BrRight = true;
   example1Items: KeyValue<boolean | number, string>[];
 
   example2: boolean | number | null = null;
   example2Label = 'Lorum ipsum';
   isExample2Disabled = false;
   isExample2Required = false;
+  isExample2BrLeft = true;
+  isExample2BrRight = true;
   example2Items: KeyValue<boolean | number, string>[];
 
   data1 = [

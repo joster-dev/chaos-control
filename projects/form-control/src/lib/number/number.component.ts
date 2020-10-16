@@ -79,6 +79,15 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
       && this._model - this.step < this.min;
   }
 
+  get maxDigitSize() {
+    const padding = 1;
+    return Math.max(
+      this._step.toString().length,
+      this._max.toString().length,
+      this._min.toString().length
+    ) + padding;
+  }
+
   onBeforeinput(event: InputEvent) {
     if (event.data === null)
       return;

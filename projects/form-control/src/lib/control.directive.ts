@@ -1,10 +1,11 @@
 import { Directive, Input, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
+import { BrDirective } from './br.directive';
 
 @Directive({
   selector: '[fcControl]'
 })
-export class ControlDirective implements OnDestroy {
+export class ControlDirective extends BrDirective implements OnDestroy {
   @Input()
   get required() {
     return this._required;
@@ -24,7 +25,9 @@ export class ControlDirective implements OnDestroy {
   isDisabled = false;
   validation = new Subject<void>();
 
-  constructor() { }
+  constructor() {
+    super();
+  }
 
   ngOnDestroy(): void {
     this.validation.complete();

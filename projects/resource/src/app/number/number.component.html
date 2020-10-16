@@ -1,20 +1,22 @@
 <h2>Number</h2>
-<ul>
+<!-- <ul>
   <li>
     <i>model</i> will be <code>number</code> or <code>null</code>
   </li>
-</ul>
+</ul> -->
 <form #form1="ngForm">
   <fieldset class="min-width-auto">
-    <legend>form</legend>
+    <legend>form 1</legend>
     <res-form-settings [form]="form1"></res-form-settings>
     <fieldset>
-      <legend>⭐ example</legend>
+      <legend>⭐ fieldset</legend>
       <fc-number
         [(ngModel)]="example1"
         name="example1"
         [disabled]="isExample1Disabled"
         [required]="isExample1Required"
+        [brLeft]="isExample1BrLeft"
+        [brRight]="isExample1BrRight"
         [min]="example1Min"
         [max]="example1Max"
         [step]="example1Step"
@@ -26,6 +28,8 @@
       [(label)]="example1Label"
       [(required)]="isExample1Required"
       [(disabled)]="isExample1Disabled"
+      [(brLeft)]="isExample1BrLeft"
+      [(brRight)]="isExample1BrRight"
       [(min)]="example1Min"
       [minItems]="[0, 5]"
       [(max)]="example1Max"
@@ -38,7 +42,7 @@
 </form>
 <form #form2="ngForm">
   <fieldset class="min-width-auto">
-    <legend>form</legend>
+    <legend>form 2</legend>
     <res-form-settings [form]="form2"></res-form-settings>
     <fieldset disabled>
       <legend>⭐ <b>disabled</b> fieldset</legend>
@@ -47,6 +51,8 @@
         name="example2"
         [disabled]="isExample2Disabled"
         [required]="isExample2Required"
+        [brLeft]="isExample2BrLeft"
+        [brRight]="isExample2BrRight"
         [min]="example2Min"
         [max]="example2Max"
         [step]="example2Step"
@@ -58,6 +64,8 @@
       [(label)]="example2Label"
       [(required)]="isExample2Required"
       [(disabled)]="isExample2Disabled"
+      [(brLeft)]="isExample2BrLeft"
+      [(brRight)]="isExample2BrRight"
       [(min)]="example2Min"
       [minItems]="[0, 5]"
       [(max)]="example2Max"

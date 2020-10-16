@@ -1,12 +1,11 @@
-<h2 id="text">
-  Text
-</h2>
-<ul>
+<h2>Text</h2>
+<!--
+  <ul>
   <li>
     <i>model</i> will be <code>string</code> or <code>null</code>
   </li>
 </ul>
-<!-- <ol>
+  <ol>
   <li>
     if text content would overflow
     <ul>
@@ -63,7 +62,7 @@
     </ul> -->
 <form #form1="ngForm">
   <fieldset class="min-width-auto">
-    <legend>example 1 form</legend>
+    <legend>form 1</legend>
     <res-form-settings [form]="form1"></res-form-settings>
     <fieldset>
       <legend>⭐ fieldset</legend>
@@ -74,6 +73,8 @@
         [required]="isExample1Required"
         [minLength]="example1Minlength"
         [maxLength]="example1Maxlength"
+        [brLeft]="isExample1BrLeft"
+        [brRight]="isExample1BrRight"
       >{{example1Label}}</fc-text>
     </fieldset>
     <res-model-viewer
@@ -82,6 +83,8 @@
       [(label)]="example1Label"
       [(required)]="isExample1Required"
       [(disabled)]="isExample1Disabled"
+      [(brLeft)]="isExample1BrLeft"
+      [(brRight)]="isExample1BrRight"
       [(minlength)]="example1Minlength"
       [minlengthItems]="[20, 0]"
       [(maxlength)]="example1Maxlength"
@@ -92,7 +95,7 @@
 </form>
 <form #form2="ngForm">
   <fieldset class="min-width-auto">
-    <legend>example 2 form</legend>
+    <legend>form 2</legend>
     <res-form-settings [form]="form2"></res-form-settings>
     <fieldset disabled>
       <legend>
@@ -105,6 +108,8 @@
         [maxlength]="example2Maxlength"
         [disabled]="isExample2Disabled"
         [required]="isExample2Required"
+        [brLeft]="isExample2BrLeft"
+        [brRight]="isExample2BrRight"
       >{{example2Label}}</fc-text>
     </fieldset>
     <res-model-viewer
@@ -113,6 +118,8 @@
       [(label)]="example2Label"
       [(required)]="isExample2Required"
       [(disabled)]="isExample2Disabled"
+      [(brLeft)]="isExample2BrLeft"
+      [(brRight)]="isExample2BrRight"
       [(minlength)]="example2Minlength"
       [minlengthItems]="[5, 0]"
       [(maxlength)]="example2Maxlength"

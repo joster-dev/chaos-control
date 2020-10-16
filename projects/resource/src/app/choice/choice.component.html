@@ -1,14 +1,12 @@
-<h2 id="choice">
-  Choice
-</h2>
-<ul>
+<h2>Choice</h2>
+<!-- <ul>
   <li>
     <i>model</i> will be <code>primitive</code> or <code>null</code>
   </li>
-</ul>
+</ul> -->
 <form #form1="ngForm">
   <fieldset>
-    <legend>form</legend>
+    <legend>form 1</legend>
     <res-form-settings [form]="form1"></res-form-settings>
     <fieldset>
       <legend>⭐ fieldset</legend>
@@ -18,6 +16,8 @@
         [items]="example1Items"
         [disabled]="isExample1Disabled"
         [required]="isExample1Required"
+        [brLeft]="isExample1BrLeft"
+        [brRight]="isExample1BrRight"
       >{{example1Label}}</fc-choice>
     </fieldset>
     <res-model-viewer
@@ -26,6 +26,8 @@
       [(label)]="example1Label"
       [(required)]="isExample1Required"
       [(disabled)]="isExample1Disabled"
+      [(brLeft)]="isExample1BrLeft"
+      [(brRight)]="isExample1BrRight"
       [(choice)]="example1Items"
       [choiceItems]="[data1, data2]"
       display="choice"
@@ -34,7 +36,7 @@
 </form>
 <form #form2="ngForm">
   <fieldset>
-    <legend>form</legend>
+    <legend>form 2</legend>
     <res-form-settings [form]="form2"></res-form-settings>
     <fieldset disabled>
       <legend>
@@ -46,6 +48,8 @@
         [disabled]="isExample2Disabled"
         [required]="isExample2Required"
         [items]="example2Items"
+        [brLeft]="isExample2BrLeft"
+        [brRight]="isExample2BrRight"
       >{{example2Label}}</fc-choice>
     </fieldset>
     <res-model-viewer
@@ -54,6 +58,8 @@
       [(label)]="example2Label"
       [(required)]="isExample2Required"
       [(disabled)]="isExample2Disabled"
+      [(brLeft)]="isExample2BrLeft"
+      [(brRight)]="isExample2BrRight"
       [(choice)]="example2Items"
       [choiceItems]="[data1, data2]"
       display="choice"

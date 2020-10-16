@@ -69,7 +69,6 @@
             "tsConfig": "projects/resource/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/resource/src/favicon.ico",
               "projects/resource/src/assets"
             ],
             "styles": [

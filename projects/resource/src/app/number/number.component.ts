@@ -15,6 +15,8 @@ export class NumberComponent {
   example1Step = 1;
   isExample1Disabled = false;
   isExample1Required = false;
+  isExample1BrLeft = true;
+  isExample1BrRight = true;
 
   example2: number | null = null;
   example2Label = 'Lorum ipsum';
@@ -23,6 +25,8 @@ export class NumberComponent {
   example2Step = 1;
   isExample2Disabled = false;
   isExample2Required = false;
+  isExample2BrLeft = true;
+  isExample2BrRight = true;
 
   constructor() { }
 }

@@ -6,6 +6,8 @@
   <textarea
     #textarea
     [(ngModel)]="model"
+    [class.br-right]="brRight"
+    [class.br-left]="brLeft"
     class="flex-1"
     rows="1"
     [minlength]="minLength"
@@ -32,7 +34,7 @@
   <li *ngIf="ngControl.control?.errors.minlength !== undefined">
     minimum length is {{minLength}}
   </li>
-  <li *ngIf="ngControl.control?.errors.maxlength !== undefined">
+  <li *ngIf="ngControl.control?.errors.maxLength !== undefined">
     maximum length is {{maxLength}}
   </li>
 </ul>
