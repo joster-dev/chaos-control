@@ -1,5 +1,7 @@
-import { Component, ElementRef, Input, Renderer2, Self, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnDestroy, Renderer2, Self, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NgControl, ValidatorFn, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 import { ControlDirective } from '../control.directive';
 
@@ -13,7 +15,7 @@ import { ControlDirective } from '../control.directive';
     '../input.scss'
   ]
 })
-export class TextComponent extends ControlDirective implements ControlValueAccessor {
+export class TextComponent extends ControlDirective implements OnDestroy, ControlValueAccessor {
   @Input()
   get placeholder() {
     if (this._placeholder === undefined)
@@ -55,8 +57,10 @@ export class TextComponent extends ControlDirective implements ControlValueAcces
   }
   _maxLength = 0;
 
-  @ViewChild('textarea', { static: true }) textareaElement!: ElementRef;
-  @ViewChild('textareaHidden', { static: true }) textareaHiddenElement!: ElementRef;
+  @ViewChild('textarea', { static: true })
+  textareaElement!: ElementRef;
+  @ViewChild('textareaHidden', { static: true })
+  textareaHiddenElement!: ElementRef;
 
   get model() {
     return this._model;
@@ -73,6 +77,7 @@ export class TextComponent extends ControlDirective implements ControlValueAcces
   _model: string | null = null;
 
   id = `_${Math.random().toString(36).substr(2, 9)}`;
+  resizeSubject = new Subject();
 
   constructor(
     @Self() public ngControl: NgControl,
@@ -81,6 +86,18 @@ export class TextComponent extends ControlDirective implements ControlValueAcces
     super();
     this.validation.subscribe(() => this.validate());
     ngControl.valueAccessor = this;
+    this.resizeSubject
+      .pipe(debounceTime(300))
+      .subscribe(() => this.setTextareaHeight());
+  }
+
+  ngOnDestroy(): void {
+    this.resizeSubject.complete();
+  }
+
+  @HostListener('window:resize')
+  onWindowResize(): void {
+    this.resizeSubject.next();
   }
 
   setTextareaHeight() {
