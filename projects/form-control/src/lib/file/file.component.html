@@ -1,0 +1,18 @@
+<label>
+  <ng-content></ng-content>
+</label>
+
+<label
+  [for]="id"
+  class="fake-input"
+  [class.disabled]="ngControl.disabled"
+  [class.br-right]="brRight"
+  [class.br-left]="brLeft"
+>&nbsp;12012</label>
+<input
+  [(ngModel)]="model"
+  #fileInput
+  type="file"
+  [id]="id"
+  (change)="onFileChange($event.target.files)"
+/>

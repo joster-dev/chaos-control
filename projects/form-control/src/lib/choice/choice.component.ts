@@ -6,6 +6,10 @@ import { debounceTime } from 'rxjs/operators';
 import { isPrimitive, primitive } from '../primitive';
 import { ChoiceDirective } from './choice.directive';
 
+// make choice -> select
+// when no wrap items its row items no stretch
+// when wrap occur regular select w/ dropdown
+
 @Component({
   selector: 'fc-choice',
   templateUrl: './choice.component.html',

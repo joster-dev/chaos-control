@@ -16,6 +16,7 @@ import { TextComponent } from './text/text.component';
 import { ControlDirective } from './control.directive';
 import { ChoiceDirective } from './choice/choice.directive';
 import { BrDirective } from './br.directive';
+import { FileComponent } from './file/file.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { BrDirective } from './br.directive';
     ColorComponent,
     ControlDirective,
     ChoiceDirective,
-    BrDirective
+    BrDirective,
+    FileComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +46,8 @@ import { BrDirective } from './br.directive';
     SelectComponent,
     TextComponent,
     NumberComponent,
-    ColorComponent
+    ColorComponent,
+    FileComponent
   ]
 })
 export class FormControlModule { }
