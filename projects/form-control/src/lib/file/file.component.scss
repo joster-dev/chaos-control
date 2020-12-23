@@ -1,8 +1,7 @@
-.fake-input {
-  display: inline-block;
-  cursor: pointer;
+input[type="file"] {
+  display: none;
 }
 
-// input[type="file"] {
-//   display: none;
-// }
+.muted {
+  color: grey;
+}

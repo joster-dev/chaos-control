@@ -10,6 +10,7 @@
         name="example1"
         [disabled]="isExample1Disabled"
         [required]="isExample1Required"
+        [multiple]="isExample1Multiple"
         [brLeft]="isExample1BrLeft"
         [brRight]="isExample1BrRight"
       >{{example1Label}}</fc-file>
@@ -19,6 +20,7 @@
       [(label)]="example1Label"
       [(required)]="isExample1Required"
       [(disabled)]="isExample1Disabled"
+      [(multiple)]="isExample1Multiple"
       [(brLeft)]="isExample1BrLeft"
       [(brRight)]="isExample1BrRight"
       display="file"
@@ -38,6 +40,7 @@
         name="example2"
         [disabled]="isExample2Disabled"
         [required]="isExample2Required"
+        [multiple]="isExample2Multiple"
         [brLeft]="isExample2BrLeft"
         [brRight]="isExample2BrRight"
       >{{example2Label}}</fc-file>
@@ -47,6 +50,7 @@
       [(label)]="example2Label"
       [(required)]="isExample2Required"
       [(disabled)]="isExample2Disabled"
+      [(multiple)]="isExample2Multiple"
       [(brLeft)]="isExample2BrLeft"
       [(brRight)]="isExample2BrRight"
       display="file"

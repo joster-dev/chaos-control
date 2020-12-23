@@ -33,6 +33,12 @@
     [items]="boolItems"
   ></res-action-viewer>
   <res-action-viewer
+    [model]="multiple"
+    (modelChange)="multipleChange.emit($event)"
+    text="multiple"
+    [items]="boolItems"
+  ></res-action-viewer>
+  <res-action-viewer
     [model]="brLeft"
     (modelChange)="brLeftChange.emit($event)"
     text="brLeft"

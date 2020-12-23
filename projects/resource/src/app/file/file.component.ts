@@ -10,6 +10,7 @@ export class FileComponent {
   example1Label = 'Lorum ipsum';
   isExample1Disabled = false;
   isExample1Required = false;
+  isExample1Multiple = false;
   isExample1BrLeft = true;
   isExample1BrRight = true;
 
@@ -17,6 +18,7 @@ export class FileComponent {
   example2Label = 'Lorum ipsum';
   isExample2Disabled = false;
   isExample2Required = false;
+  isExample2Multiple = false;
   isExample2BrLeft = true;
   isExample2BrRight = true;
 

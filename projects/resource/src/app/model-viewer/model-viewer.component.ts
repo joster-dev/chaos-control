@@ -28,6 +28,9 @@ export class ModelViewerComponent {
   @Input() disabled: boolean;
   @Output() disabledChange = new EventEmitter();
 
+  @Input() multiple: boolean;
+  @Output() multipleChange = new EventEmitter();
+
   @Input() brLeft: boolean;
   @Output() brLeftChange = new EventEmitter();
 
@@ -74,6 +77,7 @@ export class ModelViewerComponent {
   codeProps = [
     'required',
     'disabled',
+    'multiple',
     'minlength',
     'maxlength',
     'min',

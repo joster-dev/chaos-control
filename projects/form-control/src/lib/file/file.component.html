@@ -2,17 +2,34 @@
   <ng-content></ng-content>
 </label>
 
-<label
-  [for]="id"
-  class="fake-input"
-  [class.disabled]="ngControl.disabled"
-  [class.br-right]="brRight"
-  [class.br-left]="brLeft"
->&nbsp;12012</label>
+
+<fc-button
+  [brRight]="brRight"
+  [brLeft]="brLeft"
+  [isActive]="ngControl.value !== null"
+  [isDisabled]="isDisabled === true"
+  (clicked)="fileInput.click()"
+>
+  <ng-container *ngIf="!ngControl.value">
+    <icon
+      type="square"
+      size="1em"
+      [fill]="['000000', '247000']"
+    ></icon>
+    <span class="muted">
+      &nbsp;Choose {{multiple ? 'Files' : 'File'}}
+    </span>
+  </ng-container>
+  <ng-container *ngIf="ngControl.value">
+    {{fileNames}}
+  </ng-container>
+</fc-button>
+
 <input
   [(ngModel)]="model"
   #fileInput
   type="file"
+  [multiple]="multiple"
   [id]="id"
   (change)="onFileChange($event.target.files)"
 />

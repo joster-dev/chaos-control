@@ -41,6 +41,14 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
   // 0 is no size limit
   _sizeLimitMb = 0;
 
+  @Input() get multiple() {
+    return this._multiple === true;
+  }
+  set multiple(value: unknown) {
+    this._multiple = value === true;
+  }
+  _multiple = false;
+
   @Input() showSize = false;
 
   model: '' | null = null;
@@ -54,11 +62,10 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
     ngControl.valueAccessor = this;
   }
 
-  get fakeInputText(): string {
-    if (this.ngControl.value) {
-      debugger;
-    }
-    return '';
+  get fileNames(): string {
+    if (!this.ngControl.value || !(this.ngControl.value instanceof FileList))
+      return '';
+    return Object.values(this.ngControl.value).map(file => file.name).join(', ');
   }
 
   onFileChange(event: FileList): void {
