@@ -12,9 +12,10 @@
 >
   <ng-container *ngIf="!ngControl.value">
     <icon
-      type="square"
+      type="folder"
       size="1em"
-      [fill]="['000000', '247000']"
+      [fill]="['247000', '000000']"
+      fillRotate
     ></icon>
     <span class="muted">
       &nbsp;Choose {{multiple ? 'Files' : 'File'}}

@@ -1,13 +1,14 @@
-<button
-  *ngFor="let item of items"
-  type="button"
-  [class.active]="model === item"
-  (click)="modelChange.emit(item)"
+<fc-button
+  *ngFor="let item of items; let idx = index"
+  [isActive]="model === item"
+  (clicked)="modelChange.emit(item)"
+  [brLeft]="idx === 0"
+  [brRight]="idx === items.length - 1"
 >
-  set
+  set&nbsp;
   <i *ngIf="text === 'model'">model</i>
   <b *ngIf="text !== 'model'">{{text}}</b>
-  to
+  &nbsp;to&nbsp;
   <code *ngIf="item !== undefined">{{item | json}}</code>
   <code *ngIf="item === undefined">undefined</code>
-</button>
+</fc-button>
