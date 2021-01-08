@@ -3,33 +3,46 @@
 </label>
 
 
-<fc-button
-  [brRight]="brRight"
-  [brLeft]="brLeft"
-  [isActive]="ngControl.value !== null"
-  [isDisabled]="isDisabled === true"
-  (clicked)="fileInput.click()"
->
-  <ng-container *ngIf="!ngControl.value">
+<div class="dis-flex flex-center">
+  <fc-button
+    [brRight]="brRight"
+    [brLeft]="brLeft"
+    [isActive]="ngControl.value !== null"
+    [isDisabled]="isDisabled === true"
+    (clicked)="fileInput.click()"
+  >
     <icon
       type="folder"
       size="1em"
-      [fill]="['247000', '000000']"
+      [fill]="['F2A200', 'FFD575']"
       fillRotate
     ></icon>
     <span class="muted">
       &nbsp;Choose {{multiple ? 'Files' : 'File'}}
     </span>
-  </ng-container>
-  <ng-container *ngIf="ngControl.value">
-    {{fileNames}}
-  </ng-container>
-</fc-button>
+  </fc-button>
+  <div *ngIf="ngControl.value">
+    &nbsp;&nbsp;{{fileNames}}
+  </div>
+</div>
+
+<ul *ngIf="ngControl.control?.errors !== null">
+  <li *ngIf="ngControl.control?.errors.acceptedTypes !== undefined">
+    valid types are {{acceptedTypes.join(', ')}}
+  </li>
+  <li *ngIf="ngControl.control?.errors.sizeLimitMb !== undefined">
+    max file size is {{sizeLimit}}
+  </li>
+  <li *ngIf="ngControl.control?.errors.invalid !== undefined">
+    invalid model
+  </li>
+</ul>
 
 <input
   [(ngModel)]="model"
   #fileInput
   type="file"
+  [accept]="acceptedTypes.join()"
   [multiple]="multiple"
   [id]="id"
   (change)="onFileChange($event.target.files)"
