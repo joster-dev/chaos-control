@@ -1,0 +1,76 @@
+<h2>Multi-Choice</h2>
+<!-- <ul>
+  <li>
+    <i>model</i> will be <code>primitive[]</code> or <code>null</code>
+  </li>
+</ul> -->
+<form #form1="ngForm">
+  <fieldset>
+    <legend>form</legend>
+    <res-form-settings [form]="form1"></res-form-settings>
+    <fieldset>
+      <legend>⭐ fieldset</legend>
+      <fc-multi-choice
+        [(ngModel)]="example1"
+        name="example1"
+        [disabled]="isExample1Disabled === true"
+        [required]="isExample1Required === true"
+        [items]="example1Items"
+        [limit]="example1Limit"
+        [brLeft]="isExample1BrLeft"
+        [brRight]="isExample1BrRight"
+      >{{example1Label}}</fc-multi-choice>
+    </fieldset>
+    <res-model-viewer
+      [(model)]="example1"
+      [modelItems]="[[true], [1,2,4], [8]]"
+      [(label)]="example1Label"
+      [(required)]="isExample1Required"
+      [(disabled)]="isExample1Disabled"
+      [(brLeft)]="isExample1BrLeft"
+      [(brRight)]="isExample1BrRight"
+      [(choice)]="example1Items"
+      [choiceItems]="[data1, data2]"
+      [(limit)]="example1Limit"
+      [limitItems]="[0, 3]"
+      display="multi-choice"
+    ></res-model-viewer>
+  </fieldset>
+</form>
+<form #form2="ngForm">
+  <fieldset>
+    <legend>
+      📖 example 2 form
+    </legend>
+    <res-form-settings [form]="form2"></res-form-settings>
+    <fieldset disabled>
+      <legend>
+        ⭐ <b>disabled</b> fieldset
+      </legend>
+      <fc-multi-choice
+        [(ngModel)]="example2"
+        name="example2"
+        [disabled]="isExample2Disabled"
+        [required]="isExample2Required"
+        [items]="example2Items"
+        [limit]="example2Limit"
+        [brLeft]="isExample2BrLeft"
+        [brRight]="isExample2BrRight"
+      >{{example2Label}}</fc-multi-choice>
+    </fieldset>
+    <res-model-viewer
+      [(model)]="example2"
+      [modelItems]="[[true], [1,2,4], [8]]"
+      [(label)]="example2Label"
+      [(required)]="isExample2Required"
+      [(disabled)]="isExample2Disabled"
+      [(brLeft)]="isExample2BrLeft"
+      [(brRight)]="isExample2BrRight"
+      [(choice)]="example2Items"
+      [choiceItems]="[data1, data2]"
+      [(limit)]="example2Limit"
+      [limitItems]="[0, 3]"
+      display="multi-choice"
+    ></res-model-viewer>
+  </fieldset>
+</form>

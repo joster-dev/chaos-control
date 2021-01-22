@@ -1,0 +1,115 @@
+<fieldset class="word-break-all">
+  <legend>
+    🔍 <i>model</i>
+  </legend>
+  <code>
+    {{model | json}}
+  </code>
+</fieldset>
+<fieldset>
+  <legend>⚙️ actions</legend>
+  <res-action-viewer
+    [model]="model"
+    (modelChange)="modelChange.emit($event)"
+    text="model"
+    [items]="modelItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="label"
+    (modelChange)="labelChange.emit($event)"
+    text="label"
+    [items]="labelItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="required"
+    (modelChange)="requiredChange.emit($event)"
+    text="required"
+    [items]="boolItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="disabled"
+    (modelChange)="disabledChange.emit($event)"
+    text="disabled"
+    [items]="boolItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    *ngIf="multiple !== undefined"
+    [model]="multiple"
+    (modelChange)="multipleChange.emit($event)"
+    text="multiple"
+    [items]="boolItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="brLeft"
+    (modelChange)="brLeftChange.emit($event)"
+    text="brLeft"
+    [items]="boolItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="brRight"
+    (modelChange)="brRightChange.emit($event)"
+    text="brRight"
+    [items]="boolItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="minlength"
+    (modelChange)="minlengthChange.emit($event)"
+    text="minlength"
+    [items]="minlengthItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="maxlength"
+    (modelChange)="maxlengthChange.emit($event)"
+    text="maxlength"
+    [items]="maxlengthItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="min"
+    (modelChange)="minChange.emit($event)"
+    text="min"
+    [items]="minItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="max"
+    (modelChange)="maxChange.emit($event)"
+    text="max"
+    [items]="maxItems"
+  ></res-action-viewer>
+  <res-action-viewer
+    [model]="step"
+    (modelChange)="stepChange.emit($event)"
+    text="step"
+    [items]="stepItems"
+  ></res-action-viewer>
+  <fieldset *ngFor="let item of choiceItems; let idx = index">
+    <legend>
+      <button
+        type="button"
+        [class.active]="choice === item"
+        (click)="choiceChange.emit(item)"
+      >
+        set
+        <b>items</b>
+        to
+        <code>data{{idx + 1}}</code>
+      </button>
+    </legend>
+    <code class="block">
+      {{item | json}}
+    </code>
+  </fieldset>
+</fieldset>
+<fieldset>
+  <legend>
+    🔍 html code
+  </legend>
+  <!-- <code>{{codeHtml}}</code>
+  <hr /> -->
+  <code class="block">
+    <div>{{codeHtmlStart}}</div>
+    <div *ngFor="let item of codeHtmlAttributes">
+      &nbsp;&nbsp;{{item}}
+    </div>
+    <div>{{codeHtmlEnd}}</div>
+  </code>
+</fieldset>

@@ -1,0 +1,9 @@
+<div>
+  {{form.valid ? '🆗 form valid' : '❗ form not valid'}}
+</div>
+<fc-button (clicked)="form.reset()">
+  form reset
+</fc-button>
+<div>
+  {{form.invalid ? '❗ form invalid' : '🆗 form not invalid'}}
+</div>
