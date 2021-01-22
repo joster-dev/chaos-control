@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ColorComponent } from './color.component';
+import { ActionViewerComponent } from './action-viewer.component';
 
-describe('ColorComponent', () => {
-  let component: ColorComponent;
-  let fixture: ComponentFixture<ColorComponent>;
+describe('ActionViewerComponent', () => {
+  let component: ActionViewerComponent;
+  let fixture: ComponentFixture<ActionViewerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ColorComponent]
+      declarations: [ActionViewerComponent]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ColorComponent);
+    fixture = TestBed.createComponent(ActionViewerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

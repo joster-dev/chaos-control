@@ -1,17 +1,18 @@
 {
   "name": "@joster-dev/form-control",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "description": "controls for your form",
+  "description": "styled controls for your form element",
   "keywords": [
     "form",
     "text",
     "number",
     "choice",
     "multi-choice",
-    "color"
+    "color",
+    "file"
   ],
   "repository": {
     "type": "git",
@@ -24,9 +25,9 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^10.1.0",
-    "@angular/core": "^10.1.0",
-    "@joster-dev/icon": "^0.0.13"
+    "@angular/common": "^11.1.0",
+    "@angular/core": "^11.1.0",
+    "@joster-dev/icon": "^0.1.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"
