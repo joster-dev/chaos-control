@@ -1,12 +1,9 @@
-<div class="f-sb">
-  <div>{{form.valid ? '🆗 form valid' : '❗ form not valid'}}</div>
-  <div>{{form.invalid ? '❗ form invalid' : '🆗 form not invalid'}}</div>
+<div>
+  {{form.valid ? '🆗 form valid' : '❗ form not valid'}}
 </div>
-<div class="ta-c">
-  <button
-    type="button"
-    (click)="form.reset()"
-  >
-    form reset
-  </button>
+<fc-button (clicked)="form.reset()">
+  form reset
+</fc-button>
+<div>
+  {{form.invalid ? '❗ form invalid' : '🆗 form not invalid'}}
 </div>

@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // import { FormControlModule } from '@joster-dev/form-control';
 import { FormControlModule } from 'dist/form-control';
+import { IconModule } from '@joster-dev/icon';
 
 import { AppComponent } from './app.component';
 import { NumberComponent } from './number/number.component';
@@ -35,7 +36,8 @@ import { FileComponent } from './file/file.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    FormControlModule
+    FormControlModule,
+    IconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

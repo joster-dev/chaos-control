@@ -33,6 +33,7 @@
     [items]="boolItems"
   ></res-action-viewer>
   <res-action-viewer
+    *ngIf="multiple !== undefined"
     [model]="multiple"
     (modelChange)="multipleChange.emit($event)"
     text="multiple"
