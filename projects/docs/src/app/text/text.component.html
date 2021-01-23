@@ -63,7 +63,7 @@
 <form #form1="ngForm">
   <fieldset class="min-width-auto">
     <legend>form 1</legend>
-    <res-form-settings [form]="form1"></res-form-settings>
+    <doc-form-settings [form]="form1"></doc-form-settings>
     <fieldset>
       <legend>⭐ fieldset</legend>
       <fc-text
@@ -77,7 +77,7 @@
         [brRight]="isExample1BrRight"
       >{{example1Label}}</fc-text>
     </fieldset>
-    <res-model-viewer
+    <doc-model-viewer
       [(model)]="example1"
       [modelItems]="[testText, 'Lorum ipsum', 'L']"
       [(label)]="example1Label"
@@ -90,13 +90,13 @@
       [(maxlength)]="example1Maxlength"
       [maxlengthItems]="[80, 100, 0]"
       display="text"
-    ></res-model-viewer>
+    ></doc-model-viewer>
   </fieldset>
 </form>
 <form #form2="ngForm">
   <fieldset class="min-width-auto">
     <legend>form 2</legend>
-    <res-form-settings [form]="form2"></res-form-settings>
+    <doc-form-settings [form]="form2"></doc-form-settings>
     <fieldset disabled>
       <legend>
         ⭐ <b>disabled</b> fieldset
@@ -112,7 +112,7 @@
         [brRight]="isExample2BrRight"
       >{{example2Label}}</fc-text>
     </fieldset>
-    <res-model-viewer
+    <doc-model-viewer
       [(model)]="example2"
       [modelItems]="[testText, 'Lorum ipsum', 'L']"
       [(label)]="example2Label"
@@ -125,6 +125,6 @@
       [(maxlength)]="example2Maxlength"
       [maxlengthItems]="[10, 100, 0]"
       display="text"
-    ></res-model-viewer>
+    ></doc-model-viewer>
   </fieldset>
 </form>

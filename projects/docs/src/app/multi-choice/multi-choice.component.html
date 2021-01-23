@@ -7,7 +7,7 @@
 <form #form1="ngForm">
   <fieldset>
     <legend>form</legend>
-    <res-form-settings [form]="form1"></res-form-settings>
+    <doc-form-settings [form]="form1"></doc-form-settings>
     <fieldset>
       <legend>⭐ fieldset</legend>
       <fc-multi-choice
@@ -21,7 +21,7 @@
         [brRight]="isExample1BrRight"
       >{{example1Label}}</fc-multi-choice>
     </fieldset>
-    <res-model-viewer
+    <doc-model-viewer
       [(model)]="example1"
       [modelItems]="[[true], [1,2,4], [8]]"
       [(label)]="example1Label"
@@ -34,7 +34,7 @@
       [(limit)]="example1Limit"
       [limitItems]="[0, 3]"
       display="multi-choice"
-    ></res-model-viewer>
+    ></doc-model-viewer>
   </fieldset>
 </form>
 <form #form2="ngForm">
@@ -42,7 +42,7 @@
     <legend>
       📖 example 2 form
     </legend>
-    <res-form-settings [form]="form2"></res-form-settings>
+    <doc-form-settings [form]="form2"></doc-form-settings>
     <fieldset disabled>
       <legend>
         ⭐ <b>disabled</b> fieldset
@@ -58,7 +58,7 @@
         [brRight]="isExample2BrRight"
       >{{example2Label}}</fc-multi-choice>
     </fieldset>
-    <res-model-viewer
+    <doc-model-viewer
       [(model)]="example2"
       [modelItems]="[[true], [1,2,4], [8]]"
       [(label)]="example2Label"
@@ -71,6 +71,6 @@
       [(limit)]="example2Limit"
       [limitItems]="[0, 3]"
       display="multi-choice"
-    ></res-model-viewer>
+    ></doc-model-viewer>
   </fieldset>
 </form>

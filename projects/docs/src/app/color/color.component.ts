@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'res-color',
+  selector: 'doc-color',
   templateUrl: './color.component.html',
   styleUrls: ['./color.component.scss']
 })

@@ -7,7 +7,7 @@
 <form #form1="ngForm">
   <fieldset class="min-width-auto">
     <legend>form 1</legend>
-    <res-form-settings [form]="form1"></res-form-settings>
+    <doc-form-settings [form]="form1"></doc-form-settings>
     <fieldset class="word-break-all">
       <legend>⭐ fieldset</legend>
       <fc-color
@@ -19,7 +19,7 @@
         [brRight]="isExample1BrRight"
       >{{example1Label}}</fc-color>
     </fieldset>
-    <res-model-viewer
+    <doc-model-viewer
       [(model)]="example1"
       [modelItems]="['5C4DFF', 'ZYTAFF']"
       [(label)]="example1Label"
@@ -28,7 +28,7 @@
       [(brLeft)]="isExample1BrLeft"
       [(brRight)]="isExample1BrRight"
       display="color"
-    ></res-model-viewer>
+    ></doc-model-viewer>
   </fieldset>
 </form>
 <form #form2="ngForm">
@@ -47,7 +47,7 @@
         [brRight]="isExample2BrRight"
       >{{example2Label}}</fc-color>
     </fieldset>
-    <res-model-viewer
+    <doc-model-viewer
       [(model)]="example2"
       [modelItems]="['5C4DFF', 'ZYTAFF']"
       [(label)]="example2Label"
@@ -56,6 +56,6 @@
       [(brLeft)]="isExample2BrLeft"
       [(brRight)]="isExample2BrRight"
       display="color"
-    ></res-model-viewer>
+    ></doc-model-viewer>
   </fieldset>
 </form>

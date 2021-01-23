@@ -1,7 +1,7 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'res-model-viewer[model]',
+  selector: 'doc-model-viewer[model]',
   templateUrl: './model-viewer.component.html',
   styleUrls: ['./model-viewer.component.scss']
 })

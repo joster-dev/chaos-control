@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'res-action-viewer[text][items][model]',
+  selector: 'doc-action-viewer[text][items][model]',
   templateUrl: './action-viewer.component.html',
   styleUrls: ['./action-viewer.component.scss']
 })

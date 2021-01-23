@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'res-text',
+  selector: 'doc-text',
   templateUrl: './text.component.html',
   styleUrls: ['./text.component.scss']
 })

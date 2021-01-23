@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { KeyValue } from '@angular/common';
 
 @Component({
-  selector: 'res-choice',
+  selector: 'doc-choice',
   templateUrl: './choice.component.html',
   styleUrls: ['./choice.component.scss']
 })

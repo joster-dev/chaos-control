@@ -7,7 +7,7 @@
 <form #form1="ngForm">
   <fieldset class="min-width-auto">
     <legend>form 1</legend>
-    <res-form-settings [form]="form1"></res-form-settings>
+    <doc-form-settings [form]="form1"></doc-form-settings>
     <fieldset>
       <legend>⭐ fieldset</legend>
       <fc-number
@@ -22,7 +22,7 @@
         [step]="example1Step"
       >{{example1Label}}</fc-number>
     </fieldset>
-    <res-model-viewer
+    <doc-model-viewer
       [(model)]="example1"
       [modelItems]="[0, -1, 11, billion]"
       [(label)]="example1Label"
@@ -37,13 +37,13 @@
       [(step)]="example1Step"
       [stepItems]="[1, 2, 3]"
       display="number"
-    ></res-model-viewer>
+    ></doc-model-viewer>
   </fieldset>
 </form>
 <form #form2="ngForm">
   <fieldset class="min-width-auto">
     <legend>form 2</legend>
-    <res-form-settings [form]="form2"></res-form-settings>
+    <doc-form-settings [form]="form2"></doc-form-settings>
     <fieldset disabled>
       <legend>⭐ <b>disabled</b> fieldset</legend>
       <fc-number
@@ -58,7 +58,7 @@
         [step]="example2Step"
       >{{example2Label}}</fc-number>
     </fieldset>
-    <res-model-viewer
+    <doc-model-viewer
       [(model)]="example2"
       [modelItems]="[0, -1, 11, billion]"
       [(label)]="example2Label"
@@ -73,6 +73,6 @@
       [(step)]="example2Step"
       [stepItems]="[1, 2, 3]"
       display="number"
-    ></res-model-viewer>
+    ></doc-model-viewer>
   </fieldset>
 </form>

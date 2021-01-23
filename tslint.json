@@ -46,7 +46,7 @@
         ]
       }
     ],
-    "no-any": true,
+    "no-any": false,
     "no-console": [
       true,
       "debug",
