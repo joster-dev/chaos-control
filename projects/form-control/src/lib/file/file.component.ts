@@ -1,5 +1,6 @@
 import { Component, Input, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidatorFn, ValidationErrors, Validators } from '@angular/forms';
+import { isNumber } from 'dist/form-control/public-api';
 import { debounceTime } from 'rxjs/operators';
 import { ControlDirective } from '../control.directive';
 
@@ -17,8 +18,7 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
   @Input() get acceptedTypes() {
     return this._acceptedTypes;
   }
-  set acceptedTypes(v: string[]) {
-    const value = v as unknown;
+  set acceptedTypes(value: string[]) {
     if (!Array.isArray(value) || !value.every(item => typeof item === 'string'))
       throw new Error(`[acceptedTypes] expects: string[]`);
     this._acceptedTypes = value;
@@ -29,10 +29,9 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
   @Input() get sizeLimitMb() {
     return this._sizeLimitMb;
   }
-  set sizeLimitMb(v: number) {
-    const value = v as unknown;
-    if (typeof value !== 'number')
-      throw new Error('[sizeLimitMb] expects: number');
+  set sizeLimitMb(value: number) {
+    if (!isNumber(value, true))
+      throw new Error('[sizeLimitMb] expects: greater than -1');
     this._sizeLimitMb = value;
     this.validation.next();
   }
@@ -103,14 +102,14 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
       && control.value instanceof FileList
       && !Object.values(control.value).map(item => item.type.toLowerCase())
         .every(type => acceptedTypes.includes(type.toLowerCase()))
-      ? { acceptedTypes: true }
+      ? { acceptedTypes: { value: control.value } }
       : null;
   }
 
   private invalidValidator(multiple: boolean): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => control.value !== null
       && (!(control.value instanceof FileList) || (control.value.length > 1 && !multiple))
-      ? { invalid: true }
+      ? { invalid: { value: control.value } }
       : null;
   }
 
@@ -119,7 +118,7 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
       && control.value instanceof FileList
       && Object.values(control.value).map(item => item.size / 1024 / 1024)
         .reduce((acc, cur) => acc + cur, 0) > sizeLimitMb
-      ? { sizeLimitMb: true }
+      ? { sizeLimitMb: { value: control.value } }
       : null;
   }
 
