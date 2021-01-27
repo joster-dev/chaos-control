@@ -48,7 +48,7 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
     this.onChange(this.hex.test(removeHash) ? removeHash : null);
   }
 
-  onClick(event: PointerEvent) {
+  onClick(event: MouseEvent) {
     const ele = event.target as HTMLInputElement;
     if (ele.selectionStart === null || ele.selectionStart === 0) {
       this.selectionStart = 1;
@@ -68,7 +68,8 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
       + this.model.substring(this.selectionStart + text.length, this.model.length);
   }
 
-  onBeforeinput(event: InputEvent) {
+  onBeforeinput(e: Event) {
+    const event = e as InputEvent;
     console.log(event.inputType, event.data);
     event.preventDefault();
     const ele = event.target as HTMLInputElement;
@@ -174,7 +175,7 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
   }
 
   onChange(_model: string | null) { }
-  registerOnChange(fn: any) {
+  registerOnChange(fn: () => void) {
     this.onChange = fn;
   }
 
@@ -191,13 +192,6 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
 
     this._model = value;
   }
-
-  // private toHexString(value: number, length = 2) {
-  //   let result = value.toString(16).toUpperCase();
-  //   while (result.length < length)
-  //     result = `0${result}`;
-  //   return result;
-  // }
 
   private add(part: 0 | 1 | 2) {
     const idx = part * 2 + 1;

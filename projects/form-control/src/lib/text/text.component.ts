@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 import { ControlDirective } from '../control.directive';
+import { isNumber } from '../primitive';
 
 @Component({
   selector: 'fc-text',
@@ -18,27 +19,23 @@ import { ControlDirective } from '../control.directive';
 export class TextComponent extends ControlDirective implements OnDestroy, ControlValueAccessor {
   @Input()
   get placeholder() {
-    if (this._placeholder === undefined)
-      return '';
-
     return this._placeholder;
   }
-  set placeholder(value: any) {
+  set placeholder(v: string) {
+    const value = v as unknown;
     if (typeof value !== 'string')
-      throw new Error('placeholder input must be: string');
-
+      throw new Error('[placeholder] expects: string');
     this._placeholder = value;
   }
-  _placeholder?: string;
+  _placeholder = '';
 
   @Input()
   get minLength() {
     return this._minLength;
   }
-  set minLength(value: any) {
-    if (typeof value !== 'number')
-      throw new Error('minLength input must be: number');
-
+  set minLength(value: number) {
+    if (!isNumber(value))
+      throw new Error('[minLength] expects: number');
     this._minLength = value;
     this.validation.next();
   }
@@ -48,10 +45,9 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
   get maxLength() {
     return this._maxLength;
   }
-  set maxLength(value: any) {
-    if (typeof value !== 'number')
-      throw new Error('maxLength input must be: number');
-
+  set maxLength(value: number) {
+    if (!isNumber(value))
+      throw new Error('[maxLength] expects: number');
     this._maxLength = value;
     this.validation.next();
   }
@@ -109,20 +105,18 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
   }
 
   onChange(_model: string | null) { }
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: () => void): void {
     this.onChange = fn;
   }
 
-  writeValue(value: any): void {
+  writeValue(v: string | null): void {
+    let value = v as unknown;
     if (value === '' || value === undefined)
       value = null;
-
-    if (typeof value === 'number')
+    if (isNumber(value))
       value = value.toString();
-
     if (!(value === null || typeof value === 'string'))
       throw new Error('control value must be: string');
-
     this._model = value;
     setTimeout(() => this.setTextareaHeight());
   }

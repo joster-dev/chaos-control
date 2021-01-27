@@ -1,6 +1,6 @@
-import { KeyValue } from '@angular/common';
 import { Component, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Item } from 'dist/form-control/public-api';
 import { debounceTime } from 'rxjs/operators';
 
 import { isPrimitive, primitive } from '../primitive';
@@ -34,7 +34,7 @@ export class ChoiceComponent extends ChoiceDirective implements ControlValueAcce
     ngControl.valueAccessor = this;
   }
 
-  onClick(item: KeyValue<primitive, string>) {
+  onClick(item: Item) {
     if (this._model === item.key) {
       if (this.required === true)
         return;
@@ -46,21 +46,20 @@ export class ChoiceComponent extends ChoiceDirective implements ControlValueAcce
   }
 
   onChange(_value: primitive | null) { }
-  registerOnChange(fn: any) {
+  registerOnChange(fn: () => void) {
     this.onChange = fn;
   }
 
-  writeValue(value: any) {
+  writeValue(v: primitive | null) {
+    let value = v as unknown;
     if (value === undefined)
       value = null;
-
     if (value !== null && !isPrimitive(value))
       throw new Error('control value must be primitive');
-
     this._model = value;
   }
 
-  private invalidValidator(items: KeyValue<primitive, string>[]): ValidatorFn {
+  private invalidValidator(items: Item[]): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null =>
       control.value !== null && !items.map(item => item.key).includes(control.value)
         ? { invalid: control.value }
@@ -71,13 +70,10 @@ export class ChoiceComponent extends ChoiceDirective implements ControlValueAcce
     const validators: ValidatorFn[] = [
       this.invalidValidator(this.items)
     ];
-
     if (this.required === true)
       validators.push(Validators.required);
-
     if (this.ngControl.control === null)
       throw new Error('expected control to be defined');
-
     this.ngControl.control.setValidators(validators);
     this.ngControl.control.updateValueAndValidity();
   }

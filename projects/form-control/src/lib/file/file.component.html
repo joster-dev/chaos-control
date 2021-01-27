@@ -25,14 +25,14 @@
   </div>
 </div>
 
-<ul *ngIf="ngControl.control?.errors !== null">
-  <li *ngIf="ngControl.control?.errors.acceptedTypes !== undefined">
+<ul *ngIf="ngControl.control?.errors">
+  <li *ngIf="ngControl.control?.errors?.acceptedTypes">
     valid types are {{acceptedTypes.join(', ')}}
   </li>
-  <li *ngIf="ngControl.control?.errors.sizeLimitMb !== undefined">
+  <li *ngIf="ngControl.control?.errors?.sizeLimitMb">
     max file size is {{sizeLimit}}
   </li>
-  <li *ngIf="ngControl.control?.errors.invalid !== undefined">
+  <li *ngIf="ngControl.control?.errors?.invalid">
     invalid model
   </li>
 </ul>
@@ -44,5 +44,5 @@
   [accept]="acceptedTypes.join()"
   [multiple]="multiple"
   [id]="id"
-  (change)="onFileChange($event.target.files)"
+  (change)="onFileChange($event)"
 />

@@ -1,8 +1,7 @@
-import { KeyValue } from '@angular/common';
-import { Component, ElementRef, forwardRef, HostListener, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
-
-import { FormControlService } from '../form-control.service';
+import { Component, ElementRef, HostListener, Input } from '@angular/core';
+import { ControlValueAccessor, ValidationErrors } from '@angular/forms';
+import { Item } from 'dist/form-control/public-api';
+import { ControlDirective } from '../control.directive';
 import { primitive } from '../primitive';
 
 @Component({
@@ -11,27 +10,14 @@ import { primitive } from '../primitive';
   styleUrls: [
     './select.component.scss',
     '../atomic.scss'
-  ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => SelectComponent),
-      multi: true
-    },
-    {
-      provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => SelectComponent),
-      multi: true
-    }
   ]
 })
-export class SelectComponent implements ControlValueAccessor, Validator {
+export class SelectComponent extends ControlDirective implements ControlValueAccessor {
   @Input() nullDisplay = 'Unknown';
   @Input() nullTitle = '❓';
   @Input() showNull = false;
   @Input() showIcon = true;
-  @Input() items: KeyValue<primitive, string>[] = [];
-  @Input() required = false;
+  @Input() items: Item[] = [];
   @Input() label?: string;
   @Input() placeholder?: string;
 
@@ -41,7 +27,11 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   error: 'required' | null = null;
   isDropdownCloseToBottom = false;
 
-  constructor(private hostElement: ElementRef, private formControlService: FormControlService) { }
+  constructor(
+    private hostElement: ElementRef
+  ) {
+    super();
+  }
 
   get hasSelected() {
     return this.items.some(item => this.model === item.key);
@@ -87,13 +77,8 @@ export class SelectComponent implements ControlValueAccessor, Validator {
   }
 
   onChange(_model: number | string | null) { }
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: () => void): void {
     this.onChange = fn;
-  }
-
-  onTouched() { }
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
   }
 
   setDisabledState(isDisabled: boolean): void {
@@ -109,7 +94,7 @@ export class SelectComponent implements ControlValueAccessor, Validator {
     return null;
   }
 
-  writeValue(value: any): void {
+  writeValue(value: primitive | null): void {
     if (value !== null && typeof value !== 'string' && typeof value !== 'number')
       throw new Error('control value must be string or number or null');
 

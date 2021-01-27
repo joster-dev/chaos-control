@@ -6,14 +6,14 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./model-viewer.component.scss']
 })
 export class ModelViewerComponent {
-  @Input() display: string;
+  @Input() display?: string;
 
-  @Input() model: any;
+  @Input() model!: unknown;
   @Output() modelChange = new EventEmitter();
 
-  @Input() modelItems: any[] = [];
+  @Input() modelItems: unknown[] = [];
 
-  @Input() label: string;
+  @Input() label?: string;
   @Output() labelChange = new EventEmitter();
 
   @Input() labelItems = [
@@ -22,59 +22,59 @@ export class ModelViewerComponent {
     ''
   ];
 
-  @Input() required: boolean;
+  @Input() required?: boolean;
   @Output() requiredChange = new EventEmitter();
 
-  @Input() disabled: boolean;
+  @Input() disabled?: boolean;
   @Output() disabledChange = new EventEmitter();
 
-  @Input() multiple: boolean;
+  @Input() multiple?: boolean;
   @Output() multipleChange = new EventEmitter();
 
-  @Input() brLeft: boolean;
+  @Input() brLeft?: boolean;
   @Output() brLeftChange = new EventEmitter();
 
-  @Input() brRight: boolean;
+  @Input() brRight?: boolean;
   @Output() brRightChange = new EventEmitter();
 
-  @Input() minlength: number;
+  @Input() minlength?: number;
   @Output() minlengthChange = new EventEmitter();
 
   @Input() minlengthItems: number[] = [];
 
-  @Input() maxlength: number;
+  @Input() maxlength?: number;
   @Output() maxlengthChange = new EventEmitter();
 
   @Input() maxlengthItems: number[] = [];
 
-  @Input() min: number;
+  @Input() min?: number;
   @Output() minChange = new EventEmitter();
 
   @Input() minItems: number[] = [];
 
-  @Input() max: number;
+  @Input() max?: number;
   @Output() maxChange = new EventEmitter();
 
   @Input() maxItems: number[] = [];
 
-  @Input() step: number;
+  @Input() step?: number;
   @Output() stepChange = new EventEmitter();
 
   @Input() stepItems: number[] = [];
 
-  @Input() choice: any;
+  @Input() choice?: unknown;
   @Output() choiceChange = new EventEmitter();
 
-  @Input() choiceItems: any[] = [];
+  @Input() items: unknown[] = [];
 
-  @Input() limit: number;
+  @Input() limit?: number;
   @Output() limitChange = new EventEmitter();
 
   @Input() limitItems: number[] = [];
 
   boolItems = [true, false];
   isMoreCode = false;
-  codeProps = [
+  codeProps: (keyof ModelViewerComponent)[] = [
     'required',
     'disabled',
     'multiple',
@@ -89,7 +89,7 @@ export class ModelViewerComponent {
 
   constructor() { }
 
-  get codeHtmlAttributes() {
+  get codeHtmlAttributes(): string[] {
     return this.codeProps
       .filter(prop => this[prop] !== undefined)
       .map(prop => {
@@ -97,7 +97,7 @@ export class ModelViewerComponent {
           return ` ${prop}="${this[prop]}"`;
         return ` [${prop}]="${this[prop]}"`;
       })
-      .concat(this.choiceItems.length === 0 ? [] : ` [items]="data${this.choiceItems.indexOf(this.choice) + 1}"`);
+      .concat(this.items.length === 0 ? [] : ` [items]="data${this.items.indexOf(this.choice) + 1}"`);
   }
 
   get codeHtmlStart() {

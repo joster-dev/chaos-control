@@ -8,9 +8,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class ActionViewerComponent {
   @Input() text!: string;
 
-  @Input() items: any[];
+  @Input() items!: unknown[];
 
-  @Input() model: any;
+  @Input() model!: unknown;
   @Output() modelChange = new EventEmitter();
 
   constructor() { }

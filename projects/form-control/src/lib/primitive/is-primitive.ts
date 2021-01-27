@@ -1,8 +1,9 @@
+import { isNumber } from './is-number';
 import { primitive } from './primitive.type';
 
-export function isPrimitive(value: any): value is primitive {
+export function isPrimitive(value: unknown): value is primitive {
   return value === null
     || typeof value === 'boolean'
-    || typeof value === 'number'
+    || isNumber(value)
     || typeof value === 'string';
 }

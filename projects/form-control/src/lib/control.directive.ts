@@ -10,7 +10,8 @@ export class ControlDirective extends BrDirective implements OnDestroy {
   get required() {
     return this._required;
   }
-  set required(value: any) {
+  set required(v: boolean) {
+    let value = v as unknown;
     if (value === '')
       value = true;
     if (value === null || value === undefined)
@@ -34,7 +35,7 @@ export class ControlDirective extends BrDirective implements OnDestroy {
   }
 
   onTouched() { }
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 

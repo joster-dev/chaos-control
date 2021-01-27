@@ -30,11 +30,11 @@
   ></textarea>
 </div>
 
-<ul *ngIf="ngControl.control?.errors !== null">
-  <li *ngIf="ngControl.control?.errors.minlength !== undefined">
+<ul *ngIf="ngControl.control?.errors">
+  <li *ngIf="ngControl.control?.errors?.minlength">
     minimum length is {{minLength}}
   </li>
-  <li *ngIf="ngControl.control?.errors.maxLength !== undefined">
+  <li *ngIf="ngControl.control?.errors?.maxLength">
     maximum length is {{maxLength}}
   </li>
 </ul>

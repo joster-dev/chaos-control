@@ -47,11 +47,11 @@
   </fc-button>
 </div>
 
-<ul *ngIf="ngControl.control?.errors !== null">
-  <li *ngIf="ngControl.control?.errors.invalid !== undefined">
+<ul *ngIf="ngControl.control?.errors">
+  <li *ngIf="ngControl.control?.errors?.invalid">
     invalid model
   </li>
-  <li *ngIf="ngControl.control?.errors.limit !== undefined">
+  <li *ngIf="ngControl.control?.errors?.limit">
     limit is {{limit}}
   </li>
 </ul>

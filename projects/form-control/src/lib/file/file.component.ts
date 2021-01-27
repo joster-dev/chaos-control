@@ -17,9 +17,10 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
   @Input() get acceptedTypes() {
     return this._acceptedTypes;
   }
-  set acceptedTypes(value: string[]) {
+  set acceptedTypes(v: string[]) {
+    const value = v as unknown;
     if (!Array.isArray(value) || !value.every(item => typeof item === 'string'))
-      throw new Error(`acceptedTypes input must be: string array`);
+      throw new Error(`[acceptedTypes] expects: string[]`);
     this._acceptedTypes = value;
     this.validation.next();
   }
@@ -28,16 +29,17 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
   @Input() get sizeLimitMb() {
     return this._sizeLimitMb;
   }
-  set sizeLimitMb(value: number) {
+  set sizeLimitMb(v: number) {
+    const value = v as unknown;
     if (typeof value !== 'number')
-      throw new Error('sizeLimitMb input must be: number');
+      throw new Error('[sizeLimitMb] expects: number');
     this._sizeLimitMb = value;
     this.validation.next();
   }
   _sizeLimitMb = 0;
 
   @Input() get multiple() {
-    return this._multiple === true;
+    return this._multiple;
   }
   set multiple(value: boolean) {
     this._multiple = value === true;
@@ -72,16 +74,17 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
     return this.sizeLimitMb < 1 ? `${this.sizeLimitMb * 1000} KB` + ' KB' : `${this.sizeLimitMb} MB`;
   }
 
-  onFileChange(event: FileList): void {
+  onFileChange(event: Event): void {
+    const target = event.target as HTMLInputElement;
     this.onChange(
-      event.length === 0
-        ? null
-        : event
+      target.files?.length
+        ? target.files
+        : null
     );
   }
 
   onChange(_model: FileList | null) { }
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: () => void): void {
     this.onChange = fn;
   }
 

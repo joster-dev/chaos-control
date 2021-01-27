@@ -8,13 +8,15 @@ export class BrDirective {
   get brRight() {
     return this._brRight;
   }
-  set brRight(value: any) {
+  set brRight(v: boolean) {
+    let value = v as unknown;
     if (value === '')
       value = true;
-    if (value === null || value === undefined)
+    if (value == null)
       value = false;
-    if (typeof value === 'boolean')
-      this._brRight = value;
+    if (typeof value !== 'boolean')
+      throw new Error('[brRight] expects: boolean');
+    this._brRight = value;
   }
   _brRight = true;
 
@@ -22,13 +24,15 @@ export class BrDirective {
   get brLeft() {
     return this._brLeft;
   }
-  set brLeft(value: any) {
+  set brLeft(v: boolean) {
+    let value = v as unknown;
     if (value === '')
       value = true;
-    if (value === null || value === undefined)
+    if (value == null)
       value = false;
-    if (typeof value === 'boolean')
-      this._brLeft = value;
+    if (typeof value !== 'boolean')
+      throw new Error('[brLeft] expects: boolean');
+    this._brLeft = value;
   }
   _brLeft = true;
 }

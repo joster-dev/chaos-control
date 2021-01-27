@@ -2,6 +2,7 @@ import { Component, Input, Self } from '@angular/core';
 import { ControlValueAccessor, NgControl, ValidatorFn, Validators } from '@angular/forms';
 
 import { ControlDirective } from '../control.directive';
+import { isNumber } from '../primitive';
 
 @Component({
   selector: 'fc-number',
@@ -18,9 +19,9 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
   get min() {
     return this._min;
   }
-  set min(value: any) {
-    if (typeof value !== 'number')
-      throw new Error('min input must be: number');
+  set min(value: number) {
+    if (!isNumber(value))
+      throw new Error('[min] expects: number');
     this._min = value;
     this.validation.next();
   }
@@ -30,9 +31,9 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
   get max() {
     return this._max;
   }
-  set max(value: any) {
-    if (typeof value !== 'number')
-      throw new Error('max input must be: number');
+  set max(value: number) {
+    if (!isNumber(value))
+      throw new Error('[max] expects: number');
     this._max = value;
     this.validation.next();
   }
@@ -42,9 +43,9 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
   get step() {
     return this._step;
   }
-  set step(value: any) {
-    if (typeof value !== 'number')
-      throw new Error('step input must be: number');
+  set step(value: number) {
+    if (!isNumber(value))
+      throw new Error('[step] expects: number');
     this._step = value;
     this.mustBeInteger = Number.isInteger(this._step);
   }
@@ -88,7 +89,8 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
     ) + padding;
   }
 
-  onBeforeinput(event: InputEvent) {
+  onBeforeinput(e: Event) {
+    const event = e as InputEvent;
     if (event.data === null)
       return;
     const isDigit = /\d/.test(event.data);
@@ -127,20 +129,18 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
   }
 
   onChange(_model: number | null) { }
-  registerOnChange(fn: any) {
+  registerOnChange(fn: () => void) {
     this.onChange = fn;
   }
 
-  writeValue(value: any) {
+  writeValue(v: number | null) {
+    let value = v as unknown;
     if (value === undefined)
       value = null;
-
     if (typeof value === 'string')
       value = parseFloat(value);
-
-    if (!(value === null || typeof value === 'number' || isNaN(value)))
+    if (value !== null && !isNumber(value))
       throw new Error('control value must be: number or null');
-
     this._model = value;
   }
 

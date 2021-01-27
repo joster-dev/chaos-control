@@ -1,9 +1,8 @@
-import { KeyValue } from '@angular/common';
 import { Component, Input, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
-import { isPrimitive, primitive } from '../primitive';
+import { isNumber, isPrimitive, Item, primitive } from '../primitive';
 import { ChoiceDirective } from './choice.directive';
 
 @Component({
@@ -23,13 +22,14 @@ export class MultiChoiceComponent extends ChoiceDirective implements ControlValu
       && this.required === false
       && this.items.length > 3;
   }
-  set allowClear(value: any) {
+  set allowClear(v: boolean) {
+    let value = v as unknown;
     if (value === '')
       value = true;
     if (value === null || value === undefined)
       value = false;
     if (typeof value !== 'boolean')
-      throw new Error('allowClear input must be: boolean');
+      throw new Error('[allowClear] expects: boolean');
     this._allowClear = value;
   }
   _allowClear = true;
@@ -38,11 +38,11 @@ export class MultiChoiceComponent extends ChoiceDirective implements ControlValu
   get limit() {
     return this._limit;
   }
-  set limit(value: any) {
+  set limit(value: number) {
     if (value === null || value === undefined)
       value = 0;
-    if (typeof value !== 'number' || !Number.isInteger(value) || value < 0)
-      throw new Error('limit input must be: integer greater than -1');
+    if (!isNumber(value, true))
+      throw new Error('[limit] expects: greater than -1');
     this._limit = value;
     this.validation.next();
   }
@@ -62,7 +62,7 @@ export class MultiChoiceComponent extends ChoiceDirective implements ControlValu
     ngControl.valueAccessor = this;
   }
 
-  onClick(item: KeyValue<primitive, string>) {
+  onClick(item: Item) {
     this._model = this.removeInvalid();
     if (this._model.includes(item.key) === true) {
       if (this.required === true && this._model.length === 1)
@@ -75,12 +75,12 @@ export class MultiChoiceComponent extends ChoiceDirective implements ControlValu
   }
 
   onChange(_value: primitive[] | null) { }
-  registerOnChange(fn: any) {
+  registerOnChange(fn: () => void) {
     this.onChange = fn;
   }
 
   writeValue(value: any) {
-    const isPrimitiveArray = Array.isArray(value) === true
+    const isPrimitiveArray = Array.isArray(value)
       && value.every((item: any) => isPrimitive(item) === true) === true;
 
     if (value !== null && value !== undefined && isPrimitiveArray !== true)
@@ -96,17 +96,17 @@ export class MultiChoiceComponent extends ChoiceDirective implements ControlValu
     return this._model.filter(key => this._items.map(item => item.key).includes(key));
   }
 
-  private invalidValidator(items: KeyValue<primitive, string>[]): ValidatorFn {
+  private invalidValidator(items: Item[]): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null =>
-      control.value !== null && control.value.every((key: any) => !items.map(item => item.key).includes(key))
-        ? { invalid: control.value }
+      control.value !== null && control.value.every((key: primitive) => !items.map(item => item.key).includes(key))
+        ? { invalid: { value: control.value } }
         : null;
   }
 
   private limitValidator(limit: number): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null =>
       control.value !== null && limit !== 0 && control.value.length > limit
-        ? { limit: control.value }
+        ? { limit: { value: control.value } }
         : null;
   }
 
