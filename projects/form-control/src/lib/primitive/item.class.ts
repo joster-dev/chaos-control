@@ -1,7 +1,5 @@
-import { primitive } from './primitive.type';
-
 export class Item {
-  key: primitive = 0;
+  key: boolean | number | string = 0;
   value = '';
   title?: string;
   small?: string;

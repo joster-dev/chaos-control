@@ -1,7 +1,7 @@
 import { Directive, Input } from '@angular/core';
 
 import { ControlDirective } from '../control.directive';
-import { isItems, primitive } from '../primitive';
+import { isItems } from '../primitive';
 import { Item } from '../primitive/item.class';
 
 @Directive({
@@ -12,9 +12,9 @@ export class ChoiceDirective extends ControlDirective {
   get items() {
     return this._items;
   }
-  set items(value: Item[]) {
+  set items(value: { key: boolean | number | string, value: string, [key: string]: unknown }[]) {
     if (!isItems(value))
-      throw new Error('[items] expects: { key: primitive; value: string }[]');
+      throw new Error('[items] expects: { key: boolean | number | string; value: string }[]');
     this._items = value;
     this.validation.next();
   }

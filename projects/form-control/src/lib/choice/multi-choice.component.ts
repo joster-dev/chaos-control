@@ -2,7 +2,7 @@ import { Component, Input, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
-import { isNumber, isPrimitive, Item, primitive } from '../primitive';
+import { isNumber, isPrimitive, Item } from '../primitive';
 import { ChoiceDirective } from './choice.directive';
 
 @Component({
@@ -48,8 +48,8 @@ export class MultiChoiceComponent extends ChoiceDirective implements ControlValu
   }
   _limit = 0;
 
-  _model: primitive[] = [];
-  set model(value: primitive[]) {
+  _model: (boolean | number | string)[] = [];
+  set model(value: (boolean | number | string)[]) {
     this._model = value;
     this.onChange(this._model.length === 0 ? null : this._model);
   }
@@ -74,17 +74,20 @@ export class MultiChoiceComponent extends ChoiceDirective implements ControlValu
     this.model = [...this._model, item.key];
   }
 
-  onChange(_value: primitive[] | null) { }
+  onChange(_value: (boolean | number | string)[] | null) { }
   registerOnChange(fn: () => void) {
     this.onChange = fn;
   }
 
   writeValue(value: any) {
-    const isPrimitiveArray = Array.isArray(value)
-      && value.every((item: any) => isPrimitive(item) === true) === true;
+    if (value === undefined)
+      value = null;
 
-    if (value !== null && value !== undefined && isPrimitiveArray !== true)
-      throw new Error('control value must be primitive array');
+    const isPrimitiveArray = Array.isArray(value)
+      && value.every((item: any) => isPrimitive(item));
+
+    if (value !== null && value !== undefined && !isPrimitiveArray)
+      console.error('control value must be primitive array');
 
     if (value === undefined || value === null)
       value = [];
@@ -92,13 +95,13 @@ export class MultiChoiceComponent extends ChoiceDirective implements ControlValu
     this._model = value;
   }
 
-  private removeInvalid(): primitive[] {
+  private removeInvalid() {
     return this._model.filter(key => this._items.map(item => item.key).includes(key));
   }
 
   private invalidValidator(items: Item[]): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null =>
-      control.value !== null && control.value.every((key: primitive) => !items.map(item => item.key).includes(key))
+      control.value !== null && control.value.every((key: any) => !items.map(item => item.key).includes(key))
         ? { invalid: { value: control.value } }
         : null;
   }

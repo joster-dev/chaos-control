@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Item } from 'dist/form-control/public-api';
 
 @Component({
   selector: 'doc-choice',
@@ -13,7 +12,7 @@ export class ChoiceComponent {
   isExample1Required = false;
   isExample1BrLeft = true;
   isExample1BrRight = true;
-  example1Items: Item[];
+  example1Items: { key: boolean | number; value: string }[];
 
   example2: boolean | number | null = null;
   example2Label = 'Lorum ipsum';
@@ -21,7 +20,7 @@ export class ChoiceComponent {
   isExample2Required = false;
   isExample2BrLeft = true;
   isExample2BrRight = true;
-  example2Items: Item[];
+  example2Items: { key: boolean | number; value: string }[];
 
   data1 = [
     { key: true, value: 'Yes' },

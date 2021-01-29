@@ -1,6 +1,6 @@
 import { Component, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { Item } from 'dist/form-control/public-api';
+import { Item } from '../primitive';
 import { debounceTime } from 'rxjs/operators';
 
 import { isPrimitive, primitive } from '../primitive';

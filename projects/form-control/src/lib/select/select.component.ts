@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostListener, Input } from '@angular/core';
 import { ControlValueAccessor, ValidationErrors } from '@angular/forms';
-import { Item } from 'dist/form-control/public-api';
+import { Item } from '../primitive';
 import { ControlDirective } from '../control.directive';
 import { primitive } from '../primitive';
 

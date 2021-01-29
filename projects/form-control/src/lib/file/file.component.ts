@@ -1,6 +1,6 @@
 import { Component, Input, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidatorFn, ValidationErrors, Validators } from '@angular/forms';
-import { isNumber } from 'dist/form-control/public-api';
+import { isNumber } from '../primitive';
 import { debounceTime } from 'rxjs/operators';
 import { ControlDirective } from '../control.directive';
 
