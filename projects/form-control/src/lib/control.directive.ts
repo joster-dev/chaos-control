@@ -10,8 +10,7 @@ export class ControlDirective extends BrDirective implements OnDestroy {
   get required() {
     return this._required;
   }
-  set required(v: boolean) {
-    let value = v as unknown;
+  set required(value: boolean | string) {
     if (value === '')
       value = true;
     if (value === null || value === undefined)
