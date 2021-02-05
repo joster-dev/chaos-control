@@ -48,6 +48,12 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
     this.onChange(this.hex.test(removeHash) ? removeHash : null);
   }
 
+  onChangeColor(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const value = target.value;
+    this.model = value.toUpperCase();
+  }
+
   onClick(event: MouseEvent) {
     const ele = event.target as HTMLInputElement;
     if (ele.selectionStart === null || ele.selectionStart === 0) {

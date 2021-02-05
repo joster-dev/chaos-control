@@ -3,23 +3,27 @@
 </label>
 
 <div class="dis-flex flex-stretch">
-  <div class="dis-flex flex-center">
+  <fc-button
+    class="dis-flex"
+    title="Color"
+    [brLeft]="brLeft"
+    [brRight]="false"
+    (clicked)="colorInput.click()"
+  >
     <icon
       size="1em"
       type="square"
       [fill]="squareFill || []"
       [stroke]="squareFill || '000000'"
     ></icon>
-  </div>
+  </fc-button>
   <input
     [(ngModel)]="model"
-    class="margin-left-1"
     spellcheck="false"
-    size="5"
+    size="6"
     type="text"
     [class.active]="ngControl.control?.value !== null"
     [class.br-right]="brRight"
-    [class.br-left]="brLeft"
     [class.invalid]="ngControl.control?.invalid === true"
     [disabled]="isDisabled === true"
     (beforeinput)="onBeforeinput($event)"
@@ -29,8 +33,16 @@
   />
 </div>
 
+
 <ul *ngIf="ngControl.control?.errors">
   <li *ngIf="ngControl.control?.errors?.invalid">
     invalid model
   </li>
 </ul>
+
+
+<input
+  #colorInput
+  type="color"
+  (change)="onChangeColor($event)"
+/>
