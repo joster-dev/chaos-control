@@ -1,5 +1,6 @@
 import { Component, Input, Self } from '@angular/core';
 import { ControlValueAccessor, NgControl, ValidatorFn, Validators } from '@angular/forms';
+import { FormControlService } from '../form-control.service';
 
 import { ControlDirective } from '../control.directive';
 import { isNumber } from '../primitive';
@@ -53,7 +54,10 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
 
   mustBeInteger = true;
 
-  constructor(@Self() public ngControl: NgControl) {
+  constructor(
+    @Self() public ngControl: NgControl,
+    public formControlService: FormControlService,
+  ) {
     super();
     this.validation.subscribe(() => this.validate());
     ngControl.valueAccessor = this;

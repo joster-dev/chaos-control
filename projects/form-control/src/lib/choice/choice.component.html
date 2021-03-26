@@ -21,13 +21,14 @@
       <icon
         type="circle"
         fillRotate
-        [fill]="['FFFFFF', 'DDDDDD']"
+        [fillOpacity]="0"
+        [stroke]="formControlService.bodyColor"
       ></icon>
       <icon
         *ngIf="_model === item.key"
         type="dot"
-        [fill]="['000000', '247000']"
-        fillRotate
+        [fillOpacity]="0"
+        [stroke]="formControlService.bodyColor"
       ></icon>
     </icon-stack>
     {{item.value}}

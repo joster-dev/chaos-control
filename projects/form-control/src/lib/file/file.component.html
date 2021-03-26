@@ -3,25 +3,31 @@
 </label>
 
 <div class="dis-flex flex-center">
-  <fc-button
-    [brRight]="brRight"
-    [brLeft]="brLeft"
-    [isActive]="ngControl.value !== null"
-    [isDisabled]="isDisabled === true"
-    (clicked)="fileInput.click()"
+  <div>
+    <fc-button
+      class="white-space-nowrap"
+      [brRight]="brRight"
+      [brLeft]="brLeft"
+      [isActive]="ngControl.value !== null"
+      [isDisabled]="isDisabled === true"
+      (clicked)="fileInput.click()"
+    >
+      <icon
+        type="folder"
+        size="1em"
+        [fillOpacity]="0"
+        [stroke]="formControlService.bodyColor"
+      ></icon>
+      <span class="margin-left-1">
+        Choose {{multiple ? 'Files' : 'File'}}
+      </span>
+    </fc-button>
+  </div>
+  <div
+    *ngIf="ngControl.value"
+    class="margin-left-1"
   >
-    <icon
-      type="folder"
-      size="1em"
-      [fill]="['F2A200', 'FFD575']"
-      fillRotate
-    ></icon>
-    <span class="muted">
-      &nbsp;Choose {{multiple ? 'Files' : 'File'}}
-    </span>
-  </fc-button>
-  <div *ngIf="ngControl.value">
-    &nbsp;&nbsp;{{fileNames}}
+    {{fileNames}}
   </div>
 </div>
 

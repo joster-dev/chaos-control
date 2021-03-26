@@ -1,5 +1,6 @@
 import { Component, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormControlService } from '../form-control.service';
 import { debounceTime } from 'rxjs/operators';
 
 import { ControlDirective } from '../control.directive';
@@ -19,7 +20,10 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
   hex = /^[0-9A-Fa-f]{6}$/;
   selectionStart = 0;
 
-  constructor(@Self() public ngControl: NgControl) {
+  constructor(
+    @Self() public ngControl: NgControl,
+    public formControlService: FormControlService
+  ) {
     super();
     this.validation
       .pipe(debounceTime(100))

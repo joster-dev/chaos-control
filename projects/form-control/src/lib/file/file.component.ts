@@ -1,8 +1,10 @@
 import { Component, Input, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidatorFn, ValidationErrors, Validators } from '@angular/forms';
-import { isNumber } from '../primitive';
 import { debounceTime } from 'rxjs/operators';
+
 import { ControlDirective } from '../control.directive';
+import { FormControlService } from '../form-control.service';
+import { isNumber } from '../primitive';
 
 @Component({
   selector: 'fc-file',
@@ -51,7 +53,10 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
   model: '' | null = null;
   id = `${Math.random().toString(36).substr(2, 9)}`;
 
-  constructor(@Self() public ngControl: NgControl) {
+  constructor(
+    @Self() public ngControl: NgControl,
+    public formControlService: FormControlService,
+  ) {
     super();
     this.validation
       .pipe(debounceTime(100))

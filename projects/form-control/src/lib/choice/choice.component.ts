@@ -5,10 +5,7 @@ import { debounceTime } from 'rxjs/operators';
 
 import { isPrimitive, primitive } from '../primitive';
 import { ChoiceDirective } from './choice.directive';
-
-// make choice -> select
-// when no wrap items its row items no stretch
-// when wrap occur regular select w/ dropdown
+import { FormControlService } from '../form-control.service';
 
 @Component({
   selector: 'fc-choice',
@@ -26,7 +23,10 @@ export class ChoiceComponent extends ChoiceDirective implements ControlValueAcce
   }
   _model: primitive | null = null;
 
-  constructor(@Self() public ngControl: NgControl) {
+  constructor(
+    @Self() public ngControl: NgControl,
+    public formControlService: FormControlService
+  ) {
     super();
     this.validation
       .pipe(debounceTime(100))

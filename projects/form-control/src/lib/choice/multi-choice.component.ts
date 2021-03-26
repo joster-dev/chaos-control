@@ -2,6 +2,7 @@ import { Component, Input, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
+import { FormControlService } from '../form-control.service';
 import { isNumber, isPrimitive, Item } from '../primitive';
 import { ChoiceDirective } from './choice.directive';
 
@@ -54,7 +55,10 @@ export class MultiChoiceComponent extends ChoiceDirective implements ControlValu
     this.onChange(this._model.length === 0 ? null : this._model);
   }
 
-  constructor(@Self() public ngControl: NgControl) {
+  constructor(
+    @Self() public ngControl: NgControl,
+    public formControlService: FormControlService
+  ) {
     super();
     this.validation
       .pipe(debounceTime(100))
