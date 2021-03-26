@@ -1,14 +1,29 @@
-# FormControl
+# form-control
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.0.
+form-control is an [Angular](https://angular.io/) library with dynamic components that enable type-safe value binding and can be used be utilized inside a form element
+- [Repository](https://github.com/joster-dev/form-control)
+- [Github Package](https://github.com/joster-dev/form-control/packages/322201)
+- [Demo](https://joster-dev.github.io/form-control/)
 
-## About
+## getting started
+update your `package.json`
+```bash
+npm install @joster-dev/form-control --save
+```
+import the module
+```diff
++ import { FormControlModule } from '@joster-dev/form-control';
 
-Styled customizable components, that enable type-safe value binding. Can be utilized inside a `<form>...</form>` element.
+@NgModule({
+  imports: [
++    FormControlModule
+  ],
+})
+```
 
-## Contents
+## components
 
-- form controls
+- main
   - `fc-number`
     - `number | null`
   - `fc-text`
@@ -18,7 +33,9 @@ Styled customizable components, that enable type-safe value binding. Can be util
   - `fc-multi-choice`
     - `primitive[] | null`
   - `fc-color`
-    - `hexstring | null`
+    - `string | null`
+  - `fc-file`
+    - `FileList | null`
 
 - utility
   - `fc-button`
@@ -29,11 +46,3 @@ Styled customizable components, that enable type-safe value binding. Can be util
   - `fc-date`
   - `fc-date-time`
   - `fc-time`
-
-## Wiki
-
-[Visit the Form Control Resource](https://github.com/joster-dev/form-control)
-
-- definitions
-  1. `primitive` = `null | boolean | number | string`
-  1. `hexstring` = `string` that passes [`/^[0-9A-Fa-f]{6}$/`](https://regexper.com/#%2F%5E%5B0-9A-Fa-f%5D%7B6%7D%24%2F)
