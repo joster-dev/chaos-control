@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-// import { FormControlModule } from '@joster-dev/form-control';
-import { FormControlModule } from 'dist/form-control';
+import { FormControlModule } from '@joster-dev/form-control';
+// import { FormControlModule } from 'dist/form-control';
 import { IconModule } from '@joster-dev/icon';
 
 import { AppComponent } from './app.component';
