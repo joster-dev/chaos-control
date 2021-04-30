@@ -1,4 +1,4 @@
-import { Component, Input, Self } from '@angular/core';
+import { Component, ElementRef, Input, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
@@ -42,8 +42,8 @@ export class MultiChoiceComponent extends ChoiceDirective implements ControlValu
   set limit(value: number) {
     if (value === null || value === undefined)
       value = 0;
-    if (!isNumber(value, true))
-      throw new Error('[limit] expects: greater than -1');
+    if (!isNumber(value) || value < 0 || !Number.isInteger(value))
+      throw new Error('[limit] expects: positive integer');
     this._limit = value;
     this.validation.next();
   }
@@ -57,13 +57,18 @@ export class MultiChoiceComponent extends ChoiceDirective implements ControlValu
 
   constructor(
     @Self() public ngControl: NgControl,
-    public formControlService: FormControlService
+    public formControlService: FormControlService,
+    hostElement: ElementRef,
   ) {
-    super();
+    super(hostElement);
     this.validation
       .pipe(debounceTime(100))
       .subscribe(() => this.validate());
     ngControl.valueAccessor = this;
+  }
+
+  get hostElementColorStyleHexString(): string {
+    return this.formControlService.colorStyleHexString(this.hostElement.nativeElement);
   }
 
   onClick(item: Item) {

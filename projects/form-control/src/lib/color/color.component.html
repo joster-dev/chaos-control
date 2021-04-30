@@ -14,32 +14,29 @@
       size="1em"
       type="square"
       [fill]="squareFill || []"
-      [stroke]="squareFill || formControlService.bodyColor"
+      [stroke]="squareFill || hostElementColorStyleHexString"
     ></icon>
   </fc-button>
   <input
     [(ngModel)]="model"
+    fcMask="color"
     spellcheck="false"
     size="6"
     type="text"
     [class.active]="ngControl.control?.value !== null"
     [class.br-right]="brRight"
-    [class.invalid]="ngControl.control?.invalid === true"
-    [disabled]="isDisabled === true"
-    (beforeinput)="onBeforeinput($event)"
+    [class.invalid]="ngControl.control?.invalid"
+    [disabled]="isDisabled"
+    [style.border-color]="'#' + hostElementColorStyleHexString"
     (blur)="onTouched()"
-    (click)="onClick($event)"
-    (keydown)="onKeydown($event)"
   />
 </div>
-
 
 <ul *ngIf="ngControl.control?.errors">
   <li *ngIf="ngControl.control?.errors?.invalid">
     invalid model
   </li>
 </ul>
-
 
 <input
   #colorInput

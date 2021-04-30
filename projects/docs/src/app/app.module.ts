@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { FormControlModule } from '@joster-dev/form-control';
-// import { FormControlModule } from 'dist/form-control';
-import { IconModule } from '@joster-dev/icon';
+import { MarkdownModule } from 'ngx-markdown';
+
+// import { FormControlModule } from '@joster-dev/form-control';
+import { FormControlModule } from 'dist/form-control';
 
 import { AppComponent } from './app.component';
 import { NumberComponent } from './number/number.component';
@@ -37,7 +39,8 @@ import { FileComponent } from './file/file.component';
     FormsModule,
     ReactiveFormsModule,
     FormControlModule,
-    IconModule
+    HttpClientModule,
+    MarkdownModule.forRoot({ loader: HttpClient }),
   ],
   providers: [],
   bootstrap: [AppComponent]

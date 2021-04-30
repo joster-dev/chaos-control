@@ -17,6 +17,7 @@
     [disabled]="isDisabled === true"
     [id]="id"
     [placeholder]="placeholder"
+    [style.border-color]="'#' + hostElementColorStyleHexString"
     (blur)="onTouched()"
   ></textarea>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, Self } from '@angular/core';
+import { Component, ElementRef, Input, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidatorFn, ValidationErrors, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
@@ -32,8 +32,8 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
     return this._sizeLimitMb;
   }
   set sizeLimitMb(value: number) {
-    if (!isNumber(value, true))
-      throw new Error('[sizeLimitMb] expects: greater than -1');
+    if (!isNumber(value) || value < 0)
+      throw new Error('[sizeLimitMb] expects: positive number');
     this._sizeLimitMb = value;
     this.validation.next();
   }
@@ -55,9 +55,10 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
 
   constructor(
     @Self() public ngControl: NgControl,
-    public formControlService: FormControlService,
+    private formControlService: FormControlService,
+    hostElement: ElementRef,
   ) {
-    super();
+    super(hostElement);
     this.validation
       .pipe(debounceTime(100))
       .subscribe(() => this.validate());
@@ -75,7 +76,13 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
   }
 
   get sizeLimit(): string {
-    return this.sizeLimitMb < 1 ? `${this.sizeLimitMb * 1000} KB` + ' KB' : `${this.sizeLimitMb} MB`;
+    return this.sizeLimitMb < 1
+      ? `${this.sizeLimitMb * 1000} KB`
+      : `${this.sizeLimitMb} MB`;
+  }
+
+  get hostElementColorStyleHexString(): string {
+    return this.formControlService.colorStyleHexString(this.hostElement.nativeElement);
   }
 
   onFileChange(event: Event): void {

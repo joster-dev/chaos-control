@@ -72,12 +72,24 @@
             "tsConfig": "projects/docs/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/docs/src/assets"
+              "projects/docs/src/assets",
+              {
+                "glob": "README.md",
+                "input": "./node_modules/@joster-dev/form-control/",
+                "output": "./assets/"
+              }
             ],
             "styles": [
-              "projects/docs/src/styles.scss"
+              "projects/docs/src/styles.scss",
+              "node_modules/prismjs/themes/prism-okaidia.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/marked/lib/marked.js",
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-bash.min.js",
+              "node_modules/prismjs/components/prism-diff.min.js",
+              "node_modules/prismjs/components/prism-markup.min.js"
+            ]
           },
           "configurations": {
             "production": {

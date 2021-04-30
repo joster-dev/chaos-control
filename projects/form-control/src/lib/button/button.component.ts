@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
+import { FormControlService } from '../form-control.service';
 import { BrDirective } from '../br.directive';
 
 @Component({
@@ -19,8 +20,16 @@ export class ButtonComponent extends BrDirective {
   @Output() blurred = new EventEmitter<FocusEvent>();
   @Output() clicked = new EventEmitter<MouseEvent>();
 
-  constructor() {
+  constructor(
+    public formControlService: FormControlService,
+    public hostElement: ElementRef,
+  ) {
     super();
+  }
+
+  get hostElementColorStyleHexString(): string {
+    return this.formControlService
+      .colorStyleHexString(this.hostElement.nativeElement);
   }
 
   onClick(event: MouseEvent) {

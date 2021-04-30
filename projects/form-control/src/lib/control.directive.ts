@@ -1,4 +1,4 @@
-import { Directive, Input, OnDestroy } from '@angular/core';
+import { Directive, ElementRef, Input, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { BrDirective } from './br.directive';
 
@@ -25,12 +25,17 @@ export class ControlDirective extends BrDirective implements OnDestroy {
   isDisabled = false;
   validation = new Subject<void>();
 
-  constructor() {
+  constructor(public hostElement: ElementRef) {
     super();
   }
 
   ngOnDestroy(): void {
     this.validation.complete();
+  }
+
+  get hostElementStyleColor(): string {
+    this.hostElement.nativeElement.getComputedStyle();
+    return '';
   }
 
   onTouched() { }

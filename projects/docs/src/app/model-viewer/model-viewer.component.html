@@ -1,13 +1,9 @@
-<fieldset class="word-break-all">
-  <legend>
-    🔍 <i>model</i>
-  </legend>
-  <code>
-    {{model | json}}
-  </code>
-</fieldset>
-<fieldset>
-  <legend>⚙️ actions</legend>
+<h4>
+  <i>model</i>
+</h4>
+<pre><code class="language-bash">{{model | json}}</code></pre>
+<h4>configure</h4>
+<form>
   <doc-action-viewer
     [model]="model"
     (modelChange)="modelChange.emit($event)"
@@ -81,35 +77,21 @@
     text="step"
     [items]="stepItems"
   ></doc-action-viewer>
-  <fieldset *ngFor="let item of items; let idx = index">
-    <legend>
-      <button
-        type="button"
-        [class.active]="choice === item"
-        (click)="choiceChange.emit(item)"
-      >
-        set
-        <b>items</b>
-        to
-        <code>data{{idx + 1}}</code>
-      </button>
-    </legend>
-    <code class="block">
-      {{item | json}}
-    </code>
-  </fieldset>
-</fieldset>
-<fieldset>
-  <legend>
-    🔍 html code
-  </legend>
-  <!-- <code>{{codeHtml}}</code>
-  <hr /> -->
-  <code class="block">
-    <div>{{codeHtmlStart}}</div>
-    <div *ngFor="let item of codeHtmlAttributes">
-      &nbsp;&nbsp;{{item}}
-    </div>
-    <div>{{codeHtmlEnd}}</div>
-  </code>
-</fieldset>
+  <doc-action-viewer
+    [model]="limit"
+    (modelChange)="limitChange.emit($event)"
+    text="limit"
+    [items]="limitItems"
+  ></doc-action-viewer>
+</form>
+<div *ngFor="let item of items; let idx = index">
+  <fc-button
+    [isActive]="choice === item"
+    (clicked)="choiceChange.emit(item)"
+  >
+    set&nbsp;<b>items</b>&nbsp;to&nbsp;<code>data{{idx + 1}}</code>
+  </fc-button>
+  <pre><code class="language-markup">{{item | json}}</code></pre>
+</div>
+<h4>html code</h4>
+<pre><code class="language-markup">{{htmlCode.join('\n')}}</code></pre>

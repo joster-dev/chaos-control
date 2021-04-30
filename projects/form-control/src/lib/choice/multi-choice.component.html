@@ -16,7 +16,7 @@
       type="times"
       size="1em"
       [fillOpacity]="0"
-      [stroke]="formControlService.bodyColor"
+      [stroke]="hostElementColorStyleHexString"
     ></icon>
   </fc-button>
   <fc-button
@@ -37,13 +37,13 @@
       <icon
         type="squircle"
         [fillOpacity]="0"
-        [stroke]="formControlService.bodyColor"
+        [stroke]="hostElementColorStyleHexString"
       ></icon>
       <icon
         *ngIf="_model.includes(item.key) === true"
         type="check"
         [fillOpacity]="0"
-        [stroke]="formControlService.bodyColor"
+        [stroke]="hostElementColorStyleHexString"
       ></icon>
     </icon-stack>
     {{item.value}}

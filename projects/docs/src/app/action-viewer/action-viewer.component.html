@@ -1,14 +1,19 @@
-<fc-button
-  *ngFor="let item of items; let idx = index"
-  [isActive]="model === item"
-  (clicked)="modelChange.emit(item)"
-  [brLeft]="idx === 0"
-  [brRight]="idx === items.length - 1"
->
-  set&nbsp;
-  <i *ngIf="text === 'model'">model</i>
-  <b *ngIf="text !== 'model'">{{text}}</b>
-  &nbsp;to&nbsp;
-  <code *ngIf="item !== undefined">{{item | json}}</code>
-  <code *ngIf="item === undefined">undefined</code>
-</fc-button>
+<div *ngIf="items.length > 0">
+  <label>
+    <i *ngIf="text === 'model'">model</i>
+    <b *ngIf="text !== 'model'">{{text}}</b>
+  </label>
+</div>
+<p>
+  <label *ngFor="let item of items; let idx = index">
+    <input
+      type="radio"
+      [name]="text"
+      [(ngModel)]="model"
+      (ngModelChange)="modelChange.emit(item)"
+      [value]="item"
+    />
+    <code *ngIf="item !== undefined">{{item | json}}</code>
+    <code *ngIf="item === undefined">undefined</code>
+  </label>
+</p>

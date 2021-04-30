@@ -1,130 +1,64 @@
-<h2>Text</h2>
-<!--
-  <ul>
-  <li>
-    <i>model</i> will be <code>string</code> or <code>null</code>
-  </li>
-</ul>
-  <ol>
-  <li>
-    if text content would overflow
-    <ul>
-      <li>
-        height increases
-      </li>
-    </ul>
-  </li>
-  <li>
-    if <i>model</i> is not <code>null</code>
-    <ul>
-      <li>
-        control border will darken
-      </li>
-    </ul>
-  </li>
-  <li>
-    if <i>model</i> is empty string <code>""</code>
-    <ul>
-      <li>
-        control will be appear empty
-      </li>
-    </ul>
-  </li>
-  <li>
-    if text is cleared by the user
-    <ul>
-      <li>
-        <i>model</i> will be set to <code>null</code>
-      </li>
-      <li>
-        <i>model</i> will not be set to <code>""</code>
-      </li>
-    </ul>
-  </li>
-  <li>
-    if form is reset
-    <ul>
-      <li>height will be a single row</li>
-    </ul>
-  </li>
-</ol> -->
-<!-- <ul>
-      <li>
-        if required and empty
-        <ul>
-          <li>parent form will be invalid</li>
-          <li>control will be visually invalid</li>
-        </ul>
-      </li>
-      <li>
-        and inavlid control will be
-      </li>
-    </ul> -->
+<h3>Text Demo #1</h3>
 <form #form1="ngForm">
-  <fieldset class="min-width-auto">
-    <legend>form 1</legend>
-    <doc-form-settings [form]="form1"></doc-form-settings>
-    <fieldset>
-      <legend>⭐ fieldset</legend>
-      <fc-text
-        [(ngModel)]="example1"
-        name="example1"
-        [disabled]="isExample1Disabled"
-        [required]="isExample1Required"
-        [minLength]="example1Minlength"
-        [maxLength]="example1Maxlength"
-        [brLeft]="isExample1BrLeft"
-        [brRight]="isExample1BrRight"
-      >{{example1Label}}</fc-text>
-    </fieldset>
-    <doc-model-viewer
-      [(model)]="example1"
-      [modelItems]="[testText, 'Lorum ipsum', 'L']"
-      [(label)]="example1Label"
-      [(required)]="isExample1Required"
-      [(disabled)]="isExample1Disabled"
-      [(brLeft)]="isExample1BrLeft"
-      [(brRight)]="isExample1BrRight"
-      [(minlength)]="example1Minlength"
-      [minlengthItems]="[20, 0]"
-      [(maxlength)]="example1Maxlength"
-      [maxlengthItems]="[80, 100, 0]"
-      display="text"
-    ></doc-model-viewer>
+  <doc-form-settings [form]="form1"></doc-form-settings>
+  <fieldset>
+    <legend>⭐ fieldset</legend>
+    <fc-text
+      [(ngModel)]="example1"
+      name="example1"
+      [disabled]="isExample1Disabled"
+      [required]="isExample1Required"
+      [minLength]="example1Minlength"
+      [maxLength]="example1Maxlength"
+      [brLeft]="isExample1BrLeft"
+      [brRight]="isExample1BrRight"
+    >{{example1Label}}</fc-text>
   </fieldset>
 </form>
+<doc-model-viewer
+  [(model)]="example1"
+  [modelItems]="[testText, 'Lorum ipsum', 'L']"
+  [(label)]="example1Label"
+  [(required)]="isExample1Required"
+  [(disabled)]="isExample1Disabled"
+  [(brLeft)]="isExample1BrLeft"
+  [(brRight)]="isExample1BrRight"
+  [(minlength)]="example1Minlength"
+  [minlengthItems]="[20, 0]"
+  [(maxlength)]="example1Maxlength"
+  [maxlengthItems]="[80, 100, 0]"
+  display="text"
+></doc-model-viewer>
+<h3>Text Demo #2</h3>
 <form #form2="ngForm">
-  <fieldset class="min-width-auto">
-    <legend>form 2</legend>
-    <doc-form-settings [form]="form2"></doc-form-settings>
-    <fieldset disabled>
-      <legend>
-        ⭐ <b>disabled</b> fieldset
-      </legend>
-      <fc-text
-        [(ngModel)]="example2"
-        name="example2"
-        [minlength]="example2Minlength"
-        [maxlength]="example2Maxlength"
-        [disabled]="isExample2Disabled"
-        [required]="isExample2Required"
-        [brLeft]="isExample2BrLeft"
-        [brRight]="isExample2BrRight"
-      >{{example2Label}}</fc-text>
-    </fieldset>
-    <doc-model-viewer
-      [(model)]="example2"
-      [modelItems]="[testText, 'Lorum ipsum', 'L']"
-      [(label)]="example2Label"
-      [(required)]="isExample2Required"
-      [(disabled)]="isExample2Disabled"
-      [(brLeft)]="isExample2BrLeft"
-      [(brRight)]="isExample2BrRight"
-      [(minlength)]="example2Minlength"
-      [minlengthItems]="[5, 0]"
-      [(maxlength)]="example2Maxlength"
-      [maxlengthItems]="[10, 100, 0]"
-      display="text"
-    ></doc-model-viewer>
+  <doc-form-settings [form]="form2"></doc-form-settings>
+  <fieldset disabled>
+    <legend>
+      ⭐ <b>disabled</b> fieldset
+    </legend>
+    <fc-text
+      [(ngModel)]="example2"
+      name="example2"
+      [minlength]="example2Minlength"
+      [maxlength]="example2Maxlength"
+      [disabled]="isExample2Disabled"
+      [required]="isExample2Required"
+      [brLeft]="isExample2BrLeft"
+      [brRight]="isExample2BrRight"
+    >{{example2Label}}</fc-text>
   </fieldset>
 </form>
+<doc-model-viewer
+  [(model)]="example2"
+  [modelItems]="[testText, 'Lorum ipsum', 'L']"
+  [(label)]="example2Label"
+  [(required)]="isExample2Required"
+  [(disabled)]="isExample2Disabled"
+  [(brLeft)]="isExample2BrLeft"
+  [(brRight)]="isExample2BrRight"
+  [(minlength)]="example2Minlength"
+  [minlengthItems]="[5, 0]"
+  [(maxlength)]="example2Maxlength"
+  [maxlengthItems]="[10, 100, 0]"
+  display="text"
+></doc-model-viewer>

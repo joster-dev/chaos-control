@@ -1,4 +1,4 @@
-import { Component, Self } from '@angular/core';
+import { Component, ElementRef, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Item } from '../primitive';
 import { debounceTime } from 'rxjs/operators';
@@ -25,13 +25,18 @@ export class ChoiceComponent extends ChoiceDirective implements ControlValueAcce
 
   constructor(
     @Self() public ngControl: NgControl,
-    public formControlService: FormControlService
+    public formControlService: FormControlService,
+    hostElement: ElementRef,
   ) {
-    super();
+    super(hostElement);
     this.validation
       .pipe(debounceTime(100))
       .subscribe(() => this.validate());
     ngControl.valueAccessor = this;
+  }
+
+  get hostElementColorStyleHexString(): string {
+    return this.formControlService.colorStyleHexString(this.hostElement.nativeElement);
   }
 
   onClick(item: Item) {

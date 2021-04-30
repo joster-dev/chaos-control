@@ -14,6 +14,7 @@
     [disabled]="isDisabled === true"
     [min]="min"
     [max]="max"
+    [style.border-color]="'#' + hostElementColorStyleHexString"
     (beforeinput)="onBeforeinput($event)"
   />
   <fc-button
@@ -22,6 +23,7 @@
     [brRight]="false"
     [brLeft]="false"
     [isDisabled]="isDisabledSubtract === true"
+    [isValid]="ngControl.control?.invalid === false"
     (blurred)="onTouched()"
     (clicked)="subtract()"
   >
@@ -29,7 +31,7 @@
       type="minus"
       size="1em"
       [fillOpacity]="0"
-      [stroke]="formControlService.bodyColor"
+      [stroke]="hostElementColorStyleHexString"
     ></icon>
   </fc-button>
   <fc-button
@@ -38,6 +40,7 @@
     [brLeft]="false"
     [brRight]="brRight"
     [isDisabled]="isDisabledAdd === true"
+    [isValid]="ngControl.control?.invalid === false"
     (blurred)="onTouched()"
     (clicked)="add()"
   >
@@ -45,7 +48,7 @@
       type="plus"
       size="1em"
       [fillOpacity]="0"
-      [stroke]="formControlService.bodyColor"
+      [stroke]="hostElementColorStyleHexString"
     ></icon>
   </fc-button>
 </div>

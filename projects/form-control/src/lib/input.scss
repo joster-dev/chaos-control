@@ -3,18 +3,15 @@ input,
 textarea {
   color: inherit;
   background: transparent;
-  border-color: #dddddd;
   border-width: 0.15em;
   border-style: outset;
   padding: 0.5em;
   font-size: 1em;
-  // todo: angular animations
   transition: all 700ms ease;
 
   &:active,
   &.active {
     border-style: inset;
-    border-color: #bbbbbb;
   }
 
   &:disabled,
@@ -22,12 +19,20 @@ textarea {
     cursor: not-allowed;
     border-style: solid;
     box-shadow: none;
-    ::ng-deep icon {
-      opacity: 0.5;
-    }
+    opacity: 0.5;
   }
 
   &.invalid {
-    border-color: red;
+    animation: 3s ease 0s infinite invalid-border;
+  }
+}
+
+@keyframes invalid-border {
+  0%,
+  100% {
+    border-style: inset;
+  }
+  50% {
+    border-style: outset;
   }
 }

@@ -3,6 +3,7 @@ import { ControlValueAccessor, NgControl, ValidatorFn, Validators, AbstractContr
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
+import { FormControlService } from '../form-control.service';
 import { ControlDirective } from '../control.directive';
 import { isNumber } from '../primitive';
 
@@ -34,8 +35,8 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
     return this._minLength;
   }
   set minLength(value: number) {
-    if (!isNumber(value))
-      throw new Error('[minLength] expects: number');
+    if (!isNumber(value) || value < 0 || !Number.isInteger(value))
+      throw new Error('[minLength] expects: positive integer');
     this._minLength = value;
     this.validation.next();
   }
@@ -46,8 +47,8 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
     return this._maxLength;
   }
   set maxLength(value: number) {
-    if (!isNumber(value))
-      throw new Error('[maxLength] expects: number');
+    if (!isNumber(value) || value < 0 || !Number.isInteger(value))
+      throw new Error('[maxLength] expects: positive integer');
     this._maxLength = value;
     this.validation.next();
   }
@@ -77,9 +78,11 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
 
   constructor(
     @Self() public ngControl: NgControl,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private formControlService: FormControlService,
+    hostElement: ElementRef,
   ) {
-    super();
+    super(hostElement);
     this.validation.subscribe(() => this.validate());
     ngControl.valueAccessor = this;
     this.resizeSubject
@@ -89,6 +92,10 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
 
   ngOnDestroy(): void {
     this.resizeSubject.complete();
+  }
+
+  get hostElementColorStyleHexString(): string {
+    return this.formControlService.colorStyleHexString(this.hostElement.nativeElement);
   }
 
   @HostListener('window:resize')
@@ -115,10 +122,10 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
       value = null;
     if (isNumber(value))
       value = value.toString();
-    if (!(value === null || typeof value === 'string'))
-      throw new Error('control value must be: string');
-    this._model = value;
-    setTimeout(() => this.setTextareaHeight());
+    if (value === null || typeof value === 'string') {
+      this._model = value;
+      setTimeout(() => this.setTextareaHeight());
+    }
   }
 
   private maxLengthValidator(maxLength: number): ValidatorFn {

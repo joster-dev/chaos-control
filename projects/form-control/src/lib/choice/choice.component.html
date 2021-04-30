@@ -22,13 +22,13 @@
         type="circle"
         fillRotate
         [fillOpacity]="0"
-        [stroke]="formControlService.bodyColor"
+        [stroke]="hostElementColorStyleHexString"
       ></icon>
       <icon
         *ngIf="_model === item.key"
         type="dot"
         [fillOpacity]="0"
-        [stroke]="formControlService.bodyColor"
+        [stroke]="hostElementColorStyleHexString"
       ></icon>
     </icon-stack>
     {{item.value}}

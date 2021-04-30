@@ -5,12 +5,10 @@ import { Injectable } from '@angular/core';
 })
 export class FormControlService {
 
-  hasErrors = true;
-  bodyColor?: string;
+  constructor() { }
 
-  constructor() {
-    const rgbString = window.getComputedStyle(document.body).color;
-    this.bodyColor = rgbString
+  colorStyleHexString(element: HTMLElement): string {
+    return window.getComputedStyle(element).color
       .split('(')[1]
       .split(')')[0]
       .split(',')

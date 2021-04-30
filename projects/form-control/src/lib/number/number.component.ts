@@ -1,4 +1,4 @@
-import { Component, Input, Self } from '@angular/core';
+import { Component, ElementRef, Input, Self } from '@angular/core';
 import { ControlValueAccessor, NgControl, ValidatorFn, Validators } from '@angular/forms';
 import { FormControlService } from '../form-control.service';
 
@@ -56,9 +56,10 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
 
   constructor(
     @Self() public ngControl: NgControl,
-    public formControlService: FormControlService,
+    private formControlService: FormControlService,
+    hostElement: ElementRef,
   ) {
-    super();
+    super(hostElement);
     this.validation.subscribe(() => this.validate());
     ngControl.valueAccessor = this;
   }
@@ -91,6 +92,10 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
       this._max.toString().length,
       this._min.toString().length
     ) + padding;
+  }
+
+  get hostElementColorStyleHexString(): string {
+    return this.formControlService.colorStyleHexString(this.hostElement.nativeElement);
   }
 
   onBeforeinput(e: Event) {
@@ -137,15 +142,16 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
     this.onChange = fn;
   }
 
-  writeValue(v: number | null) {
-    let value = v as unknown;
+  writeValue(value: unknown) {
+    // let value = v as unknown;
     if (value === undefined)
       value = null;
+
     if (typeof value === 'string')
       value = parseFloat(value);
-    if (value !== null && !isNumber(value))
-      throw new Error('control value must be: number or null');
-    this._model = value;
+
+    if (value === null || isNumber(value))
+      this._model = value;
   }
 
   private validate() {

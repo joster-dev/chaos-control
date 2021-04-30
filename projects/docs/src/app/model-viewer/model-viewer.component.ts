@@ -83,7 +83,8 @@ export class ModelViewerComponent {
     'min',
     'max',
     'step',
-    'items'
+    'items',
+    'limit',
   ];
   testText = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula.';
 
@@ -100,13 +101,11 @@ export class ModelViewerComponent {
       .concat(this.items.length === 0 ? [] : ` [items]="data${this.items.indexOf(this.choice) + 1}"`);
   }
 
-  get codeHtmlStart() {
-    return `<fc-${this.display}`;
-  }
-  get codeHtmlEnd() {
-    return `>${this.label}</fc-${this.display}>`;
-  }
-  get codeHtml() {
-    return `<fc-${this.display} ${this.codeHtmlAttributes.join(' ')}></fc-${this.display}>`;
+  get htmlCode(): string[] {
+    return [
+      `<fc-${this.display}`,
+      ...this.codeHtmlAttributes,
+      `>${this.label}</fc-${this.display}>`
+    ];
   }
 }

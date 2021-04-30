@@ -1,5 +1,4 @@
-export function isNumber(value: unknown, positiveFlag = false): value is number {
+export function isNumber(value: unknown): value is number {
   return typeof value === 'number'
-    && !isNaN(value)
-    && (!positiveFlag || (positiveFlag && value > 0));
+    && !isNaN(value);
 }

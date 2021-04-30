@@ -28,9 +28,9 @@ export class SelectComponent extends ControlDirective implements ControlValueAcc
   isDropdownCloseToBottom = false;
 
   constructor(
-    private hostElement: ElementRef
+    public hostElement: ElementRef
   ) {
-    super();
+    super(hostElement);
   }
 
   get hasSelected() {
