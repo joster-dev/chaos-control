@@ -26,7 +26,7 @@ export class ChoiceComponent extends ChoiceDirective implements ControlValueAcce
   constructor(
     @Self() public ngControl: NgControl,
     public formControlService: FormControlService,
-    hostElement: ElementRef,
+    public hostElement: ElementRef,
   ) {
     super(hostElement);
     this.validation
