@@ -13,8 +13,9 @@
     <icon
       size="1em"
       type="square"
-      [fill]="squareFill || []"
-      [stroke]="squareFill || hostElementColorStyleHexString"
+      [fill]="squareFill || [null, 'current']"
+      fillRotate="90"
+      [stroke]="squareFill || ['current']"
     ></icon>
   </fc-button>
   <input
@@ -27,7 +28,6 @@
     [class.br-right]="brRight"
     [class.invalid]="ngControl.control?.invalid"
     [disabled]="isDisabled"
-    [style.border-color]="'#' + hostElementColorStyleHexString"
     (blur)="onTouched()"
   />
 </div>

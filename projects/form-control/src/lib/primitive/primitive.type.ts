@@ -1,1 +1,1 @@
-export type primitive = null | boolean | number | string;
+export type primitive = boolean | number | string;

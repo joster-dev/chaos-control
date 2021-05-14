@@ -30,7 +30,7 @@ export class SelectComponent extends ControlDirective implements ControlValueAcc
   constructor(
     public hostElement: ElementRef
   ) {
-    super(hostElement);
+    super();
   }
 
   get hasSelected() {

@@ -27,7 +27,7 @@
   "peerDependencies": {
     "@angular/common": "^11.1.0",
     "@angular/core": "^11.1.0",
-    "@joster-dev/icon": "^0.1.0"
+    "@joster-dev/icon": "^0.1.5"
   },
   "dependencies": {
     "tslib": "^2.0.0"

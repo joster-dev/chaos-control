@@ -1,9 +1,8 @@
-import { Component, ElementRef, Input, Self } from '@angular/core';
+import { Component, Input, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
-import { FormControlService } from '../form-control.service';
-import { isNumber, isPrimitive, Item } from '../primitive';
+import { isNumber, isPrimitive, Item, primitive } from '../primitive';
 import { ChoiceDirective } from './choice.directive';
 
 @Component({
@@ -49,26 +48,20 @@ export class MultiChoiceComponent extends ChoiceDirective implements ControlValu
   }
   _limit = 0;
 
-  _model: (boolean | number | string)[] = [];
-  set model(value: (boolean | number | string)[]) {
+  _model: primitive[] = [];
+  set model(value: primitive[]) {
     this._model = value;
     this.onChange(this._model.length === 0 ? null : this._model);
   }
 
   constructor(
     @Self() public ngControl: NgControl,
-    public formControlService: FormControlService,
-    hostElement: ElementRef,
   ) {
-    super(hostElement);
+    super();
     this.validation
       .pipe(debounceTime(100))
       .subscribe(() => this.validate());
     ngControl.valueAccessor = this;
-  }
-
-  get hostElementColorStyleHexString(): string {
-    return this.formControlService.colorStyleHexString(this.hostElement.nativeElement);
   }
 
   onClick(item: Item) {
@@ -88,20 +81,12 @@ export class MultiChoiceComponent extends ChoiceDirective implements ControlValu
     this.onChange = fn;
   }
 
-  writeValue(value: any) {
-    if (value === undefined)
-      value = null;
-
-    const isPrimitiveArray = Array.isArray(value)
-      && value.every((item: any) => isPrimitive(item));
-
-    if (value !== null && value !== undefined && !isPrimitiveArray)
-      console.error('control value must be primitive array');
-
+  writeValue(value: primitive[] | null) {
     if (value === undefined || value === null)
       value = [];
 
-    this._model = value;
+    if (Array.isArray(value) && value.every(item => isPrimitive(item)))
+      this._model = value;
   }
 
   private removeInvalid() {

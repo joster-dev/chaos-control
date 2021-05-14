@@ -56,10 +56,8 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
 
   constructor(
     @Self() public ngControl: NgControl,
-    private formControlService: FormControlService,
-    hostElement: ElementRef,
   ) {
-    super(hostElement);
+    super();
     this.validation.subscribe(() => this.validate());
     ngControl.valueAccessor = this;
   }
@@ -92,10 +90,6 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
       this._max.toString().length,
       this._min.toString().length
     ) + padding;
-  }
-
-  get hostElementColorStyleHexString(): string {
-    return this.formControlService.colorStyleHexString(this.hostElement.nativeElement);
   }
 
   onBeforeinput(e: Event) {
@@ -142,8 +136,7 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
     this.onChange = fn;
   }
 
-  writeValue(value: unknown) {
-    // let value = v as unknown;
+  writeValue(value: number | null) {
     if (value === undefined)
       value = null;
 

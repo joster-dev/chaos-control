@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 
 import { ControlDirective } from '../control.directive';
 import { isItems } from '../primitive';
@@ -20,7 +20,7 @@ export class ChoiceDirective extends ControlDirective {
   }
   _items: Item[] = [];
 
-  constructor(hostElement: ElementRef) {
-    super(hostElement);
+  constructor() {
+    super();
   }
 }

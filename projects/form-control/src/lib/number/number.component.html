@@ -14,7 +14,6 @@
     [disabled]="isDisabled === true"
     [min]="min"
     [max]="max"
-    [style.border-color]="'#' + hostElementColorStyleHexString"
     (beforeinput)="onBeforeinput($event)"
   />
   <fc-button
@@ -30,8 +29,8 @@
     <icon
       type="minus"
       size="1em"
-      [fillOpacity]="0"
-      [stroke]="hostElementColorStyleHexString"
+      [fill]="[null, 'current']"
+      fillRotate="90"
     ></icon>
   </fc-button>
   <fc-button
@@ -47,8 +46,8 @@
     <icon
       type="plus"
       size="1em"
-      [fillOpacity]="0"
-      [stroke]="hostElementColorStyleHexString"
+      [fill]="[null, 'current']"
+      fillRotate="90"
     ></icon>
   </fc-button>
 </div>

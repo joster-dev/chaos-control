@@ -1,11 +1,10 @@
-import { Component, ElementRef, Self } from '@angular/core';
+import { Component, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Item } from '../primitive';
 import { debounceTime } from 'rxjs/operators';
 
 import { isPrimitive, primitive } from '../primitive';
 import { ChoiceDirective } from './choice.directive';
-import { FormControlService } from '../form-control.service';
 
 @Component({
   selector: 'fc-choice',
@@ -25,18 +24,12 @@ export class ChoiceComponent extends ChoiceDirective implements ControlValueAcce
 
   constructor(
     @Self() public ngControl: NgControl,
-    public formControlService: FormControlService,
-    public hostElement: ElementRef,
   ) {
-    super(hostElement);
+    super();
     this.validation
       .pipe(debounceTime(100))
       .subscribe(() => this.validate());
     ngControl.valueAccessor = this;
-  }
-
-  get hostElementColorStyleHexString(): string {
-    return this.formControlService.colorStyleHexString(this.hostElement.nativeElement);
   }
 
   onClick(item: Item) {
@@ -55,13 +48,11 @@ export class ChoiceComponent extends ChoiceDirective implements ControlValueAcce
     this.onChange = fn;
   }
 
-  writeValue(v: primitive | null) {
-    let value = v as unknown;
+  writeValue(value: primitive | null) {
     if (value === undefined)
       value = null;
-    if (value !== null && !isPrimitive(value))
-      throw new Error('control value must be primitive');
-    this._model = value;
+    if (value === null || isPrimitive(value))
+      this._model = value;
   }
 
   private invalidValidator(items: Item[]): ValidatorFn {

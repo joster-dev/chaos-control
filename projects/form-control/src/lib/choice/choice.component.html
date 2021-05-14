@@ -18,17 +18,12 @@
       class="margin-right-1"
       size="1em"
     >
-      <icon
-        type="circle"
-        fillRotate
-        [fillOpacity]="0"
-        [stroke]="hostElementColorStyleHexString"
-      ></icon>
+      <icon type="circle"></icon>
       <icon
         *ngIf="_model === item.key"
         type="dot"
-        [fillOpacity]="0"
-        [stroke]="hostElementColorStyleHexString"
+        [fill]="[null, 'current']"
+        fillRotate="90"
       ></icon>
     </icon-stack>
     {{item.value}}

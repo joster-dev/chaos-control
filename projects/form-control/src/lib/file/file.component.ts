@@ -55,10 +55,8 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
 
   constructor(
     @Self() public ngControl: NgControl,
-    private formControlService: FormControlService,
-    hostElement: ElementRef,
   ) {
-    super(hostElement);
+    super();
     this.validation
       .pipe(debounceTime(100))
       .subscribe(() => this.validate());
@@ -79,10 +77,6 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
     return this.sizeLimitMb < 1
       ? `${this.sizeLimitMb * 1000} KB`
       : `${this.sizeLimitMb} MB`;
-  }
-
-  get hostElementColorStyleHexString(): string {
-    return this.formControlService.colorStyleHexString(this.hostElement.nativeElement);
   }
 
   onFileChange(event: Event): void {

@@ -23,17 +23,12 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
   constructor(
     @Self() public ngControl: NgControl,
     public formControlService: FormControlService,
-    hostElement: ElementRef,
   ) {
-    super(hostElement);
+    super();
     this.validation
       .pipe(debounceTime(100))
       .subscribe(() => this.validate());
     ngControl.valueAccessor = this;
-  }
-
-  get hostElementColorStyleHexString(): string {
-    return this.formControlService.colorStyleHexString(this.hostElement.nativeElement);
   }
 
   get value(): string | null {

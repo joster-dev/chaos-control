@@ -15,8 +15,8 @@
     <icon
       type="times"
       size="1em"
-      [fillOpacity]="0"
-      [stroke]="hostElementColorStyleHexString"
+      [fill]="[null, 'current']"
+      fillRotate="90"
     ></icon>
   </fc-button>
   <fc-button
@@ -34,16 +34,12 @@
       class="margin-right-1"
       size="1em"
     >
+      <icon type="squircle"></icon>
       <icon
-        type="squircle"
-        [fillOpacity]="0"
-        [stroke]="hostElementColorStyleHexString"
-      ></icon>
-      <icon
-        *ngIf="_model.includes(item.key) === true"
+        *ngIf="_model.includes(item.key)"
         type="check"
-        [fillOpacity]="0"
-        [stroke]="hostElementColorStyleHexString"
+        [fill]="[null, 'current']"
+        fillRotate="90"
       ></icon>
     </icon-stack>
     {{item.value}}

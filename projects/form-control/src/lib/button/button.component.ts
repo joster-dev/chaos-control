@@ -20,16 +20,8 @@ export class ButtonComponent extends BrDirective {
   @Output() blurred = new EventEmitter<FocusEvent>();
   @Output() clicked = new EventEmitter<MouseEvent>();
 
-  constructor(
-    public formControlService: FormControlService,
-    public hostElement: ElementRef,
-  ) {
+  constructor() {
     super();
-  }
-
-  get hostElementColorStyleHexString(): string {
-    return this.formControlService
-      .colorStyleHexString(this.hostElement.nativeElement);
   }
 
   onClick(event: MouseEvent) {

@@ -3,7 +3,6 @@ import { ControlValueAccessor, NgControl, ValidatorFn, Validators, AbstractContr
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
-import { FormControlService } from '../form-control.service';
 import { ControlDirective } from '../control.directive';
 import { isNumber } from '../primitive';
 
@@ -79,10 +78,8 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
   constructor(
     @Self() public ngControl: NgControl,
     private renderer: Renderer2,
-    private formControlService: FormControlService,
-    hostElement: ElementRef,
   ) {
-    super(hostElement);
+    super();
     this.validation.subscribe(() => this.validate());
     ngControl.valueAccessor = this;
     this.resizeSubject
@@ -92,10 +89,6 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
 
   ngOnDestroy(): void {
     this.resizeSubject.complete();
-  }
-
-  get hostElementColorStyleHexString(): string {
-    return this.formControlService.colorStyleHexString(this.hostElement.nativeElement);
   }
 
   @HostListener('window:resize')
