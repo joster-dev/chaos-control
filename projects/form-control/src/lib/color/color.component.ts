@@ -16,9 +16,20 @@ import { ControlDirective } from '../control.directive';
   ]
 })
 export class ColorComponent extends ControlDirective implements ControlValueAccessor {
-  _model = '#______';
-  hex = /^[0-9A-Fa-f]{6}$/;
-  selectionStart = 0;
+  partialHex = /^[0-9A-Fa-f]{1,6}$/;
+  fullHex = /^[0-9A-Fa-f]{6}$/;
+
+  get model() {
+    return this._model;
+  }
+  set model(value: string | null) {
+    this._model = value;
+    this.onChange(this._model !== null && this.fullHex.test(this._model)
+      ? this._model
+      : null
+    );
+  }
+  _model: string | null = null;
 
   constructor(
     @Self() public ngControl: NgControl,
@@ -31,31 +42,16 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
     ngControl.valueAccessor = this;
   }
 
-  get value(): string | null {
-    if (this.ngControl.control === null)
-      throw new Error('control is null');
-    return this.ngControl.control.value;
-  }
-
   get squareFill() {
-    if (this.value !== null && this.hex.test(this.value))
-      return this.value;
+    const value = this.ngControl.control?.value;
+    if (typeof value === 'string' && this.fullHex.test(value))
+      return value;
     return null;
   }
 
-  get model() {
-    return this._model;
-  }
-  set model(value: string) {
-    const removeHash = value.substr(1);
-    this._model = value;
-    this.onChange(this.hex.test(removeHash) ? removeHash : null);
-  }
-
   onChangeColor(event: Event) {
-    const target = event.target as HTMLInputElement;
-    const value = target.value;
-    this.model = value.toUpperCase();
+    const ele = event.target as HTMLInputElement;
+    this.model = ele.value.substring(1).toUpperCase();
   }
 
   onChange(_model: string | null) { }
@@ -63,23 +59,28 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
     this.onChange = fn;
   }
 
-  writeValue(value: any): void {
-    const isHex = this.hex.test(value);
-    if (value === undefined || value === null || !isHex)
-      value = '#______';
+  onBeforeinput(e: Event): void {
+    const event = e as InputEvent;
+    if (event.data === null)
+      return;
+    const ele = event.target as HTMLInputElement;
+    const tooLong = event.data.length + (ele.selectionStart || 0) > 6;
+    const valid = this.partialHex.test(event.data);
+    if (tooLong || !valid)
+      event.preventDefault();
+  }
 
-    if (typeof value !== 'string')
-      throw new Error('control value must be: string');
+  writeValue(value: string | null): void {
+    if (value === undefined || typeof value !== 'string' || !this.partialHex.test(value))
+      value = null;
 
-    if (isHex)
-      value = `#${value}`;
-
-    this._model = value;
+    if (value === null || this.partialHex.test(value))
+      this._model = value;
   }
 
   private invalidValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null =>
-      control.value !== null && this.hex.test(control.value) === false
+      control.value !== null && (typeof control.value !== 'string' || !this.fullHex.test(control.value))
         ? { invalid: control.value }
         : null;
   }

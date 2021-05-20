@@ -17,7 +17,6 @@ import { ControlDirective } from './control.directive';
 import { ChoiceDirective } from './choice/choice.directive';
 import { BrDirective } from './br.directive';
 import { FileComponent } from './file/file.component';
-import { MaskDirective } from './mask.directive';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,6 @@ import { MaskDirective } from './mask.directive';
     ChoiceDirective,
     BrDirective,
     FileComponent,
-    MaskDirective
   ],
   imports: [
     CommonModule,

@@ -8,6 +8,7 @@
     title="Color"
     [brLeft]="brLeft"
     [brRight]="false"
+    [isDisabled]="isDisabled"
     (clicked)="colorInput.click()"
   >
     <icon
@@ -20,14 +21,14 @@
   </fc-button>
   <input
     [(ngModel)]="model"
-    fcMask="color"
     spellcheck="false"
-    size="6"
+    size="5"
     type="text"
     [class.active]="ngControl.control?.value !== null"
     [class.br-right]="brRight"
     [class.invalid]="ngControl.control?.invalid"
     [disabled]="isDisabled"
+    (beforeinput)="onBeforeinput($event)"
     (blur)="onTouched()"
   />
 </div>
