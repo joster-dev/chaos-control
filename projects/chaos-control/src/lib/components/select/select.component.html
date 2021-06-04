@@ -1,0 +1,37 @@
+<div class="dis-flex">
+  <jo-text
+    [(ngModel)]="searchTerm"
+    [isGrow]="false"
+  ></jo-text>
+</div>
+<div
+  class="drop {{isDropdownCloseToBottom ? 'up' : 'down'}}"
+  [hidden]="!showDropdown"
+  [style.max-height]="dropdownMaxHeight"
+>
+  <jo-button
+    *ngFor="let item of items; let idx = index"
+    class="dis-flex"
+    [isActive]="_model === item.key"
+    [isDisabled]="isDisabled"
+    [isValid]="!!ngControl.control?.valid"
+    [brRight]="brRight && idx === items.length - 1"
+    [brLeft]="brLeft && idx === 0"
+    (onClick)="onClick(item)"
+    (onBlur)="onTouched()"
+  >
+    <icon-stack
+      class="margin-right-1"
+      size="1em"
+    >
+      <icon [type]="isMultiple ? 'squircle' : 'circle'"></icon>
+      <icon
+        *ngIf="_model.includes(item.key)"
+        [type]="isMultiple ? 'check' : 'dot'"
+        [fill]="[null, 'current']"
+        fillRotate="90"
+      ></icon>
+    </icon-stack>
+    {{item.value}}
+  </jo-button>
+</div>

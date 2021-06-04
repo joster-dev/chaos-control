@@ -1,0 +1,46 @@
+<label>
+  <ng-content></ng-content>
+</label>
+
+<div class="dis-flex flex-stretch">
+  <jo-button
+    class="dis-flex"
+    title="Color"
+    [brLeft]="brLeft"
+    [brRight]="false"
+    [isDisabled]="isDisabled"
+    (clicked)="colorInput.click()"
+  >
+    <icon
+      size="1em"
+      type="square"
+      [fill]="_model || [null, 'current']"
+      fillRotate="90"
+      [stroke]="_model || ['current']"
+    ></icon>
+  </jo-button>
+  <input
+    [(ngModel)]="model"
+    spellcheck="false"
+    size="5"
+    type="text"
+    [class.active]="ngControl.control?.value !== null"
+    [class.br-right]="brRight"
+    [class.invalid]="ngControl.control?.invalid"
+    [disabled]="isDisabled"
+    (beforeinput)="onBeforeinput($event)"
+    (blur)="onTouched()"
+  />
+</div>
+
+<ul *ngIf="ngControl.control?.errors">
+  <li *ngIf="ngControl.control?.errors?.invalid">
+    invalid model
+  </li>
+</ul>
+
+<input
+  #colorInput
+  type="color"
+  (change)="onChangeColor($event)"
+/>

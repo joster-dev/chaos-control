@@ -1,0 +1,19 @@
+<button
+  class="flex-1 dis-flex flex-center"
+  [attr.tabindex]="isDisabled ? -1 : 0"
+  [class.active]="isActive === true"
+  [class.disabled]="isDisabled === true"
+  [class.invalid]="isValid === false"
+  [class.br-right]="brRight"
+  [class.br-left]="brLeft"
+  tabindex="0"
+  [type]="type"
+  (blur)="onBlur.emit($event)"
+  (click)="!isDisabled && onClick.emit($event)"
+>
+  <ng-content
+    select="icon"
+    class="margin-right-2"
+  ></ng-content>
+  <ng-content></ng-content>
+</button>

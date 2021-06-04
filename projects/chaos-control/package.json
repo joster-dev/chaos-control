@@ -1,0 +1,12 @@
+{
+  "name": "chaos-control",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^12.0.2",
+    "@angular/core": "^12.0.2",
+    "@joster-dev/icon": "^0.2.1"
+  },
+  "dependencies": {
+    "tslib": "^2.1.0"
+  }
+}

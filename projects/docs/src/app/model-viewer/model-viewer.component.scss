@@ -1,8 +1,0 @@
-:host > fieldset {
-  border-color: transparent;
-
-  > doc-action-viewer:not(:last-child),
-  > fieldset:not(:last-child) {
-    margin-bottom: 0.25em;
-  }
-}

@@ -1,0 +1,64 @@
+@import "./atomic.scss";
+
+label {
+  display: block;
+  padding-bottom: 0.25em;
+
+  &:empty {
+    display: none;
+  }
+
+  @media print {
+    font-weight: bold;
+  }
+}
+
+ul {
+  list-style: none;
+  color: red;
+  margin: 0;
+  padding: 0;
+  > li {
+    padding-top: 0.25em;
+  }
+}
+
+button,
+input,
+textarea {
+  color: inherit;
+  background: transparent;
+  border-width: 0.15em;
+  border-style: outset;
+  border-color: currentColor;
+  padding: 0.5em;
+  font-size: 1em;
+  transition: all 700ms ease;
+
+  &:active,
+  &.active {
+    border-style: inset;
+  }
+
+  &:disabled,
+  &.disabled {
+    cursor: not-allowed;
+    border-style: solid;
+    box-shadow: none;
+    opacity: 0.5;
+  }
+
+  &.invalid {
+    animation: 3s ease 0s infinite invalid-border;
+  }
+}
+
+@keyframes invalid-border {
+  0%,
+  100% {
+    border-style: inset;
+  }
+  50% {
+    border-style: outset;
+  }
+}
