@@ -7,7 +7,7 @@ import { primitive } from '../../models';
   styleUrls: ['./readonly.component.scss']
 })
 export class ReadonlyComponent {
-  @Input() ngModel?: primitive;
+  @Input() model?: primitive;
 
   constructor() { }
 }

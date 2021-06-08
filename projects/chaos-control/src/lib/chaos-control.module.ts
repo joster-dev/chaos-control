@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IconModule } from '@joster-dev/icon';
@@ -33,10 +34,19 @@ import {
     SelectComponent
   ],
   imports: [
+    CommonModule,
     FormsModule,
     IconModule
   ],
   exports: [
+    ButtonComponent,
+    ReadonlyComponent,
+    ChoiceComponent,
+    ColorComponent,
+    FileComponent,
+    NumberComponent,
+    TextComponent,
+    SelectComponent,
   ]
 })
 export class ChaosControlModule { }

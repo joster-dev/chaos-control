@@ -6,5 +6,29 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'demo';
+  actions = 0;
+  disabledActions = 0;
+  items = [
+    { key: true, value: 'Yes' },
+    { key: false, value: 'No' },
+  ];
+
+  textModel = null;
+  textIsActive = false;
+  textIsDisabled = false;
+  textIsValid = true;
+  textType = 'button';
+
+  readonlyModel = 'Text that cannot be edited';
+  readonlyLabel = 'Hello!';
+
+  numberModel = null;
+
+  choiceModel = null;
+
+  selectModel = null;
+
+  colorModel = null;
+
+  fileModel = null;
 }

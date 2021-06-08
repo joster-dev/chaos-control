@@ -9,7 +9,10 @@ import { isNumber } from '../../models';
 @Component({
   selector: 'jo-text',
   templateUrl: './text.component.html',
-  styleUrls: ['./text.component.scss']
+  styleUrls: [
+    './text.component.scss',
+    '../../styles.scss',
+  ]
 })
 export class TextComponent extends ControlDirective implements OnDestroy, ControlValueAccessor {
   @Input()

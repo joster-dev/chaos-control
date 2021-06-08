@@ -25,7 +25,8 @@ ul {
 
 button,
 input,
-textarea {
+textarea,
+.readonly {
   color: inherit;
   background: transparent;
   border-width: 0.15em;

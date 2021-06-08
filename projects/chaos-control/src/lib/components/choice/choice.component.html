@@ -6,9 +6,9 @@
   <jo-button
     *ngFor="let item of items; let idx = index"
     class="dis-flex"
-    [isActive]="_model === item.key"
-    [isDisabled]="isDisabled === true"
-    [isValid]="ngControl.control?.invalid === false"
+    [isActive]="_model.includes(item.key)"
+    [isDisabled]="isDisabled"
+    [isValid]="!ngControl.control?.invalid"
     [brRight]="brRight && idx === items.length - 1"
     [brLeft]="brLeft && idx === 0"
     (onClick)="onClick(item)"
