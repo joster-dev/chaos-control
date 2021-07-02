@@ -30,7 +30,7 @@ import the module
 })
 ```
 ## `fc-button` utility component
-handle click events in an accessible manner
+to handle click events in an accessible manner
 - style: outset border
 ### inputs
 - `isActive: boolean = false`
@@ -44,10 +44,10 @@ handle click events in an accessible manner
 ### outputs
 - `onBlur` emits `FocusEvent` 
 - `onClick` emits `MouseEvent`
-<!-- ## `fc-readonly` utility component
-display information inline with the form controls
+## `fc-readonly` utility component
+to display information alongside controls
 ### inputs
-- `model: string` -->
+- `model: string`
 ## `fc-text` control component
 result will be `string | null`
 - if line break or overflow
@@ -62,14 +62,12 @@ result will be `number | null`
   - if `[step]` is `>= 1`
     - will not change
 ## `fc-choice` control component
-result will be `<item-key> | null`
+to ask the user to choose from a few items
+
+result will be `<item-key>[] | <item-key> | null`
   - where `<item-key>` is the `key` property of the `items` input
 ### inputs
-- `items: { key: boolean | number | string, value: string }[] = []`
-## `fc-multi-choice` control component
-result will be `<item-key>[] | null`
-- where `<item-key>` is the `key` property of the `items` input
-### inputs
+- `isMultiple: boolean = false`
 - `items: { key: boolean | number | string, value: string }[] = []`
 ## `fc-color` control component
 result will be `string | null`
@@ -77,6 +75,9 @@ result will be `string | null`
 ##  `fc-file` control component
 result will be `FileList | null`
 
+## `fc-select` control component
+to ask the user to choose from many items
+- `items: { key: boolean | number | string, value: string }[] = []`
 <!-- ## `fc-select` component -->
 <!-- ## `fc-multi-select` component -->
 <!-- ## `fc-date` component -->
