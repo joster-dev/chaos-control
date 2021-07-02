@@ -4,7 +4,10 @@ import { primitive } from '../../models';
 @Component({
   selector: 'jo-readonly',
   templateUrl: './readonly.component.html',
-  styleUrls: ['./readonly.component.scss']
+  styleUrls: [
+    './readonly.component.scss',
+    '../../styles.scss',
+  ]
 })
 export class ReadonlyComponent {
   @Input() model?: primitive;

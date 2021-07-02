@@ -6,7 +6,10 @@ import { Item } from '../../models';
 @Component({
   selector: 'jo-select',
   templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss']
+  styleUrls: [
+    './select.component.scss',
+    '../../styles.scss',
+  ]
 })
 export class SelectComponent extends ItemDirective implements ControlValueAccessor {
 
@@ -44,9 +47,16 @@ export class SelectComponent extends ItemDirective implements ControlValueAccess
       this._showDropdown = false;
   }
 
+  onClickSearch() {
+
+  }
+
+  onFocusSearch() {
+
+  }
+
   onClick(item: Item) {
-    this._model = this._model
-      .filter(key => this._items.map(item => item.key).includes(key))
+    this._model = this._model.filter(key => this._items.map(item => item.key).includes(key))
 
     if (this._model.includes(item.key)) {
       if (this.required === true && this._model.length === 1)

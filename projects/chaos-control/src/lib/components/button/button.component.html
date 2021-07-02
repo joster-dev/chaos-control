@@ -4,16 +4,12 @@
   [class.active]="isActive"
   [class.disabled]="isDisabled"
   [class.invalid]="isInvalid"
-  [class.br-right]="brRight"
-  [class.br-left]="brLeft"
+  [class.border-radius-right]="borderRadiusRight"
+  [class.border-radius-left]="borderRadiusLeft"
   tabindex="0"
   [type]="type"
   (blur)="onBlur.emit($event)"
   (click)="!isDisabled && onClick.emit($event)"
 >
-  <ng-content
-    select="icon"
-    class="margin-right-2"
-  ></ng-content>
   <ng-content></ng-content>
 </button>

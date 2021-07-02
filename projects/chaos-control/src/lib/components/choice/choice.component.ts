@@ -7,7 +7,10 @@ import { Item } from '../../models';
 @Component({
   selector: 'jo-choice',
   templateUrl: './choice.component.html',
-  styleUrls: ['./choice.component.scss']
+  styleUrls: [
+    './choice.component.scss',
+    '../../styles.scss',
+  ]
 })
 export class ChoiceComponent extends ItemDirective implements ControlValueAccessor {
   constructor(

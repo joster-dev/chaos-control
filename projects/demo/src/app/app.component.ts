@@ -13,22 +13,26 @@ export class AppComponent {
     { key: false, value: 'No' },
   ];
 
-  textModel = null;
+  textModel: string | null = null;
   textIsActive = false;
   textIsDisabled = false;
   textIsValid = true;
   textType = 'button';
 
   readonlyModel = 'Text that cannot be edited';
-  readonlyLabel = 'Hello!';
+  readonlyLabel = 'Readonly label';
 
-  numberModel = null;
+  numberModel: number | null = null;
 
-  choiceModel = null;
+  choiceModel: boolean | null = null;
 
-  selectModel = null;
+  multipleChoiceModel: boolean[] | null = null;
 
-  colorModel = null;
+  selectModel: boolean | null = null;
 
-  fileModel = null;
+  multipleSelectModel: boolean[] | null = null;
+
+  colorModel: string | null = null;
+
+  fileModel: FileList | null = null;
 }

@@ -7,7 +7,10 @@ import { ControlDirective } from '../../directives';
 @Component({
   selector: 'jo-color',
   templateUrl: './color.component.html',
-  styleUrls: ['./color.component.scss']
+  styleUrls: [
+    './color.component.scss',
+    '../../styles.scss',
+  ]
 })
 export class ColorComponent extends ControlDirective implements ControlValueAccessor {
   private partialHex = /^[0-9A-Fa-f]{1,6}$/;

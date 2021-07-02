@@ -7,7 +7,10 @@ import { isNumber } from '../../models';
 @Component({
   selector: 'jo-file',
   templateUrl: './file.component.html',
-  styleUrls: ['./file.component.scss']
+  styleUrls: [
+    './file.component.scss',
+    '../../styles.scss',
+  ]
 })
 export class FileComponent extends ControlDirective implements ControlValueAccessor {
   @Input() get acceptedTypes() {

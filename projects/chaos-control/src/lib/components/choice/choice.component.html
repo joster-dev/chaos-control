@@ -9,14 +9,14 @@
     [isActive]="_model.includes(item.key)"
     [isDisabled]="isDisabled"
     [isValid]="!ngControl.control?.invalid"
-    [brRight]="brRight && idx === items.length - 1"
-    [brLeft]="brLeft && idx === 0"
+    [borderRadiusRight]="borderRadiusRight && idx === items.length - 1"
+    [borderRadiusLeft]="borderRadiusLeft && idx === 0"
     (onClick)="onClick(item)"
     (onBlur)="onTouched()"
   >
     <icon-stack
-      class="margin-right-1"
       size="1em"
+      class="margin-right-1"
     >
       <icon [type]="isMultiple ? 'squircle' : 'circle'"></icon>
       <icon

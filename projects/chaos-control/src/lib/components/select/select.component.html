@@ -1,9 +1,33 @@
-<div class="dis-flex">
+<label>
+  <ng-content></ng-content>
+</label>
+
+<div class="dis-flex flex-stretch">
   <jo-text
+    [borderRadiusLeft]="borderRadiusLeft"
+    [borderRadiusRight]="false"
     [(ngModel)]="searchTerm"
     [isGrow]="false"
+    class="flex-1"
+    (onFocus)="onFocusSearch()"
   ></jo-text>
+  <jo-button
+    class="dis-flex"
+    [borderRadiusLeft]="false"
+    [borderRadiusRight]="borderRadiusRight"
+    [isDisabled]="isDisabled"
+    (onClick)="onClickSearch()"
+  >
+    <icon
+      size="1em"
+      type="chevron"
+      [fill]="[null, 'current']"
+      fillRotate="90"
+      [stroke]="['current']"
+    ></icon>
+  </jo-button>
 </div>
+
 <div
   class="drop {{isDropdownCloseToBottom ? 'up' : 'down'}}"
   [hidden]="!showDropdown"
@@ -15,8 +39,8 @@
     [isActive]="_model.includes(item.key)"
     [isDisabled]="isDisabled"
     [isValid]="!ngControl.control?.invalid"
-    [brRight]="brRight && idx === items.length - 1"
-    [brLeft]="brLeft && idx === 0"
+    [borderRadiusRight]="borderRadiusRight && idx === items.length - 1"
+    [borderRadiusLeft]="borderRadiusLeft && idx === 0"
     (onClick)="onClick(item)"
     (onBlur)="onTouched()"
   >

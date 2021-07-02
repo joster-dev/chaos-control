@@ -39,8 +39,8 @@ handle click events in an accessible manner
   - style: solid border
 - `isValid: boolean = true`
 - `type: 'button' | 'submit' = 'button'`
-- `brLeft: boolean = true`
-- `brRight: boolean = true`
+- `borderRadiusLeft: boolean = true`
+- `borderRadiusRight: boolean = true`
 ### outputs
 - `blurred` emits `FocusEvent` 
 - `clicked` emits `MouseEvent`

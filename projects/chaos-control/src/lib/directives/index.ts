@@ -1,3 +1,3 @@
-export * from './br.directive';
+export * from './border-radius.directive';
 export * from './control.directive';
 export * from './item.directive';

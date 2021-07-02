@@ -6,10 +6,10 @@
   <jo-button
     class="dis-flex"
     title="Color"
-    [brLeft]="brLeft"
-    [brRight]="false"
+    [borderRadiusLeft]="borderRadiusLeft"
+    [borderRadiusRight]="false"
     [isDisabled]="isDisabled"
-    (clicked)="colorInput.click()"
+    (onClick)="colorInput.click()"
   >
     <icon
       size="1em"
@@ -25,7 +25,7 @@
     size="5"
     type="text"
     [class.active]="ngControl.control?.value !== null"
-    [class.br-right]="brRight"
+    [class.border-radius-right]="borderRadiusRight"
     [class.invalid]="ngControl.control?.invalid"
     [disabled]="isDisabled"
     (beforeinput)="onBeforeinput($event)"

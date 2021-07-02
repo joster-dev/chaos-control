@@ -9,7 +9,7 @@
     type="number"
     [size]="maxDigitSize"
     [class.active]="_model !== null"
-    [class.br-left]="brLeft"
+    [class.border-radius-left]="borderRadiusLeft"
     [class.invalid]="ngControl.control?.invalid === true"
     [disabled]="isDisabled === true"
     [min]="min"
@@ -19,12 +19,12 @@
   <jo-button
     class="dis-flex"
     title="Subtract"
-    [brRight]="false"
-    [brLeft]="false"
+    [borderRadiusRight]="false"
+    [borderRadiusLeft]="false"
     [isDisabled]="isDisabledSubtract === true"
     [isValid]="ngControl.control?.invalid === false"
     (blurred)="onTouched()"
-    (clicked)="subtract()"
+    (onClick)="subtract()"
   >
     <icon
       type="minus"
@@ -36,12 +36,12 @@
   <jo-button
     class="dis-flex"
     title="Add"
-    [brLeft]="false"
-    [brRight]="brRight"
+    [borderRadiusLeft]="false"
+    [borderRadiusRight]="borderRadiusRight"
     [isDisabled]="isDisabledAdd === true"
     [isValid]="ngControl.control?.invalid === false"
     (blurred)="onTouched()"
-    (clicked)="add()"
+    (onClick)="add()"
   >
     <icon
       type="plus"

@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, Input, OnDestroy, Output, Renderer2, Self, ViewChild, EventEmitter } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { debounceTime, takeWhile } from 'rxjs/operators';
+import { debounceTime } from 'rxjs/operators';
 
 import { ControlDirective } from '../../directives';
 import { isNumber } from '../../models';
@@ -68,10 +68,8 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
 
   @Output() onFocus = new EventEmitter<FocusEvent>();
 
-  @ViewChild('textarea', { static: true })
-  textareaElement?: ElementRef;
-  @ViewChild('textareaHidden', { static: true })
-  textareaHiddenElement!: ElementRef;
+  @ViewChild('textarea') textareaElement?: ElementRef;
+  @ViewChild('textareaHidden') textareaHiddenElement!: ElementRef;
 
   get model() {
     return this._model;
@@ -112,8 +110,10 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
   }
 
   setTextareaHeight() {
+    debugger;
     if (!this.textareaElement)
       return;
+    debugger;
     const textarea = this.textareaElement.nativeElement as HTMLElement;
     const textareaHidden = this.textareaHiddenElement.nativeElement as HTMLElement;
     this.renderer.setStyle(textareaHidden, 'width', `calc(${textarea.scrollWidth}px - 1em)`);

@@ -1,11 +1,11 @@
 import { Directive, Input, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
-import { BrDirective } from './br.directive';
+import { BorderRadiusDirective } from './border-radius.directive';
 
 @Directive({
   selector: '[joControl]'
 })
-export class ControlDirective extends BrDirective implements OnDestroy {
+export class ControlDirective extends BorderRadiusDirective implements OnDestroy {
   @Input()
   get required() {
     return this._required;

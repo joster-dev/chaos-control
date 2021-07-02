@@ -6,27 +6,23 @@
   <div>
     <jo-button
       class="white-space-nowrap"
-      [brRight]="brRight"
-      [brLeft]="brLeft"
+      [borderRadiusRight]="borderRadiusRight"
+      [borderRadiusLeft]="borderRadiusLeft"
       [isActive]="ngControl.value !== null"
-      [isDisabled]="isDisabled === true"
-      (clicked)="fileInput.click()"
+      [isDisabled]="isDisabled"
+      (ocClick)="fileInput.click()"
     >
       <icon
         type="folder"
         size="1em"
+        class="margin-right-1"
         [fill]="[null, 'current']"
         fillRotate="90"
       ></icon>
-      <span class="margin-left-1">
-        Choose {{multiple ? 'Files' : 'File'}}
-      </span>
+      Choose {{multiple ? 'Files' : 'File'}}
     </jo-button>
   </div>
-  <div
-    *ngIf="ngControl.value"
-    class="margin-left-1"
-  >
+  <div *ngIf="ngControl.value">
     {{fileNames}}
   </div>
 </div>

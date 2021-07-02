@@ -14,7 +14,7 @@ import {
   SelectComponent
 } from './components';
 import {
-  BrDirective,
+  BorderRadiusDirective,
   ControlDirective,
   ItemDirective,
 } from './directives';
@@ -28,10 +28,10 @@ import {
     FileComponent,
     NumberComponent,
     TextComponent,
-    BrDirective,
     ControlDirective,
     ItemDirective,
-    SelectComponent
+    SelectComponent,
+    BorderRadiusDirective
   ],
   imports: [
     CommonModule,

@@ -6,7 +6,10 @@ import { isNumber } from '../../models';
 @Component({
   selector: 'jo-number',
   templateUrl: './number.component.html',
-  styleUrls: ['./number.component.scss']
+  styleUrls: [
+    './number.component.scss',
+    '../../styles.scss',
+  ]
 })
 export class NumberComponent extends ControlDirective implements ControlValueAccessor {
   @Input()

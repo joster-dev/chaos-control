@@ -4,11 +4,11 @@
 
 <div class="dis-flex">
   <input
-    *ngIf="!isGrow"
+    *ngIf="!_isGrow"
     type="text"
     [(ngModel)]="model"
-    [class.br-right]="brRight"
-    [class.br-left]="brLeft"
+    [class.border-radius-right]="borderRadiusRight"
+    [class.border-radius-left]="borderRadiusLeft"
     class="flex-1"
     [minlength]="minLength"
     [maxlength]="maxLength"
@@ -22,11 +22,11 @@
     (focus)="onFocus.emit($event)"
   />
   <textarea
-    *ngIf="isGrow"
+    *ngIf="_isGrow"
     #textarea
     [(ngModel)]="model"
-    [class.br-right]="brRight"
-    [class.br-left]="brLeft"
+    [class.border-radius-right]="borderRadiusRight"
+    [class.border-radius-left]="borderRadiusLeft"
     class="flex-1"
     rows="1"
     [minlength]="minLength"

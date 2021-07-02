@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BrDirective } from '../../directives';
+import { BorderRadiusDirective } from '../../directives';
 
 @Component({
   selector: 'jo-button',
@@ -9,7 +9,7 @@ import { BrDirective } from '../../directives';
     '../../styles.scss',
   ]
 })
-export class ButtonComponent extends BrDirective {
+export class ButtonComponent extends BorderRadiusDirective {
   @Input()
   get isActive() {
     return this._isActive;

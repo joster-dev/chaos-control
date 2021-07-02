@@ -1,0 +1,9 @@
+@import "../../variables.scss";
+
+:host > div {
+  color: inherit;
+  background: transparent;
+  border-width: $sm;
+  border-color: transparent;
+  padding: $md;
+}

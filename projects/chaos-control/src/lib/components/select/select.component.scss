@@ -17,3 +17,7 @@
     bottom: 100%;
   }
 }
+
+icon[type="chevron"] {
+  transform: rotate(180deg);
+}
