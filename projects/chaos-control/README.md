@@ -42,8 +42,8 @@ handle click events in an accessible manner
 - `borderRadiusLeft: boolean = true`
 - `borderRadiusRight: boolean = true`
 ### outputs
-- `blurred` emits `FocusEvent` 
-- `clicked` emits `MouseEvent`
+- `onBlur` emits `FocusEvent` 
+- `onClick` emits `MouseEvent`
 <!-- ## `fc-readonly` utility component
 display information inline with the form controls
 ### inputs
