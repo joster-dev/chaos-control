@@ -48,11 +48,11 @@ export class SelectComponent extends ItemDirective implements ControlValueAccess
   }
 
   onClickSearch() {
-
+    this.showDropdown = !this.showDropdown;
   }
 
   onFocusSearch() {
-
+    this.showDropdown = !this.showDropdown;
   }
 
   onClick(item: Item) {

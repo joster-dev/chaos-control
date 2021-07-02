@@ -66,6 +66,7 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
   }
   _isGrow = true;
 
+  @Output() onBlur = new EventEmitter<FocusEvent>();
   @Output() onFocus = new EventEmitter<FocusEvent>();
 
   @ViewChild('textarea') textareaElement?: ElementRef;

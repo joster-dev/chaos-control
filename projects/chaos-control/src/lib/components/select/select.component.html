@@ -33,6 +33,9 @@
   [hidden]="!showDropdown"
   [style.max-height]="dropdownMaxHeight"
 >
+  <!-- <jo-button *ngIf="items.length === 0">
+    No Results
+  </jo-button> -->
   <jo-button
     *ngFor="let item of items; let idx = index"
     class="dis-flex"

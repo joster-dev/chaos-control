@@ -18,7 +18,7 @@
     [id]="id"
     [spellcheck]="isSpellCheck"
     [placeholder]="placeholder"
-    (blur)="onTouched()"
+    (blur)="onTouched(); onBlur.emit($event)"
     (focus)="onFocus.emit($event)"
   />
   <textarea
@@ -37,7 +37,7 @@
     [id]="id"
     [spellcheck]="isSpellCheck"
     [placeholder]="placeholder"
-    (blur)="onTouched()"
+    (blur)="onTouched(); onBlur.emit($event)"
     (focus)="onFocus.emit($event)"
   ></textarea>
 </div>
