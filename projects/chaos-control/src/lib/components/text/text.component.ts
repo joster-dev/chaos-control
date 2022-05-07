@@ -111,10 +111,8 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
   }
 
   setTextareaHeight() {
-    debugger;
     if (!this.textareaElement)
       return;
-    debugger;
     const textarea = this.textareaElement.nativeElement as HTMLElement;
     const textareaHidden = this.textareaHiddenElement.nativeElement as HTMLElement;
     this.renderer.setStyle(textareaHidden, 'width', `calc(${textarea.scrollWidth}px - 1em)`);

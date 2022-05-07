@@ -3,7 +3,8 @@
 :host > div {
   color: inherit;
   background: transparent;
-  border-width: $sm;
+  border-width: 0.15em;
   border-color: transparent;
+  border-style: solid;
   padding: $md;
 }
