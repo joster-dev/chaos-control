@@ -1,15 +1,11 @@
 :host {
   position: relative;
+  display: block;
 }
 
 .drop {
-  position: absolute;
-  right: 0;
-  left: 0;
-  z-index: 2;
   max-height: 200px;
   overflow-y: auto;
-  border: medium solid #247;
   &.down {
     top: 100%;
   }
