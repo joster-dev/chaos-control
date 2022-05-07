@@ -10,7 +10,7 @@
       [borderRadiusLeft]="borderRadiusLeft"
       [isActive]="ngControl.value !== null"
       [isDisabled]="isDisabled"
-      (ocClick)="fileInput.click()"
+      (onClick)="fileInput.click()"
     >
       <icon
         type="folder"
@@ -22,7 +22,10 @@
       Choose {{multiple ? 'Files' : 'File'}}
     </jo-button>
   </div>
-  <div *ngIf="ngControl.value">
+  <div
+    *ngIf="ngControl.value"
+    id="filename"
+  >
     {{fileNames}}
   </div>
 </div>
