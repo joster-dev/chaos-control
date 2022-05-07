@@ -49,6 +49,7 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
   _step = 1;
 
   mustBeInteger = true;
+  readonly sizePadding = 1;
 
   constructor(
     @Self() public ngControl: NgControl,
@@ -80,12 +81,11 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
   }
 
   get maxDigitSize() {
-    const padding = 1;
     return Math.max(
       this._step.toString().length,
       this._max.toString().length,
       this._min.toString().length
-    ) + padding;
+    );
   }
 
   onBeforeinput(e: Event) {
@@ -99,32 +99,25 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
       event.preventDefault();
   }
 
-  add() {
+  add(e: HTMLInputElement) {
     if (this.model === null) {
       this.model = this.max;
       return;
     }
 
-    if (this.model + this.step < this.min) {
-      this.model = this.min;
-      return;
-    }
-
-    this.model += this.step;
+    e.stepUp();
+    this.model = e.valueAsNumber;
   }
 
-  subtract() {
+  subtract(e: HTMLInputElement) {
     if (this.model === null) {
       this.model = this.min;
       return;
     }
 
-    if (this.model - this.step > this.max) {
-      this.model = this.max;
-      return;
-    }
+    e.stepDown();
 
-    this.model -= this.step;
+    this.model = e.valueAsNumber;
   }
 
   onChange(_model: number | null) { }

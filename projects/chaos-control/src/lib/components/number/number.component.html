@@ -5,9 +5,10 @@
 <div class="dis-flex flex-stretch">
   <input
     [(ngModel)]="model"
+    #numberInput
     class="dis-flex flex-center"
     type="number"
-    [size]="maxDigitSize"
+    [size]="maxDigitSize + sizePadding"
     [class.active]="_model !== null"
     [class.border-radius-left]="borderRadiusLeft"
     [class.invalid]="ngControl.control?.invalid === true"
@@ -24,7 +25,7 @@
     [isDisabled]="isDisabledSubtract === true"
     [isValid]="ngControl.control?.invalid === false"
     (blurred)="onTouched()"
-    (onClick)="subtract()"
+    (onClick)="subtract(numberInput)"
   >
     <icon
       type="minus"
@@ -41,7 +42,7 @@
     [isDisabled]="isDisabledAdd === true"
     [isValid]="ngControl.control?.invalid === false"
     (blurred)="onTouched()"
-    (onClick)="add()"
+    (onClick)="add(numberInput)"
   >
     <icon
       type="plus"
