@@ -1,53 +1,40 @@
 <h1>Chaos Control</h1>
 <!-- <markdown src="assets/README.md"></markdown> -->
 <h2>Chaos Control Demos</h2>
-<div>
-  <jo-button
-    [isActive]="textIsActive"
-    [isDisabled]="textIsDisabled"
-    [isValid]="textIsValid"
-    [type]="textType"
-    (onClick)="actions = actions + 1"
-  >
-    {{actions}} actions
-  </jo-button>
-</div>
-<div>
-  <jo-readonly [model]="readonlyModel">
-    {{readonlyLabel}}
-  </jo-readonly>
-</div>
-<div>
-  <jo-text [(ngModel)]="textModel">
-    Growing Text label
-  </jo-text>
-</div>
-<div>
+<h3>Button Demo</h3>
+<jo-button
+  [isActive]="textIsActive"
+  [isDisabled]="textIsDisabled"
+  [isValid]="textIsValid"
+  [type]="textType"
+  (onClick)="actions = actions + 1"
+>
+  {{actions}} actions
+</jo-button>
+<h3>Readonly Demo</h3>
+<jo-readonly [model]="readonlyModel">
+  {{readonlyLabel}}
+</jo-readonly>
+<h3>Text Demo</h3>
+<jo-text [(ngModel)]="textModel">
+  Growing Text label
+</jo-text>
+<h3>Choice</h3>
+<!-- <div>
   <jo-text
     [(ngModel)]="textModel"
     [isGrow]="false"
   >
     Text label
   </jo-text>
-</div>
-<ul>
-  <li>
-    todo: stop digit input from occurring when length > max
-  </li>
-  <ul>
-    <li>
-      also handle . for decimals 🤔
-    </li>
-    <li>
-
-    </li>
-  </ul>
-</ul>
-<div>
+</div> -->
+<!-- todo: stop digit input from occurring when length > max -->
+<!-- also handle . for decimals 🤔 -->
+<!-- <div>
   <jo-number [(ngModel)]="numberModel">
     Number label
   </jo-number>
-</div>
+</div> -->
 <div>
   <jo-choice
     [(ngModel)]="choiceModel"
@@ -65,7 +52,7 @@
     Multiple Choice label
   </jo-choice>
 </div>
-<div>
+<!-- <div>
   <jo-select
     [(ngModel)]="selectModel"
     [items]="items"
@@ -81,18 +68,18 @@
   >
     Multiple Select label
   </jo-select>
-</div>
+</div> -->
 <div>
   <jo-color [(ngModel)]="colorModel">
     Color label
   </jo-color>
 </div>
-<div>
+<!-- <div>
   <jo-file [(ngModel)]="fileModel">
     File label
   </jo-file>
-</div>
-
+</div> -->
+<h2>Additional Features</h2>
 <form>
   <p>
     inside a disabled fieldset, all the stuff is disabled as expected
