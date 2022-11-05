@@ -1,7 +1,35 @@
 {
   "name": "@joster-dev/chaos-control",
-  "repository": "https://github.com/joster-dev/chaos-control.git",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "description": "styled controls for your form element",
+  "keywords": [
+    "form control",
+    "text input",
+    "text control",
+    "toggle input",
+    "toggle control",
+    "choice",
+    "multiple choice",
+    "multichoice",
+    "color input",
+    "color picker",
+    "file input",
+    "file picker"
+  ],
+  "repository": "github:joster-dev/chaos-control",
+  "homepage": "https://joster-dev.github.io/chaos-control/",
+  "author": {
+    "name": "Jacob Osterhout",
+    "url": "https://joster-dev.github.io/"
+  },
+  "funding": {
+    "type": "github sponsors",
+    "url": "https://github.com/sponsors/joster-dev"
+  },
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": ">=12.0.2",
     "@angular/core": ">=12.0.2",
