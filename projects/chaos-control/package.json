@@ -1,5 +1,6 @@
 {
-  "name": "chaos-control",
+  "name": "@joster-dev/chaos-control",
+  "repository": "https://github.com/joster-dev/chaos-control.git",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": ">=12.0.2",
