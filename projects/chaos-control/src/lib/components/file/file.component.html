@@ -31,13 +31,13 @@
 </div>
 
 <ul *ngIf="ngControl.control?.errors">
-  <li *ngIf="ngControl.control?.errors?.acceptedTypes">
+  <li *ngIf="ngControl.control?.errors?.['acceptedTypes']">
     valid types are {{acceptedTypes.join(', ')}}
   </li>
-  <li *ngIf="ngControl.control?.errors?.sizeLimitMb">
+  <li *ngIf="ngControl.control?.errors?.['sizeLimitMb']">
     max file size is {{sizeLimit}}
   </li>
-  <li *ngIf="ngControl.control?.errors?.invalid">
+  <li *ngIf="ngControl.control?.errors?.['invalid']">
     invalid model
   </li>
 </ul>

@@ -10,8 +10,8 @@
     [class.border-radius-right]="borderRadiusRight"
     [class.border-radius-left]="borderRadiusLeft"
     class="flex-1"
-    [minlength]="minLength"
-    [maxlength]="maxLength"
+    [minlength]="_minLength"
+    [maxlength]="_maxLength"
     [class.active]="_model !== null"
     [class.invalid]="!ngControl.control?.valid"
     [disabled]="isDisabled === true"
@@ -29,8 +29,8 @@
     [class.border-radius-left]="borderRadiusLeft"
     class="flex-1"
     rows="1"
-    [minlength]="minLength"
-    [maxlength]="maxLength"
+    [minlength]="_minLength"
+    [maxlength]="_maxLength"
     [class.active]="_model !== null"
     [class.invalid]="!ngControl.control?.valid"
     [disabled]="isDisabled === true"
@@ -52,10 +52,10 @@
 </div>
 
 <ul *ngIf="ngControl.control?.errors">
-  <li *ngIf="ngControl.control?.errors?.minlength">
+  <li *ngIf="ngControl.control?.errors?.['minlength']">
     minimum length is {{minLength}}
   </li>
-  <li *ngIf="ngControl.control?.errors?.maxLength">
+  <li *ngIf="ngControl.control?.errors?.['maxLength']">
     maximum length is {{maxLength}}
   </li>
 </ul>

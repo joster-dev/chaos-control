@@ -31,25 +31,33 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
   get minLength() {
     return this._minLength;
   }
-  set minLength(value: number) {
-    if (!isNumber(value) || value < 0 || !Number.isInteger(value))
+  set minLength(value: string | number | null | undefined) {
+    if (typeof value === 'string')
+      value = parseInt(value, 10);
+    if (value === undefined)
+      value = null;
+    if (!isNumber(value) || value < 0 || !Number.isInteger(value) || value === null)
       throw new Error('[minLength] expects: positive integer');
     this._minLength = value;
     this.validation.next();
   }
-  _minLength = 0;
+  _minLength: number | null = null;
 
   @Input()
   get maxLength() {
     return this._maxLength;
   }
-  set maxLength(value: number) {
-    if (!isNumber(value) || value < 0 || !Number.isInteger(value))
+  set maxLength(value: string | number | null | undefined) {
+    if (typeof value === 'string')
+      value = parseInt(value, 10);
+    if (value === undefined)
+      value = null;
+    if (!isNumber(value) || value < 0 || !Number.isInteger(value) || value === null)
       throw new Error('[maxLength] expects: positive integer');
     this._maxLength = value;
     this.validation.next();
   }
-  _maxLength = 0;
+  _maxLength: number | null = null;
 
   @Input()
   isSpellCheck = false;
@@ -87,7 +95,7 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
   _model: string | null = null;
 
   id = `_${Math.random().toString(36).substring(2, 11)}`;
-  resizeSubject = new Subject();
+  resizeSubject = new Subject<void>();
 
   constructor(
     @Self() public ngControl: NgControl,
@@ -101,7 +109,8 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
       .subscribe(() => this._isGrow && this.setTextareaHeight());
   }
 
-  ngOnDestroy(): void {
+  override ngOnDestroy(): void {
+    super.ngOnDestroy();
     this.resizeSubject.complete();
   }
 
@@ -137,18 +146,14 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
     }
   }
 
-  private maxLengthValidator(maxLength: number): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null =>
-      control.value !== null && maxLength > 0 && control.value.length > maxLength
-        ? { maxLength: control.value }
-        : null;
-  }
-
   private validate() {
-    const validators: ValidatorFn[] = [
-      Validators.minLength(this.minLength),
-      this.maxLengthValidator(this.maxLength)
-    ];
+    const validators: ValidatorFn[] = [];
+
+    if (this._minLength != null)
+      validators.push(Validators.minLength(this._minLength));
+
+    if (this._maxLength != null)
+      validators.push(Validators.maxLength(this._maxLength));
 
     if (this.required === true)
       validators.push(Validators.required);

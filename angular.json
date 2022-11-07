@@ -44,9 +44,6 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
-        },
-        "@schematics/angular:application": {
-          "strict": true
         }
       },
       "root": "projects/demo",
@@ -142,6 +139,5 @@
         }
       }
     }
-  },
-  "defaultProject": "chaos-control"
+  }
 }

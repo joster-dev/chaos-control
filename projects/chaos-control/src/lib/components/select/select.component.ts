@@ -35,7 +35,7 @@ export class SelectComponent extends ItemDirective implements ControlValueAccess
   isDropdownCloseToBottom = false;
 
   constructor(
-    @Self() public ngControl: NgControl,
+    @Self() public override ngControl: NgControl,
     private hostElement: ElementRef,
   ) {
     super(ngControl);

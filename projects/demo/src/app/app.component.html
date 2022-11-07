@@ -4,7 +4,6 @@
 <h3>Button Demo</h3>
 <jo-button
   [isActive]="textIsActive"
-  [isDisabled]="textIsDisabled"
   [isValid]="textIsValid"
   [type]="textType"
   (onClick)="actions = actions + 1"
@@ -16,7 +15,10 @@
   {{readonlyLabel}}
 </jo-readonly>
 <h3>Text Demo</h3>
-<jo-text [(ngModel)]="textModel">
+<jo-text
+  [(ngModel)]="textModel"
+  [isGrow]="false"
+>
   Growing Text label
 </jo-text>
 <h3>Choice</h3>

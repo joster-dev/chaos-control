@@ -15,7 +15,6 @@ export class AppComponent {
 
   textModel: string | null = null;
   textIsActive = false;
-  textIsDisabled = false;
   textIsValid = true;
   textType = 'button';
 

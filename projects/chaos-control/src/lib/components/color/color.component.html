@@ -34,7 +34,7 @@
 </div>
 
 <ul *ngIf="ngControl.control?.errors">
-  <li *ngIf="ngControl.control?.errors?.invalid">
+  <li *ngIf="ngControl.control?.errors?.['invalid']">
     invalid model
   </li>
 </ul>

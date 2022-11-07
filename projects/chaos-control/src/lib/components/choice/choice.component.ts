@@ -14,7 +14,7 @@ import { Item } from '../../models';
 })
 export class ChoiceComponent extends ItemDirective implements ControlValueAccessor {
   constructor(
-    @Self() public ngControl: NgControl,
+    @Self() public override ngControl: NgControl,
   ) {
     super(ngControl);
   }

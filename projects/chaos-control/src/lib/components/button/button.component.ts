@@ -38,7 +38,7 @@ export class ButtonComponent extends BorderRadiusDirective {
       throw new Error('[isDisabled] expects: boolean | \'\'');
     this._isDisabled = value;
   }
-  _isDisabled = true;
+  _isDisabled = false;
 
   @Input()
   get isInvalid() {
