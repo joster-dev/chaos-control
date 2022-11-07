@@ -86,7 +86,7 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
   }
   _model: string | null = null;
 
-  id = `_${Math.random().toString(36).substr(2, 9)}`;
+  id = `_${Math.random().toString(36).substring(2, 11)}`;
   resizeSubject = new Subject();
 
   constructor(
