@@ -1,6 +1,6 @@
 {
   "name": "@joster-dev/chaos-control",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
@@ -21,6 +21,7 @@
   ],
   "repository": "github:joster-dev/chaos-control",
   "homepage": "https://joster-dev.github.io/chaos-control/",
+  "bugs": "https://github.com/joster-dev/chaos-control/issues",
   "author": {
     "name": "Jacob Osterhout",
     "url": "https://joster-dev.github.io/"
