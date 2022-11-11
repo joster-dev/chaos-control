@@ -14,9 +14,6 @@ export class AppComponent {
   ];
 
   textModel: string | null = null;
-  textIsActive = false;
-  textIsValid = true;
-  textType = 'button';
 
   readonlyModel = 'Text that cannot be edited';
   readonlyLabel = 'Readonly label';

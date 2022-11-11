@@ -37,6 +37,7 @@ to handle click events in an accessible manner
   - style: inset border
 - `isDisabled: boolean = false`
   - style: solid border
+  - when disabled, button will not be tab indexable
 - `isValid: boolean = true`
 - `type: 'button' | 'submit' = 'button'`
 - `borderRadiusLeft: boolean = true`

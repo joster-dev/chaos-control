@@ -6,6 +6,7 @@ import { BorderRadiusDirective } from '../../directives';
   templateUrl: './button.component.html',
   styleUrls: [
     './button.component.scss',
+    '../../atomic.scss',
     '../../styles.scss',
   ]
 })
@@ -23,7 +24,7 @@ export class ButtonComponent extends BorderRadiusDirective {
       throw new Error('[isActive] expects: boolean | \'\'');
     this._isActive = value;
   }
-  _isActive = true;
+  _isActive = false;
 
   @Input()
   get isDisabled() {
@@ -41,20 +42,9 @@ export class ButtonComponent extends BorderRadiusDirective {
   _isDisabled = false;
 
   @Input()
-  get isInvalid() {
-    return !this._isValid;
+  get isValid() {
+    return this._isValid;
   }
-  set isInvalid(value: boolean | '') {
-    if (value === '')
-      value = true;
-    if (value == null)
-      value = false;
-    if (typeof value !== 'boolean')
-      throw new Error('[isValid] expects: boolean | \'\'');
-    this._isValid = !value;
-  }
-
-  @Input()
   set isValid(value: boolean | '') {
     if (value === '')
       value = true;

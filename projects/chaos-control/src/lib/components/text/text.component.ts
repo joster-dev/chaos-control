@@ -11,6 +11,7 @@ import { isNumber } from '../../models';
   templateUrl: './text.component.html',
   styleUrls: [
     './text.component.scss',
+    '../../atomic.scss',
     '../../styles.scss',
   ]
 })

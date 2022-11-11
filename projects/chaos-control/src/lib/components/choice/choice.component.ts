@@ -9,6 +9,7 @@ import { Item } from '../../models';
   templateUrl: './choice.component.html',
   styleUrls: [
     './choice.component.scss',
+    '../../atomic.scss',
     '../../styles.scss',
   ]
 })

@@ -3,15 +3,14 @@
 label {
   display: block;
   padding-bottom: $sm;
-  font-weight: bold;
 
   &:empty {
     display: none;
   }
 
-  // @media print {
-
-  // }
+  @media print {
+    font-weight: bold;
+  }
 }
 
 ul {
@@ -20,7 +19,7 @@ ul {
   margin: 0;
   padding: 0;
   > li {
-    padding-top: 0.25em;
+    padding-top: $sm;
   }
 }
 
@@ -32,7 +31,7 @@ textarea {
   border-width: 0.15em;
   border-style: outset;
   border-color: currentColor;
-  padding: 0.5em;
+  padding: $md;
   margin: 0;
   font-size: 1em;
   transition: all 700ms ease;
@@ -65,56 +64,4 @@ textarea {
   }
 }
 
-.dis-flex {
-  display: flex;
-}
-.dis-ib {
-  display: inline-block;
-}
 
-.flex-center {
-  align-items: center;
-}
-.flex-stretch {
-  align-items: stretch;
-}
-.flex-space-between {
-  justify-content: space-between;
-}
-.flex-wrap {
-  flex-wrap: wrap;
-}
-
-.flex-1 {
-  flex: 1;
-}
-.flex-2 {
-  flex: 2;
-}
-.flex-3 {
-  flex: 3;
-}
-
-.margin-right-1 {
-  margin-right: 0.5em;
-}
-.margin-right-2 {
-  margin-right: 1em;
-}
-.margin-left-1 {
-  margin-left: 0.5em;
-}
-
-$br: 0.5em;
-.border-radius-right {
-  border-top-right-radius: $br;
-  border-bottom-right-radius: $br;
-}
-.border-radius-left {
-  border-top-left-radius: $br;
-  border-bottom-left-radius: $br;
-}
-
-.white-space-nowrap {
-  white-space: nowrap;
-}

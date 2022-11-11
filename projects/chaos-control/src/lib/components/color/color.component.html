@@ -14,9 +14,9 @@
     <icon
       size="1em"
       type="square"
-      [fill]="_model || [null, 'current']"
+      [fill]="fullHex.test(_model || '') ? _model : [null, 'current']"
       fillRotate="90"
-      [stroke]="_model || ['current']"
+      [stroke]="fullHex.test(_model || '') ? _model : ['current']"
     ></icon>
   </jo-button>
   <input

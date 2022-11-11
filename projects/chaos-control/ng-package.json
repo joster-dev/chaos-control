@@ -6,6 +6,7 @@
   },
   "assets": [
     "lib/atomic.scss",
+    "lib/styles.scss",
     "lib/variables.scss"
   ]
 }

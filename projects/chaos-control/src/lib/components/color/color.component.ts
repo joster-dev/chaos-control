@@ -9,12 +9,13 @@ import { ControlDirective } from '../../directives';
   templateUrl: './color.component.html',
   styleUrls: [
     './color.component.scss',
+    '../../atomic.scss',
     '../../styles.scss',
   ]
 })
 export class ColorComponent extends ControlDirective implements ControlValueAccessor {
   private partialHex = /^[0-9A-Fa-f]{1,6}$/;
-  private fullHex = /^[0-9A-Fa-f]{6}$/;
+  fullHex = /^[0-9A-Fa-f]{6}$/;
 
   get model() {
     return this._model;
