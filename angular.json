@@ -60,7 +60,6 @@
             "tsConfig": "projects/demo/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/demo/src/favicon.ico",
               "projects/demo/src/assets"
             ],
             "styles": [
@@ -128,7 +127,6 @@
             "karmaConfig": "projects/demo/karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/demo/src/favicon.ico",
               "projects/demo/src/assets"
             ],
             "styles": [
