@@ -11,7 +11,7 @@
     [size]="maxDigitSize + sizePadding"
     [class.active]="_model !== null"
     [class.border-radius-left]="borderRadiusLeft"
-    [class.invalid]="ngControl.control?.invalid === true"
+    [class.invalid]="ngControl.control?.invalid"
     [disabled]="isDisabled === true"
     [min]="min"
     [max]="max"
@@ -23,7 +23,7 @@
     [borderRadiusRight]="false"
     [borderRadiusLeft]="false"
     [isDisabled]="isDisabledSubtract === true"
-    [isValid]="ngControl.control?.invalid === false"
+    [isValid]="!ngControl.control?.invalid"
     (blurred)="onTouched()"
     (onClick)="subtract(numberInput)"
   >
@@ -40,7 +40,7 @@
     [borderRadiusLeft]="false"
     [borderRadiusRight]="borderRadiusRight"
     [isDisabled]="isDisabledAdd === true"
-    [isValid]="ngControl.control?.invalid === false"
+    [isValid]="!ngControl.control?.invalid"
     (blurred)="onTouched()"
     (onClick)="add(numberInput)"
   >
