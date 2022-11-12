@@ -5,8 +5,8 @@
     "entryFile": "src/public-api.ts"
   },
   "assets": [
-    "lib/atomic.scss",
-    "lib/styles.scss",
-    "lib/variables.scss"
+    "./lib/atomic.scss",
+    "./lib/styles.scss",
+    "./lib/variables.scss"
   ]
 }
