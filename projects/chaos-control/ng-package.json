@@ -3,10 +3,5 @@
   "dest": "../../dist/chaos-control",
   "lib": {
     "entryFile": "src/public-api.ts"
-  },
-  "assets": [
-    "./lib/atomic.scss",
-    "./lib/styles.scss",
-    "./lib/variables.scss"
-  ]
+  }
 }
