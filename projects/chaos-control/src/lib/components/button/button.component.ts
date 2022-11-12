@@ -15,7 +15,7 @@ export class ButtonComponent extends BorderRadiusDirective {
   get isActive() {
     return this._isActive;
   }
-  set isActive(value: boolean | '') {
+  set isActive(value: boolean | '' | null | undefined) {
     if (value === '')
       value = true;
     if (value == null)
@@ -30,7 +30,7 @@ export class ButtonComponent extends BorderRadiusDirective {
   get isDisabled() {
     return this._isDisabled;
   }
-  set isDisabled(value: boolean | '') {
+  set isDisabled(value: boolean | '' | null | undefined) {
     if (value === '')
       value = true;
     if (value == null)
@@ -45,7 +45,7 @@ export class ButtonComponent extends BorderRadiusDirective {
   get isValid() {
     return this._isValid;
   }
-  set isValid(value: boolean | '') {
+  set isValid(value: boolean | '' | null | undefined) {
     if (value === '')
       value = true;
     if (value == null)
