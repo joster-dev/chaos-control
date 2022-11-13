@@ -6,3 +6,4 @@ export * from './number/number.component';
 export * from './readonly/readonly.component';
 export * from './text/text.component';
 export * from './select/select.component';
+export * from './link/link.component';

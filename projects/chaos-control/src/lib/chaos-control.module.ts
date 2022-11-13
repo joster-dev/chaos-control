@@ -11,7 +11,8 @@ import {
   FileComponent,
   NumberComponent,
   TextComponent,
-  SelectComponent
+  SelectComponent,
+  LinkComponent
 } from './components';
 import {
   BorderRadiusDirective,
@@ -31,7 +32,8 @@ import {
     ControlDirective,
     ItemDirective,
     SelectComponent,
-    BorderRadiusDirective
+    BorderRadiusDirective,
+    LinkComponent
   ],
   imports: [
     CommonModule,
@@ -47,6 +49,7 @@ import {
     NumberComponent,
     TextComponent,
     SelectComponent,
+    LinkComponent,
   ]
 })
 export class ChaosControlModule { }

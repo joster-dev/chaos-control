@@ -1,8 +1,14 @@
-<h1>Chaos Control</h1>
+<h1 id="top">
+  Chaos Control
+</h1>
 <h2>Basic Button Demo</h2>
 <jo-button (onClick)="actions = actions + 1">
   {{actions}} actions
 </jo-button>
+<h2>Basic Link Demo</h2>
+<jo-link href="#top">
+  Link to top of page
+</jo-link>
 <h2>Basic Readonly Demo</h2>
 <jo-readonly [model]="readonlyModel">
   {{readonlyLabel}}

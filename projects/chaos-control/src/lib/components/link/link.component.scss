@@ -1,0 +1,13 @@
+:host {
+  display: inline-block;
+}
+
+a {
+  text-decoration: none;
+  &:link {
+    border-color: #20a;
+  }
+  &:visited {
+    border-color: #609;
+  }
+}
