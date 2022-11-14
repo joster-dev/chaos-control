@@ -14,7 +14,7 @@
     [maxlength]="_maxLength"
     [class.active]="_model !== null"
     [class.invalid]="ngControl.control?.invalid"
-    [disabled]="isDisabled === true"
+    [disabled]="isDisabled"
     [id]="id"
     [spellcheck]="isSpellCheck"
     [placeholder]="placeholder"
@@ -33,7 +33,7 @@
     [maxlength]="_maxLength"
     [class.active]="_model !== null"
     [class.invalid]="ngControl.control?.invalid"
-    [disabled]="isDisabled === true"
+    [disabled]="isDisabled"
     [id]="id"
     [spellcheck]="isSpellCheck"
     [placeholder]="placeholder"
@@ -42,7 +42,10 @@
   ></textarea>
 </div>
 
-<div class="dis-flex">
+<div
+  *ngIf="_isGrow"
+  class="dis-flex"
+>
   <textarea
     #textareaHidden
     [ngModel]="model"

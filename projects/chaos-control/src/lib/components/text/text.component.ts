@@ -79,7 +79,7 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
   @Output() onFocus = new EventEmitter<FocusEvent>();
 
   @ViewChild('textarea') textareaElement?: ElementRef;
-  @ViewChild('textareaHidden') textareaHiddenElement!: ElementRef;
+  @ViewChild('textareaHidden') textareaHiddenElement?: ElementRef;
 
   get model() {
     return this._model;
@@ -121,7 +121,7 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
   }
 
   setTextareaHeight() {
-    if (!this.textareaElement)
+    if (!this.textareaElement || !this.textareaHiddenElement)
       return;
     const textarea = this.textareaElement.nativeElement as HTMLElement;
     const textareaHidden = this.textareaHiddenElement.nativeElement as HTMLElement;
