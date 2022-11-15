@@ -12,7 +12,15 @@ export class AppComponent {
     { key: true, value: 'Yes' },
     { key: false, value: 'No' },
   ];
+  longItems = [
+    { key: true, value: 'Yes' },
+    { key: false, value: 'No' },
+    { key: 1, value: 'One' },
+    { key: 2, value: 'Two' },
+    { key: 3, value: 'Three' },
+  ];
 
+  growingTextModel: string | null = null;
   textModel: string | null = null;
 
   readonlyModel = 'Text that cannot be edited';
@@ -20,9 +28,9 @@ export class AppComponent {
 
   numberModel: number | null = null;
 
-  choiceModel: boolean | null = null;
+  choiceModel: boolean | number | null = null;
 
-  multipleChoiceModel: boolean[] | null = null;
+  multipleChoiceModel: (boolean | number)[] | null = null;
 
   selectModel: boolean | null = null;
 

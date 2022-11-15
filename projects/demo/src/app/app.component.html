@@ -14,8 +14,16 @@
   {{readonlyLabel}}
 </jo-readonly>
 <h2>Basic Text Demo</h2>
-<jo-text [(ngModel)]="textModel">
-  Growing Text label
+<div>
+  <jo-text [(ngModel)]="growingTextModel">
+    Growing Text label
+  </jo-text>
+</div>
+<jo-text
+  [(ngModel)]="textModel"
+  [isGrow]="false"
+>
+  Regular Text label
 </jo-text>
 <h2>Basic Choice Demos</h2>
 <div>
@@ -28,7 +36,7 @@
 </div>
 <jo-choice
   [(ngModel)]="multipleChoiceModel"
-  [items]="items"
+  [items]="longItems"
   isMultiple
 >
   Multiple Choice label

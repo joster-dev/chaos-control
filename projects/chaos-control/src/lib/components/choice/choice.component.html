@@ -2,10 +2,9 @@
   <ng-content></ng-content>
 </label>
 
-<div class="dis-flex flex-wrap">
+<div class="dis-flex">
   <jo-button
     *ngFor="let item of items; let idx = index"
-    class="dis-flex"
     [isActive]="_model.includes(item.key)"
     [isDisabled]="isDisabled"
     [isValid]="!ngControl.control?.invalid"

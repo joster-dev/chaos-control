@@ -1,12 +1,12 @@
 <button
   class="flex-1 dis-flex flex-center"
-  [attr.tabindex]="isDisabled ? -1 : 0"
-  [class.active]="isActive"
-  [class.disabled]="isDisabled"
-  [class.invalid]="!isValid"
+  [attr.tabindex]="_isDisabled ? -1 : 0"
+  [class.active]="_isActive"
+  [class.disabled]="_isDisabled"
+  [class.invalid]="!_isValid"
   [class.border-radius-right]="borderRadiusRight"
   [class.border-radius-left]="borderRadiusLeft"
-  [type]="type"
+  [type]="_type"
   (blur)="onBlur.emit($event)"
   (click)="!isDisabled && onClick.emit($event)"
 >

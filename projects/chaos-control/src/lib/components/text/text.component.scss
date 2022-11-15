@@ -1,3 +1,7 @@
+:host {
+  display: block;
+}
+
 textarea {
   font-family: inherit;
   cursor: text;
@@ -11,4 +15,9 @@ textarea {
     visibility: hidden;
     transition: none;
   }
+}
+
+input[type="text"] {
+  font-family: inherit;
+  width: 100%;
 }
