@@ -1,4 +1,4 @@
-<label>
+<label [for]="id">
   <ng-content></ng-content>
 </label>
 
@@ -28,6 +28,7 @@
     [class.border-radius-right]="borderRadiusRight"
     [class.invalid]="ngControl.control?.invalid"
     [disabled]="isDisabled"
+    [id]="id"
     (beforeinput)="onBeforeinput($event)"
     (blur)="onTouched()"
   />

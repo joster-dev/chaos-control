@@ -30,6 +30,8 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
   }
   _model: string | null = null;
 
+  id = `_${Math.random().toString(36).substring(2, 11)}`;
+
   constructor(
     @Self() public ngControl: NgControl,
   ) {
