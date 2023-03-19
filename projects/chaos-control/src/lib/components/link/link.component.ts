@@ -11,7 +11,7 @@ import { BorderRadiusDirective } from '../../directives';
   ]
 })
 export class LinkComponent extends BorderRadiusDirective {
-
+  @Input() link = '';
   @Input() href = '';
   @Input() hreflang = '';
   @Input() target: '_self' | '_blank' | '_parent' | '_top' = '_self';
