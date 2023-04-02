@@ -1,10 +1,21 @@
 <a
+  *ngIf="link"
+  class="flex-1 dis-flex flex-center"
+  [class.border-radius-right]="borderRadiusRight"
+  [class.border-radius-left]="borderRadiusLeft"
+  [hreflang]="hreflang"
+  [routerLink]="link"
+  [target]="target"
+>
+  <ng-content></ng-content>
+</a>
+<a
+  *ngIf="href"
   class="flex-1 dis-flex flex-center"
   [class.border-radius-right]="borderRadiusRight"
   [class.border-radius-left]="borderRadiusLeft"
   [href]="href"
   [hreflang]="hreflang"
-  [routerLink]="link"
   [target]="target"
 >
   <ng-content></ng-content>
