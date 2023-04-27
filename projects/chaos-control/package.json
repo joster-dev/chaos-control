@@ -1,42 +1,42 @@
 {
-  "name": "@joster-dev/chaos-control",
-  "version": "0.0.13",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "description": "styled controls for your form element",
-  "keywords": [
-    "form control",
-    "text input",
-    "text control",
-    "toggle input",
-    "toggle control",
-    "choice",
-    "multiple choice",
-    "multichoice",
-    "color input",
-    "color picker",
-    "file input",
-    "file picker"
-  ],
-  "repository": "github:joster-dev/chaos-control",
-  "homepage": "https://joster-dev.github.io/chaos-control/",
-  "bugs": "https://github.com/joster-dev/chaos-control/issues",
-  "author": {
-    "name": "Jacob Osterhout",
-    "url": "https://joster-dev.github.io/"
-  },
-  "funding": {
-    "type": "github sponsors",
-    "url": "https://github.com/sponsors/joster-dev"
-  },
-  "license": "MIT",
-  "peerDependencies": {
-    "@angular/common": ">=14.2.0",
-    "@angular/core": ">=14.2.0",
-    "@joster-dev/icon": ">=0.2.0"
-  },
-  "dependencies": {
-    "tslib": ">=2.3.0"
-  }
+    "name": "@joster-dev/chaos-control",
+    "version": "0.0.14",
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    },
+    "description": "styled controls for your form element",
+    "keywords": [
+        "form control",
+        "text input",
+        "text control",
+        "toggle input",
+        "toggle control",
+        "choice",
+        "multiple choice",
+        "multichoice",
+        "color input",
+        "color picker",
+        "file input",
+        "file picker"
+    ],
+    "repository": "github:joster-dev/chaos-control",
+    "homepage": "https://joster-dev.github.io/chaos-control/",
+    "bugs": "https://github.com/joster-dev/chaos-control/issues",
+    "author": {
+        "name": "Jacob Osterhout",
+        "url": "https://joster-dev.github.io/"
+    },
+    "funding": {
+        "type": "github sponsors",
+        "url": "https://github.com/sponsors/joster-dev"
+    },
+    "license": "MIT",
+    "peerDependencies": {
+        "@angular/common": ">=14.2.0",
+        "@angular/core": ">=14.2.0",
+        "@joster-dev/icon": ">=0.2.0"
+    },
+    "dependencies": {
+        "tslib": ">=2.3.0"
+    }
 }

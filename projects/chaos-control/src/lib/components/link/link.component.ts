@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BorderRadiusDirective } from '../../directives';
 
 @Component({
@@ -11,7 +11,7 @@ import { BorderRadiusDirective } from '../../directives';
   ]
 })
 export class LinkComponent extends BorderRadiusDirective {
-  @Input() link: string | string[] = '';
+  @Input() link: string | (string | number | boolean)[] = '';
   @Input() href = '';
   @Input() hreflang = '';
   @Input() target: '_self' | '_blank' | '_parent' | '_top' = '_self';
