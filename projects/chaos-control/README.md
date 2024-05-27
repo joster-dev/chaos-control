@@ -1,6 +1,6 @@
 # Chaos Control Library
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.0.
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.0.
 <!-- - provide accessible components to 
   - visual indication for validity
 - visual and utility components
