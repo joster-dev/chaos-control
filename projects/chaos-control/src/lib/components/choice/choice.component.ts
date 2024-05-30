@@ -9,8 +9,8 @@ import { Item } from '../../models';
   templateUrl: './choice.component.html',
   styleUrls: [
     './choice.component.scss',
-    '../../atomic.scss',
     '../../styles.scss',
+    '../../atomic.scss',
   ]
 })
 export class ChoiceComponent extends ItemDirective implements ControlValueAccessor {
@@ -19,6 +19,8 @@ export class ChoiceComponent extends ItemDirective implements ControlValueAccess
   ) {
     super(ngControl);
   }
+
+  @Input() column = false;
 
   onClick(item: Item) {
     this._model = this._model

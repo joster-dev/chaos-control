@@ -1,32 +1,40 @@
-<label>
-  <ng-content></ng-content>
-</label>
+<div class="dis-flex flex-space-between">
+  <label>
+    <ng-content></ng-content>
+  </label>
+  <div>
+    <ng-content select="[rightAligned]"></ng-content>
+  </div>
+</div>
 
-<div class="dis-flex">
-  <jo-button
+<div
+  class="dis-flex flex-wrap"
+  [class.flex-column]="column"
+>
+  <button
     *ngFor="let item of items; let idx = index"
-    [isActive]="_model.includes(item.key)"
-    [isDisabled]="isDisabled"
-    [isValid]="!ngControl.control?.invalid"
-    [borderRadiusRight]="borderRadiusRight && idx === items.length - 1"
-    [borderRadiusLeft]="borderRadiusLeft && idx === 0"
-    (onClick)="onClick(item)"
-    (onBlur)="onTouched()"
+    class="dis-flex flex-center"
+    [class.border-radius-right]="borderRadiusRight"
+    [class.border-radius-left]="borderRadiusLeft"
+    (click)="onClick(item)"
+    (blur)="onTouched()"
   >
-    <icon-stack
-      size="1em"
-      class="margin-right-1"
+    <div
+      class="button margin-right-1 {{isMultiple ? 'br-20' : 'br-50'}}"
+      [class.active]="_model.includes(item.key)"
+      [class.disabled]="isDisabled"
+      [class.invalid]="ngControl.control?.invalid"
     >
-      <icon [type]="isMultiple ? 'squircle' : 'circle'"></icon>
       <icon
         *ngIf="_model.includes(item.key)"
+        size="1em"
         [type]="isMultiple ? 'check' : 'dot'"
         [fill]="[null, 'current']"
         fillRotate="90"
       ></icon>
-    </icon-stack>
+    </div>
     {{item.value}}
-  </jo-button>
+  </button>
 </div>
 
 <ul *ngIf="ngControl.control?.errors">

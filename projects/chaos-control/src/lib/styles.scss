@@ -2,7 +2,7 @@
 
 label {
   display: block;
-  padding-bottom: $sm;
+  padding-bottom: $md;
 
   &:empty {
     display: none;
@@ -18,13 +18,15 @@ ul {
   color: red;
   margin: 0;
   padding: 0;
-  > li {
+
+  >li {
     padding-top: $sm;
   }
 }
 
 a,
 button,
+.button,
 input,
 textarea {
   color: inherit;
@@ -54,13 +56,19 @@ textarea {
   &.invalid {
     animation: 3s ease 0s infinite invalid-border;
   }
+
+  &:focus {
+    outline: 0.15em dashed currentColor;
+  }
 }
 
 @keyframes invalid-border {
+
   0%,
   100% {
     border-style: inset;
   }
+
   50% {
     border-style: outset;
   }

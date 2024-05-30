@@ -1,31 +1,30 @@
 :host {
   display: block;
 
-  > .dis-flex {
-    overflow-x: auto;
-    scrollbar-width: none;
-    position: relative;
+  >.dis-flex {
 
-    // &::before {
-    //   display: block;
-    //   content: "";
-    //   position: absolute;
-    //   width: 8px;
-    //   height: 100%;
-    //   top: 0;
-    //   left: 0;
-    //   background: linear-gradient(to right, rgba(255, 255, 0, 0.6), rgba(0, 0, 0, 0));
-    // }
+    >button {
+      border-color: transparent;
+      border-width: 0.075em;
 
-    // &::after {
-    //   display: block;
-    //   content: "";
-    //   position: absolute;
-    //   width: 8px;
-    //   height: 100%;
-    //   top: 0;
-    //   right: 0;
-    //   background: linear-gradient(to left, rgba(255, 255, 0, 0.6), rgba(0, 0, 0, 0));
-    // }
+      >.button {
+        position: relative;
+        text-align: left;
+
+        >icon {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+      }
+    }
   }
+}
+
+.br-20 {
+  border-radius: 20%;
+}
+
+.br-50 {
+  border-radius: 50%;
 }
