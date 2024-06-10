@@ -1,22 +1,18 @@
 @import "./variables.scss";
 
-.dis-flex {
+.d-flex {
   display: flex;
 }
 
-.dis-ib {
-  display: inline-block;
-}
-
-.flex-center {
+.align-items-center {
   align-items: center;
 }
 
-.flex-stretch {
+.align-items-stretch {
   align-items: stretch;
 }
 
-.flex-space-between {
+.justify-content-between {
   justify-content: space-between;
 }
 

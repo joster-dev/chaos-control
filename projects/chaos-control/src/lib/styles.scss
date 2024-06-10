@@ -15,7 +15,7 @@ label {
 
 ul {
   list-style: none;
-  color: red;
+  // color: red;
   margin: 0;
   padding: 0;
 
@@ -37,8 +37,9 @@ textarea {
   padding: $md;
   margin: 0;
   font-size: 1em;
-  transition: all 700ms ease;
+  // transition: all 700ms ease;
   line-height: 1em;
+  cursor: pointer;
 
   &:active,
   &.active {
@@ -58,7 +59,8 @@ textarea {
   }
 
   &:focus {
-    outline: 0.15em dashed currentColor;
+    // outline: 0.15em solid currentColor;
+    box-shadow: 0 0 .25em .25em currentColor;
   }
 }
 

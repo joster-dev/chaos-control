@@ -2,7 +2,7 @@
   <ng-content></ng-content>
 </label>
 
-<div class="dis-flex flex-stretch">
+<div class="d-flex align-items-stretch">
   <jo-text
     [borderRadiusLeft]="borderRadiusLeft"
     [borderRadiusRight]="false"
@@ -12,7 +12,7 @@
     (onFocus)="onFocusSearch()"
   ></jo-text>
   <jo-button
-    class="dis-flex"
+    class="d-flex"
     [borderRadiusLeft]="false"
     [borderRadiusRight]="borderRadiusRight"
     [isDisabled]="isDisabled"
@@ -38,7 +38,7 @@
   </jo-button> -->
   <jo-button
     *ngFor="let item of items; let idx = index"
-    class="dis-flex"
+    class="d-flex"
     [isActive]="_model.includes(item.key)"
     [isDisabled]="isDisabled"
     [isValid]="!ngControl.control?.invalid"

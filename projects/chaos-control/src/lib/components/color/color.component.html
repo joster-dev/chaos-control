@@ -2,14 +2,13 @@
   <ng-content></ng-content>
 </label>
 
-<div class="dis-flex flex-stretch">
-  <jo-button
-    class="dis-flex"
+<div class="d-flex align-items-stretch">
+  <button
+    class="d-flex"
     title="Color"
-    [borderRadiusLeft]="borderRadiusLeft"
-    [borderRadiusRight]="false"
-    [isDisabled]="isDisabled"
-    (onClick)="colorInput.click()"
+    [class.border-radius-left]="borderRadiusLeft"
+    [disabled]="isDisabled"
+    (click)="colorInput.click()"
   >
     <icon
       size="1em"
@@ -18,7 +17,7 @@
       fillRotate="90"
       [stroke]="fullHex.test(_model || '') ? _model : ['current']"
     ></icon>
-  </jo-button>
+  </button>
   <input
     [(ngModel)]="model"
     spellcheck="false"

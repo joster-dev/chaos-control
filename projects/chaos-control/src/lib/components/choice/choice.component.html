@@ -1,4 +1,4 @@
-<div class="dis-flex flex-space-between">
+<div class="d-flex justify-content-between">
   <label>
     <ng-content></ng-content>
   </label>
@@ -8,12 +8,12 @@
 </div>
 
 <div
-  class="dis-flex flex-wrap"
+  class="d-flex flex-wrap"
   [class.flex-column]="column"
 >
   <button
     *ngFor="let item of items; let idx = index"
-    class="dis-flex flex-center"
+    class="d-flex align-items-center"
     [class.border-radius-right]="borderRadiusRight"
     [class.border-radius-left]="borderRadiusLeft"
     (click)="onClick(item)"

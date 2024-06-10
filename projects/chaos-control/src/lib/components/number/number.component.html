@@ -2,11 +2,11 @@
   <ng-content></ng-content>
 </label>
 
-<div class="dis-flex flex-stretch">
+<div class="d-flex align-items-stretch">
   <input
     [(ngModel)]="model"
     #numberInput
-    class="dis-flex flex-center"
+    class="d-flex align-items-center"
     type="number"
     [size]="maxDigitSize + sizePadding"
     [class.active]="_model !== null"
@@ -17,15 +17,13 @@
     [max]="max"
     (beforeinput)="onBeforeinput($event)"
   />
-  <jo-button
-    class="dis-flex"
+  <button
+    class="d-flex"
     title="Subtract"
-    [borderRadiusRight]="false"
-    [borderRadiusLeft]="false"
-    [isDisabled]="isDisabledSubtract === true"
-    [isValid]="!ngControl.control?.invalid"
-    (blurred)="onTouched()"
-    (onClick)="subtract(numberInput)"
+    [disabled]="isDisabledSubtract === true"
+    [class.invalid]="ngControl.control?.invalid"
+    (blur)="onTouched()"
+    (click)="subtract(numberInput)"
   >
     <icon
       type="minus"
@@ -33,14 +31,13 @@
       [fill]="[null, 'current']"
       fillRotate="90"
     ></icon>
-  </jo-button>
-  <jo-button
-    class="dis-flex"
+  </button>
+  <button
+    class="d-flex"
     title="Add"
-    [borderRadiusLeft]="false"
-    [borderRadiusRight]="borderRadiusRight"
-    [isDisabled]="isDisabledAdd === true"
-    [isValid]="!ngControl.control?.invalid"
+    [class.border-radius-right]="borderRadiusRight"
+    [disabled]="isDisabledAdd === true"
+    [class.invalid]="ngControl.control?.invalid"
     (blurred)="onTouched()"
     (onClick)="add(numberInput)"
   >
@@ -50,5 +47,5 @@
       [fill]="[null, 'current']"
       fillRotate="90"
     ></icon>
-  </jo-button>
+  </button>
 </div>

@@ -2,15 +2,15 @@
   <ng-content></ng-content>
 </label>
 
-<div class="dis-flex flex-center">
+<div class="d-flex align-items-center">
   <div>
-    <jo-button
+    <button
       class="white-space-nowrap"
-      [borderRadiusRight]="borderRadiusRight"
-      [borderRadiusLeft]="borderRadiusLeft"
-      [isActive]="ngControl.value !== null"
-      [isDisabled]="isDisabled"
-      (onClick)="fileInput.click()"
+      [class.border-radius-right]="borderRadiusRight"
+      [class.border-radius-left]="borderRadiusLeft"
+      [class.active]="ngControl.value !== null"
+      [disabled]="isDisabled"
+      (click)="fileInput.click()"
     >
       <icon
         type="folder"
@@ -20,7 +20,7 @@
         fillRotate="90"
       ></icon>
       Choose {{multiple ? 'Files' : 'File'}}
-    </jo-button>
+    </button>
   </div>
   <div
     *ngIf="ngControl.value"

@@ -3,11 +3,13 @@
 }
 
 a {
-  text-decoration: none;
+  text-decoration-thickness: 1px;
+
   &:link {
-    border-color: #20a;
+    text-decoration: underline;
   }
+
   &:visited {
-    border-color: #609;
+    text-decoration: underline double;
   }
 }
