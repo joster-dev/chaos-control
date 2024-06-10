@@ -19,12 +19,14 @@
     Growing Text label
   </jo-text>
 </div>
-<jo-text
-  [(ngModel)]="textModel"
-  [isGrow]="false"
->
-  Regular Text label
-</jo-text>
+<div>
+  <jo-text
+    [(ngModel)]="textModel"
+    [isGrow]="false"
+  >
+    Regular Text label
+  </jo-text>
+</div>
 <h2>Basic Choice Demos</h2>
 <div>
   <jo-choice
@@ -34,17 +36,22 @@
     Single Choice label
   </jo-choice>
 </div>
-<jo-choice
-  [(ngModel)]="multipleChoiceModel"
-  [items]="longItems"
-  isMultiple
->
-  Multiple Choice label
-</jo-choice>
+<div>
+  <jo-choice
+    [(ngModel)]="multipleChoiceModel"
+    [items]="longItems"
+    isColumn
+    isMultiple
+  >
+    Multiple Choice label
+  </jo-choice>
+</div>
 <h2>Basic Color Demo</h2>
-<jo-color [(ngModel)]="colorModel">
-  Color label
-</jo-color>
+<div>
+  <jo-color [(ngModel)]="colorModel">
+    Color label
+  </jo-color>
+</div>
 <!-- <div>
   <jo-text
     [(ngModel)]="textModel"
@@ -55,11 +62,11 @@
 </div> -->
 <!-- todo: stop digit input from occurring when length > max -->
 <!-- also handle . for decimals 🤔 -->
-<!-- <div>
+<div>
   <jo-number [(ngModel)]="numberModel">
     Number label
   </jo-number>
-</div> -->
+</div>
 
 <!-- <div>
   <jo-select

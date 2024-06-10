@@ -1,4 +1,4 @@
-<label>
+<label [class.required]="required">
   <ng-content></ng-content>
 </label>
 
@@ -12,15 +12,15 @@
     [class.active]="_model !== null"
     [class.border-radius-left]="borderRadiusLeft"
     [class.invalid]="ngControl.control?.invalid"
-    [disabled]="isDisabled === true"
+    [disabled]="isDisabled"
     [min]="min"
     [max]="max"
     (beforeinput)="onBeforeinput($event)"
   />
   <button
-    class="d-flex"
+    class="d-flex align-items-center"
     title="Subtract"
-    [disabled]="isDisabledSubtract === true"
+    [disabled]="isDisabledSubtract"
     [class.invalid]="ngControl.control?.invalid"
     (blur)="onTouched()"
     (click)="subtract(numberInput)"
@@ -33,13 +33,13 @@
     ></icon>
   </button>
   <button
-    class="d-flex"
+    class="d-flex align-items-center"
     title="Add"
     [class.border-radius-right]="borderRadiusRight"
-    [disabled]="isDisabledAdd === true"
+    [disabled]="isDisabledAdd"
     [class.invalid]="ngControl.control?.invalid"
-    (blurred)="onTouched()"
-    (onClick)="add(numberInput)"
+    (blur)="onTouched()"
+    (click)="add(numberInput)"
   >
     <icon
       type="plus"
@@ -49,3 +49,12 @@
     ></icon>
   </button>
 </div>
+
+<ul *ngIf="ngControl.control?.errors">
+  <li *ngIf="ngControl.control?.errors?.['min']">
+    minimum number is {{min}}
+  </li>
+  <li *ngIf="ngControl.control?.errors?.['max']">
+    maximum number is {{max}}
+  </li>
+</ul>

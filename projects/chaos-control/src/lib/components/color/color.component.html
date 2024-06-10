@@ -1,10 +1,13 @@
-<label [for]="id">
+<label
+  [for]="id"
+  [class.required]="required"
+>
   <ng-content></ng-content>
 </label>
 
 <div class="d-flex align-items-stretch">
   <button
-    class="d-flex"
+    class="d-flex align-items-center"
     title="Color"
     [class.border-radius-left]="borderRadiusLeft"
     [disabled]="isDisabled"

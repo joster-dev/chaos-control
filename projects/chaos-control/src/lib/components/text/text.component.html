@@ -1,4 +1,7 @@
-<label [for]="id">
+<label
+  [for]="id"
+  [class.required]="required"
+>
   <ng-content></ng-content>
 </label>
 
@@ -28,7 +31,7 @@
     [class.border-radius-right]="borderRadiusRight"
     [class.border-radius-left]="borderRadiusLeft"
     class="flex-1"
-    rows="1"
+    [rows]="rows"
     [minlength]="_minLength"
     [maxlength]="_maxLength"
     [class.active]="_model !== null"

@@ -75,6 +75,8 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
   }
   _isGrow = true;
 
+  @Input() rows = 3;
+
   @Output() onBlur = new EventEmitter<FocusEvent>();
   @Output() onFocus = new EventEmitter<FocusEvent>();
 
@@ -158,7 +160,7 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
 
     if (this.required === true)
       validators.push(Validators.required);
-
+    debugger;
     this.ngControl.control?.setValidators(validators);
     this.ngControl.control?.updateValueAndValidity();
   }

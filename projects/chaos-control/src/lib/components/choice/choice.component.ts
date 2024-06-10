@@ -20,7 +20,22 @@ export class ChoiceComponent extends ItemDirective implements ControlValueAccess
     super(ngControl);
   }
 
-  @Input() column = false;
+  @Input()
+  get isColumn() {
+    return this._isColumn;
+  }
+  set isColumn(value: boolean | '') {
+    if (value === '')
+      value = true;
+    if (value == null)
+      value = false;
+    if (typeof value !== 'boolean')
+      throw new Error('isColumn expects: boolean')
+    this._isColumn = value;
+  }
+  _isColumn = false;
+
+  id = `${Math.random().toString(36).substr(2, 9)}`;
 
   onClick(item: Item) {
     this._model = this._model

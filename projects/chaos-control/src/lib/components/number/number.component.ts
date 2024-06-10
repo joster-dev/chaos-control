@@ -1,5 +1,5 @@
 import { Component, Input, Self } from '@angular/core';
-import { ControlValueAccessor, NgControl, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, Validator, ValidatorFn, Validators } from '@angular/forms';
 import { ControlDirective } from '../../directives';
 import { isNumber } from '../../models';
 
@@ -8,6 +8,7 @@ import { isNumber } from '../../models';
   templateUrl: './number.component.html',
   styleUrls: [
     './number.component.scss',
+    '../../atomic.scss',
     '../../styles.scss',
   ]
 })
@@ -49,13 +50,14 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
   _step = 1;
 
   mustBeInteger = true;
-  readonly sizePadding = 1;
+  readonly sizePadding = 5;
 
   constructor(
     @Self() public ngControl: NgControl,
   ) {
     super();
     this.validation.subscribe(() => this.validate());
+    this.validation.next();
     ngControl.valueAccessor = this;
   }
 
@@ -95,7 +97,9 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
     const isDigit = /\d/.test(event.data);
     const isMinus = event.data === '-';
     const isMinusAllowed = this.min < 0;
-    if (!isDigit && !(isMinus && isMinusAllowed))
+    const isBlockedNonDigit = !isDigit && !(isMinus && isMinusAllowed)
+    const isPastMax = Number((this._model || '') + event.data) > this.max;
+    if (isBlockedNonDigit || isPastMax)
       event.preventDefault();
   }
 
@@ -116,7 +120,6 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
     }
 
     e.stepDown();
-
     this.model = e.valueAsNumber;
   }
 
