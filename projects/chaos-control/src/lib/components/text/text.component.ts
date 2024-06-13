@@ -73,7 +73,7 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
       throw new Error('[isGrow] expects: boolean');
     this._isGrow = value;
   }
-  _isGrow = true;
+  _isGrow = false;
 
   @Input() rows = 3;
 
