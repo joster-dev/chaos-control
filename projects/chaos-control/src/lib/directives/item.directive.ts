@@ -95,7 +95,7 @@ export class ItemDirective extends ControlDirective implements ControlValueAcces
       (
         isMultiple
           ? Array.isArray(control.value) && control.value.every((key: any) => !items.map(item => item.key).includes(key))
-          : control.value !== null && !items.map(item => item.key).includes(control.value)
+          : ![undefined, null].includes(control.value) && !items.map(item => item.key).includes(control.value)
       )
         ? { invalid: control.value }
         : null;

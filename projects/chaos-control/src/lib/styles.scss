@@ -3,13 +3,14 @@
 label {
   display: block;
   padding-bottom: $md;
+  font-weight: bold;
 
   &:empty {
     display: none;
   }
 
-  @media print {
-    font-weight: bold;
+  &.required:after {
+    content: "*";
   }
 }
 
@@ -39,7 +40,6 @@ textarea {
   font-size: 1em;
   // transition: all 700ms ease;
   line-height: 1em;
-  cursor: pointer;
 
   &:active,
   &.active {
@@ -55,13 +55,19 @@ textarea {
   }
 
   &.invalid {
-    animation: 3s ease 0s infinite invalid-border;
+    // animation: 3s ease 0s infinite invalid-border;
   }
 
   &:focus {
     // outline: 0.15em solid transparent;
     // box-shadow: 0 0 0.1em 0 currentColor;
   }
+}
+
+a,
+button,
+.button {
+  cursor: pointer;
 }
 
 @keyframes invalid-border {

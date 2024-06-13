@@ -31,6 +31,7 @@
 <div>
   <jo-choice
     [(ngModel)]="choiceModel"
+    required
     [items]="items"
   >
     Single Choice label
@@ -39,6 +40,7 @@
 <div>
   <jo-choice
     [(ngModel)]="multipleChoiceModel"
+    required
     [items]="longItems"
     isColumn
     isMultiple
