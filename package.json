@@ -4,9 +4,8 @@
   "scripts": {
     "pages": "ng build --output-path=docs --project=demo --base-href=https://joster-dev.github.io/chaos-control/",
     "package": "npm run _build-lib && npm run _npm-publish",
-    "_build-lib": "ng build --project=chaos-control && npm run _copy-license && npm run _copy-styles",
+    "_build-lib": "ng build --project=chaos-control && npm run _copy-license",
     "_copy-license": "powershell Copy-Item '.\\LICENSE' -Destination '.\\dist\\chaos-control\\lib'",
-    "_copy-styles": "powershell Copy-Item '.\\projects\\chaos-control\\src\\lib\\*.scss' -Destination '.\\dist\\chaos-control\\lib'",
     "_npm-publish": "cd dist/chaos-control && npm publish"
   },
   "private": true,

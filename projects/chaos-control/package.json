@@ -1,6 +1,6 @@
 {
   "name": "@joster-dev/chaos-control",
-  "version": "0.0.19",
+  "version": "0.0.21",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
