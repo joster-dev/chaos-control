@@ -160,7 +160,7 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
 
     if (this.required === true)
       validators.push(Validators.required);
-    debugger;
+
     this.ngControl.control?.setValidators(validators);
     this.ngControl.control?.updateValueAndValidity();
   }
