@@ -1,5 +1,5 @@
 {
-  "name": "chaos-control-demo",
+  "name": "chaos-control",
   "version": "0.0.0",
   "scripts": {
     "pages": "ng build --output-path=docs --project=demo --base-href=https://joster-dev.github.io/chaos-control/",
@@ -23,8 +23,8 @@
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^18.0.1",
-    "@angular/cli": "^18.0.1",
+    "@angular-devkit/build-angular": "^18.0.4",
+    "@angular/cli": "^18.0.4",
     "@angular/compiler-cli": "^18.0.0",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.1.0",

@@ -1,6 +1,6 @@
 {
   "name": "@joster-dev/chaos-control",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
@@ -34,7 +34,7 @@
   "peerDependencies": {
     "@angular/common": "^18.0.0",
     "@angular/core": "^18.0.0",
-    "@joster-dev/icon": "^0.2.0"
+    "@joster-dev/icon": "^0.3.1"
   },
   "dependencies": {
     "tslib": "^2.3.0"
