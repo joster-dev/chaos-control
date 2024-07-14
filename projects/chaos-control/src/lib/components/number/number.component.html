@@ -20,6 +20,7 @@
   <button
     class="d-flex align-items-center"
     title="Subtract"
+    type="button"
     [disabled]="isDisabledSubtract"
     [class.invalid]="ngControl.control?.invalid"
     (blur)="onTouched()"
@@ -35,6 +36,7 @@
   <button
     class="d-flex align-items-center"
     title="Add"
+    type="button"
     [class.border-radius-right]="borderRadiusRight"
     [disabled]="isDisabledAdd"
     [class.invalid]="ngControl.control?.invalid"
