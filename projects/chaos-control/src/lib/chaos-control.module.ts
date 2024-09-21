@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { IconModule } from '@joster-dev/icon';
 
 import {
-  ButtonComponent,
   ReadonlyComponent,
   ChoiceComponent,
   ColorComponent,
@@ -13,7 +12,6 @@ import {
   NumberComponent,
   TextComponent,
   SelectComponent,
-  LinkComponent
 } from './components';
 import {
   BorderRadiusDirective,
@@ -23,7 +21,6 @@ import {
 
 @NgModule({
   declarations: [
-    ButtonComponent,
     ReadonlyComponent,
     ChoiceComponent,
     ColorComponent,
@@ -34,7 +31,6 @@ import {
     ItemDirective,
     SelectComponent,
     BorderRadiusDirective,
-    LinkComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +39,6 @@ import {
     RouterModule,
   ],
   exports: [
-    ButtonComponent,
     ReadonlyComponent,
     ChoiceComponent,
     ColorComponent,
@@ -51,7 +46,6 @@ import {
     NumberComponent,
     TextComponent,
     SelectComponent,
-    LinkComponent,
   ]
 })
 export class ChaosControlModule { }

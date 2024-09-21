@@ -11,12 +11,10 @@
     class="flex-1"
     (onFocus)="onFocusSearch()"
   ></jo-text>
-  <jo-button
+  <button
     class="d-flex"
-    [borderRadiusLeft]="false"
-    [borderRadiusRight]="borderRadiusRight"
-    [isDisabled]="isDisabled"
-    (onClick)="onClickSearch()"
+    [disabled]="isDisabled"
+    (click)="onClickSearch()"
   >
     <icon
       size="1em"
@@ -25,7 +23,7 @@
       fillRotate="90"
       [stroke]="['current']"
     ></icon>
-  </jo-button>
+  </button>
 </div>
 
 <div
@@ -36,16 +34,16 @@
   <!-- <jo-button *ngIf="items.length === 0">
     No Results
   </jo-button> -->
-  <jo-button
+  <button
     *ngFor="let item of items; let idx = index"
     class="d-flex"
-    [isActive]="_model.includes(item.key)"
-    [isDisabled]="isDisabled"
-    [isValid]="!ngControl.control?.invalid"
-    [borderRadiusRight]="borderRadiusRight && idx === items.length - 1"
-    [borderRadiusLeft]="borderRadiusLeft && idx === 0"
-    (onClick)="onClick(item)"
-    (onBlur)="onTouched()"
+    [class.active]="_model.includes(item.key)"
+    [disabled]="isDisabled"
+    [class.invalid]="!ngControl.control?.invalid"
+    [class.border-radius-right]="borderRadiusRight && idx === items.length - 1"
+    [class.border-radius-left]="borderRadiusLeft && idx === 0"
+    (click)="onClick(item)"
+    (blur)="onTouched()"
   >
     <icon-stack
       class="margin-right-1"
@@ -60,5 +58,5 @@
       ></icon>
     </icon-stack>
     {{item.value}}
-  </jo-button>
+  </button>
 </div>

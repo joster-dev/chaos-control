@@ -1,0 +1,93 @@
+<h2>Readonly Demo</h2>
+<jo-readonly [model]="ds.readonlyModel">
+  {{ds.readonlyLabel}}
+</jo-readonly>
+<h2>&lt;jo-text&gt; Demo</h2>
+<div>
+  <jo-text
+    [(ngModel)]="ds.growingTextModel"
+    [isGrow]="true"
+  >
+    growing Text
+  </jo-text>
+</div>
+<div>
+  <jo-text [(ngModel)]="ds.textModel">
+    Text
+  </jo-text>
+</div>
+<h2>&lt;jo-choice&gt; Demo</h2>
+<div>
+  <jo-choice
+    [(ngModel)]="ds.choiceModel"
+    required
+    [items]="ds.items"
+  >
+    Single Choice
+  </jo-choice>
+</div>
+<div>
+  <jo-choice
+    [(ngModel)]="ds.multipleChoiceModel"
+    required
+    [items]="ds.longItems"
+    isColumn
+    isMultiple
+  >
+    Multiple Choice
+  </jo-choice>
+</div>
+<div>
+  <jo-choice
+    [(ngModel)]="ds.choiceModel"
+    required
+    [items]="ds.longTextItems"
+    isColumn
+  >
+    Choice with long text
+  </jo-choice>
+</div>
+<h2>Color Demo</h2>
+<div>
+  <jo-color [(ngModel)]="ds.colorModel">
+    Color label
+  </jo-color>
+</div>
+<!-- <div>
+  <jo-text
+    [(ngModel)]="textModel"
+    [isGrow]="false"
+  >
+    Text label
+  </jo-text>
+</div> -->
+<!-- todo: stop digit input from occurring when length > max -->
+<!-- also handle . for decimals 🤔 -->
+<div>
+  <jo-number [(ngModel)]="ds.numberModel">
+    Number
+  </jo-number>
+</div>
+
+<!-- <div>
+  <jo-select
+    [(ngModel)]="selectModel"
+    [items]="items"
+  >
+    Single Select label
+  </jo-select>
+</div>
+<div>
+  <jo-select
+    [(ngModel)]="selectModel"
+    [items]="items"
+    isMultiple
+  >
+    Multiple Select label
+  </jo-select>
+</div> -->
+<!-- <div>
+  <jo-file [(ngModel)]="fileModel">
+    File label
+  </jo-file>
+</div> -->

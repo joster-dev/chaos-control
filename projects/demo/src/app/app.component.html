@@ -1,105 +1,13 @@
 <h1 id="top">
   Chaos Control
 </h1>
-<h2>Basic Button Demo</h2>
-<jo-button (onClick)="actions = actions + 1">
-  {{actions}} actions
-</jo-button>
-<h2>Basic Link Demo</h2>
-<jo-link href="#top">
-  Link to top of page
-</jo-link>
-<h2>Basic Readonly Demo</h2>
-<jo-readonly [model]="readonlyModel">
-  {{readonlyLabel}}
-</jo-readonly>
-<h2>Basic Text Demo</h2>
-<div>
-  <jo-text [(ngModel)]="growingTextModel">
-    Growing Text label
-  </jo-text>
-</div>
-<div>
-  <jo-text
-    [(ngModel)]="textModel"
-    [isGrow]="false"
-  >
-    Regular Text label
-  </jo-text>
-</div>
-<h2>Basic Choice Demos</h2>
-<div>
-  <jo-choice
-    [(ngModel)]="choiceModel"
-    required
-    [items]="items"
-  >
-    Single Choice label
-  </jo-choice>
-</div>
-<div>
-  <jo-choice
-    [(ngModel)]="multipleChoiceModel"
-    required
-    [items]="longItems"
-    isColumn
-    isMultiple
-  >
-    Multiple Choice label
-  </jo-choice>
-</div>
-<h2>Basic Color Demo</h2>
-<div>
-  <jo-color [(ngModel)]="colorModel">
-    Color label
-  </jo-color>
-</div>
-<!-- <div>
-  <jo-text
-    [(ngModel)]="textModel"
-    [isGrow]="false"
-  >
-    Text label
-  </jo-text>
-</div> -->
-<!-- todo: stop digit input from occurring when length > max -->
-<!-- also handle . for decimals 🤔 -->
-<div>
-  <jo-number [(ngModel)]="numberModel">
-    Number label
-  </jo-number>
-</div>
-
-<!-- <div>
-  <jo-select
-    [(ngModel)]="selectModel"
-    [items]="items"
-  >
-    Single Select label
-  </jo-select>
-</div>
-<div>
-  <jo-select
-    [(ngModel)]="selectModel"
-    [items]="items"
-    isMultiple
-  >
-    Multiple Select label
-  </jo-select>
-</div> -->
-<!-- <div>
-  <jo-file [(ngModel)]="fileModel">
-    File label
-  </jo-file>
-</div> -->
+<demo-content></demo-content>
 <h2>Additional Features</h2>
 <form>
   <p>
     inside a disabled fieldset, all the stuff is disabled as expected
   </p>
   <fieldset disabled>
-    <jo-button (onClick)="disabledActions = disabledActions + 1">
-      {{disabledActions}} actions
-    </jo-button>
+    <demo-content></demo-content>
   </fieldset>
 </form>

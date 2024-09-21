@@ -40,6 +40,10 @@
   flex: 3;
 }
 
+.align-self-center {
+  align-self: center;
+}
+
 .margin-right-1 {
   margin-right: $md;
 }
@@ -69,8 +73,6 @@
 .white-space-nowrap {
   white-space: nowrap;
 }
-
-// unused in this project
 
 .text-right {
   text-align: right;

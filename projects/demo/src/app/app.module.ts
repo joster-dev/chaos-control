@@ -6,10 +6,12 @@ import { RouterModule } from '@angular/router';
 import { ChaosControlModule } from 'chaos-control';
 
 import { AppComponent } from './app.component';
+import { ContentComponent } from './content/content.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ContentComponent,
   ],
   imports: [
     BrowserModule,

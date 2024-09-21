@@ -9,3 +9,13 @@ input[type="color"] {
   visibility: hidden;
   transition: none;
 }
+
+:host>div {
+  >input {
+    border-left: 0;
+  }
+
+  >button {
+    border-right: 0;
+  }
+}

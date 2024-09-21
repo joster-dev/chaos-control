@@ -1,8 +1,24 @@
 input[type="number"] {
   -moz-appearance: textfield;
+
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+}
+
+:host>div {
+  >input {
+    border-right: 0;
+  }
+
+  >button:not(:last-child) {
+    border-right: 0;
+    border-left: 0;
+  }
+
+  >button:last-child {
+    border-left: 0;
   }
 }
