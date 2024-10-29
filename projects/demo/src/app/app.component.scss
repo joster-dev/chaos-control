@@ -1,7 +1,6 @@
-:host>div {
-  padding-bottom: 1em;
-}
-
-jo-link>a {
+header a,
+footer a {
   padding: 1em;
+  text-decoration: none;
+  border-radius: 0.5em;
 }

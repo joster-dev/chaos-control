@@ -10,7 +10,7 @@
     type="number"
     [size]="maxDigitSize + sizePadding"
     [class.active]="_model !== null"
-    [class.border-radius-left]="borderRadiusLeft"
+    [class.br-start]="borderRadiusLeft"
     [class.invalid]="ngControl.control?.invalid"
     [disabled]="isDisabled"
     [min]="min"
@@ -28,7 +28,7 @@
   >
     <icon
       type="minus"
-      size="1em"
+      size="1rem"
       [fill]="[null, 'current']"
       fillRotate="90"
     ></icon>
@@ -37,7 +37,7 @@
     class="d-flex align-items-center"
     title="Add"
     type="button"
-    [class.border-radius-right]="borderRadiusRight"
+    [class.br-end]="borderRadiusRight"
     [disabled]="isDisabledAdd"
     [class.invalid]="ngControl.control?.invalid"
     (blur)="onTouched()"
@@ -45,7 +45,7 @@
   >
     <icon
       type="plus"
-      size="1em"
+      size="1rem"
       [fill]="[null, 'current']"
       fillRotate="90"
     ></icon>

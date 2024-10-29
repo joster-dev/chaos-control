@@ -19,28 +19,29 @@
   <button
     *ngFor="let item of items; let idx = index"
     type="button"
-    class="d-flex align-items-center text-left"
+    class="d-flex align-items-center gap-2 text-start"
     role="menuitemcheckbox"
-    [class.border-radius-right]="borderRadiusRight"
-    [class.border-radius-left]="borderRadiusLeft"
+    [class.br-end]="borderRadiusRight"
+    [class.br-start]="borderRadiusLeft"
+    [disabled]="isDisabled"
     (click)="onClick(item)"
     (blur)="onTouched()"
   >
     <div
-      class="button margin-right-1 {{isMultiple ? 'br-20' : 'br-50'}}"
+      class="jo-button {{isMultiple ? 'br-20' : 'br-50'}}"
       [class.active]="_model.includes(item.key)"
       [class.disabled]="isDisabled"
       [class.invalid]="ngControl.control?.invalid"
     >
       <icon
         *ngIf="_model.includes(item.key)"
-        size="1em"
+        size="1rem"
         [type]="isMultiple ? 'check' : 'dot'"
         [fill]="[null, 'current']"
         fillRotate="90"
       ></icon>
     </div>
-    {{item.value}}
+    <span>{{item.value}}</span>
   </button>
 </div>
 

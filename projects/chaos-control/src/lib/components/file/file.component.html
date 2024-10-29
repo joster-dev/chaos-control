@@ -6,16 +6,16 @@
   <div>
     <button
       class="white-space-nowrap"
-      [class.border-radius-right]="borderRadiusRight"
-      [class.border-radius-left]="borderRadiusLeft"
+      [class.br-end]="borderRadiusRight"
+      [class.br-start]="borderRadiusLeft"
       [class.active]="ngControl.value !== null"
       [disabled]="isDisabled"
       (click)="fileInput.click()"
     >
       <icon
         type="folder"
-        size="1em"
-        class="margin-right-1"
+        size="1rem"
+        class="me-2"
         [fill]="[null, 'current']"
         fillRotate="90"
       ></icon>
@@ -24,7 +24,7 @@
   </div>
   <div
     *ngIf="ngControl.value"
-    id="filename"
+    class="ml-2"
   >
     {{fileNames}}
   </div>

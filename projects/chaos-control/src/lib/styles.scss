@@ -1,8 +1,10 @@
-@import "./variables.scss";
+@use "sass:map";
+@use "@joster-dev/style/scss/all.scss";
+@use "@joster-dev/style/scss/variables.scss" as variables;
 
 label {
   display: block;
-  padding-bottom: $md;
+  padding-bottom: map.get(variables.$sizes, "md");
   font-weight: bold;
 
   &:empty {
@@ -20,64 +22,7 @@ ul {
   margin: 0;
   padding: 0;
 
-  >li {
-    padding-top: $sm;
-  }
-}
-
-a:not(.jo-ignore),
-button:not(.jo-ignore),
-.button,
-input,
-textarea {
-  color: inherit;
-  background: transparent;
-  border-width: 0.15em;
-  border-style: outset;
-  border-color: currentColor;
-  padding: $md;
-  margin: 0;
-  font-size: 1em;
-  // transition: all 700ms ease;
-  line-height: 1em;
-
-  &:active,
-  &.active {
-    border-style: inset;
-  }
-
-  &:disabled,
-  &.disabled {
-    cursor: not-allowed;
-    border-style: solid;
-    box-shadow: none;
-    opacity: 0.5;
-  }
-
-  &.invalid {
-    // animation: 3s ease 0s infinite invalid-border;
-  }
-
-  &:focus {
-    // outline: 0.15em solid transparent;
-    // box-shadow: 0 0 0.1em 0 currentColor;
-  }
-}
-
-a,
-button,
-.button {
-  cursor: pointer;
-}
-
-@keyframes invalid-border {
-
-  0%,
-  100% {
-    border-style: inset;
-  }
-
-  50% {
-    border-style: outset;
-  }
+  // >li {
+  //   padding-top: map.get($sizes, "sm");
+  // }
 }

@@ -17,9 +17,11 @@ export class ItemDirective extends ControlDirective implements ControlValueAcces
     if (!isItems(value))
       throw new Error('[items] expects: { key: boolean | number | string, value: string }[]');
     this._items = value;
+    this.filteredItems = value;
     this.validation.next();
   }
   _items: Item[] = [];
+  filteredItems: Item[] = [];
 
   @Input()
   get limit() {

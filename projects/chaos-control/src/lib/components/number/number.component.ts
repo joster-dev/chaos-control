@@ -8,7 +8,6 @@ import { isNumber } from '../../models';
   templateUrl: './number.component.html',
   styleUrls: [
     './number.component.scss',
-    '../../atomic.scss',
     '../../styles.scss',
   ]
 })

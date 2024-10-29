@@ -37,9 +37,13 @@ export class DataService {
 
   multipleChoiceModel: (boolean | number)[] | null = null;
 
+  longChoiceModel: (boolean | number)[] | null = null;
+
   selectModel: boolean | null = null;
 
   multipleSelectModel: boolean[] | null = null;
+
+  longSelectModel: boolean[] | null = null;
 
   colorModel: string | null = null;
 

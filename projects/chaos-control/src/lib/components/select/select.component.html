@@ -1,62 +1,102 @@
-<label>
-  <ng-content></ng-content>
-</label>
+<div class="d-flex justify-content-between">
+  <label
+    id="select_{{id}}"
+    [class.required]="required"
+  >
+    <ng-content></ng-content>
+  </label>
+  <div>
+    <ng-content select="[rightAligned]"></ng-content>
+  </div>
+</div>
 
-<div class="d-flex align-items-stretch">
-  <jo-text
-    [borderRadiusLeft]="borderRadiusLeft"
-    [borderRadiusRight]="false"
-    [(ngModel)]="searchTerm"
-    [isGrow]="false"
-    class="flex-1"
-    (onFocus)="onFocusSearch()"
-  ></jo-text>
+<div class="position-relative">
+  <dialog #dropup>
+    <ng-template [ngTemplateOutlet]="dropContent"></ng-template>
+  </dialog>
+</div>
+
+<div
+  #dropGroup
+  class="d-flex align-items-stretch"
+  role="group"
+  attr.aria-labelledby="select_{{id}}"
+>
   <button
-    class="d-flex"
+    class="flex-1 br-start text-start"
+    type="button"
+    [class.active]="_model.length > 0"
+    [class.invalid]="!ngControl.control?.invalid"
+    (click)="onClickGroup()"
+    (blur)="onTouched()"
+  >
+    {{activeItemValues}}
+  </button>
+  <button
+    class="d-flex br-end d-flex align-items-center justify-content-center"
+    [class.invalid]="!ngControl.control?.invalid"
     [disabled]="isDisabled"
-    (click)="onClickSearch()"
+    (click)="onClickGroup()"
+    (blur)="onTouched()"
   >
     <icon
-      size="1em"
+      size="1rem"
       type="chevron"
       [fill]="[null, 'current']"
       fillRotate="90"
       [stroke]="['current']"
+      [class.up]="dropup.open"
+      [class.down]="dropdown.open"
     ></icon>
   </button>
 </div>
 
-<div
-  class="drop {{isDropdownCloseToBottom ? 'up' : 'down'}}"
-  [hidden]="!showDropdown"
-  [style.max-height]="dropdownMaxHeight"
->
-  <!-- <jo-button *ngIf="items.length === 0">
-    No Results
-  </jo-button> -->
-  <button
-    *ngFor="let item of items; let idx = index"
-    class="d-flex"
-    [class.active]="_model.includes(item.key)"
-    [disabled]="isDisabled"
-    [class.invalid]="!ngControl.control?.invalid"
-    [class.border-radius-right]="borderRadiusRight && idx === items.length - 1"
-    [class.border-radius-left]="borderRadiusLeft && idx === 0"
-    (click)="onClick(item)"
-    (blur)="onTouched()"
-  >
-    <icon-stack
-      class="margin-right-1"
-      size="1em"
-    >
-      <icon [type]="isMultiple ? 'squircle' : 'circle'"></icon>
-      <icon
-        *ngIf="_model.includes(item.key)"
-        [type]="isMultiple ? 'check' : 'dot'"
-        [fill]="[null, 'current']"
-        fillRotate="90"
-      ></icon>
-    </icon-stack>
-    {{item.value}}
-  </button>
-</div>
+<dialog #dropdown>
+  <ng-template [ngTemplateOutlet]="dropContent"></ng-template>
+</dialog>
+
+<ng-template #dropContent>
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex gap-2 align-items-stretch">
+        <input
+          [(ngModel)]="searchTerm"
+          class="flex-1 br-start br-end"
+        />
+        <button
+          *ngIf="_isMultiple"
+          type="button"
+          class="br-start br-end"
+          (click)="onClickSelectAll()"
+        >
+          {{isSelectedAll ? 'Deselect' : 'Select'}} All
+        </button>
+      </div>
+    </div>
+    <div class="d-flex flex-column">
+      <button
+        *ngFor="let item of filteredItems"
+        class="d-flex flex-1 align-items-center text-start gap-2"
+        [disabled]="isDisabled"
+        [class.active]="_model.includes(item.key)"
+        (click)="onClick(item)"
+      >
+        <div
+          class="jo-button {{isMultiple ? 'br-20' : 'br-50'}}"
+          [class.active]="_model.includes(item.key)"
+          [class.disabled]="isDisabled"
+          [class.invalid]="ngControl.control?.invalid"
+        >
+          <icon
+            *ngIf="_model.includes(item.key)"
+            size="1rem"
+            [type]="isMultiple ? 'check' : 'dot'"
+            [fill]="[null, 'current']"
+            fillRotate="90"
+          ></icon>
+        </div>
+        {{item.value}}
+      </button>
+    </div>
+  </div>
+</ng-template>

@@ -1,19 +1,96 @@
 :host {
   position: relative;
   display: block;
+
+  >.position-relative {
+    >dialog {
+      bottom: 0;
+    }
+  }
 }
 
 .drop {
   max-height: 200px;
   overflow-y: auto;
+
   &.down {
     top: 100%;
   }
+
   &.up {
     bottom: 100%;
   }
 }
 
+div[role="group"] {
+  >button:first-child {
+    border-right: none;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+  }
+
+  >button:last-child {
+    border-left: none;
+  }
+}
+
+dialog {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  background: transparent;
+
+  width: 100%;
+  z-index: 2;
+  color: currentColor;
+
+  >.card {
+    backdrop-filter: blur(1.5rem);
+    max-height: calc(var(--dropHeightPx) * 1px);
+    overflow-y: auto;
+
+    >.flex-column {
+
+      >button {
+        border-color: transparent;
+        border-width: 0.075em;
+
+        >.jo-button {
+          position: relative;
+          text-align: left;
+
+          >icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
 icon[type="chevron"] {
-  transform: rotate(180deg);
+  transform: rotate(90deg);
+
+  &.up {
+    transform: rotate(0deg);
+  }
+
+  &.down {
+    transform: rotate(180deg);
+  }
+}
+
+.br-20 {
+  border-radius: 20%;
+}
+
+.br-50 {
+  border-radius: 50%;
 }

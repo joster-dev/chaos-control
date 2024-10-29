@@ -1,8 +1,8 @@
-<h2>Readonly Demo</h2>
+<h2>&lt;jo-readonly&gt;</h2>
 <jo-readonly [model]="ds.readonlyModel">
   {{ds.readonlyLabel}}
 </jo-readonly>
-<h2>&lt;jo-text&gt; Demo</h2>
+<h2>&lt;jo-text&gt;</h2>
 <div>
   <jo-text
     [(ngModel)]="ds.growingTextModel"
@@ -16,7 +16,7 @@
     Text
   </jo-text>
 </div>
-<h2>&lt;jo-choice&gt; Demo</h2>
+<h2>&lt;jo-choice&gt;</h2>
 <div>
   <jo-choice
     [(ngModel)]="ds.choiceModel"
@@ -39,7 +39,7 @@
 </div>
 <div>
   <jo-choice
-    [(ngModel)]="ds.choiceModel"
+    [(ngModel)]="ds.longChoiceModel"
     required
     [items]="ds.longTextItems"
     isColumn
@@ -47,22 +47,45 @@
     Choice with long text
   </jo-choice>
 </div>
-<h2>Color Demo</h2>
+<h2>&lt;jo-select&gt;</h2>
+<div>
+  <jo-select
+    [(ngModel)]="ds.selectModel"
+    required
+    [items]="ds.items"
+  >
+    Single Select
+  </jo-select>
+</div>
+<div>
+  <jo-select
+    [(ngModel)]="ds.multipleSelectModel"
+    required
+    [items]="ds.longItems"
+    isColumn
+    isMultiple
+  >
+    Multiple Select
+  </jo-select>
+</div>
+<div>
+  <jo-select
+    [(ngModel)]="ds.longSelectModel"
+    [items]="ds.longTextItems"
+    isColumn
+  >
+    Select with long text
+  </jo-select>
+</div>
+<h2>&lt;jo-color&gt;</h2>
 <div>
   <jo-color [(ngModel)]="ds.colorModel">
     Color label
   </jo-color>
 </div>
-<!-- <div>
-  <jo-text
-    [(ngModel)]="textModel"
-    [isGrow]="false"
-  >
-    Text label
-  </jo-text>
-</div> -->
 <!-- todo: stop digit input from occurring when length > max -->
 <!-- also handle . for decimals 🤔 -->
+<h2>&lt;jo-number&gt;</h2>
 <div>
   <jo-number [(ngModel)]="ds.numberModel">
     Number

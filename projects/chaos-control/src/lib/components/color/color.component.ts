@@ -9,7 +9,6 @@ import { ControlDirective } from '../../directives';
   templateUrl: './color.component.html',
   styleUrls: [
     './color.component.scss',
-    '../../atomic.scss',
     '../../styles.scss',
   ]
 })

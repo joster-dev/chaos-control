@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Input, Self } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, Input, Self, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { ItemDirective } from '../../directives';
 import { Item } from '../../models';
@@ -12,27 +12,27 @@ import { Item } from '../../models';
   ]
 })
 export class SelectComponent extends ItemDirective implements ControlValueAccessor {
+  @ViewChild('dropGroup') dropGroup!: ElementRef<HTMLDivElement>;
+  @ViewChild('dropup') dropup!: ElementRef<HTMLDialogElement>;
+  @ViewChild('dropdown') dropdown!: ElementRef<HTMLDialogElement>;
 
-  @Input() dropdownMaxHeight = '200px';
+  @Input()
+  @HostBinding('style.--dropHeightPx')
+  dropHeightPx = 200;
 
+  get searchTerm(): string {
+    return this._searchTerm;
+  }
   set searchTerm(value: string) {
     this._searchTerm = value;
+    this.filteredItems = value
+      ? this._items.filter(item => item.value.toLowerCase().includes(value.toLowerCase()))
+      : this._items;
   }
   _searchTerm = '';
 
-  get showDropdown() {
-    return this._showDropdown;
-  }
-  set showDropdown(value: boolean) {
-    this._showDropdown = value;
-    if (this._showDropdown === false)
-      return;
-    const hostBoundingRect: DOMRect = this.hostElement.nativeElement.getBoundingClientRect();
-    this.isDropdownCloseToBottom = window.innerHeight < hostBoundingRect.bottom + parseInt(this.dropdownMaxHeight, 10);
-  }
-  _showDropdown = false;
-
   isDropdownCloseToBottom = false;
+  id = `${Math.random().toString(36).substr(2, 9)}`;
 
   constructor(
     @Self() public override ngControl: NgControl,
@@ -41,18 +41,30 @@ export class SelectComponent extends ItemDirective implements ControlValueAccess
     super(ngControl);
   }
 
+  get activeItemValues(): string {
+    return this._items
+      .filter(item => this._model.includes(item.key))
+      .map(item => item.value)
+      .join(', ');
+  }
+
+  get isSelectedAll(): boolean {
+    return this._items.every(item => this._model.includes(item.key));
+  }
+
   @HostListener('document:mousedown', ['$event'])
   onGlobalClick(event: MouseEvent) {
     if (!this.hostElement.nativeElement.contains(event.target))
-      this._showDropdown = false;
+      this.closeDropdown();
   }
 
-  onClickSearch() {
-    this.showDropdown = !this.showDropdown;
-  }
-
-  onFocusSearch() {
-    this.showDropdown = !this.showDropdown;
+  onClickGroup() {
+    this.closeDropdown();
+    if (this.dropGroup.nativeElement.getBoundingClientRect().bottom + this.dropHeightPx > window.innerHeight) {
+      this.dropup.nativeElement.show();
+    } else {
+      this.dropdown.nativeElement.show();
+    }
   }
 
   onClick(item: Item) {
@@ -72,5 +84,17 @@ export class SelectComponent extends ItemDirective implements ControlValueAccess
     }
 
     this.model = [...this._model, item.key];
+  }
+
+  onClickSelectAll() {
+    this.model = this.isSelectedAll
+      ? []
+      : this._items.map(item => item.key);
+  }
+
+  closeDropdown() {
+    this.searchTerm = '';
+    this.dropdown.nativeElement.close();
+    this.dropup.nativeElement.close();
   }
 }

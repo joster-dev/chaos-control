@@ -9,12 +9,12 @@
   <button
     class="d-flex align-items-center"
     title="Color"
-    [class.border-radius-left]="borderRadiusLeft"
+    [class.br-start]="borderRadiusLeft"
     [disabled]="isDisabled"
     (click)="colorInput.click()"
   >
     <icon
-      size="1em"
+      size="1rem"
       type="square"
       [fill]="fullHex.test(_model || '') ? _model : [null, 'current']"
       fillRotate="90"
@@ -27,7 +27,7 @@
     size="5"
     type="text"
     [class.active]="ngControl.control?.value !== null"
-    [class.border-radius-right]="borderRadiusRight"
+    [class.br-end]="borderRadiusRight"
     [class.invalid]="ngControl.control?.invalid"
     [disabled]="isDisabled"
     [id]="id"

@@ -10,7 +10,6 @@ import { Item } from '../../models';
   styleUrls: [
     './choice.component.scss',
     '../../styles.scss',
-    '../../atomic.scss',
   ]
 })
 export class ChoiceComponent extends ItemDirective implements ControlValueAccessor {
