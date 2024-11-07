@@ -2,5 +2,6 @@
 
 export * from './lib/chaos-control.module';
 export * from './lib/components';
+export * from './lib/directives';
 export * from './lib/models';
 export * from './lib/chaos-control.service';

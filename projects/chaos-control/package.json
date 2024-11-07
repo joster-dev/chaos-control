@@ -36,7 +36,7 @@
     "@angular/common": "^18.0.0",
     "@angular/core": "^18.0.0",
     "@joster-dev/icon": "^0.1.0",
-    "@joster-dev/style": "^0.1.1"
+    "@joster-dev/style": "^0.1.4"
   },
   "dependencies": {
     "tslib": "^2.3.0"

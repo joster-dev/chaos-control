@@ -17,6 +17,7 @@ import {
   BorderRadiusDirective,
   ControlDirective,
   ItemDirective,
+  BusyDirective,
 } from './directives';
 
 @NgModule({
@@ -31,6 +32,7 @@ import {
     ItemDirective,
     SelectComponent,
     BorderRadiusDirective,
+    BusyDirective,
   ],
   imports: [
     CommonModule,
@@ -46,6 +48,7 @@ import {
     NumberComponent,
     TextComponent,
     SelectComponent,
+    BusyDirective,
   ]
 })
 export class ChaosControlModule { }

@@ -16,6 +16,36 @@
 <h2 class="my-3">
   Additional Features
 </h2>
+<div
+  class="card position-relative overflow-hidden"
+  [joBusy]="promise"
+>
+  <div class="card-header d-flex gap-2 justify-content-between align-items-center">
+    <h3>Busy Spinner</h3>
+    <button
+      class="br-start br-end"
+      (click)="onClickPromiseSpinner()"
+    >
+      Add Promise Spinner
+    </button>
+  </div>
+  <div class="card-body">
+    Lorem ipsum odor amet, consectetuer adipiscing elit. Leo ex augue nec interdum aliquam vehicula placerat massa porttitor finibus hendrerit aenean tempor magna ex nulla phasellus lectus at porttitor fames feugiat conubia fames adipiscing habitant at dictum massa placerat fusce vestibulum cubilia suspendisse dis dis tortor platea fringilla enim mattis volutpat pretium fames dignissim in ligula metus hac nulla accumsan et efficitur sed sed fringilla blandit neque etiam dignissim dis per conubia dolor nam risus pretium facilisi porta est felis cras diam integer consectetur per parturient duis porttitor commodo nisl sociosqu mattis dignissim metus ornare massa nascetur iaculis varius.
+  </div>
+</div>
+<hr />
+<div
+  class="card position-relative"
+  [joBusy]="promise"
+>
+  <div class="card-body">
+    Lorem ipsum odor amet
+  </div>
+</div>
+<hr />
+<button [joBusy]="promise">
+  Something here
+</button>
 <form>
   <p>
     inside a disabled fieldset, all the stuff is disabled as expected
