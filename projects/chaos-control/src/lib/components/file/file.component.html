@@ -1,33 +1,41 @@
-<label [class.required]="required">
-  <ng-content></ng-content>
-</label>
-
-<div class="d-flex align-items-center">
+<div class="d-flex justify-content-between">
+  <label [class.required]="required">
+    <ng-content></ng-content>
+  </label>
   <div>
-    <button
-      class="white-space-nowrap"
-      [class.br-end]="borderRadiusRight"
-      [class.br-start]="borderRadiusLeft"
-      [class.active]="ngControl.value !== null"
-      [disabled]="isDisabled"
-      (click)="fileInput.click()"
-    >
-      <icon
-        type="folder"
-        size="1rem"
-        class="me-2"
-        [fill]="[null, 'current']"
-        fillRotate="90"
-      ></icon>
-      Choose {{multiple ? 'Files' : 'File'}}
-    </button>
+    <ng-content select="[rightAligned]"></ng-content>
   </div>
-  <div
-    *ngIf="ngControl.value"
-    class="ml-2"
+</div>
+
+<div class="d-flex align-items-stretch">
+  <button
+    class="d-flex align-items-center gap-2"
+    [class.br-start]="borderRadiusLeft"
+    [disabled]="isDisabled"
+    (click)="fileInput.click()"
   >
-    {{fileNames}}
-  </div>
+    <icon
+      type="folder"
+      size="1rem"
+      [fill]="[null, 'current']"
+      fillRotate="90"
+    ></icon>
+    Browse...
+  </button>
+  <button
+    class="d-flex align-items-center"
+    [class.br-end]="borderRadiusRight"
+    [class.active]="ngControl.value !== null"
+    [disabled]="isDisabled"
+    (click)="fileInput.click()"
+  >
+    <ng-container *ngIf="!ngControl.value">
+      No {{multiple ? 'files' : 'file'}} selected
+    </ng-container>
+    <ng-container *ngIf="ngControl.value">
+      {{fileNames}}
+    </ng-container>
+  </button>
 </div>
 
 <!-- <ul *ngIf="ngControl.control?.errors">

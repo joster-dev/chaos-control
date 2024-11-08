@@ -1,3 +1,18 @@
 input[type="file"] {
   display: none;
 }
+
+div {
+  button:first-child {
+    border-right: none;
+    flex-shrink: 0;
+  }
+
+  button:last-child {
+    border-left: none;
+    display: block;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+  }
+}

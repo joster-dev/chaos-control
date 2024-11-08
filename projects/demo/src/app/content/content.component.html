@@ -87,30 +87,16 @@
 <!-- also handle . for decimals 🤔 -->
 <h2>&lt;jo-number&gt;</h2>
 <div>
-  <jo-number [(ngModel)]="ds.numberModel">
+  <jo-number
+    [(ngModel)]="ds.numberModel"
+    [max]="50"
+  >
     Number
   </jo-number>
 </div>
-
-<!-- <div>
-  <jo-select
-    [(ngModel)]="selectModel"
-    [items]="items"
-  >
-    Single Select label
-  </jo-select>
-</div>
+<h2>&lt;jo-file&gt;</h2>
 <div>
-  <jo-select
-    [(ngModel)]="selectModel"
-    [items]="items"
-    isMultiple
-  >
-    Multiple Select label
-  </jo-select>
-</div> -->
-<!-- <div>
-  <jo-file [(ngModel)]="fileModel">
-    File label
+  <jo-file [(ngModel)]="ds.fileModel">
+    File
   </jo-file>
-</div> -->
+</div>
