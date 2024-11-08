@@ -11,26 +11,37 @@
 }
 
 .spinner {
-  border-width: 0.25rem;
-  border-style: solid;
-  border-radius: 50%;
-  border-bottom-color: currentColor;
-  border-right-color: currentColor;
-  border-top-color: transparent;
-  border-left-color: transparent;
   position: absolute;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 0.25rem solid transparent;
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }
 }
 
 .big {
   width: 3rem;
   height: 3rem;
   animation: rotate-animation 1s linear 0s infinite;
+
+  &::before {
+    background: conic-gradient(transparent 40%, currentColor) border-box;
+  }
 }
 
 .small {
   width: 2rem;
   height: 2rem;
-  animation: anti-rotate-animation 0.85s linear 0s infinite;
+  animation: anti-rotate-animation 1s linear 0s infinite;
+
+  &::before {
+    background: conic-gradient(currentColor, transparent 60%) border-box;
+  }
 }
 
 @keyframes rotate-animation {
