@@ -84,6 +84,10 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
     );
   }
 
+  onFileCancel(): void {
+    this.onChange(null);
+  }
+
   onChange(_model: FileList | null) { }
   registerOnChange(fn: () => void): void {
     this.onChange = fn;
