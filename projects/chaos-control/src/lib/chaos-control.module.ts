@@ -2,22 +2,24 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { IconModule } from '@joster-dev/icon';
 
 import {
-  ReadonlyComponent,
   ChoiceComponent,
   ColorComponent,
   FileComponent,
+  IconComponent,
+  IconStackComponent,
   NumberComponent,
-  TextComponent,
+  ReadonlyComponent,
   SelectComponent,
+  TextComponent,
 } from './components';
 import {
   BorderRadiusDirective,
+  BusyDirective,
   ControlDirective,
   ItemDirective,
-  BusyDirective,
+  SizeDirective,
 } from './directives';
 
 @NgModule({
@@ -33,11 +35,13 @@ import {
     SelectComponent,
     BorderRadiusDirective,
     BusyDirective,
+    IconComponent,
+    IconStackComponent,
+    SizeDirective,
   ],
   imports: [
     CommonModule,
     FormsModule,
-    IconModule,
     RouterModule,
   ],
   exports: [
@@ -49,6 +53,8 @@ import {
     TextComponent,
     SelectComponent,
     BusyDirective,
+    IconComponent,
+    IconStackComponent,
   ]
 })
 export class ChaosControlModule { }
