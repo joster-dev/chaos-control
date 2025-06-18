@@ -4,13 +4,15 @@
   right: 0;
   bottom: 0;
   left: 0;
-  backdrop-filter: blur(1.5rem);
+  // filter: invert(100%);
+  background: color-mix(in srgb, currentColor 30%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .spinner {
+  // filter: invert(100%);
   position: absolute;
 
   &::before {

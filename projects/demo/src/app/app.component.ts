@@ -6,11 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  theme = 'dark';
+  themes = ['dark', 'light', 'red'];
   promise?: Promise<void>;
-  ten = 10000;
   forever = 999999999;
 
   onClickPromiseSpinner() {
     this.promise = new Promise((r) => window.setTimeout(() => r(), this.forever));
+  }
+
+  onClickTheme(theme: string) {
+    this.theme = theme;
+    document.body.setAttribute('data-theme', theme);
   }
 }

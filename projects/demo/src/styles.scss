@@ -4,10 +4,21 @@ body {
   margin: auto;
   padding: 0 0.5em;
   max-width: 720px;
-  color: #eee;
-  background: repeating-conic-gradient(#1B1B1B 0 25%, #111 0 50%) 0 / 2em 2em;
-  // color: black;
-  // background: white;
+
+  &[data-theme="dark"] {
+    background: repeating-conic-gradient(#1B1B1B 0 25%, #111 0 50%) 0 / 2em 2em;
+    color: #eee;
+  }
+
+  &[data-theme="light"] {
+    background: repeating-conic-gradient(#eee 0 25%, #fff 0 50%) 0 / 2em 2em;
+    color: #111;
+  }
+
+  &[data-theme="red"] {
+    background: repeating-conic-gradient(#1B1B1B 0 25%, #111 0 50%) 0 / 2em 2em;
+    color: #FF0000;
+  }
 }
 
 fieldset {
