@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SizeDirective } from '../../directives';
+import { SizeDirective } from '../../directives/size.directive';
 import { icon, iconTypes } from '../../models';
 
 @Component({
