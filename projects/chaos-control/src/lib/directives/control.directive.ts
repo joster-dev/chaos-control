@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { BorderRadiusDirective } from './border-radius.directive';
 
 @Directive({
-  selector: '[joControl]'
+    selector: '[joControl]'
 })
 export class ControlDirective extends BorderRadiusDirective implements OnDestroy {
   @Input()
@@ -24,10 +24,6 @@ export class ControlDirective extends BorderRadiusDirective implements OnDestroy
 
   isDisabled = false;
   validation = new Subject<void>();
-
-  constructor() {
-    super();
-  }
 
   ngOnDestroy(): void {
     this.validation.complete();

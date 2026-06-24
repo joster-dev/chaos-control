@@ -1,17 +1,23 @@
-import { Component, ElementRef, HostBinding, HostListener, Input, Self, ViewChild } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { Component, ElementRef, HostBinding, HostListener, inject, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
+import { ControlValueAccessor, FormsModule } from '@angular/forms';
+import { IconComponent } from '@joster-dev/icon';
 import { ItemDirective } from '../../directives';
 import { Item } from '../../models';
 
 @Component({
-  selector: 'jo-select',
-  templateUrl: './select.component.html',
-  styleUrls: [
-    './select.component.scss',
-    '../../styles.scss',
-  ]
+    selector: 'jo-select',
+    templateUrl: './select.component.html',
+    styleUrls: [
+        './select.component.scss',
+        '../../styles.scss',
+    ],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    imports: [FormsModule, NgTemplateOutlet, IconComponent]
 })
 export class SelectComponent extends ItemDirective implements ControlValueAccessor {
+  private hostElement = inject(ElementRef);
+
   @ViewChild('dropGroup') dropGroup!: ElementRef<HTMLDivElement>;
   @ViewChild('dropup') dropup!: ElementRef<HTMLDialogElement>;
   @ViewChild('dropdown') dropdown!: ElementRef<HTMLDialogElement>;
@@ -33,13 +39,6 @@ export class SelectComponent extends ItemDirective implements ControlValueAccess
 
   isDropdownCloseToBottom = false;
   id = `${Math.random().toString(36).substr(2, 9)}`;
-
-  constructor(
-    @Self() public override ngControl: NgControl,
-    private hostElement: ElementRef,
-  ) {
-    super(ngControl);
-  }
 
   get activeItemValues(): string {
     return this._items

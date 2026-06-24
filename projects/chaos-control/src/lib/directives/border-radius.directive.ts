@@ -1,7 +1,7 @@
 import { Directive, Input } from '@angular/core';
 
 @Directive({
-  selector: '[joBorderRadius]'
+    selector: '[joBorderRadius]'
 })
 export class BorderRadiusDirective {
 
@@ -30,7 +30,4 @@ export class BorderRadiusDirective {
     this._borderRadiusLeft = value;
   }
   _borderRadiusLeft = true;
-
-  constructor() { }
-
 }

@@ -1,4 +1,4 @@
-import { Directive, Input, Self } from '@angular/core';
+import { Directive, inject, Input } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { isItems, isNumber, isPrimitive, Item, primitive } from '../models';
@@ -6,9 +6,11 @@ import { isItems, isNumber, isPrimitive, Item, primitive } from '../models';
 import { ControlDirective } from './control.directive';
 
 @Directive({
-  selector: '[joItem]'
+    selector: '[joItem]'
 })
 export class ItemDirective extends ControlDirective implements ControlValueAccessor {
+  ngControl = inject(NgControl, { self: true });
+
   @Input()
   get items() {
     return this._items;
@@ -66,14 +68,12 @@ export class ItemDirective extends ControlDirective implements ControlValueAcces
   }
   _model: primitive[] = [];
 
-  constructor(
-    @Self() public ngControl: NgControl
-  ) {
+  constructor() {
     super();
     this.validation
       .pipe(debounceTime(100))
       .subscribe(() => this.validate());
-    ngControl.valueAccessor = this;
+    this.ngControl.valueAccessor = this;
   }
 
   onChange(_value: primitive[] | primitive | null) { }

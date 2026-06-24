@@ -8,7 +8,7 @@ describe('ReadonlyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReadonlyComponent ]
+      imports: [ ReadonlyComponent ]
     })
     .compileComponents();
   });

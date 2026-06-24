@@ -1,17 +1,22 @@
-import { Component, Input, Self } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, Validator, ValidatorFn, Validators } from '@angular/forms';
+import { Component, inject, Input, ChangeDetectionStrategy } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, FormsModule, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { IconComponent } from '@joster-dev/icon';
 import { ControlDirective } from '../../directives';
 import { isNumber } from '../../models';
 
 @Component({
-  selector: 'jo-number',
-  templateUrl: './number.component.html',
-  styleUrls: [
-    './number.component.scss',
-    '../../styles.scss',
-  ]
+    selector: 'jo-number',
+    templateUrl: './number.component.html',
+    styleUrls: [
+        './number.component.scss',
+        '../../styles.scss',
+    ],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    imports: [FormsModule, IconComponent]
 })
 export class NumberComponent extends ControlDirective implements ControlValueAccessor {
+  ngControl = inject(NgControl, { self: true });
+
   @Input()
   get min() {
     return this._min;
@@ -51,13 +56,11 @@ export class NumberComponent extends ControlDirective implements ControlValueAcc
   mustBeInteger = true;
   readonly sizePadding = 5;
 
-  constructor(
-    @Self() public ngControl: NgControl,
-  ) {
+  constructor() {
     super();
     this.validation.subscribe(() => this.validate());
     this.validation.next();
-    ngControl.valueAccessor = this;
+    this.ngControl.valueAccessor = this;
   }
 
   _model: number | null = null;

@@ -1,23 +1,21 @@
-import { ComponentFactoryResolver, Directive, ElementRef, Input, Renderer2, SimpleChanges, ViewContainerRef } from '@angular/core';
+import { Directive, ElementRef, inject, Input, Renderer2, SimpleChanges, ViewContainerRef } from '@angular/core';
 import { filter, from, interval, map, Subject, Subscription, take, takeUntil } from 'rxjs';
 import { BusyComponent } from '../components';
 
 @Directive({
-  selector: '[joBusy]'
+    selector: '[joBusy]'
 })
 export class BusyDirective {
+  private element = inject<ElementRef>(ElementRef);
+  private viewContainerRef = inject(ViewContainerRef);
+  private renderer = inject(Renderer2);
+
   @Input('joBusy') asyncEvents?: Subscription | Subscription[] | Promise<any> | Promise<any>[];
 
   host: HTMLElement = this.element.nativeElement;
   insertedNode?: Node;
   endSubscription$ = new Subject<void>();
   busySubscription?: Subscription;
-
-  constructor(
-    private element: ElementRef,
-    private viewContainerRef: ViewContainerRef,
-    private renderer: Renderer2,
-  ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['asyncEvents'].currentValue) {

@@ -1,24 +1,21 @@
-import { Component, Input, Self } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
+import { IconComponent } from '@joster-dev/icon';
 
 import { ItemDirective } from '../../directives';
 import { Item } from '../../models';
 
 @Component({
-  selector: 'jo-choice',
-  templateUrl: './choice.component.html',
-  styleUrls: [
-    './choice.component.scss',
-    '../../styles.scss',
-  ]
+    selector: 'jo-choice',
+    templateUrl: './choice.component.html',
+    styleUrls: [
+        './choice.component.scss',
+        '../../styles.scss',
+    ],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    imports: [IconComponent]
 })
 export class ChoiceComponent extends ItemDirective implements ControlValueAccessor {
-  constructor(
-    @Self() public override ngControl: NgControl,
-  ) {
-    super(ngControl);
-  }
-
   @Input()
   get isColumn() {
     return this._isColumn;

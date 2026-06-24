@@ -1,18 +1,23 @@
-import { Component, Self } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, FormsModule, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
+import { IconComponent } from '@joster-dev/icon';
 
 import { ControlDirective } from '../../directives';
 
 @Component({
-  selector: 'jo-color',
-  templateUrl: './color.component.html',
-  styleUrls: [
-    './color.component.scss',
-    '../../styles.scss',
-  ]
+    selector: 'jo-color',
+    templateUrl: './color.component.html',
+    styleUrls: [
+        './color.component.scss',
+        '../../styles.scss',
+    ],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    imports: [FormsModule, IconComponent]
 })
 export class ColorComponent extends ControlDirective implements ControlValueAccessor {
+  ngControl = inject(NgControl, { self: true });
+
   private partialHex = /^[0-9A-Fa-f]{1,6}$/;
   fullHex = /^[0-9A-Fa-f]{6}$/;
 
@@ -31,14 +36,12 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
 
   id = `_${Math.random().toString(36).substring(2, 11)}`;
 
-  constructor(
-    @Self() public ngControl: NgControl,
-  ) {
+  constructor() {
     super();
     this.validation
       .pipe(debounceTime(100))
       .subscribe(() => this.validate());
-    ngControl.valueAccessor = this;
+    this.ngControl.valueAccessor = this;
   }
 
   onChangeColor(event: Event) {

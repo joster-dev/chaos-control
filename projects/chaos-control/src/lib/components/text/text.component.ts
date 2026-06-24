@@ -1,5 +1,5 @@
-import { Component, ElementRef, HostListener, Input, OnDestroy, Output, Renderer2, Self, ViewChild, EventEmitter } from '@angular/core';
-import { ControlValueAccessor, NgControl, ValidatorFn, Validators } from '@angular/forms';
+import { Component, ElementRef, HostListener, inject, Input, OnDestroy, output, Renderer2, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { ControlValueAccessor, FormsModule, NgControl, ValidatorFn, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -7,14 +7,19 @@ import { ControlDirective } from '../../directives';
 import { isNumber } from '../../models';
 
 @Component({
-  selector: 'jo-text',
-  templateUrl: './text.component.html',
-  styleUrls: [
-    './text.component.scss',
-    '../../styles.scss',
-  ]
+    selector: 'jo-text',
+    templateUrl: './text.component.html',
+    styleUrls: [
+        './text.component.scss',
+        '../../styles.scss',
+    ],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    imports: [FormsModule]
 })
 export class TextComponent extends ControlDirective implements OnDestroy, ControlValueAccessor {
+  ngControl = inject(NgControl, { self: true });
+  private renderer = inject(Renderer2);
+
   @Input()
   get placeholder() {
     return this._placeholder;
@@ -76,8 +81,8 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
 
   @Input() rows = 3;
 
-  @Output() onBlur = new EventEmitter<FocusEvent>();
-  @Output() onFocus = new EventEmitter<FocusEvent>();
+  onBlur = output<FocusEvent>();
+  onFocus = output<FocusEvent>();
 
   @ViewChild('textarea') textareaElement?: ElementRef;
   @ViewChild('textareaHidden') textareaHiddenElement?: ElementRef;
@@ -99,13 +104,10 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
   id = `_${Math.random().toString(36).substring(2, 11)}`;
   resizeSubject = new Subject<void>();
 
-  constructor(
-    @Self() public ngControl: NgControl,
-    private renderer: Renderer2,
-  ) {
+  constructor() {
     super();
     this.validation.subscribe(() => this.validate());
-    ngControl.valueAccessor = this;
+    this.ngControl.valueAccessor = this;
     this.resizeSubject
       .pipe(debounceTime(300))
       .subscribe(() => this._isGrow && this.setTextareaHeight());

@@ -1,7 +1,4 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { IconComponent, IconStackComponent } from '@joster-dev/icon';
 
 import {
@@ -13,47 +10,26 @@ import {
   SelectComponent,
   TextComponent,
 } from './components';
-import {
-  BorderRadiusDirective,
+import { BusyDirective } from './directives';
+
+// The components and directives are standalone; this module is kept purely as a
+// convenience aggregator so existing consumers can keep importing
+// `ChaosControlModule`. New consumers can import the standalone pieces directly.
+const PUBLIC_DECLARABLES = [
+  ReadonlyComponent,
+  ChoiceComponent,
+  ColorComponent,
+  FileComponent,
+  NumberComponent,
+  TextComponent,
+  SelectComponent,
   BusyDirective,
-  ControlDirective,
-  ItemDirective,
-  SizeDirective,
-} from './directives';
+  IconComponent,
+  IconStackComponent,
+];
 
 @NgModule({
-  declarations: [
-    ReadonlyComponent,
-    ChoiceComponent,
-    ColorComponent,
-    FileComponent,
-    NumberComponent,
-    TextComponent,
-    ControlDirective,
-    ItemDirective,
-    SelectComponent,
-    BorderRadiusDirective,
-    BusyDirective,
-    SizeDirective,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    IconComponent,
-    IconStackComponent,
-  ],
-  exports: [
-    ReadonlyComponent,
-    ChoiceComponent,
-    ColorComponent,
-    FileComponent,
-    NumberComponent,
-    TextComponent,
-    SelectComponent,
-    BusyDirective,
-    IconComponent,
-    IconStackComponent,
-  ]
+  imports: PUBLIC_DECLARABLES,
+  exports: PUBLIC_DECLARABLES,
 })
 export class ChaosControlModule { }

@@ -2,7 +2,7 @@
   <label
     id="select_{{id}}"
     [class.required]="required"
-  >
+    >
     <ng-content></ng-content>
   </label>
   <div>
@@ -21,7 +21,7 @@
   class="d-flex align-items-stretch"
   role="group"
   attr.aria-labelledby="select_{{id}}"
->
+  >
   <button
     class="flex-1 br-start text-start"
     type="button"
@@ -29,7 +29,7 @@
     [class.invalid]="!ngControl.control?.invalid"
     (click)="onClickGroup()"
     (blur)="onTouched()"
-  >
+    >
     {{activeItemValues}}
   </button>
   <button
@@ -38,7 +38,7 @@
     [disabled]="isDisabled"
     (click)="onClickGroup()"
     (blur)="onTouched()"
-  >
+    >
     <icon
       size="1rem"
       type="chevron"
@@ -62,41 +62,44 @@
         <input
           [(ngModel)]="searchTerm"
           class="flex-1 br-start br-end"
-        />
-        <button
-          *ngIf="_isMultiple"
-          type="button"
-          class="br-start br-end"
-          (click)="onClickSelectAll()"
-        >
-          {{isSelectedAll ? 'Deselect' : 'Select'}} All
-        </button>
+          />
+        @if (_isMultiple) {
+          <button
+            type="button"
+            class="br-start br-end"
+            (click)="onClickSelectAll()"
+            >
+            {{isSelectedAll ? 'Deselect' : 'Select'}} All
+          </button>
+        }
       </div>
     </div>
     <div class="d-flex flex-column">
-      <button
-        *ngFor="let item of filteredItems"
-        class="d-flex flex-1 align-items-center text-start gap-2"
-        [disabled]="isDisabled"
-        [class.active]="_model.includes(item.key)"
-        (click)="onClick(item)"
-      >
-        <div
-          class="jo-button {{isMultiple ? 'br-20' : 'br-50'}}"
+      @for (item of filteredItems; track item) {
+        <button
+          class="d-flex flex-1 align-items-center text-start gap-2"
+          [disabled]="isDisabled"
           [class.active]="_model.includes(item.key)"
-          [class.disabled]="isDisabled"
-          [class.invalid]="ngControl.control?.invalid"
-        >
-          <icon
-            *ngIf="_model.includes(item.key)"
-            size="1rem"
-            [type]="isMultiple ? 'check' : 'dot'"
-            [fill]="[null, 'current']"
-            fillRotate="90"
-          ></icon>
-        </div>
-        {{item.value}}
-      </button>
+          (click)="onClick(item)"
+          >
+          <div
+            class="jo-button {{isMultiple ? 'br-20' : 'br-50'}}"
+            [class.active]="_model.includes(item.key)"
+            [class.disabled]="isDisabled"
+            [class.invalid]="ngControl.control?.invalid"
+            >
+            @if (_model.includes(item.key)) {
+              <icon
+                size="1rem"
+                [type]="isMultiple ? 'check' : 'dot'"
+                [fill]="[null, 'current']"
+                fillRotate="90"
+              ></icon>
+            }
+          </div>
+          {{item.value}}
+        </button>
+      }
     </div>
   </div>
 </ng-template>

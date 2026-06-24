@@ -1,18 +1,23 @@
-import { Component, Input, Self } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Component, inject, Input, ChangeDetectionStrategy } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, FormsModule, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
+import { IconComponent } from '@joster-dev/icon';
 import { ControlDirective } from '../../directives';
 import { isNumber } from '../../models';
 
 @Component({
-  selector: 'jo-file',
-  templateUrl: './file.component.html',
-  styleUrls: [
-    './file.component.scss',
-    '../../styles.scss',
-  ]
+    selector: 'jo-file',
+    templateUrl: './file.component.html',
+    styleUrls: [
+        './file.component.scss',
+        '../../styles.scss',
+    ],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    imports: [FormsModule, IconComponent]
 })
 export class FileComponent extends ControlDirective implements ControlValueAccessor {
+  ngControl = inject(NgControl, { self: true });
+
   @Input() get acceptedTypes() {
     return this._acceptedTypes;
   }
@@ -49,14 +54,12 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
   model: '' | null = null;
   id = `${Math.random().toString(36).substr(2, 9)}`;
 
-  constructor(
-    @Self() public ngControl: NgControl,
-  ) {
+  constructor() {
     super();
     this.validation
       .pipe(debounceTime(100))
       .subscribe(() => this.validate());
-    ngControl.valueAccessor = this;
+    this.ngControl.valueAccessor = this;
   }
 
   get fileNames(): string {

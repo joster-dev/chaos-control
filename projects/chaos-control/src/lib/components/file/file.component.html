@@ -13,7 +13,7 @@
     [class.br-start]="borderRadiusLeft"
     [disabled]="isDisabled"
     (click)="fileInput.click()"
-  >
+    >
     <icon
       type="folder"
       size="1rem"
@@ -28,26 +28,26 @@
     [class.active]="ngControl.value !== null"
     [disabled]="isDisabled"
     (click)="fileInput.click()"
-  >
-    <ng-container *ngIf="!ngControl.value">
+    >
+    @if (!ngControl.value) {
       No {{multiple ? 'files' : 'file'}} selected
-    </ng-container>
-    <ng-container *ngIf="ngControl.value">
+    }
+    @if (ngControl.value) {
       {{fileNames}}
-    </ng-container>
+    }
   </button>
 </div>
 
 <!-- <ul *ngIf="ngControl.control?.errors">
-  <li *ngIf="ngControl.control?.errors?.['acceptedTypes']">
-    valid types are {{acceptedTypes.join(', ')}}
-  </li>
-  <li *ngIf="ngControl.control?.errors?.['sizeLimitMb']">
-    max file size is {{sizeLimit}}
-  </li>
-  <li *ngIf="ngControl.control?.errors?.['invalid']">
-    invalid model
-  </li>
+<li *ngIf="ngControl.control?.errors?.['acceptedTypes']">
+  valid types are {{acceptedTypes.join(', ')}}
+</li>
+<li *ngIf="ngControl.control?.errors?.['sizeLimitMb']">
+  max file size is {{sizeLimit}}
+</li>
+<li *ngIf="ngControl.control?.errors?.['invalid']">
+  invalid model
+</li>
 </ul> -->
 
 <input
@@ -59,4 +59,4 @@
   [id]="id"
   (change)="onFileChange($event)"
   (cancel)="onFileCancel()"
-/>
+  />
