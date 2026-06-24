@@ -1,0 +1,179 @@
+@use "sass:map";
+@use "sass:list";
+@use "variables.scss";
+
+.position-relative {
+    position: relative;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.align-items-start {
+    align-items: flex-start;
+}
+
+.align-items-end {
+    align-items: flex-end;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.align-items-baseline {
+    align-items: baseline;
+}
+
+.align-items-stretch {
+    align-items: stretch;
+}
+
+.justify-content-start {
+    justify-content: flex-start;
+}
+
+.justify-content-end {
+    justify-content: flex-end;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.justify-content-around {
+    justify-content: space-around;
+}
+
+.justify-content-evenly {
+    justify-content: space-evenly;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+@for $i from 1 through 4 {
+    .flex-#{$i} {
+        flex: $i;
+    }
+}
+
+@each $key, $value in variables.$sizes {
+    $i: list.index(variables.$sizes, $key $value);
+
+    .gap-#{$i} {
+        gap: $value;
+    }
+
+    .m-#{$i} {
+        margin: $value;
+    }
+
+    .p-#{$i} {
+        padding: $value;
+    }
+
+    .mx-#{$i} {
+        margin-right: $value;
+        margin-left: $value;
+    }
+
+    .my-#{$i} {
+        margin-top: $value;
+        margin-bottom: $value;
+    }
+
+    .px-#{$i} {
+        padding-right: $value;
+        padding-left: $value;
+    }
+
+    .py-#{$i} {
+        padding-top: $value;
+        padding-bottom: $value;
+    }
+
+    .ms-#{$i} {
+        margin-right: $value;
+    }
+
+    .me-#{$i} {
+        margin-left: $value;
+    }
+
+    .mt-#{$i} {
+        margin-top: $value;
+    }
+
+    .mb-#{$i} {
+        margin-bottom: $value;
+    }
+
+    .ps-#{$i} {
+        padding-right: $value;
+    }
+
+    .pe-#{$i} {
+        padding-left: $value;
+    }
+
+    .pt-#{$i} {
+        padding-top: $value;
+    }
+
+    .pb-#{$i} {
+        padding-bottom: $value;
+    }
+}
+
+.border {
+    border: 1px solid currentColor;
+}
+
+.br-start {
+    border-top-left-radius: map.get(variables.$sizes, "md");
+    border-bottom-left-radius: map.get(variables.$sizes, "md");
+}
+
+.br-end {
+    border-top-right-radius: map.get(variables.$sizes, "md");
+    border-bottom-right-radius: map.get(variables.$sizes, "md");
+}
+
+.white-space-nowrap {
+    white-space: nowrap;
+}
+
+.text-end {
+    text-align: right;
+}
+
+.text-start {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.overflow-auto {
+    overflow: auto;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}

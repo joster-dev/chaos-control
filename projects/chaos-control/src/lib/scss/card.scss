@@ -1,0 +1,78 @@
+$border: 1px solid currentColor;
+
+.card {
+    border: $border;
+    border-radius: 0.5rem;
+
+    .card-header {
+        padding: 1rem;
+        border-bottom: $border;
+    }
+
+    .card-body,
+    .card-footer {
+        padding: 1rem;
+    }
+
+    .card-table {
+        overflow-x: auto;
+    }
+
+    .card-body+.card-table,
+    .card-table+.card-body,
+    .card-body+.card-body,
+    .card-table+.card-table,
+    .card-table+.card-footer,
+    .card-body+.card-footer {
+        border-top: $border;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        >thead {
+            text-align: left;
+
+            th {
+                border-bottom: $border;
+            }
+        }
+
+        >tfoot {
+            td {
+                margin-top: 1px;
+                border-top: $border;
+            }
+        }
+
+        th,
+        td {
+            padding: 1rem;
+        }
+
+        tbody {
+            tr>td:last-child {
+                text-align: right;
+            }
+
+            tr:nth-child(odd) td {
+                backdrop-filter: brightness(85%);
+            }
+
+            tr:last-child {
+                >td:first-child {
+                    border-bottom-left-radius: 0.5rem;
+                }
+
+                >td:last-child {
+                    border-bottom-right-radius: 0.5rem;
+                }
+            }
+
+            tr.active td {
+                font-weight: bold;
+            }
+        }
+    }
+}

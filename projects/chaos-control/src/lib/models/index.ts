@@ -1,5 +1,3 @@
-export * from './icon-types.const';
-export * from './icon.type';
 export * from './is-item.function';
 export * from './is-items.function';
 export * from './is-number.function';

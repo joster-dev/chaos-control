@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "@joster-dev/style/scss/all.scss";
-@use "@joster-dev/style/scss/variables.scss" as variables;
+@use "./scss/all.scss";
+@use "./scss/variables.scss" as variables;
 
 label {
   display: block;

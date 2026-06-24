@@ -1,0 +1,49 @@
+@use "sass:map";
+@use "variables";
+
+a:not(.jo-ignore),
+button:not(.jo-ignore),
+.jo-button,
+input,
+textarea {
+    color: inherit;
+    background: transparent;
+    border-width: 0.15rem;
+    border-style: outset;
+    border-color: currentColor;
+    padding: map.get(variables.$sizes, "md");
+    margin: 0;
+    font-size: 1rem;
+    // transition: all 700ms ease;
+    line-height: 1rem;
+    font-family: inherit;
+    min-width: 0;
+
+    &:active,
+    &.active {
+        border-style: inset;
+    }
+
+    &:disabled,
+    &.disabled {
+        cursor: not-allowed;
+        border-style: solid;
+        box-shadow: none;
+        opacity: 0.5;
+    }
+
+    &.invalid {
+        // animation: 3s ease 0s infinite invalid-border;
+    }
+
+    &:focus {
+        // outline: 0.15em solid transparent;
+        // box-shadow: 0 0 0.1em 0 currentColor;
+    }
+}
+
+a,
+button,
+.jo-button {
+    cursor: pointer;
+}
