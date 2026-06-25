@@ -30,9 +30,10 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "projects/chaos-control/tsconfig.spec.json"
+            "tsConfig": "projects/chaos-control/tsconfig.spec.json",
+            "runner": "vitest"
           }
         }
       }
@@ -104,17 +105,10 @@
           "builder": "@angular/build:extract-i18n"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
             "tsConfig": "projects/demo/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/demo/src/assets"
-            ],
-            "styles": [
-              "projects/demo/src/styles.scss"
-            ],
-            "scripts": []
+            "runner": "vitest"
           }
         }
       }
