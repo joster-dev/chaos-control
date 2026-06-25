@@ -1,33 +1,13 @@
-import { Directive, Input, OnDestroy } from '@angular/core';
-import { Subject } from 'rxjs';
+import { booleanAttribute, Directive, input, signal } from '@angular/core';
 import { BorderRadiusDirective } from './border-radius.directive';
 
 @Directive({
     selector: '[joControl]'
 })
-export class ControlDirective extends BorderRadiusDirective implements OnDestroy {
-  @Input()
-  get required() {
-    return this._required;
-  }
-  set required(value: boolean | '') {
-    if (value === '')
-      value = true;
-    if (value == null)
-      value = false;
-    if (typeof value !== 'boolean')
-      throw new Error('required input must be: boolean');
-    this._required = value;
-    this.validation.next();
-  }
-  _required = false;
+export class ControlDirective extends BorderRadiusDirective {
+  required = input(false, { transform: booleanAttribute });
 
-  isDisabled = false;
-  validation = new Subject<void>();
-
-  ngOnDestroy(): void {
-    this.validation.complete();
-  }
+  isDisabled = signal(false);
 
   onTouched() { }
   registerOnTouched(fn: () => void): void {
@@ -35,6 +15,6 @@ export class ControlDirective extends BorderRadiusDirective implements OnDestroy
   }
 
   setDisabledState(isDisabled: boolean): void {
-    this.isDisabled = isDisabled;
+    this.isDisabled.set(isDisabled);
   }
 }

@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between">
   <label
     id="choice_{{id}}"
-    [class.required]="required"
+    [class.required]="required()"
     >
     <ng-content></ng-content>
   </label>
@@ -14,29 +14,29 @@
   class="d-flex flex-wrap align-items-start"
   role="group"
   attr.aria-labelledby="choice_{{id}}"
-  [class.flex-column]="isColumn"
+  [class.flex-column]="isColumn()"
   >
-  @for (item of items; track item; let idx = $index) {
+  @for (item of items(); track item; let idx = $index) {
     <button
       type="button"
       class="d-flex align-items-center gap-2 text-start"
       role="menuitemcheckbox"
-      [class.br-end]="borderRadiusRight"
-      [class.br-start]="borderRadiusLeft"
-      [disabled]="isDisabled"
+      [class.br-end]="borderRadiusRight()"
+      [class.br-start]="borderRadiusLeft()"
+      [disabled]="isDisabled()"
       (click)="onClick(item)"
       (blur)="onTouched()"
       >
       <div
-        class="jo-button {{isMultiple ? 'br-20' : 'br-50'}}"
-        [class.active]="_model.includes(item.key)"
-        [class.disabled]="isDisabled"
+        class="jo-button {{isMultiple() ? 'br-20' : 'br-50'}}"
+        [class.active]="model().includes(item.key)"
+        [class.disabled]="isDisabled()"
         [class.invalid]="ngControl.control?.invalid"
         >
-        @if (_model.includes(item.key)) {
+        @if (model().includes(item.key)) {
           <icon
             size="1rem"
-            [type]="isMultiple ? 'check' : 'dot'"
+            [type]="isMultiple() ? 'check' : 'dot'"
             [fill]="[null, 'current']"
             fillRotate="90"
           ></icon>

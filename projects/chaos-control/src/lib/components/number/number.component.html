@@ -1,27 +1,28 @@
-<label [class.required]="required">
+<label [class.required]="required()">
   <ng-content></ng-content>
 </label>
 
 <div class="d-flex align-items-stretch">
   <input
-    [(ngModel)]="model"
+    [ngModel]="model()"
+    (ngModelChange)="onModelChange($event)"
     #numberInput
     class="d-flex align-items-center"
     type="number"
-    [size]="maxDigitSize + sizePadding"
-    [class.active]="_model !== null"
-    [class.br-start]="borderRadiusLeft"
+    [size]="maxDigitSize() + sizePadding"
+    [class.active]="model() !== null"
+    [class.br-start]="borderRadiusLeft()"
     [class.invalid]="ngControl.control?.invalid"
-    [disabled]="isDisabled"
-    [min]="min"
-    [max]="max"
+    [disabled]="isDisabled()"
+    [min]="min()"
+    [max]="max()"
     (beforeinput)="onBeforeinput($event)"
   />
   <button
     class="d-flex align-items-center"
     title="Subtract"
     type="button"
-    [disabled]="isDisabledSubtract"
+    [disabled]="isDisabledSubtract()"
     [class.invalid]="ngControl.control?.invalid"
     (blur)="onTouched()"
     (click)="subtract(numberInput)"
@@ -37,8 +38,8 @@
     class="d-flex align-items-center"
     title="Add"
     type="button"
-    [class.br-end]="borderRadiusRight"
-    [disabled]="isDisabledAdd"
+    [class.br-end]="borderRadiusRight()"
+    [disabled]="isDisabledAdd()"
     [class.invalid]="ngControl.control?.invalid"
     (blur)="onTouched()"
     (click)="add(numberInput)"

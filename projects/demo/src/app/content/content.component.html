@@ -90,10 +90,28 @@
   <jo-number
     [(ngModel)]="ds.numberModel"
     [max]="50"
+    [required]="ds.numberRequired"
   >
     Number
   </jo-number>
 </div>
+<div class="d-flex flex-wrap gap-2 my-2">
+  <button (click)="ds.numberModel = 99">
+    Set invalid (99 &gt; max)
+  </button>
+  <button (click)="ds.numberModel = 5">
+    Set valid (5)
+  </button>
+  <button (click)="ds.numberModel = null">
+    Clear (null)
+  </button>
+  <button (click)="ds.numberRequired = !ds.numberRequired">
+    Toggle required
+  </button>
+</div>
+<small>
+  model: {{ ds.numberModel }} — required: {{ ds.numberRequired }}
+</small>
 <h2>&lt;jo-file&gt;</h2>
 <div>
   <jo-file [(ngModel)]="ds.fileModel">

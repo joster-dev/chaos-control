@@ -1,6 +1,6 @@
 <label
   [for]="id"
-  [class.required]="required"
+  [class.required]="required()"
 >
   <ng-content></ng-content>
 </label>
@@ -9,27 +9,28 @@
   <button
     class="d-flex align-items-center"
     title="Color"
-    [class.br-start]="borderRadiusLeft"
-    [disabled]="isDisabled"
+    [class.br-start]="borderRadiusLeft()"
+    [disabled]="isDisabled()"
     (click)="colorInput.click()"
   >
     <icon
       size="1rem"
       type="square"
-      [fill]="fullHex.test(_model || '') ? _model : [null, 'current']"
+      [fill]="fullHex.test(model() || '') ? model() : [null, 'current']"
       fillRotate="90"
-      [stroke]="fullHex.test(_model || '') ? _model : ['current']"
+      [stroke]="fullHex.test(model() || '') ? model() : ['current']"
     ></icon>
   </button>
   <input
-    [(ngModel)]="model"
+    [ngModel]="model()"
+    (ngModelChange)="onModelChange($event)"
     spellcheck="false"
     size="5"
     type="text"
-    [class.active]="$safeNavigationMigration(ngControl.control?.value) !== null"
-    [class.br-end]="borderRadiusRight"
+    [class.active]="ngControl.control?.value !== null"
+    [class.br-end]="borderRadiusRight()"
     [class.invalid]="ngControl.control?.invalid"
-    [disabled]="isDisabled"
+    [disabled]="isDisabled()"
     [id]="id"
     (beforeinput)="onBeforeinput($event)"
     (blur)="onTouched()"

@@ -1,10 +1,28 @@
-import { Component, ElementRef, HostListener, inject, Input, OnDestroy, output, Renderer2, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { booleanAttribute, Component, effect, ElementRef, HostListener, inject, input, OnDestroy, output, Renderer2, signal, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NgControl, ValidatorFn, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 import { ControlDirective } from '../../directives';
 import { isNumber } from '../../models';
+
+function toPlaceholder(value: string): string {
+  if (typeof (value as unknown) !== 'string')
+    throw new Error('[placeholder] expects: string');
+  return value;
+}
+
+function toLength(label: string) {
+  return (value: string | number | null | undefined): number | null => {
+    if (typeof value === 'string')
+      value = parseInt(value, 10);
+    if (value === undefined)
+      value = null;
+    if (!isNumber(value) || value < 0 || !Number.isInteger(value) || value === null)
+      throw new Error(`[${label}] expects: positive integer`);
+    return value;
+  };
+}
 
 @Component({
     selector: 'jo-text',
@@ -20,101 +38,39 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
   ngControl = inject(NgControl, { self: true });
   private renderer = inject(Renderer2);
 
-  @Input()
-  get placeholder() {
-    return this._placeholder;
-  }
-  set placeholder(v: string) {
-    const value = v as unknown;
-    if (typeof value !== 'string')
-      throw new Error('[placeholder] expects: string');
-    this._placeholder = value;
-  }
-  _placeholder = '';
-
-  @Input()
-  get minLength() {
-    return this._minLength;
-  }
-  set minLength(value: string | number | null | undefined) {
-    if (typeof value === 'string')
-      value = parseInt(value, 10);
-    if (value === undefined)
-      value = null;
-    if (!isNumber(value) || value < 0 || !Number.isInteger(value) || value === null)
-      throw new Error('[minLength] expects: positive integer');
-    this._minLength = value;
-    this.validation.next();
-  }
-  _minLength: number | null = null;
-
-  @Input()
-  get maxLength() {
-    return this._maxLength;
-  }
-  set maxLength(value: string | number | null | undefined) {
-    if (typeof value === 'string')
-      value = parseInt(value, 10);
-    if (value === undefined)
-      value = null;
-    if (!isNumber(value) || value < 0 || !Number.isInteger(value) || value === null)
-      throw new Error('[maxLength] expects: positive integer');
-    this._maxLength = value;
-    this.validation.next();
-  }
-  _maxLength: number | null = null;
-
-  @Input()
-  isSpellCheck = false;
-
-  @Input()
-  set isGrow(value: boolean | '') {
-    if (value === '')
-      value = true;
-    if (value == null)
-      value = false;
-    if (typeof value !== 'boolean')
-      throw new Error('[isGrow] expects: boolean');
-    this._isGrow = value;
-  }
-  _isGrow = false;
-
-  @Input() rows = 3;
+  placeholder = input('', { transform: toPlaceholder });
+  minLength = input<number | null, string | number | null | undefined>(null, { transform: toLength('minLength') });
+  maxLength = input<number | null, string | number | null | undefined>(null, { transform: toLength('maxLength') });
+  isSpellCheck = input(false, { transform: booleanAttribute });
+  isGrow = input(false, { transform: booleanAttribute });
+  rows = input(3);
 
   onBlur = output<FocusEvent>();
   onFocus = output<FocusEvent>();
 
-  @ViewChild('textarea') textareaElement?: ElementRef;
-  @ViewChild('textareaHidden') textareaHiddenElement?: ElementRef;
+  textareaElement = viewChild<ElementRef>('textarea');
+  textareaHiddenElement = viewChild<ElementRef>('textareaHidden');
 
-  get model() {
-    return this._model;
-  }
-  set model(value: string | null) {
-    if (value === '')
-      value = null;
-
-    this._model = value;
-
-    this.onChange(this._model);
-    setTimeout(() => this.setTextareaHeight());
-  }
-  _model: string | null = null;
-
+  model = signal<string | null>(null);
   id = `_${Math.random().toString(36).substring(2, 11)}`;
   resizeSubject = new Subject<void>();
 
   constructor() {
     super();
-    this.validation.subscribe(() => this.validate());
     this.ngControl.valueAccessor = this;
     this.resizeSubject
       .pipe(debounceTime(300))
-      .subscribe(() => this._isGrow && this.setTextareaHeight());
+      .subscribe(() => this.isGrow() && this.setTextareaHeight());
+
+    effect(() => {
+      this.minLength();
+      this.maxLength();
+      this.required();
+      this.validate();
+    });
   }
 
-  override ngOnDestroy(): void {
-    super.ngOnDestroy();
+  ngOnDestroy(): void {
     this.resizeSubject.complete();
   }
 
@@ -124,13 +80,28 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
   }
 
   setTextareaHeight() {
-    if (!this.textareaElement || !this.textareaHiddenElement)
+    const textareaRef = this.textareaElement();
+    const textareaHiddenRef = this.textareaHiddenElement();
+    if (!textareaRef || !textareaHiddenRef)
       return;
-    const textarea = this.textareaElement.nativeElement as HTMLElement;
-    const textareaHidden = this.textareaHiddenElement.nativeElement as HTMLElement;
+    const textarea = textareaRef.nativeElement as HTMLElement;
+    const textareaHidden = textareaHiddenRef.nativeElement as HTMLElement;
     this.renderer.setStyle(textareaHidden, 'width', `calc(${textarea.scrollWidth}px - 1em)`);
     this.renderer.setStyle(textareaHidden, 'height', 'auto');
     this.renderer.setStyle(textarea, 'height', `${textareaHidden.scrollHeight}px`);
+  }
+
+  onModelChange(value: string | null) {
+    this.setModel(value);
+  }
+
+  private setModel(value: string | null) {
+    if (value === '')
+      value = null;
+
+    this.model.set(value);
+    this.onChange(value);
+    setTimeout(() => this.setTextareaHeight());
   }
 
   onChange(_model: string | null) { }
@@ -145,7 +116,7 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
     if (isNumber(value))
       value = value.toString();
     if (value === null || typeof value === 'string') {
-      this._model = value;
+      this.model.set(value);
       setTimeout(() => this.setTextareaHeight());
     }
   }
@@ -153,13 +124,15 @@ export class TextComponent extends ControlDirective implements OnDestroy, Contro
   private validate() {
     const validators: ValidatorFn[] = [];
 
-    if (this._minLength != null)
-      validators.push(Validators.minLength(this._minLength));
+    const minLength = this.minLength();
+    if (minLength != null)
+      validators.push(Validators.minLength(minLength));
 
-    if (this._maxLength != null)
-      validators.push(Validators.maxLength(this._maxLength));
+    const maxLength = this.maxLength();
+    if (maxLength != null)
+      validators.push(Validators.maxLength(maxLength));
 
-    if (this.required === true)
+    if (this.required() === true)
       validators.push(Validators.required);
 
     this.ngControl.control?.setValidators(validators);

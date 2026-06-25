@@ -1,6 +1,5 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, effect, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, FormsModule, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
 import { IconComponent } from '@joster-dev/icon';
 
 import { ControlDirective } from '../../directives';
@@ -21,32 +20,36 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
   private partialHex = /^[0-9A-Fa-f]{1,6}$/;
   fullHex = /^[0-9A-Fa-f]{6}$/;
 
-  get model() {
-    return this._model;
-  }
-  set model(value: string | null) {
-    this._model = value;
-    this.onChange(
-      this._model !== null && this.fullHex.test(this._model)
-        ? this._model
-        : null
-    );
-  }
-  _model: string | null = null;
+  model = signal<string | null>(null);
 
   id = `_${Math.random().toString(36).substring(2, 11)}`;
 
   constructor() {
     super();
-    this.validation
-      .pipe(debounceTime(100))
-      .subscribe(() => this.validate());
     this.ngControl.valueAccessor = this;
+
+    effect(() => {
+      this.required();
+      this.validate();
+    });
+  }
+
+  onModelChange(value: string | null) {
+    this.setModel(value);
   }
 
   onChangeColor(event: Event) {
     const ele = event.target as HTMLInputElement;
-    this.model = ele.value.substring(1).toUpperCase();
+    this.setModel(ele.value.substring(1).toUpperCase());
+  }
+
+  private setModel(value: string | null) {
+    this.model.set(value);
+    this.onChange(
+      value !== null && this.fullHex.test(value)
+        ? value
+        : null
+    );
   }
 
   onChange(_model: string | null) { }
@@ -70,7 +73,7 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
       value = null;
 
     if (value === null || this.partialHex.test(value))
-      this._model = value;
+      this.model.set(value);
   }
 
   private invalidValidator(): ValidatorFn {
@@ -85,7 +88,7 @@ export class ColorComponent extends ControlDirective implements ControlValueAcce
       this.invalidValidator()
     ];
 
-    if (this.required === true)
+    if (this.required() === true)
       validators.push(Validators.required);
 
     this.ngControl.control?.setValidators(validators);

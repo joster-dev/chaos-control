@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { primitive } from '../../models';
 
 @Component({
@@ -11,5 +11,5 @@ import { primitive } from '../../models';
     changeDetection: ChangeDetectionStrategy.Eager
 })
 export class ReadonlyComponent {
-  @Input() model?: primitive;
+  model = input<primitive>();
 }

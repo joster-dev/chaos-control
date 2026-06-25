@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between">
-  <label [class.required]="required">
+  <label [class.required]="required()">
     <ng-content></ng-content>
   </label>
   <div>
@@ -10,8 +10,8 @@
 <div class="d-flex align-items-stretch">
   <button
     class="d-flex align-items-center gap-2"
-    [class.br-start]="borderRadiusLeft"
-    [disabled]="isDisabled"
+    [class.br-start]="borderRadiusLeft()"
+    [disabled]="isDisabled()"
     (click)="fileInput.click()"
     >
     <icon
@@ -24,13 +24,13 @@
   </button>
   <button
     class="d-flex align-items-center"
-    [class.br-end]="borderRadiusRight"
+    [class.br-end]="borderRadiusRight()"
     [class.active]="ngControl.value !== null"
-    [disabled]="isDisabled"
+    [disabled]="isDisabled()"
     (click)="fileInput.click()"
     >
     @if (!ngControl.value) {
-      No {{multiple ? 'files' : 'file'}} selected
+      No {{multiple() ? 'files' : 'file'}} selected
     }
     @if (ngControl.value) {
       {{fileNames}}
@@ -40,7 +40,7 @@
 
 <!-- <ul *ngIf="ngControl.control?.errors">
 <li *ngIf="ngControl.control?.errors?.['acceptedTypes']">
-  valid types are {{acceptedTypes.join(', ')}}
+  valid types are {{acceptedTypes().join(', ')}}
 </li>
 <li *ngIf="ngControl.control?.errors?.['sizeLimitMb']">
   max file size is {{sizeLimit}}
@@ -51,11 +51,11 @@
 </ul> -->
 
 <input
-  [(ngModel)]="model"
+  [ngModel]="model()"
   #fileInput
   type="file"
-  [accept]="acceptedTypes.join()"
-  [multiple]="multiple"
+  [accept]="acceptedTypes().join()"
+  [multiple]="multiple()"
   [id]="id"
   (change)="onFileChange($event)"
   (cancel)="onFileCancel()"

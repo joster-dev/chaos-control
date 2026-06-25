@@ -1,70 +1,72 @@
 <label
   [for]="id"
-  [class.required]="required"
+  [class.required]="required()"
   >
   <ng-content></ng-content>
 </label>
 
 <div class="d-flex">
-  @if (!_isGrow) {
+  @if (!isGrow()) {
     <input
       type="text"
-      [(ngModel)]="model"
-      [class.br-end]="borderRadiusRight"
-      [class.br-start]="borderRadiusLeft"
+      [ngModel]="model()"
+      (ngModelChange)="onModelChange($event)"
+      [class.br-end]="borderRadiusRight()"
+      [class.br-start]="borderRadiusLeft()"
       class="flex-1"
-      [minlength]="_minLength"
-      [maxlength]="_maxLength"
-      [class.active]="_model !== null"
+      [minlength]="minLength()"
+      [maxlength]="maxLength()"
+      [class.active]="model() !== null"
       [class.invalid]="ngControl.control?.invalid"
-      [disabled]="isDisabled"
+      [disabled]="isDisabled()"
       [id]="id"
-      [spellcheck]="isSpellCheck"
-      [placeholder]="placeholder"
+      [spellcheck]="isSpellCheck()"
+      [placeholder]="placeholder()"
       (blur)="onTouched(); onBlur.emit($event)"
       (focus)="onFocus.emit($event)"
       />
   }
-  @if (_isGrow) {
+  @if (isGrow()) {
     <textarea
       #textarea
-      [(ngModel)]="model"
-      [class.br-end]="borderRadiusRight"
-      [class.br-start]="borderRadiusLeft"
+      [ngModel]="model()"
+      (ngModelChange)="onModelChange($event)"
+      [class.br-end]="borderRadiusRight()"
+      [class.br-start]="borderRadiusLeft()"
       class="flex-1"
-      [rows]="rows"
-      [minlength]="_minLength"
-      [maxlength]="_maxLength"
-      [class.active]="_model !== null"
+      [rows]="rows()"
+      [minlength]="minLength()"
+      [maxlength]="maxLength()"
+      [class.active]="model() !== null"
       [class.invalid]="ngControl.control?.invalid"
-      [disabled]="isDisabled"
+      [disabled]="isDisabled()"
       [id]="id"
-      [spellcheck]="isSpellCheck"
-      [placeholder]="placeholder"
+      [spellcheck]="isSpellCheck()"
+      [placeholder]="placeholder()"
       (blur)="onTouched(); onBlur.emit($event)"
       (focus)="onFocus.emit($event)"
     ></textarea>
   }
 </div>
 
-@if (_isGrow) {
+@if (isGrow()) {
   <div
     class="d-flex"
     >
     <textarea
       #textareaHidden
-      [ngModel]="model"
+      [ngModel]="model()"
       class="hidden flex-1"
-      [rows]="rows"
+      [rows]="rows()"
     ></textarea>
   </div>
 }
 
 <!-- <ul *ngIf="ngControl.control?.errors">
 <li *ngIf="ngControl.control?.errors?.['minlength']">
-  minimum length is {{minLength}}
+  minimum length is {{minLength()}}
 </li>
 <li *ngIf="ngControl.control?.errors?.['maxLength']">
-  maximum length is {{maxLength}}
+  maximum length is {{maxLength()}}
 </li>
 </ul> -->

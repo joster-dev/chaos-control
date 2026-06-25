@@ -32,6 +32,7 @@ export class DataService {
   readonlyLabel = 'Readonly label';
 
   numberModel: number | null = null;
+  numberRequired = false;
 
   choiceModel: boolean | number | null = null;
 

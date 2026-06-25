@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostBinding, HostListener, inject, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, computed, ElementRef, HostListener, inject, input, numberAttribute, signal, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { ControlValueAccessor, FormsModule } from '@angular/forms';
 import { IconComponent } from '@joster-dev/icon';
@@ -13,43 +13,38 @@ import { Item } from '../../models';
         '../../styles.scss',
     ],
     changeDetection: ChangeDetectionStrategy.Eager,
+    host: {
+        '[style.--dropHeightPx]': 'dropHeightPx()',
+    },
     imports: [FormsModule, NgTemplateOutlet, IconComponent]
 })
 export class SelectComponent extends ItemDirective implements ControlValueAccessor {
   private hostElement = inject(ElementRef);
 
-  @ViewChild('dropGroup') dropGroup!: ElementRef<HTMLDivElement>;
-  @ViewChild('dropup') dropup!: ElementRef<HTMLDialogElement>;
-  @ViewChild('dropdown') dropdown!: ElementRef<HTMLDialogElement>;
+  dropGroup = viewChild.required<ElementRef<HTMLDivElement>>('dropGroup');
+  dropup = viewChild.required<ElementRef<HTMLDialogElement>>('dropup');
+  dropdown = viewChild.required<ElementRef<HTMLDialogElement>>('dropdown');
 
-  @Input()
-  @HostBinding('style.--dropHeightPx')
-  dropHeightPx = 200;
+  dropHeightPx = input(200, { transform: numberAttribute });
 
-  get searchTerm(): string {
-    return this._searchTerm;
-  }
-  set searchTerm(value: string) {
-    this._searchTerm = value;
-    this.filteredItems = value
-      ? this._items.filter(item => item.value.toLowerCase().includes(value.toLowerCase()))
-      : this._items;
-  }
-  _searchTerm = '';
+  searchTerm = signal('');
+
+  filteredItems = computed(() => {
+    const term = this.searchTerm().toLowerCase();
+    return term
+      ? this.items().filter(item => item.value.toLowerCase().includes(term))
+      : this.items();
+  });
 
   isDropdownCloseToBottom = false;
   id = `${Math.random().toString(36).substr(2, 9)}`;
 
-  get activeItemValues(): string {
-    return this._items
-      .filter(item => this._model.includes(item.key))
-      .map(item => item.value)
-      .join(', ');
-  }
+  activeItemValues = computed(() => this.items()
+    .filter(item => this.model().includes(item.key))
+    .map(item => item.value)
+    .join(', '));
 
-  get isSelectedAll(): boolean {
-    return this._items.every(item => this._model.includes(item.key));
-  }
+  isSelectedAll = computed(() => this.items().every(item => this.model().includes(item.key)));
 
   @HostListener('document:mousedown', ['$event'])
   onGlobalClick(event: MouseEvent) {
@@ -57,43 +52,48 @@ export class SelectComponent extends ItemDirective implements ControlValueAccess
       this.closeDropdown();
   }
 
+  onSearchChange(value: string) {
+    this.searchTerm.set(value);
+  }
+
   onClickGroup() {
     this.closeDropdown();
-    if (this.dropGroup.nativeElement.getBoundingClientRect().bottom + this.dropHeightPx > window.innerHeight) {
-      this.dropup.nativeElement.show();
+    if (this.dropGroup().nativeElement.getBoundingClientRect().bottom + this.dropHeightPx() > window.innerHeight) {
+      this.dropup().nativeElement.show();
     } else {
-      this.dropdown.nativeElement.show();
+      this.dropdown().nativeElement.show();
     }
   }
 
   onClick(item: Item) {
-    this._model = this._model.filter(key => this._items.map(item => item.key).includes(key))
+    const keys = this.items().map(item => item.key);
+    const model = this.model().filter(key => keys.includes(key));
 
-    if (this._model.includes(item.key)) {
-      if (this.required === true && this._model.length === 1)
+    if (model.includes(item.key)) {
+      if (this.required() === true && model.length === 1)
         return;
 
-      this.model = this._model.filter(key => key !== item.key);
+      this.setModel(model.filter(key => key !== item.key));
       return;
     }
 
-    if (!this.isMultiple && this._model.length === 1) {
-      this.model = [item.key];
+    if (!this.isMultiple() && model.length === 1) {
+      this.setModel([item.key]);
       return;
     }
 
-    this.model = [...this._model, item.key];
+    this.setModel([...model, item.key]);
   }
 
   onClickSelectAll() {
-    this.model = this.isSelectedAll
+    this.setModel(this.isSelectedAll()
       ? []
-      : this._items.map(item => item.key);
+      : this.items().map(item => item.key));
   }
 
   closeDropdown() {
-    this.searchTerm = '';
-    this.dropdown.nativeElement.close();
-    this.dropup.nativeElement.close();
+    this.searchTerm.set('');
+    this.dropdown().nativeElement.close();
+    this.dropup().nativeElement.close();
   }
 }

@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between">
   <label
     id="select_{{id}}"
-    [class.required]="required"
+    [class.required]="required()"
     >
     <ng-content></ng-content>
   </label>
@@ -25,17 +25,17 @@
   <button
     class="flex-1 br-start text-start"
     type="button"
-    [class.active]="_model.length > 0"
+    [class.active]="model().length > 0"
     [class.invalid]="!ngControl.control?.invalid"
     (click)="onClickGroup()"
     (blur)="onTouched()"
     >
-    {{activeItemValues}}
+    {{activeItemValues()}}
   </button>
   <button
     class="d-flex br-end d-flex align-items-center justify-content-center"
     [class.invalid]="!ngControl.control?.invalid"
-    [disabled]="isDisabled"
+    [disabled]="isDisabled()"
     (click)="onClickGroup()"
     (blur)="onTouched()"
     >
@@ -60,38 +60,39 @@
     <div class="card-body">
       <div class="d-flex gap-2 align-items-stretch">
         <input
-          [(ngModel)]="searchTerm"
+          [ngModel]="searchTerm()"
+          (ngModelChange)="onSearchChange($event)"
           class="flex-1 br-start br-end"
           />
-        @if (_isMultiple) {
+        @if (isMultiple()) {
           <button
             type="button"
             class="br-start br-end"
             (click)="onClickSelectAll()"
             >
-            {{isSelectedAll ? 'Deselect' : 'Select'}} All
+            {{isSelectedAll() ? 'Deselect' : 'Select'}} All
           </button>
         }
       </div>
     </div>
     <div class="d-flex flex-column">
-      @for (item of filteredItems; track item) {
+      @for (item of filteredItems(); track item) {
         <button
           class="d-flex flex-1 align-items-center text-start gap-2"
-          [disabled]="isDisabled"
-          [class.active]="_model.includes(item.key)"
+          [disabled]="isDisabled()"
+          [class.active]="model().includes(item.key)"
           (click)="onClick(item)"
           >
           <div
-            class="jo-button {{isMultiple ? 'br-20' : 'br-50'}}"
-            [class.active]="_model.includes(item.key)"
-            [class.disabled]="isDisabled"
+            class="jo-button {{isMultiple() ? 'br-20' : 'br-50'}}"
+            [class.active]="model().includes(item.key)"
+            [class.disabled]="isDisabled()"
             [class.invalid]="ngControl.control?.invalid"
             >
-            @if (_model.includes(item.key)) {
+            @if (model().includes(item.key)) {
               <icon
                 size="1rem"
-                [type]="isMultiple ? 'check' : 'dot'"
+                [type]="isMultiple() ? 'check' : 'dot'"
                 [fill]="[null, 'current']"
                 fillRotate="90"
               ></icon>

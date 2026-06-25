@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { booleanAttribute, Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { IconComponent } from '@joster-dev/icon';
 
@@ -16,40 +16,27 @@ import { Item } from '../../models';
     imports: [IconComponent]
 })
 export class ChoiceComponent extends ItemDirective implements ControlValueAccessor {
-  @Input()
-  get isColumn() {
-    return this._isColumn;
-  }
-  set isColumn(value: boolean | '') {
-    if (value === '')
-      value = true;
-    if (value == null)
-      value = false;
-    if (typeof value !== 'boolean')
-      throw new Error('isColumn expects: boolean')
-    this._isColumn = value;
-  }
-  _isColumn = false;
+  isColumn = input(false, { transform: booleanAttribute });
 
   id = `${Math.random().toString(36).substr(2, 9)}`;
 
   onClick(item: Item) {
-    this._model = this._model
-      .filter(key => this._items.map(item => item.key).includes(key))
+    const keys = this.items().map(item => item.key);
+    const model = this.model().filter(key => keys.includes(key));
 
-    if (this._model.includes(item.key)) {
-      if (this.required === true && this._model.length === 1)
+    if (model.includes(item.key)) {
+      if (this.required() === true && model.length === 1)
         return;
 
-      this.model = this._model.filter(key => key !== item.key);
+      this.setModel(model.filter(key => key !== item.key));
       return;
     }
 
-    if (!this.isMultiple && this._model.length === 1) {
-      this.model = [item.key];
+    if (!this.isMultiple() && model.length === 1) {
+      this.setModel([item.key]);
       return;
     }
 
-    this.model = [...this._model, item.key];
+    this.setModel([...model, item.key]);
   }
 }

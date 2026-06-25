@@ -1,9 +1,22 @@
-import { Directive, inject, Input } from '@angular/core';
+import { booleanAttribute, Directive, effect, inject, input, signal } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
 import { isItems, isNumber, isPrimitive, Item, primitive } from '../models';
 
 import { ControlDirective } from './control.directive';
+
+function toItems(value: { key: boolean | number | string, value: string, [key: string]: unknown }[]): Item[] {
+  if (!isItems(value))
+    throw new Error('[items] expects: { key: boolean | number | string, value: string }[]');
+  return value;
+}
+
+function toLimit(value: number): number {
+  if (value == null)
+    value = 0;
+  if (!isNumber(value) || value < 0 || !Number.isInteger(value))
+    throw new Error('limit expects: positive integer');
+  return value;
+}
 
 @Directive({
     selector: '[joItem]'
@@ -11,69 +24,36 @@ import { ControlDirective } from './control.directive';
 export class ItemDirective extends ControlDirective implements ControlValueAccessor {
   ngControl = inject(NgControl, { self: true });
 
-  @Input()
-  get items() {
-    return this._items;
-  }
-  set items(value: { key: boolean | number | string, value: string, [key: string]: unknown }[]) {
-    if (!isItems(value))
-      throw new Error('[items] expects: { key: boolean | number | string, value: string }[]');
-    this._items = value;
-    this.filteredItems = value;
-    this.validation.next();
-  }
-  _items: Item[] = [];
-  filteredItems: Item[] = [];
+  items = input([] as Item[], { transform: toItems });
+  limit = input(0, { transform: toLimit });
+  isMultiple = input(false, { transform: booleanAttribute });
 
-  @Input()
-  get limit() {
-    return this._limit;
-  }
-  set limit(value: number) {
-    if (value == null)
-      value = 0;
-
-    if (!isNumber(value) || value < 0 || !Number.isInteger(value))
-      throw new Error('limit expects: positive integer');
-
-    this._limit = value;
-    this.validation.next();
-  }
-  _limit = 0;
-
-  @Input()
-  get isMultiple() {
-    return this._isMultiple;
-  }
-  set isMultiple(value: boolean | '') {
-    if (value === '')
-      value = true;
-    if (value == null)
-      value = false;
-    if (typeof value !== 'boolean')
-      throw new Error('multiple expects: boolean')
-    this._isMultiple = value;
-  }
-  _isMultiple = false;
-
-  set model(value: primitive[]) {
-    this._model = value;
-    this.onChange(
-      value.length === 0
-        ? null
-        : this.isMultiple
-          ? this._model
-          : this._model[0]
-    );
-  }
-  _model: primitive[] = [];
+  model = signal<primitive[]>([]);
 
   constructor() {
     super();
-    this.validation
-      .pipe(debounceTime(100))
-      .subscribe(() => this.validate());
     this.ngControl.valueAccessor = this;
+
+    // Re-run validation synchronously whenever an input that feeds the
+    // validators changes. No debounce means validity repaints under zoneless.
+    effect(() => {
+      this.items();
+      this.limit();
+      this.isMultiple();
+      this.required();
+      this.validate();
+    });
+  }
+
+  protected setModel(value: primitive[]) {
+    this.model.set(value);
+    this.onChange(
+      value.length === 0
+        ? null
+        : this.isMultiple()
+          ? value
+          : value[0]
+    );
   }
 
   onChange(_value: primitive[] | primitive | null) { }
@@ -89,7 +69,7 @@ export class ItemDirective extends ControlDirective implements ControlValueAcces
       value = [value];
 
     if (value.every(item => isPrimitive(item)))
-      this._model = value;
+      this.model.set(value);
   }
 
   private invalidValidator(items: Item[], isMultiple: boolean): ValidatorFn {
@@ -112,19 +92,16 @@ export class ItemDirective extends ControlDirective implements ControlValueAcces
 
   private validate() {
     const validators: ValidatorFn[] = [
-      this.invalidValidator(this._items, this._isMultiple),
+      this.invalidValidator(this.items(), this.isMultiple()),
     ];
 
-    if (this._isMultiple)
-      validators.push(this.limitValidator(this._limit));
+    if (this.isMultiple())
+      validators.push(this.limitValidator(this.limit()));
 
-    if (this.required === true)
+    if (this.required() === true)
       validators.push(Validators.required);
 
-    if (this.ngControl.control === null)
-      throw new Error('expected control to be defined');
-
-    this.ngControl.control.setValidators(validators);
-    this.ngControl.control.updateValueAndValidity();
+    this.ngControl.control?.setValidators(validators);
+    this.ngControl.control?.updateValueAndValidity();
   }
 }

@@ -1,9 +1,20 @@
-import { Component, inject, Input, ChangeDetectionStrategy } from '@angular/core';
+import { booleanAttribute, Component, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, FormsModule, NgControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
 import { IconComponent } from '@joster-dev/icon';
 import { ControlDirective } from '../../directives';
 import { isNumber } from '../../models';
+
+function toAcceptedTypes(value: string[]): string[] {
+  if (!Array.isArray(value) || !value.every(item => typeof item === 'string'))
+    throw new Error(`acceptedTypes expects: string[]`);
+  return value;
+}
+
+function toSizeLimitMb(value: number): number {
+  if (!isNumber(value) || value < 0)
+    throw new Error('sizeLimitMb expects: positive number');
+  return value;
+}
 
 @Component({
     selector: 'jo-file',
@@ -18,48 +29,25 @@ import { isNumber } from '../../models';
 export class FileComponent extends ControlDirective implements ControlValueAccessor {
   ngControl = inject(NgControl, { self: true });
 
-  @Input() get acceptedTypes() {
-    return this._acceptedTypes;
-  }
-  set acceptedTypes(value: string[]) {
-    if (!Array.isArray(value) || !value.every(item => typeof item === 'string'))
-      throw new Error(`acceptedTypes expects: string[]`);
-    this._acceptedTypes = value;
-    this.validation.next();
-  }
-  _acceptedTypes: string[] = [];
+  acceptedTypes = input([] as string[], { transform: toAcceptedTypes });
+  sizeLimitMb = input(0, { transform: toSizeLimitMb });
+  multiple = input(false, { transform: booleanAttribute });
+  showSize = input(false, { transform: booleanAttribute });
 
-  @Input() get sizeLimitMb() {
-    return this._sizeLimitMb;
-  }
-  set sizeLimitMb(value: number) {
-    if (!isNumber(value) || value < 0)
-      throw new Error('sizeLimitMb expects: positive number');
-    this._sizeLimitMb = value;
-    this.validation.next();
-  }
-  _sizeLimitMb = 0;
-
-  @Input() get multiple() {
-    return this._multiple;
-  }
-  set multiple(value: boolean) {
-    this._multiple = value === true;
-    this.validation.next();
-  }
-  _multiple = false;
-
-  @Input() showSize = false;
-
-  model: '' | null = null;
+  model = signal<'' | null>(null);
   id = `${Math.random().toString(36).substr(2, 9)}`;
 
   constructor() {
     super();
-    this.validation
-      .pipe(debounceTime(100))
-      .subscribe(() => this.validate());
     this.ngControl.valueAccessor = this;
+
+    effect(() => {
+      this.acceptedTypes();
+      this.sizeLimitMb();
+      this.multiple();
+      this.required();
+      this.validate();
+    });
   }
 
   get fileNames(): string {
@@ -73,9 +61,9 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
   }
 
   get sizeLimit(): string {
-    return this.sizeLimitMb < 1
-      ? `${this.sizeLimitMb * 1000} KB`
-      : `${this.sizeLimitMb} MB`;
+    return this.sizeLimitMb() < 1
+      ? `${this.sizeLimitMb() * 1000} KB`
+      : `${this.sizeLimitMb()} MB`;
   }
 
   onFileChange(event: Event): void {
@@ -103,7 +91,7 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
     if (value !== null && !(value instanceof FileList))
       throw new Error('control value must be: File or null');
     // todo
-    // this.model = value;
+    // this.model.set(value);
   }
 
   private acceptedTypesValidator(acceptedTypes: string[]): ValidatorFn {
@@ -132,16 +120,16 @@ export class FileComponent extends ControlDirective implements ControlValueAcces
 
   private validate() {
     const validators: ValidatorFn[] = [
-      this.invalidValidator(this.multiple)
+      this.invalidValidator(this.multiple())
     ];
 
-    if (this.acceptedTypes.length > 0)
-      validators.push(this.acceptedTypesValidator(this.acceptedTypes));
+    if (this.acceptedTypes().length > 0)
+      validators.push(this.acceptedTypesValidator(this.acceptedTypes()));
 
-    if (this.sizeLimitMb > 0)
-      validators.push(this.sizeLimitMbValidator(this.sizeLimitMb));
+    if (this.sizeLimitMb() > 0)
+      validators.push(this.sizeLimitMbValidator(this.sizeLimitMb()));
 
-    if (this.required === true)
+    if (this.required() === true)
       validators.push(Validators.required);
 
     this.ngControl.control?.setValidators(validators);
