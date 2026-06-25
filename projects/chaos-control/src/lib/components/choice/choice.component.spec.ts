@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChoiceComponent } from './choice.component';
@@ -8,7 +9,8 @@ describe('ChoiceComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ ChoiceComponent ]
+      imports: [ ChoiceComponent ],
+      providers: [provideZonelessChangeDetection()]
     })
     .compileComponents();
   });

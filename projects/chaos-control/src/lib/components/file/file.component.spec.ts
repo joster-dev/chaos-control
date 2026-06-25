@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FileComponent } from './file.component';
@@ -8,7 +9,8 @@ describe('FileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ FileComponent ]
+      imports: [ FileComponent ],
+      providers: [provideZonelessChangeDetection()]
     })
     .compileComponents();
   });

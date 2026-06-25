@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NumberComponent } from './number.component';
@@ -8,7 +9,8 @@ describe('NumberComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ NumberComponent ]
+      imports: [ NumberComponent ],
+      providers: [provideZonelessChangeDetection()]
     })
     .compileComponents();
   });
