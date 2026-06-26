@@ -25,7 +25,7 @@ function toLength(label: string) {
 }
 
 @Component({
-    selector: 'jo-text',
+    selector: 'cc-text',
     templateUrl: './text.component.html',
     styleUrls: [
         './text.component.scss',

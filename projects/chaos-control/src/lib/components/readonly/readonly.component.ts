@@ -2,7 +2,7 @@ import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { primitive } from '../../models';
 
 @Component({
-    selector: 'jo-readonly',
+    selector: 'cc-readonly',
     templateUrl: './readonly.component.html',
     styleUrls: [
         './readonly.component.scss',

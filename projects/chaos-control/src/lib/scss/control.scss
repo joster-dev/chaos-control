@@ -1,9 +1,9 @@
 @use "sass:map";
 @use "variables";
 
-a:not(.jo-ignore),
-button:not(.jo-ignore),
-.jo-button,
+a:not(.cc-ignore),
+button:not(.cc-ignore),
+.cc-button,
 input,
 textarea {
     color: inherit;
@@ -44,6 +44,6 @@ textarea {
 
 a,
 button,
-.jo-button {
+.cc-button {
     cursor: pointer;
 }

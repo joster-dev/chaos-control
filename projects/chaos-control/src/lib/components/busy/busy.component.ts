@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'jo-busy',
+    selector: 'cc-busy',
     templateUrl: './busy.component.html',
     styleUrls: [
         './busy.component.scss',

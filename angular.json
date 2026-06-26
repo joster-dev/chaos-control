@@ -12,7 +12,7 @@
       },
       "root": "projects/chaos-control",
       "sourceRoot": "projects/chaos-control/src",
-      "prefix": "jo",
+      "prefix": "cc",
       "architect": {
         "build": {
           "builder": "@angular/build:ng-packagr",

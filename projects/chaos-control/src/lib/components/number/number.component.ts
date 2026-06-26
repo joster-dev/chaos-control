@@ -14,7 +14,7 @@ function toNumber(label: string) {
 }
 
 @Component({
-    selector: 'jo-number',
+    selector: 'cc-number',
     templateUrl: './number.component.html',
     styleUrls: [
         './number.component.scss',

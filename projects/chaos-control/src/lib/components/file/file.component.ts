@@ -17,7 +17,7 @@ function toSizeLimitMb(value: number): number {
 }
 
 @Component({
-    selector: 'jo-file',
+    selector: 'cc-file',
     templateUrl: './file.component.html',
     styleUrls: [
         './file.component.scss',

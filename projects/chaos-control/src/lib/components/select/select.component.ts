@@ -6,7 +6,7 @@ import { ItemDirective } from '../../directives';
 import { Item } from '../../models';
 
 @Component({
-    selector: 'jo-select',
+    selector: 'cc-select',
     templateUrl: './select.component.html',
     styleUrls: [
         './select.component.scss',

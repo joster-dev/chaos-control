@@ -5,7 +5,7 @@ import { IconComponent } from '@joster-dev/icon';
 import { ControlDirective } from '../../directives';
 
 @Component({
-    selector: 'jo-color',
+    selector: 'cc-color',
     templateUrl: './color.component.html',
     styleUrls: [
         './color.component.scss',

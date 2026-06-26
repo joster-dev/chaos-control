@@ -1,33 +1,33 @@
-<h2>&lt;jo-readonly&gt;</h2>
-<jo-readonly [model]="ds.readonlyModel">
+<h2>&lt;cc-readonly&gt;</h2>
+<cc-readonly [model]="ds.readonlyModel">
   {{ds.readonlyLabel}}
-</jo-readonly>
-<h2>&lt;jo-text&gt;</h2>
+</cc-readonly>
+<h2>&lt;cc-text&gt;</h2>
 <div>
-  <jo-text
+  <cc-text
     [(ngModel)]="ds.growingTextModel"
     [isGrow]="true"
   >
     growing Text
-  </jo-text>
+  </cc-text>
 </div>
 <div>
-  <jo-text [(ngModel)]="ds.textModel">
+  <cc-text [(ngModel)]="ds.textModel">
     Text
-  </jo-text>
+  </cc-text>
 </div>
-<h2>&lt;jo-choice&gt;</h2>
+<h2>&lt;cc-choice&gt;</h2>
 <div>
-  <jo-choice
+  <cc-choice
     [(ngModel)]="ds.choiceModel"
     required
     [items]="ds.items"
   >
     Single Choice
-  </jo-choice>
+  </cc-choice>
 </div>
 <div>
-  <jo-choice
+  <cc-choice
     [(ngModel)]="ds.multipleChoiceModel"
     required
     [items]="ds.longItems"
@@ -35,30 +35,30 @@
     isMultiple
   >
     Multiple Choice
-  </jo-choice>
+  </cc-choice>
 </div>
 <div>
-  <jo-choice
+  <cc-choice
     [(ngModel)]="ds.longChoiceModel"
     required
     [items]="ds.longTextItems"
     isColumn
   >
     Choice with long text
-  </jo-choice>
+  </cc-choice>
 </div>
-<h2>&lt;jo-select&gt;</h2>
+<h2>&lt;cc-select&gt;</h2>
 <div>
-  <jo-select
+  <cc-select
     [(ngModel)]="ds.selectModel"
     required
     [items]="ds.items"
   >
     Single Select
-  </jo-select>
+  </cc-select>
 </div>
 <div>
-  <jo-select
+  <cc-select
     [(ngModel)]="ds.multipleSelectModel"
     required
     [items]="ds.longItems"
@@ -66,34 +66,34 @@
     isMultiple
   >
     Multiple Select
-  </jo-select>
+  </cc-select>
 </div>
 <div>
-  <jo-select
+  <cc-select
     [(ngModel)]="ds.longSelectModel"
     [items]="ds.longTextItems"
     isColumn
   >
     Select with long text
-  </jo-select>
+  </cc-select>
 </div>
-<h2>&lt;jo-color&gt;</h2>
+<h2>&lt;cc-color&gt;</h2>
 <div>
-  <jo-color [(ngModel)]="ds.colorModel">
+  <cc-color [(ngModel)]="ds.colorModel">
     Color label
-  </jo-color>
+  </cc-color>
 </div>
 <!-- todo: stop digit input from occurring when length > max -->
 <!-- also handle . for decimals 🤔 -->
-<h2>&lt;jo-number&gt;</h2>
+<h2>&lt;cc-number&gt;</h2>
 <div>
-  <jo-number
+  <cc-number
     [(ngModel)]="ds.numberModel"
     [max]="50"
     [required]="ds.numberRequired"
   >
     Number
-  </jo-number>
+  </cc-number>
 </div>
 <div class="d-flex flex-wrap gap-2 my-2">
   <button (click)="ds.numberModel = 99">
@@ -112,9 +112,9 @@
 <small>
   model: {{ ds.numberModel }} — required: {{ ds.numberRequired }}
 </small>
-<h2>&lt;jo-file&gt;</h2>
+<h2>&lt;cc-file&gt;</h2>
 <div>
-  <jo-file [(ngModel)]="ds.fileModel">
+  <cc-file [(ngModel)]="ds.fileModel">
     File
-  </jo-file>
+  </cc-file>
 </div>
