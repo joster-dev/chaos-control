@@ -19,6 +19,16 @@ body {
     background: repeating-conic-gradient(#1B1B1B 0 25%, #111 0 50%) 0 / 2em 2em;
     color: #FF0000;
   }
+
+  &[data-theme="blue"] {
+    background: repeating-conic-gradient(#eee 0 25%, #fff 0 50%) 0 / 2em 2em;
+    color: #0000FF;
+  }
+
+  &[data-theme="yellow"] {
+    background: repeating-conic-gradient(#1B1B1B 0 25%, #111 0 50%) 0 / 2em 2em;
+    color: #FFFF8F;
+  }
 }
 
 fieldset {

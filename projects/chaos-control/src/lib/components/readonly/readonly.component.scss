@@ -1,4 +1,10 @@
 :host>div {
+  box-sizing: border-box;
+  min-height: 2.5rem;
+  // Fill the same content area the editable controls do
+  // (2.5rem - 2*0.5rem padding - 2*0.15rem border) so the text line height
+  // matches cc-text instead of sitting at the shorter `normal` line-height.
+  line-height: 1.2rem;
   color: inherit;
   background: transparent;
   border-width: 0.15em;

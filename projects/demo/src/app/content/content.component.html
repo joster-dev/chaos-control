@@ -1,15 +1,21 @@
-<h2>&lt;cc-readonly&gt;</h2>
-<cc-readonly [model]="ds.readonlyModel">
-  {{ds.readonlyLabel}}
-</cc-readonly>
-<h2>&lt;cc-text&gt;</h2>
-<div>
-  <cc-text
-    [(ngModel)]="ds.growingTextModel"
-    [isGrow]="true"
-  >
-    growing Text
-  </cc-text>
+<div class="card">
+  <h2 class="card-header">&lt;cc-readonly&gt;</h2>
+  <div class="card-body">
+    <cc-readonly [model]="ds.readonlyModel">
+      {{ds.readonlyLabel}}
+    </cc-readonly>
+  </div>
+</div>
+<div class="card">
+  <h2 class="card-header">&lt;cc-text&gt;</h2>
+  <div class="card-body">
+    <cc-text
+      [(ngModel)]="ds.growingTextModel"
+      [isGrow]="true"
+    >
+      growing Text
+    </cc-text>
+  </div>
 </div>
 <div>
   <cc-text [(ngModel)]="ds.textModel">

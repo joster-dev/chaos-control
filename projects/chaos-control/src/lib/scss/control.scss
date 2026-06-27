@@ -6,44 +6,51 @@ button:not(.cc-ignore),
 .cc-button,
 input,
 textarea {
-    color: inherit;
-    background: transparent;
-    border-width: 0.15rem;
-    border-style: outset;
-    border-color: currentColor;
-    padding: map.get(variables.$sizes, "md");
-    margin: 0;
-    font-size: 1rem;
-    // transition: all 700ms ease;
-    line-height: 1rem;
-    font-family: inherit;
-    min-width: 0;
+  color: inherit;
+  background: transparent;
+  border-width: 0.15rem;
+  border-style: outset;
+  border-color: currentColor;
+  padding: map.get(variables.$sizes, "md");
+  margin: 0;
+  font-size: 1rem;
+  // transition: all 700ms ease;
+  line-height: 1rem;
+  font-family: inherit;
+  min-width: 0;
 
-    &:active,
-    &.active {
-        border-style: inset;
-    }
+  &:active,
+  &.active {
+    border-style: inset;
+  }
 
-    &:disabled,
-    &.disabled {
-        cursor: not-allowed;
-        border-style: solid;
-        box-shadow: none;
-        opacity: 0.5;
-    }
+  &:disabled,
+  &.disabled {
+    cursor: not-allowed;
+    border-style: solid;
+    box-shadow: none;
+    opacity: 0.5;
+  }
 
-    &.invalid {
-        // animation: 3s ease 0s infinite invalid-border;
-    }
+  &.invalid {
+    // animation: 3s ease 0s infinite invalid-border;
+  }
 
-    &:focus {
-        // outline: 0.15em solid transparent;
-        // box-shadow: 0 0 0.1em 0 currentColor;
-    }
+  &:focus {
+    // outline: 0.15em solid transparent;
+    // box-shadow: 0 0 0.1em 0 currentColor;
+  }
+}
+
+a:not(.cc-ignore),
+button:not(.cc-ignore),
+input {
+  box-sizing: border-box;
+  min-height: 2.5rem;
 }
 
 a,
 button,
 .cc-button {
-    cursor: pointer;
+  cursor: pointer;
 }

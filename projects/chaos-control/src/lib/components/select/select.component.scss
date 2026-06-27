@@ -46,7 +46,18 @@ dialog {
   color: currentColor;
 
   >.card {
-    backdrop-filter: blur(1.5rem);
+    // Floating panel needs its own opaque surface so options stay legible over
+    // arbitrary page content. Derived from currentColor to stay monotone: same
+    // hue/chroma, lightness flipped to the opposite end for guaranteed contrast.
+    // Override --cc-drop-surface-l to trade contrast for more of the user's hue.
+    --cc-drop-surface-l: round(1 - l);
+    background: oklch(from currentColor var(--cc-drop-surface-l) c h);
+
+    @supports not (background: oklch(from currentColor l c h)) {
+      background: Canvas;
+      color: CanvasText;
+    }
+
     max-height: calc(var(--dropHeightPx) * 1px);
     overflow-y: auto;
 

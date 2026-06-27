@@ -12,12 +12,14 @@
     </a>
   </div>
 </header>
-<div>
-  @for (theme of themes; track theme) {
-  <button (click)="onClickTheme(theme)">
-    {{theme}}
-  </button>
-  }
+<div id="theme">
+  <cc-choice
+    [ngModel]="theme"
+    (ngModelChange)="onChangeTheme($event)"
+    [items]="themes"
+  >
+    Theme
+  </cc-choice>
 </div>
 <demo-content></demo-content>
 <h2 class="my-3">
