@@ -2,7 +2,7 @@ import { booleanAttribute, Directive, input, signal } from '@angular/core';
 import { BorderRadiusDirective } from './border-radius.directive';
 
 @Directive({
-    selector: '[joControl]'
+    selector: '[ccControl]'
 })
 export class ControlDirective extends BorderRadiusDirective {
   required = input(false, { transform: booleanAttribute });

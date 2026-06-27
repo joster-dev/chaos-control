@@ -1,7 +1,7 @@
 import { booleanAttribute, Directive, input } from '@angular/core';
 
 @Directive({
-    selector: '[joBorderRadius]'
+    selector: '[ccBorderRadius]'
 })
 export class BorderRadiusDirective {
   borderRadiusRight = input(true, { transform: booleanAttribute });

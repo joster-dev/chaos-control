@@ -19,7 +19,7 @@ function toLimit(value: number): number {
 }
 
 @Directive({
-    selector: '[joItem]'
+    selector: '[ccItem]'
 })
 export class ItemDirective extends ControlDirective implements ControlValueAccessor {
   ngControl = inject(NgControl, { self: true });

@@ -2,7 +2,7 @@
   <label
     id="select_{{id}}"
     [class.required]="required()"
-    >
+  >
     <ng-content></ng-content>
   </label>
   <div>
@@ -11,7 +11,11 @@
 </div>
 
 <div class="position-relative">
-  <dialog #dropup>
+  <dialog
+    #dropup
+    tabindex="-1"
+    (focusout)="onFocusOut($event, dropup)"
+  >
     <ng-template [ngTemplateOutlet]="dropContent"></ng-template>
   </dialog>
 </div>
@@ -21,7 +25,7 @@
   class="d-flex align-items-stretch"
   role="group"
   attr.aria-labelledby="select_{{id}}"
-  >
+>
   <button
     class="flex-1 br-start text-start"
     type="button"
@@ -29,16 +33,18 @@
     [class.invalid]="!ngControl.control?.invalid"
     (click)="onClickGroup()"
     (blur)="onTouched()"
-    >
+  >
     {{activeItemValues()}}
   </button>
   <button
     class="d-flex br-end d-flex align-items-center justify-content-center"
+    type="button"
+    tabindex="-1"
     [class.invalid]="!ngControl.control?.invalid"
     [disabled]="isDisabled()"
     (click)="onClickGroup()"
     (blur)="onTouched()"
-    >
+  >
     <icon
       size="1rem"
       type="chevron"
@@ -51,7 +57,11 @@
   </button>
 </div>
 
-<dialog #dropdown>
+<dialog
+  #dropdown
+  tabindex="-1"
+  (focusout)="onFocusOut($event, dropdown)"
+>
   <ng-template [ngTemplateOutlet]="dropContent"></ng-template>
 </dialog>
 
@@ -62,44 +72,45 @@
         <input
           [ngModel]="searchTerm()"
           (ngModelChange)="onSearchChange($event)"
+          [placeholder]="searchPlaceholder()"
           class="flex-1 br-start br-end"
-          />
+        />
         @if (isMultiple()) {
-          <button
-            type="button"
-            class="br-start br-end"
-            (click)="onClickSelectAll()"
-            >
-            {{isSelectedAll() ? 'Deselect' : 'Select'}} All
-          </button>
+        <button
+          type="button"
+          class="br-start br-end"
+          (click)="onClickSelectAll()"
+        >
+          {{isSelectedAll() ? 'Deselect' : 'Select'}} All
+        </button>
         }
       </div>
     </div>
     <div class="d-flex flex-column">
       @for (item of filteredItems(); track item) {
-        <button
-          class="d-flex flex-1 align-items-center text-start gap-2"
-          [disabled]="isDisabled()"
+      <button
+        class="d-flex flex-1 align-items-center text-start gap-2"
+        [disabled]="isDisabled()"
+        [class.active]="model().includes(item.key)"
+        (click)="onClick(item)"
+      >
+        <div
+          class="cc-button {{isMultiple() ? 'br-20' : 'br-50'}}"
           [class.active]="model().includes(item.key)"
-          (click)="onClick(item)"
-          >
-          <div
-            class="cc-button {{isMultiple() ? 'br-20' : 'br-50'}}"
-            [class.active]="model().includes(item.key)"
-            [class.disabled]="isDisabled()"
-            [class.invalid]="ngControl.control?.invalid"
-            >
-            @if (model().includes(item.key)) {
-              <icon
-                size="1rem"
-                [type]="isMultiple() ? 'check' : 'dot'"
-                [fill]="[null, 'current']"
-                fillRotate="90"
-              ></icon>
-            }
-          </div>
-          {{item.value}}
-        </button>
+          [class.disabled]="isDisabled()"
+          [class.invalid]="ngControl.control?.invalid"
+        >
+          @if (model().includes(item.key)) {
+          <icon
+            size="1rem"
+            [type]="isMultiple() ? 'check' : 'dot'"
+            [fill]="[null, 'current']"
+            fillRotate="90"
+          ></icon>
+          }
+        </div>
+        {{item.value}}
+      </button>
       }
     </div>
   </div>

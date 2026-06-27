@@ -26,6 +26,7 @@ export class SelectComponent extends ItemDirective implements ControlValueAccess
   dropdown = viewChild.required<ElementRef<HTMLDialogElement>>('dropdown');
 
   dropHeightPx = input(200, { transform: numberAttribute });
+  searchPlaceholder = input('Search');
 
   searchTerm = signal('');
 
@@ -89,6 +90,11 @@ export class SelectComponent extends ItemDirective implements ControlValueAccess
     this.setModel(this.isSelectedAll()
       ? []
       : this.items().map(item => item.key));
+  }
+
+  onFocusOut(event: FocusEvent, dialog: HTMLDialogElement) {
+    if (!dialog.contains(event.relatedTarget as Node | null))
+      this.closeDropdown();
   }
 
   closeDropdown() {

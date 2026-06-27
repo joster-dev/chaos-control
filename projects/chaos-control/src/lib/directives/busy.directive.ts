@@ -3,14 +3,14 @@ import { filter, from, interval, map, Subject, Subscription, take, takeUntil } f
 import { BusyComponent } from '../components';
 
 @Directive({
-    selector: '[joBusy]'
+    selector: '[ccBusy]'
 })
 export class BusyDirective {
   private element = inject<ElementRef>(ElementRef);
   private viewContainerRef = inject(ViewContainerRef);
   private renderer = inject(Renderer2);
 
-  @Input('joBusy') asyncEvents?: Subscription | Subscription[] | Promise<any> | Promise<any>[];
+  @Input('ccBusy') asyncEvents?: Subscription | Subscription[] | Promise<any> | Promise<any>[];
 
   host: HTMLElement = this.element.nativeElement;
   insertedNode?: Node;

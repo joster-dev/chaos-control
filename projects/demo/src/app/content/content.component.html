@@ -1,5 +1,8 @@
 <div class="card">
-  <h2 class="card-header">&lt;cc-readonly&gt;</h2>
+  <h2 class="card-header d-flex gap-2 justify-content-between align-items-center">
+    <span>Readonly Text</span>
+    <code>&lt;cc-readonly&gt;</code>
+  </h2>
   <div class="card-body">
     <cc-readonly [model]="ds.readonlyModel">
       {{ds.readonlyLabel}}
@@ -7,20 +10,25 @@
   </div>
 </div>
 <div class="card">
-  <h2 class="card-header">&lt;cc-text&gt;</h2>
+  <h2 class="card-header d-flex gap-2 justify-content-between align-items-center">
+    <span>Text</span>
+    <code>&lt;cc-text&gt;</code>
+  </h2>
   <div class="card-body">
-    <cc-text
-      [(ngModel)]="ds.growingTextModel"
-      [isGrow]="true"
-    >
-      growing Text
-    </cc-text>
+    <div>
+      <cc-text
+        [(ngModel)]="ds.growingTextModel"
+        [isGrow]="true"
+      >
+        growing Text
+      </cc-text>
+    </div>
+    <div>
+      <cc-text [(ngModel)]="ds.textModel">
+        Text
+      </cc-text>
+    </div>
   </div>
-</div>
-<div>
-  <cc-text [(ngModel)]="ds.textModel">
-    Text
-  </cc-text>
 </div>
 <h2>&lt;cc-choice&gt;</h2>
 <div>
