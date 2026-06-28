@@ -156,6 +156,53 @@
 </div>
 <div class="card">
   <h2 class="card-header d-flex gap-2 justify-content-between align-items-center">
+    <span>Time</span>
+    <code>&lt;cc-time&gt;</code>
+  </h2>
+  <div class="card-body">
+    <div>
+      <cc-time [(ngModel)]="ds.timeModel">
+        Time
+      </cc-time>
+    </div>
+    <div>
+      <cc-time
+        [(ngModel)]="ds.timeWithSecondsModel"
+        withSeconds
+      >
+        Time with seconds
+      </cc-time>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <h2 class="card-header d-flex gap-2 justify-content-between align-items-center">
+    <span>Date</span>
+    <code>&lt;cc-date&gt;</code>
+  </h2>
+  <div class="card-body">
+    <div>
+      <cc-date [(ngModel)]="ds.dateModel">
+        Date
+      </cc-date>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <h2 class="card-header d-flex gap-2 justify-content-between align-items-center">
+    <span>Datetime</span>
+    <code>&lt;cc-datetime&gt;</code>
+  </h2>
+  <div class="card-body">
+    <div>
+      <cc-datetime [(ngModel)]="ds.datetimeModel">
+        Datetime (UTC)
+      </cc-datetime>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <h2 class="card-header d-flex gap-2 justify-content-between align-items-center">
     <span>File</span>
     <code>&lt;cc-file&gt;</code>
   </h2>

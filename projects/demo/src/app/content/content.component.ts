@@ -3,11 +3,14 @@ import { FormsModule } from '@angular/forms';
 import {
   ChoiceComponent,
   ColorComponent,
+  DateComponent,
+  DatetimeComponent,
   FileComponent,
   NumberComponent,
   ReadonlyComponent,
   SelectComponent,
   TextComponent,
+  TimeComponent,
 } from 'chaos-control';
 import { DataService } from '../data.service';
 
@@ -25,6 +28,9 @@ import { DataService } from '../data.service';
       ColorComponent,
       NumberComponent,
       FileComponent,
+      TimeComponent,
+      DateComponent,
+      DatetimeComponent,
     ],
 })
 export class ContentComponent {

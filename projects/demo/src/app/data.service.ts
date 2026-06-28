@@ -48,6 +48,14 @@ export class DataService {
 
   colorModel: string | null = null;
 
+  timeModel: string | null = null;
+
+  timeWithSecondsModel: string | null = null;
+
+  dateModel: string | null = null;
+
+  datetimeModel: string | null = null;
+
   fileModel: FileList | null = null;
 
   constructor() { }

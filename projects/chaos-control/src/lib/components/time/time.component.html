@@ -1,0 +1,21 @@
+<label
+  [for]="id"
+  [class.required]="required()"
+>
+  <ng-content></ng-content>
+</label>
+
+<input
+  [ngModel]="model()"
+  (ngModelChange)="onModelChange($event)"
+  type="time"
+  size="6"
+  [step]="step()"
+  [class.active]="model() !== null"
+  [class.br-start]="borderRadiusLeft()"
+  [class.br-end]="borderRadiusRight()"
+  [class.invalid]="ngControl.control?.invalid"
+  [disabled]="isDisabled()"
+  [id]="id"
+  (blur)="onTouched()"
+/>
